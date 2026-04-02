@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
-@theme {
+@import './custom/theme.css';
+@import './custom/reset.css';
+@import './custom/font.css';
+@import './utilities/utilities.css';
 
-}
+@import './parts/forms.css';

@@ -1,0 +1,23 @@
+.field {
+    @apply relative flex flex-col gap-1;
+
+    label {
+        @apply text-brown text-base font-medium pl-3;
+
+        strong {
+            @apply text-red;
+        }
+    }
+
+    input {
+        @apply px-4 py-3 text-brown bg-beige-light outline outline-beige-dark trans-all rounded-sm;
+
+        &::placeholder {
+            @apply text-beige-dark;
+        }
+
+        &:hover, &:focus {
+            @apply outline-brown;
+        }
+    }
+}
