@@ -3,7 +3,7 @@
     $disk = config('filesystems.default');
 @endphp
 
-<x-layout.login-layout>
+<x-layout.login-layout :title="__('page-title.login')">
 
     <main class="login">
         <div class="h-svh grid-login px-auth max-limit-width">

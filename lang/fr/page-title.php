@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'login' => 'Se connecter · ' . config('app.name'),
+    'login' => 'Se connecter',
+    'forgot-password' => 'Mot de passe oublié',
 ];
