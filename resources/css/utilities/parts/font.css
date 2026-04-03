@@ -1,3 +1,15 @@
 @utility paragraph {
     @apply text-base md:text-lg;
 }
+
+@utility underline-link {
+    @apply relative;
+
+    &:after {
+        @apply content-[''] w-full h-px absolute -bottom-0.5 left-0 scale-x-0 trans-all;
+    }
+
+    &:hover:after {
+        @apply scale-x-100;
+    }
+}
