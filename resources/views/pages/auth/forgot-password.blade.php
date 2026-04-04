@@ -12,7 +12,7 @@
                 <img class="w-55 mb-6"
                      src="{{ Storage::disk($disk)->url('img/svg/logo.svg') }}"
                      alt="{{ __('auth/login/logo-alt') }}">
-                <h1 class="text-2xl font-medium text-brown text-center pb-2">{{ __('auth/forgot-password.h1') }}</h1>
+                <h1 class="text-2xl rg:text-3xl font-medium text-brown text-center pb-2">{{ __('auth/forgot-password.h1') }}</h1>
                 <p class="paragraph text-gray-600 text-center mb-6">
                     {!! __('auth/forgot-password.forgot-password-accessibility')  !!}
                 </p>

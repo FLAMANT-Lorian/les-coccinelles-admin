@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return redirect()->route('login');
+    return redirect('/' . app()->getLocale());
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::livewire('/dashboard', 'pages::dashboard')->name('dashboard');
+Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(function () {
+    Route::livewire('/', 'pages::dashboard')->name('dashboard');
 });
