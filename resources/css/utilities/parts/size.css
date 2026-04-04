@@ -1,0 +1,7 @@
+@utility max-limit-width {
+    @apply max-w-500 mx-auto;
+}
+
+@utility px-auth {
+    @apply px-6 md:px-12;
+}
