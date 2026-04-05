@@ -6,12 +6,11 @@
 <x-layout.login-layout :title="__('page-title.login')">
 
     <main class="login">
-        <div class="h-svh grid-login px-auth max-limit-width">
-            <div
-                class="flex flex-col items-center justify-center h-full col-span-full md:col-start-2 md:col-span-4 rl:col-start-9 rl:col-span-4">
-                <img class="w-55 mb-6"
-                     src="{{ Storage::disk($disk)->url('img/svg/logo.svg') }}"
-                     alt="{{ __('auth/login/logo-alt') }}">
+        <div class="h-svh grid-login px-default max-limit-width">
+            <div class="flex flex-col items-center justify-center h-full col-span-full md:col-start-2 md:col-span-4 rl:col-start-9 rl:col-span-4">
+                <svg width="220" height="70" viewBox="0 0 220 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#logo"></use>
+                </svg>
                 <h1 class="text-2xl rg:text-3xl font-medium text-brown text-center pb-2">{{ __('auth/login.h1') }}</h1>
                 <p class="paragraph text-gray-600 text-center mb-6">
                     {!! __('forms.accessibility_text')  !!}

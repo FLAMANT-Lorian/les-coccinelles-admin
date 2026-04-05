@@ -11,7 +11,8 @@
     @livewireStyles
 </head>
 <body>
-    <x-tools.breakpoints/>
+    <x-icons.sprite/>
+
     {!! $slot !!}
     @livewireScripts
 </body>
