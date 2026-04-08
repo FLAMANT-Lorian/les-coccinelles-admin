@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->string('phone');
             $table->text('subject');
             $table->text('message');
+            $table->boolean('acceptance');
             $table->timestamps();
         });
     }

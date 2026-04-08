@@ -27,6 +27,7 @@ class MessageFactory extends Factory
             'subject' => $faker->sentence,
             'message' => $faker->text,
             'status' => $faker->randomElement($states),
+            'acceptance' => $faker->boolean,
         ];
     }
 }

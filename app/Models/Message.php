@@ -17,6 +17,8 @@ class Message extends Model
         'phone',
         'subject',
         'message',
+        'status',
+        'acceptance',
     ];
 
     protected function casts(): array
