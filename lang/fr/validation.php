@@ -51,7 +51,7 @@ return [
     'doesnt_contain' => 'Le champ :attribute ne doit pas contenir l’une des valeurs suivantes : :values.',
     'doesnt_end_with' => 'Le champ :attribute ne doit pas se terminer par l’une des valeurs suivantes : :values.',
     'doesnt_start_with' => 'Le champ :attribute ne doit pas commencer par l’une des valeurs suivantes : :values.',
-    'email' => 'Le champ :attribute doit être une adresse e-mail valide.',
+    'email' => 'L’adresse e-mail est invalide',
     'encoding' => 'Le champ :attribute doit être encodé en :encoding.',
     'ends_with' => 'Le champ :attribute doit se terminer par l’une des valeurs suivantes : :values.',
     'enum' => 'La valeur sélectionnée pour :attribute est invalide.',
@@ -196,8 +196,14 @@ return [
     */
 
     'attributes' => [
+        'last_name' => 'nom',
+        'first_name' => 'prénom',
+        'phone' => 'téléphone',
+        'object' => 'objet',
+        'message' => 'message',
         'email' => 'adresse e-mail',
-        'password' => 'mot de passe'
+        'password' => 'mot de passe',
+        'acceptance' => 'conditions d’utilisation'
     ],
 
 ];
