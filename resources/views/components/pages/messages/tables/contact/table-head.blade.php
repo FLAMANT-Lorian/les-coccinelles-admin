@@ -1,4 +1,4 @@
-<thead class="max-lg:hidden">
+<thead>
     <tr>
         <th>
             <div class="flex items-center justify-center">

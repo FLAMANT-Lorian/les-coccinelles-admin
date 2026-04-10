@@ -24,6 +24,6 @@
             :heading="$heading"/>
 
         {{-- TABLE --}}
-        <x-pages.messages.table-layout/>
+        <livewire:pages.messages.tables.contact.table/>
     </div>
 </div>

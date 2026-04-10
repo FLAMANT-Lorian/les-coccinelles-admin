@@ -1,28 +1,9 @@
-.wrapper {
-    @apply px-default py-12 flex flex-col gap-8;
-}
-
-.tab {
-    @apply cursor-pointer whitespace-nowrap paragraph trans-all relative;
-
-    &.current-tab {
-        @apply text-red trans-all;
-
-        &:after {
-            @apply scale-x-100;
-        }
-    }
-
-    &:after {
-        content: '';
-        @apply absolute -bottom-2 left-0 w-full h-0.5 bg-red trans-all scale-x-0;
-    }
-}
-
 table {
     @apply w-full border-separate border-spacing-0;
 
     thead {
+        @apply max-rg:hidden;
+
         th {
             @apply px-4 py-2.5 text-left text-white font-semibold bg-brown;
         }
@@ -50,7 +31,7 @@ table {
             @apply py-2;
 
             div {
-                @apply p-4;
+                @apply p-4 h-16 flex items-center;
             }
         }
     }
@@ -64,10 +45,6 @@ table {
         &:has(input[type="checkbox"]) {
             @apply w-12 text-center h-full;
 
-            div {
-                @apply flex items-center justify-center;
-            }
-
             input[type="checkbox"] {
                 @apply cursor-pointer appearance-none min-w-4 w-4 min-h-4 h-4 rounded-sm trans-all;
             }
@@ -80,7 +57,7 @@ table {
             input[type="checkbox"] {
                 @apply bg-white border-2 border-white trans-all;
 
-                &:hover:not(:checked) {
+                &:hover:not(:checked), &:focus:not(:checked) {
                     @apply bg-beige-dark;
                 }
 
@@ -97,7 +74,7 @@ table {
             input[type="checkbox"] {
                 @apply bg-white border border-brown trans-all;
 
-                &:hover:not(:checked) {
+                &:hover:not(:checked), &:focus:not(:checked) {
                     @apply bg-beige-dark;
                 }
 

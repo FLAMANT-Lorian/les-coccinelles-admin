@@ -1,0 +1,24 @@
+.wrapper {
+    @apply px-default py-12 flex flex-col gap-8;
+}
+
+.tab {
+    @apply cursor-pointer whitespace-nowrap paragraph trans-all relative;
+
+    &.current-tab {
+        @apply text-red trans-all;
+
+        &:after {
+            @apply scale-x-100;
+        }
+    }
+
+    &:after {
+        content: '';
+        @apply absolute -bottom-2 left-0 w-full h-0.5 bg-red trans-all scale-x-0;
+    }
+}
+
+.filter-container {
+    @apply mb-8;
+}

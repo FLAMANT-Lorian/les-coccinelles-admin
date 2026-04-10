@@ -150,4 +150,11 @@
             stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M3 10H21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+
+    <symbol id="search" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.3682 20.125L16.209 15.9658" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+            d="M10.5417 18.2083C14.7758 18.2083 18.2083 14.7758 18.2083 10.5417C18.2083 6.30748 14.7758 2.875 10.5417 2.875C6.30748 2.875 2.875 6.30748 2.875 10.5417C2.875 14.7758 6.30748 18.2083 10.5417 18.2083Z"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
 </svg>

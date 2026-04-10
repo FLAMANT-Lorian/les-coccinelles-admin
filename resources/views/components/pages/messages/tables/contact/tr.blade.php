@@ -26,7 +26,7 @@
     </td>
     <td>
         <div>
-            {{ __('tables.status') }}
+            <x-general.status :status="$contactMessage->status"/>
         </div>
     </td>
     <td data-action>
