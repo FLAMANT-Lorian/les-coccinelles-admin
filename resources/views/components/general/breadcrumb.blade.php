@@ -16,7 +16,7 @@
            href="{{ route('dashboard', ['locale' => app()->getLocale()]) }}">
             <span
                 class="sr-only">{{ __('navigation/navigation.got_to_title') . __('navigation/navigation.dashboard') }} </span>
-            <svg class="text-red hover:text-brown ease-all" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            <svg class="text-red hover:text-brown trans-all" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <use href="#home"></use>
             </svg>

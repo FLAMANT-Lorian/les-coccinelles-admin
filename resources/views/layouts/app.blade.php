@@ -15,7 +15,7 @@
     <x-tools.breakpoints/>
 
     <header
-        class="relative lg:min-w-80 lg:w-80 lg:h-svh lg:border-r lg:border-r-beige-dark/60 lg:rounded-sm lg:overflow-hidden">
+        class="lg:sticky lg:top-0 relative lg:min-w-80 lg:w-80 lg:h-svh lg:border-r lg:border-r-beige-dark/60 lg:rounded-sm lg:overflow-hidden">
         {{-- NAVIGATION --}}
         <x-navigation.side-bar/>
     </header>

@@ -10,6 +10,11 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->tab = MessageTypes::contact->value;
+        $allowedTabs = array_map(
+            static fn(MessageTypes $type) => $type->value,
+            MessageTypes::cases(),
+        );
+
+        $this->checkAllowedTabs($allowedTabs, MessageTypes::contact->value);
     }
 };

@@ -1,10 +1,28 @@
 <?php
 
+use App\Enums\MessageTypes;
+use App\Models\Message;
+use App\Models\MessageType;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithPagination;
 
-new class extends Component
-{
-    //
+new class extends Component {
+
+    use WithPagination;
+
+    #[Computed]
+    public function getContactMessages()
+    {
+        $messages_type = MessageType::where('name', MessageTypes::contact->value)->first();
+
+        if (!$messages_type) return;
+
+        return $messages_type->messages()
+            ->orderBy('created_at', 'desc')
+            ->with('messageType')
+            ->paginate(9);
+    }
 };
 ?>
 
