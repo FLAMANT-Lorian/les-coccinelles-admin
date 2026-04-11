@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
 
         foreach (MessageTypes::cases() as $messages_type) {
             MessageType::factory()
-                ->has(Message::factory()->count(10))
+                ->has(Message::factory()->count(30))
                 ->create([
-                'name' => $messages_type->value,
-            ]);
+                    'name' => $messages_type->value,
+                ]);
         }
     }
 }

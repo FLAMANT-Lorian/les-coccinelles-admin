@@ -5,4 +5,6 @@ return [
     'email_label' => 'Adresse e-mail',
     'password_label' => 'Mot de passe',
     'search' => 'Rechercher',
+    'selected' => 'Sélectionné',
+    'no_result' => 'Aucun résultat',
 ];

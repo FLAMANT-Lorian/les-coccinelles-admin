@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Enums\MessageStatus;
 use App\Models\Message;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class MessageFactory extends Factory
@@ -28,6 +29,7 @@ class MessageFactory extends Factory
             'message' => $faker->text,
             'status' => $faker->randomElement($states),
             'acceptance' => $faker->boolean,
+            'created_at' => Carbon::now()->subDays(rand(1, 30)),
         ];
     }
 }

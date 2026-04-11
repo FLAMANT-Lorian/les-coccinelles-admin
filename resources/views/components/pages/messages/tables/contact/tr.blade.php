@@ -4,7 +4,7 @@
 
 <tr>
     <td>
-        <div class="h-14">
+        <div>
             <input type="checkbox" id="all-selector">
             <label for="all-selector" class="sr-only">{{ __('tables.select_all') }}</label>
         </div>

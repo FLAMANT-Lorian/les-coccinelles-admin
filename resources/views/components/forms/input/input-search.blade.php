@@ -20,7 +20,7 @@
         @if($wire !== '')
             wire:model.live="{{ $wire }}"
         @endif
-        class="pl-15! w-75"
+        class="pl-15! w-full md:w-75"
         placeholder="{!! $placeholder ?? '' !!}"
         type="text"
         name="{!! $name !!}"

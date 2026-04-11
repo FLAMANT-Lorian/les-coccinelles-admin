@@ -2,7 +2,7 @@ table {
     @apply w-full border-separate border-spacing-0;
 
     thead {
-        @apply max-rg:hidden;
+        @apply max-lg:hidden;
 
         th {
             @apply px-4 py-2.5 text-left text-white font-semibold bg-brown;
