@@ -13,7 +13,7 @@
     ];
 @endphp
 
-<div class="wrapper">
+<div class="wrapper" x-data="{ modalOpen: false }">
     {{-- BREADCRUMB --}}
     <x-general.breadcrumb
         :segments="$segments"/>

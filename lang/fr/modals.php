@@ -6,6 +6,7 @@ return [
     'viewMessage' => 'Message de ',
     'object' => 'Objet : ',
     'from' => 'De : ',
-    'reply' => 'Répondre au mail',
-
+    'reply' => 'Répondre au message',
+    'see-message' => 'Voir le message',
+    'close' => 'Fermer la modale',
 ];

@@ -128,6 +128,9 @@ new class extends Component {
 
         <x-general.pagination
             :items="$this->getContactMessages"/>
+    @else
+        <x-general.no-results
+            :term="$this->term"/>
     @endif
 
 </div>

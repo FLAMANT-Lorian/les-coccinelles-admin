@@ -10,27 +10,34 @@ table {
     }
 
     tbody {
+        @apply max-lg:grid max-lg:gap-6 md:grid-cols-2 rl:grid-cols-3 max-lg:relative;
+
         tr {
-            @apply text-brown relative;
+            @apply text-brown relative max-lg:rounded-sm max-lg:flex max-lg:flex-col max-lg:gap-4 max-lg:border max-lg:border-beige-dark/60 max-lg:bg-beige-light max-lg:p-4;
+
             div {
                 @apply trans-all;
             }
 
             &:has(div:hover) div {
-                @apply bg-beige-medium;
+                @apply lg:bg-beige-medium;
             }
 
             &:after {
                 content: '';
-                @apply absolute bottom-0 left-0 w-full h-px bg-beige-dark/60;
+                @apply max-lg:hidden absolute bottom-0 left-0 w-full h-px bg-beige-dark/60;
             }
         }
 
         td {
-            @apply py-2;
+            @apply lg:py-2;
 
             div {
-                @apply p-4 h-16 flex items-center;
+                @apply lg:p-4 lg:h-16 flex max-lg:gap-1 max-lg:flex-col max-lg:items-start items-center;
+
+                > span:first-child {
+                    @apply lg:hidden font-semibold;
+                }
             }
         }
     }
@@ -38,7 +45,15 @@ table {
     th, td {
 
         &[data-action] {
-            @apply w-35 text-right;
+            @apply max-lg:w-full w-35 text-right;
+
+            > div > button {
+                @apply max-lg:absolute max-lg:top-4 max-lg:translate-x-1/3 max-lg:right-4;
+
+                svg {
+                    @apply max-lg:rotate-90;
+                }
+            }
         }
 
         &:has(input[type="checkbox"]) {
@@ -57,7 +72,7 @@ table {
                 @apply bg-white border-2 border-white trans-all;
 
                 &:hover:not(:checked), &:focus:not(:checked) {
-                    @apply bg-beige-dark;
+                    @apply lg:bg-beige-dark;
                 }
 
                 &:checked {
@@ -69,12 +84,13 @@ table {
 
     td {
         &:has(input[type="checkbox"]) {
+            @apply max-lg:hidden;
 
             input[type="checkbox"] {
                 @apply bg-white border border-brown trans-all;
 
                 &:hover:not(:checked), &:focus:not(:checked) {
-                    @apply bg-beige-dark;
+                    @apply lg:bg-beige-dark;
                 }
 
                 &:checked {
@@ -94,7 +110,7 @@ table {
 }
 
 .actions-table {
-    @apply  h-auto! flex flex-col items-stretch! divide-y divide-beige-dark/60 p-0! absolute right-0 top-4/5 z-1 border border-brown bg-beige-medium! text-white rounded-sm shadow;
+    @apply h-auto! flex flex-col items-stretch! divide-y divide-beige-dark/60 p-0! absolute right-0 top-12 lg:top-4/5 z-1 border border-brown bg-beige-medium! text-white rounded-sm shadow;
 
     button {
         @apply flex py-2 mx-4 text-brown trans-all;
@@ -103,4 +119,9 @@ table {
             @apply w-full text-left whitespace-nowrap group-hover:bg-beige-light py-1 px-2 trans-all;
         }
     }
+}
+
+
+.actions-mobile {
+    @apply pt-4 border-t border-t-beige-dark/60 self-stretch flex flex-col lg:hidden!;
 }

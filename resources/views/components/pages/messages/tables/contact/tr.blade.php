@@ -4,7 +4,7 @@
 ])
 
 <tr x-data="{ open: false }"
-    :class="open ? '[&_div]:bg-beige-medium' : ''"
+    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''"
     class="[&:has(input:checked)_div]:bg-beige-medium">
     <td>
         <div>
@@ -13,12 +13,14 @@
                    id="selector-{{ $contactMessage->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.contact_table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="$contactMessage->id" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $contactMessage->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
         </div>
     </td>
     <td>
         <div>
+            <span>{{ __('tables.full_name') }}&nbsp;:</span>
             <button type="button" class="underline-link after:bg-brown"
+                    @click="modalOpen = true"
                     wire:click="$dispatch('openModal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
                 {{ $contactMessage->full_name }}
             </button>
@@ -26,8 +28,9 @@
     </td>
     <td>
         <div>
+            <span>{{ __('tables.email') }}&nbsp;:</span>
             <a class="underline-link after:bg-brown"
-                href="mailto:{{ $contactMessage->email }}"
+               href="mailto:{{ $contactMessage->email }}"
                aria-label="{{ $contactMessage->email }}"
                title="{{ __('tables.send-email-to') . $contactMessage->email }}"
             >{{ $contactMessage->email }}</a>
@@ -35,25 +38,28 @@
     </td>
     <td>
         <div>
+            <span>{{ __('tables.send_date') }}&nbsp;:</span>
             {{ formattedDate($contactMessage->created_at) }}
         </div>
     </td>
     <td>
         <div>
+            <span>{{ __('tables.status') }}&nbsp;:</span>
             <x-general.status :status="$contactMessage->status"/>
         </div>
     </td>
     <td data-action>
-        <div class="justify-end relative">
-            <span @click="open = !open"
-                  @click.away="open = false"
-                  @keydown.window.escape="open = false"
-                  :class="open ? 'bg-beige-light' : ''"
-                  class="p-2 text-brown hover:bg-beige-light trans-all cursor-pointer">
+        <div class="justify-end lg:relative">
+            <button type="button"
+                    @click="open = !open"
+                    @click.away="open = false"
+                    @keydown.window.escape="open = false"
+                    :class="open ? 'lg:bg-beige-light' : ''"
+                    class="p-2 text-brown hover:bg-beige-light trans-all cursor-pointer">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-            </span>
+            </button>
             <div x-show="open" x-transition class="actions-table">
                 <button type="button" class="group" wire:click="deleteMessage({{ $contactMessage->id }})">
                     <span>Supprimer</span>
@@ -70,6 +76,16 @@
                         <span>Marquer comme non lu</span>
                     </button>
                 @endif
+            </div>
+
+            {{-- ACTION MOBILES --}}
+            <div class="actions-mobile">
+                <button type="button"
+                        title="{{ __('modals.see-message') }}"
+                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                        wire:click="$dispatch('openModal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
+                    <span class="whitespace-nowrap">{{ __('modals.reply') }}</span>
+                </button>
             </div>
         </div>
     </td>

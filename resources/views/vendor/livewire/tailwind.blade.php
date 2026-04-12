@@ -20,7 +20,7 @@
                             @if ($paginator->onFirstPage())
                                 <span aria-disabled="true" aria-label="{{ __('tables.previous') }}">
                                     <span
-                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-sm font-medium text-beige-dark bg-white border border-beige-dark/60 rounded-sm"
+                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-base font-medium text-beige-dark bg-white border border-beige-dark/60 rounded-sm"
                                         aria-hidden="true">
                                         <svg width="6" height="11" viewBox="0 0 6 11" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +33,7 @@
                                 <button type="button" wire:click="previousPage('{{ $paginator->getPageName() }}')"
                                         x-on:click="{{ $scrollIntoViewJsSnippet }}"
                                         dusk="previousPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after"
-                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-sm font-medium text-brown bg-white border border-brown rounded-sm hover:bg-brown hover:text-white trans-all"
+                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-base font-medium text-brown bg-white border border-brown rounded-sm hover:bg-brown hover:text-white trans-all"
                                         aria-label="{{ __('pagination.previous') }}">
                                    <svg width="6" height="11" viewBox="0 0 6 11" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -50,24 +50,24 @@
                             @if (is_string($element))
                                 <span aria-disabled="true" class="max-rl:hidden mx-1">
                                     <span
-                                        class="relative inline-flex gap-2 items-center px-4 py-2 text-sm font-medium bg-white text-brown border border-brown rounded-sm">{{ $element }}</span>
+                                        class="relative inline-flex gap-2 items-center px-4 py-2 text-base font-medium bg-white text-brown border border-brown rounded-sm">{{ $element }}</span>
                                 </span>
                             @endif
 
                             {{-- Array Of Links --}}
                             @if (is_array($element))
                                 @foreach ($element as $page => $url)
-                                    <span class="mx-1" wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
+                                    <span class="mx-1 max-rl:hidden" wire:key="paginator-{{ $paginator->getPageName() }}-page{{ $page }}">
                                         @if ($page == $paginator->currentPage())
                                             <span aria-current="page">
                                                 <span
-                                                    class="max-rl:hidden relative inline-flex gap-2 items-center px-4 py-2 text-sm font-medium border border-brown rounded-sm bg-brown text-white trans-all">{{ $page }}</span>
+                                                    class="relative inline-flex gap-2 items-center px-4 py-2 text-base font-medium border border-brown rounded-sm bg-brown text-white trans-all">{{ $page }}</span>
                                             </span>
                                         @else
                                             <button type="button"
                                                     wire:click="gotoPage({{ $page }}, '{{ $paginator->getPageName() }}')"
                                                     x-on:click="{{ $scrollIntoViewJsSnippet }}"
-                                                    class="max-rl:hidden relative inline-flex gap-2 items-center px-4 py-2 text-sm font-medium text-brown bg-white border border-brown rounded-sm hover:bg-brown hover:text-white trans-all"
+                                                    class="relative inline-flex gap-2 items-center px-4 py-2 text-base font-medium text-brown bg-white border border-brown rounded-sm hover:bg-brown hover:text-white trans-all"
                                                     aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                                                 {{ $page }}
                                             </button>
@@ -83,7 +83,7 @@
                                 <button type="button" wire:click="nextPage('{{ $paginator->getPageName() }}')"
                                         x-on:click="{{ $scrollIntoViewJsSnippet }}"
                                         dusk="nextPage{{ $paginator->getPageName() == 'page' ? '' : '.' . $paginator->getPageName() }}.after"
-                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-sm font-medium text-brown bg-white border border-brown rounded-sm hover:bg-brown hover:text-white trans-all"
+                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-base font-medium text-brown bg-white border border-brown rounded-sm hover:bg-brown hover:text-white trans-all"
                                         aria-label="{{ __('tables.next') }}">
                                         <span>{{ __('tables.next') }}</span>
                                     <svg class="rotate-180" width="6" height="11" viewBox="0 0 6 11" fill="none"
@@ -94,7 +94,7 @@
                             @else
                                 <span aria-disabled="true" aria-label="{{ __('tables.next') }}">
                                     <span
-                                        class="relative inline-flex gap-2 items-center px-2 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-r-md leading-5 dark:bg-gray-800 dark:border-gray-600"
+                                        class="relative inline-flex gap-2 items-center px-2 py-2 -ml-px text-base font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-r-md leading-5 dark:bg-gray-800 dark:border-gray-600"
                                         aria-hidden="true">
                                         <span>{{ __('tables.next') }}</span>
                                         <svg class="rotate-180" width="6" height="11" viewBox="0 0 6 11" fill="none"

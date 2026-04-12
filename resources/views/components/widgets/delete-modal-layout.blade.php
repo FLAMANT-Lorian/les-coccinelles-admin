@@ -4,14 +4,18 @@
 ])
 
 <div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/50"
-     @keydown.window.escape="$dispatch('closeModal')">
+     x-trap="modalOpen"
+     @keydown.window.escape="$dispatch('closeModal'); modalOpen = false">
     <div class="flex flex-col gap-6 w-150 bg-red-50 border border-red rounded-sm p-6">
         <div class="flex flex-row gap-12 items-start justify-between">
             <div class="flex flex-col gap-1">
                 <p class="text-2xl text-red font-medium">{{ $title }}</p>
                 <p class="text-base">{{ $message }}</p>
             </div>
-            <button type="button" class="w-8 h-8 cursor-pointer" @click="$dispatch('closeModal')">
+            <button title="{{ __('modals.close') }}"
+                    type="button"
+                    class="w-8 h-8 cursor-pointer"
+                    @click="$dispatch('closeModal')" modalOpen=false>
                 <svg class="hover:bg-red rounded-sm text-brown hover:text-white trans-all" width="32" height="32"
                      viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

@@ -43,7 +43,6 @@ trait TableSelectedColumn
                 'status' => $value
             ]);
         }
-        $this->selectedColumn = [];
     }
 
     #[On('markMessageAs')]

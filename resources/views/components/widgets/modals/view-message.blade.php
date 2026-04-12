@@ -25,7 +25,7 @@
             {{ $message->message }}
         </p>
         <div class="mt-8 self-end">
-            <a class="flex flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+            <a class="flex flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent focus:bg-transparent hover:text-brown focus:text-brown trans-all"
                href="mailto:{{ $message->email }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                      stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
