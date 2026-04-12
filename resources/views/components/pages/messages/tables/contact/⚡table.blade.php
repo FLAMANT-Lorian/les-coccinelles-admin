@@ -35,10 +35,9 @@ new class extends Component {
     #[Computed]
     public function getContactMessages()
     {
-        $messages_type = MessageType::where('name', MessageTypes::contact->value)->first();
-
-        if (!$messages_type) return;
-        $query = $messages_type->messages();
+        $query = Message::whereHas('messageType', function (Builder $q) {
+            $q->where('name', MessageTypes::contact->value);
+        });
 
         if (!empty($this->term)) {
             $query->where(function (Builder $query) {
@@ -57,8 +56,7 @@ new class extends Component {
             $query->orderBy($this->filter_column, $this->filter_direction);
         }
 
-        return $query->with('messageType')
-            ->paginate(9);
+        return $query->paginate(9);
     }
 
     #[Computed]
