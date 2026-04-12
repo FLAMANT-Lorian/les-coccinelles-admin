@@ -5,6 +5,7 @@ return [
     'select_all' => 'Tout sélectionner',
     'previous' => 'Précédent',
     'next' => 'Suivant',
+    'send-email-to' => 'Envoyer un mail à ',
 
     /* LABEL */
     'full_name' => 'Nom Complet',

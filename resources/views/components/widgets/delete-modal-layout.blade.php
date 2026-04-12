@@ -11,7 +11,7 @@
                 <p class="text-2xl text-red font-medium">{{ $title }}</p>
                 <p class="text-base">{{ $message }}</p>
             </div>
-            <button type="button" class="cursor-pointer" @click="$dispatch('closeModal')">
+            <button type="button" class="w-8 h-8 cursor-pointer" @click="$dispatch('closeModal')">
                 <svg class="hover:bg-red rounded-sm text-brown hover:text-white trans-all" width="32" height="32"
                      viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

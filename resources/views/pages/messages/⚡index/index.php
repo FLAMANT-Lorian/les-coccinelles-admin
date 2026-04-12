@@ -1,20 +1,29 @@
 <?php
 
+use App\Models\Message;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component {
 
     public bool $modalDeleteAll = false;
-    public bool $modalMarkAsRead = false;
+    public bool $modalViewMessage = false;
+    public Message $messageToSee;
+
 
     #[On('openModal')]
-    public function openModal(string $modal): void
+    public function openModal(string $modal, int $id = null): void
     {
         if ($modal === 'deleteAll') {
             $this->modalDeleteAll = true;
-        } elseif ($modal === 'markAsRead') {
-            $this->modalMarkAsRead = true;
+        } elseif ($modal === 'viewMessage' && !is_null($id)) {
+            $message = Message::findOrFail($id);
+
+            if (!$message) return;
+
+            $this->messageToSee = $message;
+
+            $this->modalViewMessage = true;
         }
     }
 
@@ -22,6 +31,6 @@ new class extends Component {
     public function closeModal(): void
     {
         $this->modalDeleteAll = false;
-        $this->modalMarkAsRead = false;
+        $this->modalViewMessage = false;
     }
 };

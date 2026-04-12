@@ -1,16 +1,19 @@
 @props([
-    'title'
+    'title',
+    'message'
 ])
 
 <div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/50"
      @keydown.window.escape="$dispatch('closeModal')">
-    <div class="flex flex-col gap-4 w-200 justify-start bg-beige-medium rounded-sm p-6">
+    <div class="flex flex-col gap-4 w-200 bg-beige-medium rounded-sm p-6">
         <div class="flex flex-row gap-12 justify-between">
             <div class="flex flex-col gap-1">
                 <p class="text-2xl text-brown font-medium">{{ $title }}</p>
-                <p class="text-base">{!! __('forms.accessibility_text') !!}</p>
+                @if($message)
+                <p class="text-base">{{ $message }}</p>
+                @endif
             </div>
-            <button type="button" class="cursor-pointer" @click="$dispatch('closeModal')">
+            <button type="button" class="w-8 h-8 cursor-pointer" @click="$dispatch('closeModal')">
                 <svg class=" hover:bg-brown rounded-sm text-brown hover:text-white trans-all" width="32" height="32"
                      viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

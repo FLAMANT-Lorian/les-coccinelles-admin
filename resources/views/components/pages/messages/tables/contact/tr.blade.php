@@ -18,12 +18,19 @@
     </td>
     <td>
         <div>
-            {{ $contactMessage->full_name }}
+            <button type="button" class="underline-link after:bg-brown"
+                    wire:click="$dispatch('openModal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
+                {{ $contactMessage->full_name }}
+            </button>
         </div>
     </td>
     <td>
         <div>
-            {{ $contactMessage->email }}
+            <a class="underline-link after:bg-brown"
+                href="mailto:{{ $contactMessage->email }}"
+               aria-label="{{ $contactMessage->email }}"
+               title="{{ __('tables.send-email-to') . $contactMessage->email }}"
+            >{{ $contactMessage->email }}</a>
         </div>
     </td>
     <td>
@@ -52,12 +59,14 @@
                     <span>Supprimer</span>
                 </button>
                 @if($contactMessage->status === MessageStatus::Unread->value)
-                    <button type="button" class="group" wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
+                    <button type="button" class="group"
+                            wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
                         <span>Marquer comme lu</span>
                     </button>
                 @endif
                 @if($contactMessage->status === MessageStatus::Read->value)
-                    <button type="button" class="group" wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $contactMessage->id }})">
+                    <button type="button" class="group"
+                            wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $contactMessage->id }})">
                         <span>Marquer comme non lu</span>
                     </button>
                 @endif

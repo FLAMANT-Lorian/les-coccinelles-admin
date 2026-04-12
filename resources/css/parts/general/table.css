@@ -12,7 +12,6 @@ table {
     tbody {
         tr {
             @apply text-brown relative;
-
             div {
                 @apply trans-all;
             }
