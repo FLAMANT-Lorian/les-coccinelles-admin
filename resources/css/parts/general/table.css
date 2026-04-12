@@ -93,3 +93,15 @@ table {
         @apply rounded-r-sm;
     }
 }
+
+.actions-table {
+    @apply  h-auto! flex flex-col items-stretch! divide-y divide-beige-dark/60 p-0! absolute right-0 top-4/5 z-1 border border-brown bg-beige-medium! text-white rounded-sm shadow;
+
+    button {
+        @apply flex py-2 mx-4 text-brown trans-all;
+
+        span {
+            @apply w-full text-left whitespace-nowrap group-hover:bg-beige-light py-1 px-2 trans-all;
+        }
+    }
+}

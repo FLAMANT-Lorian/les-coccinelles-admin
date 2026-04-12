@@ -13,4 +13,8 @@ return [
     'status' => 'Statut',
     'actions' => 'Actions',
     'filterStatus' => 'Filtrer par statut',
+    'multiple-selected' => 'éléments sélectionnés',
+    'multiple-delete' => 'Supprimer les éléments sélectionnés',
+    'mark-as-read' => 'Marquer les éléments sélectionnés comme lu',
+    'mark-as-not-read' => 'Marquer les éléments sélectionnés comme non lu',
 ];

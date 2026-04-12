@@ -6,3 +6,12 @@ if (!function_exists('formattedDate')) {
         return $date->translatedFormat('j F Y');
     }
 }
+
+if (!function_exists('enumToArray')) {
+    function enumToArray($enum)
+    {
+        return array_map(function ($enum) {
+            return $enum->value;
+        }, $enum::cases());
+    }
+}

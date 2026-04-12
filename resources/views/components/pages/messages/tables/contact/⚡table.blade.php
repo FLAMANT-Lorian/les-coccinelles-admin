@@ -5,8 +5,10 @@ use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
 use App\Traits\TableFilter;
+use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
@@ -15,6 +17,7 @@ new class extends Component {
 
     use WithPagination;
     use TableFilter;
+    use TableSelectedColumn;
 
     #[Url]
     public string $term = '';
@@ -23,6 +26,11 @@ new class extends Component {
 
     #[Url]
     public array $filter = [];
+
+    public function mount(): void
+    {
+        $this->model = new Message();
+    }
 
     #[Computed]
     public function getContactMessages()
@@ -68,12 +76,23 @@ new class extends Component {
         }
         return $cases;
     }
+
+    public function deleteMessage(int $id): void
+    {
+        $message = Message::findOrFail($id);
+
+        if (!$message) return;
+
+        $message->delete();
+    }
+
 };
 ?>
 
-<div class="flex flex-col">
+<div class="flex flex-col relative">
     {{-- FILTER --}}
-    <div class="filter-container">
+    <div
+        class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
         <x-forms.input.input-search
             wire="term"
             name="messages_search"
@@ -92,9 +111,14 @@ new class extends Component {
         />
     </div>
 
+    <x-general.selected-column
+        :array="$this->selectedColumn"
+        :options="['delete' => true,'markAsRead' => true, 'markAsNotRead' => true]"
+    />
+
     @if($this->getContactMessages->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table">
+        <table class="table" x-ref="contact_table">
             <x-pages.messages.tables.contact.table-head/>
             <x-pages.messages.tables.contact.table-body/>
         </table>

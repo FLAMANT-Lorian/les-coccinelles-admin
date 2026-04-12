@@ -26,4 +26,10 @@
         {{-- TABLE --}}
         <livewire:pages.messages.tables.contact.table/>
     </div>
+
+    {{-- MODAL --}}
+    @if($this->modalDeleteAll)
+        <x-widgets.modals.deleteAllSelected/>
+    @endif
+
 </div>

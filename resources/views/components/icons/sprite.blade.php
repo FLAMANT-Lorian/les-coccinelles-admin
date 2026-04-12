@@ -175,4 +175,36 @@
             d="M8.70711 7.98918L14.0159 13.298L13.3088 14.0051L8 8.69629L2.69117 14.0051L1.98407 13.298L7.29289 7.98918L1.99512 2.69141L2.70222 1.9843L8 7.28208L13.2978 1.9843L14.0049 2.69141L8.70711 7.98918Z"
             fill="currentColor"/>
     </symbol>
+
+    <symbol id="bin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 11V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M14 11V17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+            d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M3 6H21" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+            d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
+            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="table-actions" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="2" cy="2" r="2" fill="currentColor"/>
+        <circle cx="10" cy="2" r="2" fill="currentColor"/>
+        <circle cx="18" cy="2" r="2" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="markAsRead" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <path stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+              d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/>
+        <path stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+              d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/>
+    </symbol>
+
+    <symbol id="markAsNotRead" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+        <path stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+              d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+        <rect stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+              x="2" y="4" width="20" height="16" rx="2"/>
+    </symbol>
 </svg>

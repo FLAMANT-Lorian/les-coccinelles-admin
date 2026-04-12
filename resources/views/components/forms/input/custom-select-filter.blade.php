@@ -8,7 +8,7 @@
 <div {{ $attributes->merge(['class' => 'field min-w-50']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
      @click.away="open = false;
          $refs.input.blur();"
-     x-on:keydown.window.escape="open = false;
+     @keydown.window.escape="open = false;
          $refs.input.blur();">
     <div class="w-full">
         <label for="status_filter"
