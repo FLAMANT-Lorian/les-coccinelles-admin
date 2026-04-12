@@ -12,7 +12,8 @@ trait TableSelectedColumn
     public array $selectedColumn = [];
     public Model $model;
 
-    public function deleteSelected(): void
+    #[On('deleteSelection')]
+    public function deleteSelection(): void
     {
         foreach ($this->selectedColumn as $selection) {
             $item = $this->model::query()->findOrFail($selection);
@@ -22,6 +23,7 @@ trait TableSelectedColumn
             $item->delete();
         }
         $this->selectedColumn = [];
+        $this->closeModal();
     }
 
     #[On('markMessageSelectionAs')]
@@ -40,8 +42,8 @@ trait TableSelectedColumn
             $message->update([
                 'status' => $value
             ]);
-            $this->selectedColumn = [];
         }
+        $this->selectedColumn = [];
     }
 
     #[On('markMessageAs')]

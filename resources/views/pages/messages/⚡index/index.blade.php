@@ -29,7 +29,7 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteAll)
-        <x-widgets.modals.deleteAllSelected/>
+        <x-widgets.modals.delete-selection/>
     @endif
 
 </div>

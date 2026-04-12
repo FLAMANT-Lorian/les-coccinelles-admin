@@ -86,6 +86,11 @@ new class extends Component {
         $message->delete();
     }
 
+    public function closeModal(): void
+    {
+        $this->dispatch('closeModal');
+    }
+
 };
 ?>
 
