@@ -9,7 +9,7 @@
         @apply content-[''] w-full h-px absolute -bottom-0.5 left-0 scale-x-0 trans-all;
     }
 
-    &:hover:after {
+    &:hover:after, &:focus:after {
         @apply scale-x-100;
     }
 }

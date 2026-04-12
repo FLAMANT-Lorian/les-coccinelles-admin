@@ -1,0 +1,44 @@
+.wrapper {
+    @apply px-default py-12 flex flex-col gap-8;
+}
+
+.tab {
+    @apply cursor-pointer whitespace-nowrap paragraph trans-all relative;
+
+    &.current-tab {
+        @apply text-red trans-all;
+
+        &:after {
+            @apply scale-x-100;
+        }
+    }
+
+    &:after {
+        content: '';
+        @apply absolute -bottom-2 left-0 w-full h-0.5 bg-red trans-all scale-x-0;
+    }
+}
+
+.filter-container {
+    @apply mb-8 flex flex-col md:flex-row gap-6;
+
+    .result-container {
+        @apply border border-beige-dark px-4 py-3 bg-beige-light;
+
+        &:has(input:focus), &:hover {
+            @apply border-brown;
+        }
+
+        input {
+            @apply p-0 rounded-none border-none bg-transparent;
+        }
+    }
+
+    .custom-select {
+
+        &:before {
+            content: '';
+            @apply absolute top-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] h-px bg-beige-dark/60;
+        }
+    }
+}

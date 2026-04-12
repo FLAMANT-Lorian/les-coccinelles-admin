@@ -7,3 +7,6 @@
 
 @import './parts/forms.css';
 @import './parts/header.css';
+@import './parts/general/table.css';
+@import './parts/general/base.css';
+

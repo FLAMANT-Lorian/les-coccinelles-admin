@@ -1,3 +1,13 @@
-<main id="content" class="grow">
-    <h1>DASHBOARD</h1>
-</main>
+@php
+    $segments = [
+        [
+            'label' => __('navigation/navigation.dashboard')
+        ],
+    ]
+@endphp
+
+<div class="wrapper">
+    {{-- BREADCRUMB --}}
+    <x-general.breadcrumb
+        :segments="$segments"/>
+</div>

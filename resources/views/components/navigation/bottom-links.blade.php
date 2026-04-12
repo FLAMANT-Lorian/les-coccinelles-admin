@@ -11,14 +11,14 @@
     <a href="#"
        title="{{ __('navigation/navigation.settings') }}"
        aria-label="{{ __('navigation/navigation.settings') }}"
-       class="relative after:content-[''] after:absolute after:left-0 after:right-0 after:h-px after:bg-beige-dark/60 after:-top-4 mt-4 text-brown rounded-sm flex flex-row items-center gap-4 py-3 hover:px-4 trans-all hover:bg-beige-medium">
+       class="relative after:content-[''] after:absolute after:left-0 after:right-0 after:h-px after:bg-beige-dark/60 after:-top-4 mt-4 text-brown rounded-sm flex flex-row items-center gap-4 py-3 hover:px-4 focus:px-4 trans-all hover:bg-beige-medium">
         <span class="sr-only">{{ __('navigation/navigation.settings') }}</span>
         <div class="h-12 w-12 bg-gray rounded-full"></div>
         <div class="flex flex-col items-start gap-0.5">
-            <p class="font-medium">John Doe</p>
+            <p class="font-medium text-brown">John Doe</p>
             <p class="text-sm text-gray-500">Admin</p>
         </div>
-        <svg class="min-w-6 min-h-6 ml-auto" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        <svg class="text-brown min-h-6 ml-auto" width="24" height="24" viewBox="0 0 24 24" fill="none"
              xmlns="http://www.w3.org/2000/svg">
             <use href="#settings"></use>
         </svg>

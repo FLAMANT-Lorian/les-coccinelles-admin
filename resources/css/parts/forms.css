@@ -10,14 +10,14 @@
     }
 
     input {
-        @apply px-4 py-3 text-brown bg-beige-light outline outline-beige-dark trans-all rounded-sm;
+        @apply px-4 py-3 text-brown bg-beige-light border border-beige-dark trans-all rounded-sm;
 
         &::placeholder {
             @apply text-beige-dark;
         }
 
         &:hover, &:focus {
-            @apply outline-brown;
+            @apply border-brown outline-none;
         }
     }
 }

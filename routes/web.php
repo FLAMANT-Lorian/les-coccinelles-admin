@@ -9,4 +9,5 @@ Route::get('/', function () {
 
 Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(function () {
     Route::livewire('/', 'pages::dashboard')->name('dashboard');
+    Route::livewire('/messages', 'pages::messages.index')->name('messages');
 });

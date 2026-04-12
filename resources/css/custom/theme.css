@@ -25,6 +25,11 @@
     --color-gray-800: #292a2b;
     --color-gray-900: #141515;
 
+    --color-status-green: #57A770;
+    --color-status-green-light: #E3F0E7;
+    --color-status-blue: #3B82F6;
+    --color-status-blue-light: #DBEAFE;
+
     /* BREAKPOINTS */
     --breakpoint-sm: 460px;
     --breakpoint-md: 768px;
@@ -36,4 +41,9 @@
     --breakpoint-xxl: 2080px;
     --breakpoint-2xl: 2300px;
     --breakpoint-2k: 2000px;
+
+    --text-3xl: 2rem;
+    --text-3xl--line-height: 2.375rem;
+    --text-4\.5xl: 2.5rem;
+    --text-4\.5xl--line-height: 2.875rem;
 }
