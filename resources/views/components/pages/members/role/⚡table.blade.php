@@ -1,6 +1,8 @@
 <?php
 
 use App\Enums\MessageTypes;
+use App\Enums\RoleMode;
+use App\Models\MembersRole;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
@@ -31,25 +33,26 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->model = new Message();
+        $this->model = new MembersRole();
     }
 
     #[Computed]
-    public function getContactMessages()
+    public function getMembersRole()
     {
-        $query = Message::whereHas('messageType', function (Builder $q) {
-            $q->where('name', MessageTypes::contact->value);
-        });
+        $query = MembersRole::query();
 
         if (!empty($this->term)) {
             $query->where(function (Builder $query) {
-                $query->whereLike('email', '%' . $this->term . '%')
-                    ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$this->term%"]);
+                $query->where('name', 'like', '%' . $this->term . '%');
             });
         }
 
         if (!empty($this->filter)) {
-            $query->whereIn('status', $this->filter);
+            $query->where(function (Builder $q) {
+                foreach ($this->filter as $role) {
+                    $q->orWhere('unique', RoleMode::from($role)->isSingle());
+                }
+            });
         }
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
@@ -62,12 +65,12 @@ new class extends Component {
     #[Computed]
     public function getFilteredTerms()
     {
-        $cases = MessageStatus::cases();
+        $cases = RoleMode::cases();
 
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
                 return str_contains(
-                    strtolower(__('enums.' . $case->value)),
+                    strtolower($case->value),
                     strtolower($this->filter_term)
                 );
             });
@@ -75,11 +78,11 @@ new class extends Component {
         return $cases;
     }
 
-    public function deleteMessage(int $id): void
+    public function deleteRole(int $id): void
     {
-        $message = Message::findOrFail($id);
+        $role = MembersRole::findOrFail($id);
 
-        $message->delete();
+        $role->delete();
     }
 
 };
@@ -101,26 +104,26 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="message_filter"
-            :enum="true"
+            id="role_filter"
             :translation="true"
+            :enum="true"
         />
     </div>
 
     <x-general.selected-column
         :array="$this->selectedColumn"
-        :options="['delete' => true,'markAsRead' => true, 'markAsNotRead' => true]"
+        :options="['delete' => true]"
     />
 
-    @if($this->getContactMessages->isNotEmpty())
+    @if($this->getMembersRole->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="contact_table">
-            <x-pages.messages.tables.contact.table-head/>
-            <x-pages.messages.tables.contact.table-body/>
+            <x-pages.members.role.table-head/>
+            <x-pages.members.role.table-body/>
         </table>
 
         <x-general.pagination
-            :items="$this->getContactMessages"/>
+            :items="$this->getMembersRole"/>
     @else
         <x-general.no-results
             :term="$this->term"/>

@@ -18,8 +18,6 @@ trait TableSelectedColumn
         foreach ($this->selectedColumn as $selection) {
             $item = $this->model::query()->findOrFail($selection);
 
-            if (!$item) return;
-
             $item->delete();
         }
         $this->selectedColumn = [];
