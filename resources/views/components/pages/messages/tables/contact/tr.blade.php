@@ -55,10 +55,11 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
-                    class="p-2 text-brown hover:bg-beige-light trans-all cursor-pointer">
+                    class="actions p-2 text-brown hover:bg-beige-light trans-all cursor-pointer">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
+                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
             <div x-show="open" x-transition class="actions-table">
                 <button type="button" class="group" wire:click="deleteMessage({{ $contactMessage->id }})">
