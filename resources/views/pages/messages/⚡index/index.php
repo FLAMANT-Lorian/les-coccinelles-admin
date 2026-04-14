@@ -11,7 +11,7 @@ new class extends Component {
     public Message $messageToSee;
 
 
-    #[On('openModal')]
+    #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
     {
         if ($modal === 'deleteAll') {
@@ -27,7 +27,7 @@ new class extends Component {
         }
     }
 
-    #[On('closeModal')]
+    #[On('close-modal')]
     public function closeModal(): void
     {
         $this->modalDeleteAll = false;

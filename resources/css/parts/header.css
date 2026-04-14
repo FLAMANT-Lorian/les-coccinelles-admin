@@ -10,6 +10,10 @@
     @apply flex flex-col max-lg:absolute max-lg:z-1 max-lg:top-24.25 max-lg:inset-x-0 max-lg:bottom-0 bg-beige-light max-lg:w-screen max-lg:h-[calc(100svh-97px)] max-lg:-translate-y-full max-lg:trans-all;
 }
 
+body:has(.menu-input:checked) {
+    @apply overflow-hidden;
+}
+
 .menu:has(.menu-input:checked) {
     .nav-container {
         @apply max-lg:translate-y-0;

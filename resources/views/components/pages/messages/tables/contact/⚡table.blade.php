@@ -86,7 +86,7 @@ new class extends Component {
 
     public function closeModal(): void
     {
-        $this->dispatch('closeModal');
+        $this->dispatch('close-modal');
     }
 
 };
