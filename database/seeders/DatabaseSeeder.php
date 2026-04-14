@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\MessageTypes;
+use App\Models\MembersRole;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Models\User;
@@ -30,5 +31,20 @@ class DatabaseSeeder extends Seeder
                     'name' => $messages_type->value,
                 ]);
         }
+
+        MembersRole::factory()->create([
+            'name' => 'Super Admin',
+            'unique' => true,
+        ]);
+
+        MembersRole::factory()->create([
+            'name' => 'Président',
+            'unique' => true,
+        ]);
+
+        MembersRole::factory()->create([
+            'name' => 'Membre',
+            'unique' => false,
+        ]);
     }
 }
