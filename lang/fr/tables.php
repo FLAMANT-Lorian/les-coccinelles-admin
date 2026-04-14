@@ -6,13 +6,7 @@ return [
     'previous' => 'Précédent',
     'next' => 'Suivant',
     'send-email-to' => 'Envoyer un mail à ',
-
-    /* LABEL */
-    'full_name' => 'Nom Complet',
-    'email' => 'Email',
-    'send_date' => 'Date d’envoi',
-    'status' => 'Statut',
-    'actions' => 'Actions',
+    'fast-actions' => 'Actions rapides',
     'filterStatus' => 'Filtrer par statut',
     'multiple-selected' => 'éléments sélectionnés',
     'multiple-delete' => 'Supprimer les éléments sélectionnés',
@@ -20,4 +14,11 @@ return [
     'mark-as-not-read' => 'Marquer les éléments sélectionnés comme non lu',
     'no-results' => 'Aucun résultat',
     'no-results-for' => 'Aucun résultat pour',
+
+    /* LABEL */
+    'full_name' => 'Nom Complet',
+    'email' => 'Email',
+    'send_date' => 'Date d’envoi',
+    'status' => 'Statut',
+    'actions' => 'Actions',
 ];
