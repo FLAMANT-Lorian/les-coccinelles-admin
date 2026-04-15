@@ -8,7 +8,7 @@
     'accessor' => ''
 ])
 
-<div {{ $attributes->merge(['class' => 'field min-w-50']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
+<div {{ $attributes->merge(['class' => 'field w-full']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
      @click.away="open = false;
          $refs.input.blur();"
      @keydown.window.escape="open = false;
@@ -65,7 +65,7 @@
                 @foreach($collection as $item)
                     <button type="button"
                             data-value="{{ $enum ? $item->value : $item[$accessor] }}"
-                            class="mx-4 py-2 text-left text-sm"
+                            class="mx-4 py-3 text-left"
                             @click="open = false;
                         $refs.input.blur();
 
@@ -83,7 +83,7 @@
                     </button>
                 @endforeach
             @else
-                <span class="mx-4 py-2 text-left text-sm">{{ __('forms.no_result') }}</span>
+                <span class="mx-4 py-2 text-left">{{ __('forms.no_result') }}</span>
             @endif
         </div>
     </div>

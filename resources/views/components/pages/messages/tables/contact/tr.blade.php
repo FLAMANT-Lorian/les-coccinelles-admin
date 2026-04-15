@@ -21,7 +21,7 @@
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
             <button type="button" class="underline-link after:bg-brown"
                     @click="modalOpen = true"
-                    wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
+                    wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}}); markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
                 {{ $contactMessage->full_name }}
             </button>
         </div>
@@ -39,7 +39,7 @@
     <td>
         <div>
             <span>{{ __('tables.send_date') }}&nbsp;:</span>
-            {{ formattedDate($contactMessage->created_at) }}
+            <time datetime="{{ $date = formattedDate($contactMessage->created_at) }}">{{ $date }}</time>
         </div>
     </td>
     <td>
