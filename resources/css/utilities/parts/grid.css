@@ -1,3 +1,3 @@
 @utility grid-login {
-    @apply grid grid-cols-6 rl:grid-cols-13 gap-6;
+    @apply grid grid-cols-6 rl:grid-cols-13 gap-8;
 }

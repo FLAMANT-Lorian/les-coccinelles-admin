@@ -1,5 +1,5 @@
 @php
-    use App\Enums\MessageTypes;
+    use App\Enums\MessageTypes;use Illuminate\Validation\Rules\Can;
 
     $segments = [
         [
@@ -19,7 +19,7 @@
         ],
         [
             'label' => __('pages/members.role'),
-            'location' => 'role'
+            'location' => 'roles'
         ]
     ];
 
@@ -42,8 +42,8 @@
         {{-- TABLE --}}
         @if($this->tab === 'members')
 
-        @else($this->tab === 'role')
-            <livewire:pages.members.role.table/>
+        @elseif($this->tab === 'roles')
+            <livewire:pages.members.role.table.table/>
         @endif
     </div>
 

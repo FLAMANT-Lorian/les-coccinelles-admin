@@ -3,6 +3,7 @@
 
 use App\Enums\MessageStatus;
 use App\Enums\RoleMode;
+use App\Enums\YesOrNo;
 
 return [
     // MessageStatus
@@ -12,4 +13,8 @@ return [
     // MembersRole
     RoleMode::Unique->value => 'Role unique',
     RoleMode::Multiple->value => 'Role multiple',
+
+    // YesOrNo
+    YesOrNo::YES->value => 'Oui',
+    YesOrNo::NO->value => 'Non',
 ];

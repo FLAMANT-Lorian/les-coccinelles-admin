@@ -10,7 +10,7 @@ new class extends Component
 
     public function mount(): void
     {
-        $allowedTabs = ['role', 'members'];
+        $allowedTabs = ['roles', 'members'];
 
         $this->checkAllowedTabs($allowedTabs, 'members');
     }

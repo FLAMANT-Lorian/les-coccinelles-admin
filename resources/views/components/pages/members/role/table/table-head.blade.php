@@ -19,7 +19,7 @@
                     ids = [];
                 }
                 });
-                $wire.set('selectedColumn', ids);
+                $wire.selectedColumn = ids;
                 ">
                 <label for="all-selector" class="sr-only">{{ __('tables.select_all') }}</label>
             </div>

@@ -108,6 +108,11 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
+        <x-general.add-button
+            class="col-span-2 justify-self-end"
+            :location="route('roles.create', ['locale' => app()->getLocale()])"
+            :label="__('pages/members.add-role')"
+        />
     </div>
 
     <x-general.selected-column
@@ -118,8 +123,8 @@ new class extends Component {
     @if($this->getMembersRole->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="contact_table">
-            <x-pages.members.role.table-head/>
-            <x-pages.members.role.table-body/>
+            <x-pages.members.role.table.table-head/>
+            <x-pages.members.role.table.table-body/>
         </table>
 
         <x-general.pagination

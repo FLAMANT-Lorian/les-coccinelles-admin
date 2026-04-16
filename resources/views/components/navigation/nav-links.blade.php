@@ -9,7 +9,7 @@
         ],
          [
             'label' => __('navigation/navigation.members'),
-            'route' => route('members', ['locale' => app()->getLocale()]),
+            'route' => route('members.index', ['locale' => app()->getLocale()]),
             'icon' => 'members',
         ],
         [
