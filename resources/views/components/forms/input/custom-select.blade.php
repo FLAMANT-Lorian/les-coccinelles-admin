@@ -19,12 +19,13 @@
      @keydown.window.escape="open = false;
          $refs.input.blur();">
     <div class="w-full flex flex-col gap-1">
-        <label for="status_filter"
-               aria-label="{{ $label }}"
-               @click="$refs.input.focus();"
-        title="{{ $label }}">
-            {{ $label }} @if($required) <strong>*</strong> @endif
-        </label>
+        <span aria-label="{{ $label }}"
+              @click="$refs.input.focus();"
+              title="{{ $label }}">
+            {{ $label }} @if($required)
+                <strong>*</strong>
+            @endif
+        </span>
         <div class="result-container flex rounded-sm flex-row cursor-pointer trans-all"
              @click="$refs.input.focus();"
              :class="open ? 'rounded-b-none!' : ''">
@@ -58,9 +59,9 @@
                 @focus="open = true"
                 :class="open ? 'rounded-b-none!' : ''"
                 @if($multiple)
-                    placeholder="@if(empty($this->selected[$key])) Séléctionner des options @else Ajouter des options @endif"
+                    placeholder="@if(empty($this->selected[$key])) {{ __('forms.select-options') }} @else {{ __('forms.add-options') }} @endif"
                 @else
-                    placeholder="@if(empty($this->selected[$key])) Séléctionner une option @else Changer d'option @endif"
+                    placeholder="@if(empty($this->selected[$key])) {{ __('forms.select-option') }} @else {{ __('forms.change-option') }} @endif"
                 @endif
                 class="" type="text" name="status_filter_term" id="status_filter">
             <svg :class="open ? 'rotate-90' : '-rotate-90'"

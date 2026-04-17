@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Enums\MessageTypes;
-use App\Models\MembersRole;
 use App\Models\Message;
 use App\Models\MessageType;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,8 +19,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
-            'name' => 'Flamant Lorian',
+        $role = Role::factory()->create([
+            'name' => 'Président',
+            'unique' => true
+        ]);
+
+        User::factory()
+            ->for($role)
+            ->create([
+            'first_name' => 'Lorian',
+            'last_name' => 'Flamant',
             'email' => 'test@test.be',
         ]);
 
@@ -31,20 +39,5 @@ class DatabaseSeeder extends Seeder
                     'name' => $messages_type->value,
                 ]);
         }
-
-        MembersRole::factory()->create([
-            'name' => 'Super Admin',
-            'unique' => true,
-        ]);
-
-        MembersRole::factory()->create([
-            'name' => 'Président',
-            'unique' => true,
-        ]);
-
-        MembersRole::factory()->create([
-            'name' => 'Membre',
-            'unique' => false,
-        ]);
     }
 }

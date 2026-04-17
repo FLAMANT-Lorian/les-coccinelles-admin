@@ -2,10 +2,10 @@
 
 use App\Enums\MessageTypes;
 use App\Enums\RoleMode;
-use App\Models\MembersRole;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
+use App\Models\Role;
 use App\Traits\CloseModal;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
@@ -33,13 +33,13 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->model = new MembersRole();
+        $this->model = new Role();
     }
 
     #[Computed]
-    public function getMembersRole()
+    public function getRoles()
     {
-        $query = MembersRole::query();
+        $query = Role::query();
 
         if (!empty($this->term)) {
             $query->where(function (Builder $query) {
@@ -80,7 +80,7 @@ new class extends Component {
 
     public function deleteRole(int $id): void
     {
-        $role = MembersRole::findOrFail($id);
+        $role = Role::findOrFail($id);
 
         $role->delete();
     }
@@ -120,7 +120,7 @@ new class extends Component {
         :options="['delete' => true]"
     />
 
-    @if($this->getMembersRole->isNotEmpty())
+    @if($this->getRoles->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="contact_table">
             <x-pages.members.role.table.table-head/>
@@ -128,7 +128,7 @@ new class extends Component {
         </table>
 
         <x-general.pagination
-            :items="$this->getMembersRole"/>
+            :items="$this->getRoles"/>
     @else
         <x-general.no-results
             :term="$this->term"/>
