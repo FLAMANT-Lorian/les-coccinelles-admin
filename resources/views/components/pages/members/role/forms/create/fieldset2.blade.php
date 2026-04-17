@@ -22,7 +22,7 @@
                             permission.checked = false;
                             ids = [];
                         }
-                        $wire.membersOptions = ids;
+                        $wire.set('membersOptions', ids);
                         });">
                 </div>
             </div>
