@@ -1,5 +1,5 @@
 <thead>
-    <tr x-data="{ role: 'middle', name: 'middle', email: 'middle' }">
+    <tr x-data="{ name: 'middle', email: 'middle', role: 'middle' }">
         <th>
             <div class="flex items-center justify-center">
                 <input :checked="$wire.selectedColumn.length > 0"
@@ -26,37 +26,6 @@
         </th>
         <th>
             <button type="button" class="flex items-center gap-2" @click="
-            if (role === 'middle') {
-                    name = 'middle';
-                    email = 'middle';
-                    role = 'desc'
-                } else if (role === 'desc') {
-                     name = 'middle';
-                    email = 'middle';
-                    role = 'asc'
-                } else if (role === 'asc') {
-                     name = 'middle';
-                    email = 'middle';
-                    role = 'middle'
-                }
-                $wire.sortBy('name', role)">
-                <span>{{ __('tables.role') }}</span>
-                <svg :class="{
-                            'rotate-0': role === 'desc',
-                            '-rotate-180': role === 'asc',
-                            '-rotate-90': role === 'middle'
-                         }"
-                     class="trans-all" width="11" height="16" viewBox="0 0 11 16" fill="none"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <use href="#th-filter-arrow"></use>
-                </svg>
-            </button>
-        </th>
-        <th>
-            <span>{{ __('tables.unique_role') }}</span>
-        </th>
-        <th>
-            <button type="button" class="flex items-center gap-2" @click="
             if (name === 'middle') {
                     role = 'middle';
                     email = 'middle';
@@ -70,7 +39,7 @@
                     email = 'middle';
                     name = 'middle'
                 }
-                /*$wire.sortBy('full_name', name)*/">
+                $wire.sortBy('first_name', name)">
                 <span>{{ __('tables.full_name') }}</span>
                 <svg :class="{
                             'rotate-0': name === 'desc',
@@ -98,7 +67,7 @@
                     name = 'middle';
                     email = 'middle'
                 }
-                /*$wire.sortBy('email', email)*/">
+                $wire.sortBy('email', email)">
                 <span>{{ __('tables.email') }}</span>
                 <svg :class="{
                             'rotate-0': email === 'desc',
@@ -110,6 +79,40 @@
                     <use href="#th-filter-arrow"></use>
                 </svg>
             </button>
+        </th>
+        <th>
+            <span>{{ __('tables.phone') }}</span>
+        </th>
+        <th>
+            <button type="button" class="flex items-center gap-2" @click="
+            if (role === 'middle') {
+                    email = 'middle';
+                    name = 'middle';
+                    role = 'desc'
+                } else if (role === 'desc') {
+                     email = 'middle';
+                    name = 'middle';
+                    role = 'asc'
+                } else if (role === 'asc') {
+                     email = 'middle';
+                    name = 'middle';
+                    role = 'middle'
+                }
+                $wire.sortBy('role', role)">
+                <span>{{ __('tables.role') }}</span>
+                <svg :class="{
+                            'rotate-0': role === 'desc',
+                            '-rotate-180': role === 'asc',
+                            '-rotate-90': role === 'middle'
+                         }"
+                     class="trans-all" width="11" height="16" viewBox="0 0 11 16" fill="none"
+                     xmlns="http://www.w3.org/2000/svg">
+                    <use href="#th-filter-arrow"></use>
+                </svg>
+            </button>
+        </th>
+        <th>
+            <span>{{ __('tables.status') }}</span>
         </th>
         <th data-action>{{ __('tables.actions') }}</th>
     </tr>

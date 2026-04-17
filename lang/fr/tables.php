@@ -20,6 +20,7 @@ return [
     /* LABEL */
     'full_name' => 'Nom Complet',
     'email' => 'Email',
+    'phone' => 'Téléphone',
     'send_date' => 'Date d’envoi',
     'status' => 'Statut',
     'actions' => 'Actions',

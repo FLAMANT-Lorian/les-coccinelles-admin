@@ -1,6 +1,6 @@
 @php use App\Enums\MessageStatus; @endphp
 @props([
-    'role' => MembersRole::class,
+    'member' => User::class,
 ])
 
 <tr x-data="{ open: false }"
@@ -9,38 +9,41 @@
     <td>
         <div>
             <input type="checkbox"
-                   value="{{ $role->id }}"
-                   id="selector-{{ $role->id }}"
+                   value="{{ $member->id }}"
+                   id="selector-{{ $member->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $role->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
-        </div>
-    </td>
-    <td>
-        <div>
-            <span>{{ __('tables.role') }}&nbsp;:</span>
-            <button type="button" class="underline-link after:bg-brown"
-                    wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $role->id }}})">
-                {{ $role->name }}
-            </button>
-        </div>
-    </td>
-    <td>
-        <div>
-            <span>{{ __('tables.unique_role') }}&nbsp;:</span>
-            <span>{{ $role->unique ? __('tables.yes') : __('tables.no') }}</span>
+            <label for="selector-{{ $member->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            <span>–</span>
+           <span>{{ $member->full_name }}</span>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <span>–</span>
+            <span>{{ $member->email }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.phone') }}&nbsp;:</span>
+            <span>{{ $member->phone }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.role') }}&nbsp;:</span>
+            <span>{{ $member->role->name }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.status') }}&nbsp;:</span>
+            <x-general.status :status="$member->status"/>
         </div>
     </td>
     <td data-action>
@@ -61,7 +64,7 @@
                 <button type="button" class="group cursor-not-allowed" disabled>
                     <span>Modifier</span>
                 </button>
-                <button type="button" class="group" wire:click="deleteRole({{ $role->id }})">
+                <button type="button" class="group cursor-not-allowed" disabled>
                     <span>Supprimer</span>
                 </button>
             </div>

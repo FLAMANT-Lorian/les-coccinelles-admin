@@ -1,12 +1,7 @@
 <?php
 
-use App\Enums\MessageTypes;
-use App\Enums\RoleMode;
-use App\Models\Message;
-use App\Models\MessageType;
-use App\Enums\MessageStatus;
-use App\Models\Role;
-use App\Traits\CloseModal;
+use App\Enums\MembersStatus;
+use App\Models\User;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,7 +16,6 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-    use CloseModal;
 
     #[Url]
     public string $term = '';
@@ -33,24 +27,25 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->model = new Role();
+        $this->model = new User();
     }
 
     #[Computed]
-    public function getRoles()
+    public function getMembers()
     {
-        $query = Role::query();
+        $query = User::query();
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
-                $q->where('name', 'like', '%' . $this->term . '%');
+                $q->whereLike('email', '%' . $this->term . '%')
+                    ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$this->term%"]);
             });
         }
 
         if (!empty($this->filter)) {
             $query->where(function (Builder $q) {
-                foreach ($this->filter as $role) {
-                    $q->orWhere('unique', RoleMode::from($role)->isSingle());
+                foreach ($this->filter as $status) {
+                    $q->orWhere('status', MembersStatus::from($status));
                 }
             });
         }
@@ -65,7 +60,7 @@ new class extends Component {
     #[Computed]
     public function getFilteredTerms()
     {
-        $cases = RoleMode::cases();
+        $cases = MembersStatus::cases();
 
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
@@ -77,14 +72,6 @@ new class extends Component {
         }
         return $cases;
     }
-
-    public function deleteRole(int $id): void
-    {
-        $role = Role::findOrFail($id);
-
-        $role->delete();
-    }
-
 };
 ?>
 
@@ -108,11 +95,11 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
-        <x-general.add-button
+        {{--<x-general.add-button
             class="col-span-2 justify-self-end"
             :location="route('roles.create', ['locale' => app()->getLocale()])"
             :label="__('pages/members.add-role')"
-        />
+        />--}}
     </div>
 
     <x-general.selected-column
@@ -120,15 +107,15 @@ new class extends Component {
         :options="['delete' => true]"
     />
 
-    @if($this->getRoles->isNotEmpty())
+    @if($this->getMembers->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
-            <x-pages.members.role.table.table-head/>
-            <x-pages.members.role.table.table-body/>
+            <x-pages.members.members.table.table-head/>
+            <x-pages.members.members.table.table-body/>
         </table>
 
         <x-general.pagination
-            :items="$this->getRoles"/>
+            :items="$this->getMembers"/>
     @else
         <x-general.no-results
             :term="$this->term"/>

@@ -41,7 +41,7 @@
 
         {{-- TABLE --}}
         @if($this->tab === 'members')
-
+            <livewire:pages.members.members.table.table/>
         @elseif($this->tab === 'roles')
             <livewire:pages.members.role.table.table/>
         @endif

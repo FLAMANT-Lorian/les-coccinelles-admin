@@ -1,5 +1,5 @@
 @php
-    use App\Enums\MessageStatus;
+    use App\Enums\MembersStatus;use App\Enums\MessageStatus;
 @endphp
 
 @props([
@@ -8,8 +8,16 @@
 
 @php
     $states  = [
+        // MESSAGES
         MessageStatus::Unread->value => 'bg-status-blue-light before:bg-status-blue',
         MessageStatus::Read->value => 'bg-status-green-light before:bg-status-green',
+
+        // MEMBERS
+        MembersStatus::active->value => 'bg-status-green-light before:bg-status-green',
+        MembersStatus::pause->value => 'bg-status-blue-light before:bg-status-blue',
+        MembersStatus::inactive->value => 'bg-status-red-light before:bg-status-red',
+
+
     ];
 
     $classes = $states[(string)$status];

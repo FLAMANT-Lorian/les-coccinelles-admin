@@ -42,8 +42,8 @@ new class extends Component {
         });
 
         if (!empty($this->term)) {
-            $query->where(function (Builder $query) {
-                $query->whereLike('email', '%' . $this->term . '%')
+            $query->where(function (Builder $q) {
+                $q->whereLike('email', '%' . $this->term . '%')
                     ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$this->term%"]);
             });
         }

@@ -24,6 +24,12 @@ class DatabaseSeeder extends Seeder
             'unique' => true
         ]);
 
+        $role2 = Role::factory()->create([
+            'name' => 'test',
+            'unique' => false
+        ]);
+
+
         User::factory()
             ->for($role)
             ->create([
@@ -31,6 +37,9 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Flamant',
             'email' => 'test@test.be',
         ]);
+        User::factory()
+            ->for($role2)
+            ->create();
 
         foreach (MessageTypes::cases() as $messages_type) {
             MessageType::factory()

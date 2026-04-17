@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Enums\MembersStatus;
 use App\Enums\MessageStatus;
 use App\Enums\RoleMode;
 use App\Enums\YesOrNo;
@@ -17,4 +18,9 @@ return [
     // YesOrNo
     YesOrNo::YES->value => 'Oui',
     YesOrNo::NO->value => 'Non',
+
+    // MembersStatus
+    MembersStatus::active->value => 'Actif',
+    MembersStatus::pause->value => 'Pause',
+    MembersStatus::inactive->value => 'Inactif',
 ];
