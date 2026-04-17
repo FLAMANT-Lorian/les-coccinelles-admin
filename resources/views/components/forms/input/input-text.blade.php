@@ -19,7 +19,7 @@
            type="{{ $type ?? 'text' }}"
            name="{{ $name }}"
            placeholder="{{ $placeholder ?? '' }}"
-           value="{{ old($field_name) ?? '' }}"
+           value="{{ old($name) ?? '' }}"
            autocomplete="off">
 
     @error($name)

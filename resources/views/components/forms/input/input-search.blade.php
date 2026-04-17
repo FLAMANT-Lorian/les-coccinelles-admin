@@ -6,7 +6,7 @@
     'placeholder',
 ])
 
-<div {!! $attributes->merge(['class' => 'field']) !!}>
+<div {!! $attributes->merge(['class' => 'field w']) !!}>
     <label class="sr-only" for="{!! $id !!}">
         {!! $label !!}
     </label>
@@ -20,7 +20,7 @@
         @if($wire !== '')
             wire:model.live="{{ $wire }}"
         @endif
-        class="pl-15! w-full md:w-75"
+        class="pl-15! w-full"
         placeholder="{!! $placeholder ?? '' !!}"
         type="text"
         name="{!! $name !!}"

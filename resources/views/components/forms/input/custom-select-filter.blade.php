@@ -3,9 +3,12 @@
     'name',
     'id',
     'wire',
+    'translation' => true,
+    'enum' => true,
+    'accessor' => ''
 ])
 
-<div {{ $attributes->merge(['class' => 'field min-w-50']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
+<div {{ $attributes->merge(['class' => 'field w-full']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
      @click.away="open = false;
          $refs.input.blur();"
      @keydown.window.escape="open = false;
@@ -13,8 +16,8 @@
     <div class="w-full">
         <label for="status_filter"
                class="sr-only"
-               aria-label="{{ __('tables.filterStatus') }}">
-            {{ __('tables.filterStatus') }}
+               aria-label="{{ __('tables.filter') }}">
+            {{ __('tables.filter') }}
         </label>
         <div class="result-container flex rounded-sm flex-row cursor-pointer trans-all"
              @click="$refs.input.focus();"
@@ -34,7 +37,7 @@
                              xmlns="http://www.w3.org/2000/svg">
                             <use href="#cross-filter"></use>
                         </svg>
-                        <span class="whitespace-nowrap">{{ __('enums.' . $item) }}</span>
+                        <span class="whitespace-nowrap">{{ $translation ? __('enums.' . $item) : $item }}</span>
                     </button>
                 @endforeach
             @endif
@@ -61,8 +64,8 @@
             @if(!empty($collection))
                 @foreach($collection as $item)
                     <button type="button"
-                            data-value="{{ $item->value }}"
-                            class="mx-4 py-2 text-left text-sm"
+                            data-value="{{ $enum ? $item->value : $item[$accessor] }}"
+                            class="mx-4 py-3 text-left"
                             @click="open = false;
                         $refs.input.blur();
 
@@ -76,11 +79,11 @@
 
                         $wire.set('filter', selected);
                         $wire.set('filter_term', '');">
-                        {{ __('enums.' . $item->value) . ' ' . (in_array($item->value, $this->filter) ? '(' . __('forms.selected') . ')' : '') }}
+                        {{ ($translation ? __('enums.' . ($enum ? $item->value : $item[$accessor])) : ($enum ? $item->value : $item[$accessor])) . ' ' . (in_array(($enum ? $item->value : $item[$accessor]), $this->filter) ? '(' . __('forms.selected') . ')' : '') }}
                     </button>
                 @endforeach
             @else
-                <span class="mx-4 py-2 text-left text-sm">{{ __('forms.no_result') }}</span>
+                <span class="mx-4 py-2 text-left">{{ __('forms.no_result') }}</span>
             @endif
         </div>
     </div>

@@ -29,6 +29,9 @@
     --color-status-green-light: #E3F0E7;
     --color-status-blue: #3B82F6;
     --color-status-blue-light: #DBEAFE;
+    --color-status-red: #C6390E;
+    --color-status-red-light: #F8D2C9;
+
 
     /* BREAKPOINTS */
     --breakpoint-sm: 460px;

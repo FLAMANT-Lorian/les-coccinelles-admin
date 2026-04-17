@@ -30,7 +30,7 @@
             </a>
         </div>
     </fieldset>
-    <x-forms.buttons.submit
+    <x-forms.buttons.submit-outlined
         class="w-full"
         :label="__('auth/login.submit_btn_label')"/>
 </form>

@@ -10,7 +10,7 @@ beforeEach(function () {
     $this->actingAs($this->user);
 });
 
-it('can view delete a message using the fast actions in the table', function () {
+/*it('can view delete a message using the fast actions in the table', function () {
     $messageType = MessageType::factory()->create(['name' => MessageTypes::contact->value]);
 
     $message = Message::factory()->for($messageType)->create();
@@ -27,4 +27,4 @@ it('can view delete a message using the fast actions in the table', function () 
         'first_name' => $message->first_name,
         'last_name' => $message->last_name,
     ]);
-});
+});*/

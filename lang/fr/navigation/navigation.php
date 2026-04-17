@@ -7,6 +7,7 @@ return [
     /* NAV LINKS */
     'dashboard' => 'Tableau de bord',
     'messages' => 'Messages',
+    'members' => 'Membres',
 
     'open_menu_mobile' => 'Ouvrir le menu',
     'logout' => 'Me deconnecter',

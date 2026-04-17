@@ -17,7 +17,7 @@
                 type="button"
                 class="p-1 hover:bg-beige-light trans-all rounded-sm"
                 @click="modalOpen = true"
-                wire:click="$dispatch('openModal', { modal: 'deleteAll' })">
+                wire:click="$dispatch('open-modal', { modal: 'deleteAll' })">
             <svg class="text-brown" width="24" height="24" viewBox="0 0 24 24" fill="none"
                  xmlns="http://www.w3.org/2000/svg">
                 <use href="#bin"/>

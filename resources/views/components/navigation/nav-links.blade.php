@@ -7,6 +7,11 @@
             'icon' => 'dashboard',
             'wire_current_exact' => true
         ],
+         [
+            'label' => __('navigation/navigation.members'),
+            'route' => route('members.index', ['locale' => app()->getLocale()]),
+            'icon' => 'members',
+        ],
         [
             'label' => __('navigation/navigation.messages'),
             'route' => route('messages', ['locale' => app()->getLocale()]),

@@ -24,17 +24,13 @@
         @if(!empty($segments))
             @foreach ($segments as $segment)
                 @if($loop->first)
-                    <svg class="text-brown min-w-1.25 min-h-2 w-1.5 h-2" width="5" height="8" viewBox="0 0 5 8"
+                    <svg class="line-clamp-1text-brown min-w-1.25 min-h-2 w-1.5 h-2" width="5" height="8" viewBox="0 0 5 8"
                          fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <use href="#breadcrumb-separator"></use>
                     </svg>
                 @endif
-                @if($loop->last)
-                    <span class="text-brown">
-                    {{ $segment['label'] }}
-                </span>
-                @else
+                @if(array_key_exists('url', $segment))
                     <a aria-label="{{ $segment['label'] }}"
                        title="{{ __('navigation/navigation.got_to_title') . $segment['label'] }}"
                        href="{{ $segment['url'] }}"
@@ -42,6 +38,12 @@
                        class="text-red font-semibold hover:text-brown trans-all">
                         {{ $segment['label'] }}
                     </a>
+                @else
+                    <span class="line-clamp-1 text-brown">
+                            {{ $segment['label'] }}
+                        </span>
+                @endif
+                @if(!$loop->last)
                     <svg class="min-w-1.25 min-h-2 w-1.5 h-2" width="5" height="8" viewBox="0 0 5 8" fill="none"
                          xmlns="http://www.w3.org/2000/svg">
                         <use href="#breadcrumb-separator"></use>

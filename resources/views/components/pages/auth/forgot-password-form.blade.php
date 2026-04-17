@@ -14,7 +14,7 @@
         />
 
     </fieldset>
-    <x-forms.buttons.submit
+    <x-forms.buttons.submit-outlined
             class="w-full"
             :label="__('auth/forgot-password.submit_btn_label')"/>
 </form>

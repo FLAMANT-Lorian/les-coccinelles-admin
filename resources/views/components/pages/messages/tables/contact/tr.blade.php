@@ -21,7 +21,7 @@
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
             <button type="button" class="underline-link after:bg-brown"
                     @click="modalOpen = true"
-                    wire:click="$dispatch('openModal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
+                    wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}}); markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
                 {{ $contactMessage->full_name }}
             </button>
         </div>
@@ -39,7 +39,7 @@
     <td>
         <div>
             <span>{{ __('tables.send_date') }}&nbsp;:</span>
-            {{ formattedDate($contactMessage->created_at) }}
+            <time datetime="{{ $date = formattedDate($contactMessage->created_at) }}">{{ $date }}</time>
         </div>
     </td>
     <td>
@@ -84,7 +84,7 @@
                 <button type="button"
                         title="{{ __('modals.see-message') }}"
                         class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        wire:click="$dispatch('openModal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
+                        wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
                     <span class="whitespace-nowrap">{{ __('modals.reply') }}</span>
                 </button>
             </div>

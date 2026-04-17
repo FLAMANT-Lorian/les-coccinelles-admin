@@ -4,6 +4,7 @@ use App\Enums\MessageTypes;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
+use App\Traits\CloseModal;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -18,6 +19,7 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
+    use CloseModal;
 
     #[Url]
     public string $term = '';
@@ -40,10 +42,8 @@ new class extends Component {
         });
 
         if (!empty($this->term)) {
-            $query->where(function (Builder $query) {
-                $query->whereLike('email', '%' . $this->term . '%')
-                    ->orWhereLike('first_name', '%' . $this->term . '%')
-                    ->orWhereLike('last_name', '%' . $this->term . '%')
+            $query->where(function (Builder $q) {
+                $q->whereLike('email', '%' . $this->term . '%')
                     ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$this->term%"]);
             });
         }
@@ -56,7 +56,7 @@ new class extends Component {
             $query->orderBy($this->filter_column, $this->filter_direction);
         }
 
-        return $query->paginate(9);
+        return $query->paginate(config('table.pagination-numbers'));
     }
 
     #[Computed]
@@ -79,14 +79,7 @@ new class extends Component {
     {
         $message = Message::findOrFail($id);
 
-        if (!$message) return;
-
         $message->delete();
-    }
-
-    public function closeModal(): void
-    {
-        $this->dispatch('closeModal');
     }
 
 };
@@ -109,8 +102,8 @@ new class extends Component {
             name="filter"
             wire="filter_term"
             id="message_filter"
-            :label="__('forms.filterStatus')"
-            :placeholder="__('forms.filterStatus')"
+            :enum="true"
+            :translation="true"
         />
     </div>
 
