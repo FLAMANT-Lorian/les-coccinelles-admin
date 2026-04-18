@@ -91,24 +91,28 @@
          x-show="open">
         <div class="flex flex-col divide-y divide-beige-medium shadow-xl">
 
-            @foreach($collection as $item)
-                @php
-                    $value = $enum ? $item->value : $item[$accessor];
-                @endphp
-                <button type="button"
-                        class="mx-4 py-3 text-left flex justify-between"
-                        @click="toggle('{{ $value }}')"
-                        wire:click="$wire.set('{!! $wire !!}', '')">
+            @if(!empty($collection))
+                @foreach($collection as $item)
+                    @php
+                        $value = $enum ? $item->value : $item[$accessor];
+                    @endphp
+                    <button type="button"
+                            class="mx-4 py-3 text-left flex justify-between"
+                            @click="
+                            toggle('{{ $value }}')
+                            open = false;
+                            $refs.input.blur();
+                            "
+                            wire:click="$wire.set('{!! $wire !!}', '')">
 
                     <span>{{ $translation ? __('enums.' . $value) : $value }}
                         <template x-if="value === '{{ $value }}'">
                             <span> ({!! __('forms.selected') !!})</span>
                         </template>
                     </span>
-                </button>
-            @endforeach
-
-            @if(empty($collection))
+                    </button>
+                @endforeach
+            @else
                 <span class="mx-4 py-2 text-left">{{ __('forms.no_result') }}</span>
             @endif
         </div>

@@ -28,7 +28,9 @@ new class extends Component {
             $query = $query->whereLike('name', '%' . $this->terms['role'] . '%');
         }
 
-        return $query->get();
+        $roles = $query->get();
+
+        return $roles->isEmpty() ? [] : $roles;
     }
 
     #[Computed]
