@@ -13,9 +13,7 @@ class SetLocale
     {
         $locale = $request->segment(1);
 
-        $available_language = array_map(
-            fn(AvailableLanguage $locale) => $locale->value,
-            AvailableLanguage::cases());
+        $available_language = enumToArray(AvailableLanguage::class);
 
         if (in_array($locale, $available_language)) {
             app()->setLocale($locale);

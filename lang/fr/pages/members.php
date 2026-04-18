@@ -5,6 +5,14 @@ return [
     'heading' => 'Les membres de l’asbl',
     'subtitle' => 'Créez et gérez les profils des membres de l’asbl',
     'members' => 'Membres',
+    'add-members' => 'Ajouter un membre',
+    'profile-picture' => 'Photo de profil',
+    'add-avatar' => 'Ajouter un avatar',
+    'base' => 'Informations sur le membre',
+    'documents' => 'Documents',
+    'password' => 'Mot de passe',
+    'password-description' => 'Le mot de passe doit contenir au minimum 10 caractères',
+    'create-members' => 'Créer le profil du membre',
 
     /* Role */
     'role' => 'Rôle',

@@ -9,14 +9,14 @@
             :required="true"/>
 
         <x-forms.input.custom-select
-            :collection="$this->getFilteredTerms"
+            :collection="$this->getYesOrNo"
             :label="__('forms.role-unique')"
             :multiple="false"
             key="unique"
             :term="$this->terms['unique']"
-            name="test"
+            name="unique"
             wire="terms.unique"
-            id="test"
+            field_name="unique"
         />
     </div>
 </fieldset>

@@ -226,4 +226,10 @@
     <symbol id="add" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M6.5 5.5H12V6.5H6.5V12H5.5V6.5H0V5.5H5.5V0H6.5V5.5Z" fill="currentColor"/>
     </symbol>
+
+    <symbol id="add-files" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M9.53872 19.7999H5.13871C3.92368 19.7999 2.93871 18.8149 2.93872 17.5999L2.93881 4.39994C2.93881 3.18492 3.92378 2.19995 5.13881 2.19995H15.0391C16.2541 2.19995 17.2391 3.18492 17.2391 4.39995V10.45M15.95 19.4225V16.3112M15.95 16.3112V13.2M15.95 16.3112L12.8387 16.3112M15.95 16.3112L19.0613 16.3112M6.78906 6.59995H13.3891M6.78906 9.89995H13.3891M6.78906 13.2H10.0891"
+            stroke="#3D2B1F" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
 </svg>

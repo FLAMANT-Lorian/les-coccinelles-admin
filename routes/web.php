@@ -15,5 +15,6 @@ Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(functio
 
     /* MEMBERS */
     Route::livewire('/members', 'pages::members.index')->name('members.index');
+    Route::livewire('/members/create', 'pages::members.create')->name('members.create');
     Route::livewire('/members/role/create', 'pages::roles.create')->name('roles.create');
 });

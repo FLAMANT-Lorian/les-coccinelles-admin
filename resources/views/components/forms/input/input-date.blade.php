@@ -1,9 +1,7 @@
 @props([
-    'type',
     'label',
     'name',
     'required' => false,
-    'placeholder',
     'field_name',
     'wire' => ''
 ])
@@ -19,9 +17,8 @@
                wire:model="{{ $wire }}"
            @endif
            id="{{ $field_name }}"
-           type="{{ $type ?? 'text' }}"
+           type="date"
            name="{{ $name }}"
-           placeholder="{{ $placeholder ?? '' }}"
            autocomplete="off">
 
     @error($wire)

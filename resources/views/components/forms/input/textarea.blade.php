@@ -15,14 +15,14 @@
             <strong> *</strong>
         @endif
     </label>
-    <input @if($wire && $wire !== '')
-               wire:model="{{ $wire }}"
-           @endif
-           id="{{ $field_name }}"
-           type="{{ $type ?? 'text' }}"
-           name="{{ $name }}"
-           placeholder="{{ $placeholder ?? '' }}"
-           autocomplete="off">
+    <textarea @if($wire && $wire !== '')
+                  wire:model="{{ $wire }}"
+              @endif
+              id="{{ $field_name }}"
+              type="{{ $type ?? 'text' }}"
+              name="{{ $name }}"
+              placeholder="{{ $placeholder ?? '' }}"
+              autocomplete="off"></textarea>
 
     @error($wire)
     <p class="absolute whitespace-nowrap -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>

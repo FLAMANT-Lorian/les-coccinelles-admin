@@ -2,7 +2,8 @@
     'label',
     'name',
     'required' => false,
-    'field_name'
+    'field_name',
+    'wire' => ''
 ])
 
 <div x-data="{showPassword : false}" {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -12,13 +13,16 @@
             <strong> *</strong>
         @endif
     </label>
-    <input id="{{ $field_name }}"
+    <input @if($wire && $wire !== '')
+               wire:model="{{ $wire }}"
+           @endif
+           id="{{ $field_name }}"
            :type="showPassword ? 'text' : 'password'"
            type="password"
            name="{{ $name }}"
            autocomplete="off">
 
-    @error($name)
+    @error($wire)
     <p class="absolute -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
     @enderror
 

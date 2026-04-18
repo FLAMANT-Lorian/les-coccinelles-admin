@@ -6,4 +6,5 @@ enum Sex: string
 {
     case male = 'male';
     case female = 'female';
+    case other = 'other';
 }

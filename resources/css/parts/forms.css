@@ -27,7 +27,7 @@ form {
         }
     }
 
-    input {
+    input, textarea {
         @apply px-4 py-3 text-brown bg-beige-light border border-beige-dark trans-all rounded-sm;
 
         &::placeholder {
@@ -37,6 +37,10 @@ form {
         &:hover, &:focus {
             @apply border-brown outline-none;
         }
+    }
+
+    textarea {
+        @apply max-md:min-h-40 md:h-full resize-none;
     }
 }
 
@@ -57,10 +61,11 @@ form {
 }
 
 .custom-select {
+    @apply rounded-b-sm;
 
     &:before {
         content: '';
-        @apply absolute top-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] h-px bg-beige-dark/60;
+        @apply absolute top-0 left-1/2 -translate-x-1/2 w-[calc(100%-2rem)] h-px bg-beige-dark/80;
     }
 }
 

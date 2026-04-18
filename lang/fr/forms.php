@@ -2,8 +2,6 @@
 
 return [
     'accessibility_text' => 'Les champs renseignés avec <span class="text-red">*</span> sont obligatoires&nbsp;!',
-    'email_label' => 'Adresse e-mail',
-    'password_label' => 'Mot de passe',
     'search' => 'Rechercher',
     'selected' => 'Sélectionné',
     'no_result' => 'Aucun résultat',
@@ -17,4 +15,18 @@ return [
     'select-option' => 'Séléctionner une option',
     'add-options' => 'Ajouter des options',
     'change-option' => 'Changer d’option',
+    'last_name' => 'Nom',
+    'first_name' => 'Prénom',
+    'email' => 'Adresse e-mail',
+    'phone' => 'Téléphone',
+    'city' => 'Ville',
+    'postal-code' => 'Code postal',
+    'role' => 'Rôle',
+    'status' => 'Statut',
+    'address' => 'Adresse',
+    'sex' => 'Sexe',
+    'birth-date' => 'Date de naissance',
+    'identity-card' => 'Pièces d’identité',
+    'password' => 'Mot de passe',
+    'choose-files' => 'Choisir des fichiers&nbsp;&hellip;',
 ];

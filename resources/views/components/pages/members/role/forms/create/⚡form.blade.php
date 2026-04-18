@@ -20,7 +20,7 @@ new class extends Component {
     public array $membersOptions = [];
 
     #[Computed]
-    public function getFilteredTerms()
+    public function getYesOrNo()
     {
         $cases = YesOrNO::cases();
 

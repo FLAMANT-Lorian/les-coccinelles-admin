@@ -95,11 +95,11 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
-        {{--<x-general.add-button
-            class="col-span-2 justify-self-end"
-            :location="route('roles.create', ['locale' => app()->getLocale()])"
-            :label="__('pages/members.add-role')"
-        />--}}
+        <x-general.add-button
+            class="justify-center md:col-span-2 md:justify-self-end"
+            :location="route('members.create', ['locale' => app()->getLocale()])"
+            :label="__('pages/members.add-members')"
+        />
     </div>
 
     <x-general.selected-column
