@@ -4,10 +4,10 @@
     'field_name',
     'label',
     'required' => true,
-    'wire',
     'translation' => true,
     'enum' => true,
     'accessor' => '',
+    'wire',
     'select_wire' => ''
 ])
 
@@ -32,7 +32,7 @@
             } else {
                 this.value = val
             }
-            this.open = false
+            this.open = false;
         }
      }"
      @click.away="open = false; $refs.input.blur();"

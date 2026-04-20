@@ -2,16 +2,15 @@
 
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
-use App\Livewire\Forms\CreateMembersForm;
+use App\Livewire\Forms\MembersForm;
 use App\Models\Role;
 use App\Models\User;
-use App\Traits\SelectMultiple;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
 
-    public CreateMembersForm $form;
+    public MembersForm $form;
 
     public array $terms = [
         'sex' => '',
@@ -23,6 +22,14 @@ new class extends Component {
     public function getRoles()
     {
         $query = Role::query();
+
+        $query->where(function ($q) {
+            $q->where('unique', false)
+                ->orWhere(function ($q) {
+                    $q->where('unique', true)
+                        ->whereDoesntHave('users');
+                });
+        });
 
         if (!empty($this->terms['role'])) {
             $query = $query->whereLike('name', '%' . $this->terms['role'] . '%');
@@ -70,11 +77,15 @@ new class extends Component {
         $this->form->validate();
 
         $this->form->save();
+
+        session()->flash('success', __('flash-messages.member-created'));
+
+        $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
     }
 };
 ?>
 
-<form wire:submit="save">
+<form wire:submit.prevent="save" novalidate>
     <div class="grid-default border-b border-beige-dark/60 pb-10">
         {{-- PICTURE --}}
         <x-pages.members.members.forms.create.fieldset1/>

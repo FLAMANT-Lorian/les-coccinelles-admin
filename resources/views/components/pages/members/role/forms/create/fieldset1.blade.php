@@ -8,7 +8,7 @@
             :placeholder="__('forms.administrator')"
             :required="true"/>
 
-        <x-forms.input.custom-select
+        {{--<x-forms.input.custom-select
             :collection="$this->getYesOrNo"
             :label="__('forms.role-unique')"
             :multiple="false"
@@ -17,6 +17,6 @@
             name="unique"
             wire="terms.unique"
             field_name="unique"
-        />
+        />--}}
     </div>
 </fieldset>

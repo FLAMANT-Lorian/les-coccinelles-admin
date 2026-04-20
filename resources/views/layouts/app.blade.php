@@ -30,5 +30,8 @@
     <main id="content" class="grow w-full">
         {{ $slot }}
     </main>
+
+    {{-- FLASH MESSAGE--}}
+    <x-general.flash-message/>
 </body>
 </html>

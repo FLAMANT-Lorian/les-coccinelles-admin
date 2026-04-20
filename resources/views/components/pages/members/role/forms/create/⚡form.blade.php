@@ -1,20 +1,13 @@
 <?php
 
 use App\Enums\YesOrNo;
-use App\Traits\SelectMultiple;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
 
-    use SelectMultiple;
-
     public array $terms = [
         'unique' => '',
-    ];
-
-    public array $selected = [
-        'unique' => [],
     ];
 
     public array $membersOptions = [];

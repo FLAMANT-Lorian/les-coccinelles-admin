@@ -3,7 +3,7 @@
 }
 
 @utility showModal {
- animation: showModal 0.2s ease-in-out;
+    animation: showModal 0.2s ease-in-out;
 }
 
 @keyframes showModal {
@@ -12,5 +12,44 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+.flash-message {
+    animation: flashMessage 3s ease-in-out;
+    @apply trans-all;
+
+    &:after {
+        content: "";
+        animation: flashMessageProgress 3s ease-in-out;
+        @apply w-full h-px bg-green absolute bottom-0 left-0 trans-all origin-left;
+    }
+}
+
+@keyframes flashMessage {
+    0% {
+        opacity: 0;
+        transform: translateX(32px);
+    }
+    10% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    90% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(32px);
+    }
+}
+
+@keyframes flashMessageProgress {
+    0% {
+        transform: scaleX(0);
+    }
+    100% {
+        transform: scaleX(1);
     }
 }

@@ -5,6 +5,7 @@ return [
     'search' => 'Rechercher',
     'selected' => 'Sélectionné',
     'no_result' => 'Aucun résultat',
+    'role-is-already-use' => 'Le rôle est déjà utilisé',
 
     /* LABEL – PLACEHOLDER */
     'role-name' => 'Nom du rôle',
