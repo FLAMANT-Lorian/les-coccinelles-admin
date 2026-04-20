@@ -6,6 +6,7 @@ return [
     'selected' => 'Sélectionné',
     'no_result' => 'Aucun résultat',
     'role-is-already-use' => 'Le rôle est déjà utilisé',
+    'save-changes' => 'Enregistrer les modifications',
 
     /* LABEL – PLACEHOLDER */
     'role-name' => 'Nom du rôle',

@@ -26,6 +26,7 @@ class User extends Authenticatable
         'identity_card_paths',
         'avatar_path',
 
+        'role_id',
     ];
 
     protected $hidden = [

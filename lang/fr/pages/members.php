@@ -13,6 +13,8 @@ return [
     'password' => 'Mot de passe',
     'password-description' => 'Le mot de passe doit contenir au minimum 10 caractères',
     'create-members' => 'Créer le profil du membre',
+    'update-members' => 'Modifier le profil du membre',
+    'profile-of' => 'Profil de',
 
     /* Role */
     'role' => 'Rôle',

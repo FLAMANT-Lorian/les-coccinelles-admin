@@ -19,13 +19,23 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-           <span>{{ $member->full_name }}</span>
+                <a class="underline-link after:bg-brown"
+                   aria-label="{{ trim($member->full_name) === '' ? '–' : $member->full_name }}"
+                   title="{{ __('pages/members.update-members') }}"
+                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+                    {{ trim($member->full_name) === '' ? '–' : $member->full_name }}
+                </a>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <span>{{ $member->email }}</span>
+            <a class="underline-link after:bg-brown"
+               aria-label="{{ $member->email }}"
+               title="{{ __('pages/members.update-members') }}"
+               href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+                {{ $member->email }}
+            </a>
         </div>
     </td>
     <td>
@@ -69,7 +79,7 @@
                 </button>
             </div>
 
-             {{--ACTION MOBILES --}}
+            {{--ACTION MOBILES --}}
             {{--<div class="actions-mobile">
                 <button type="button"
                         title="{{ __('modals.see-message') }}"

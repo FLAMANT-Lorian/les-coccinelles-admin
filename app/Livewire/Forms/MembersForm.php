@@ -6,6 +6,7 @@ use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Models\Role;
 use App\Models\User;
+use App\Rules\UniqueRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
@@ -21,38 +22,74 @@ class MembersForm extends Form
     public string $address;
     public string $postal_code;
     public string $city;
-    public string $password;
+    public ?string $password = null;
     public string $role;
     public string $status;
     public ?string $sex = null;
     public ?string $birth_date = null;
+
+    public function setMember(User $member): void
+    {
+        $this->member = $member;
+
+        $this->first_name = $member->first_name;
+        $this->last_name = $member->last_name;
+        $this->email = $member->email;
+        $this->phone = $member->phone;
+        $this->city = $member->city;
+        $this->postal_code = $member->postal_code;
+        $this->address = $member->address;
+        $this->birth_date = $member->birth_date;
+        $this->sex = $member->sex;
+        $this->status = $member->status;
+        $this->role = $member->role->name;
+    }
 
     public function rules(): array
     {
         return [
             'first_name' => 'nullable',
             'last_name' => 'nullable',
-            'email' => 'required|email',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users', 'email')->ignore($this->member),
+            ],
             'phone' => 'required',
             'city' => 'required',
             'postal_code' => 'required|int',
-            'password' => 'required',
+            'password' => $this->member ? 'nullable' : 'required',
             'birth_date' => 'nullable',
             'sex' => ['nullable', Rule::enum(Sex::class)],
             'role' => [
                 'required',
                 'exists:roles,name',
-                function ($attribute, $value, $fail) {
-                    if (Role::where('name', $value)
-                        ->where('unique', true)
-                        ->whereHas('users')->exists()) {
-                        $fail(__('forms.role-is-already-use'));
-                    }
-                },
+                new UniqueRole($this->member),
             ],
             'status' => ['required', Rule::enum(MembersStatus::class)],
             'address' => 'required',
         ];
+    }
+
+    public function update(): void
+    {
+        $role = Role::where('name', $this->role)->first();
+
+        if (!$role || !$this->member) return;
+
+        $this->member->update([
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'city' => $this->city,
+            'postal_code' => $this->postal_code,
+            'birth_date' => $this->birth_date,
+            'sex' => $this->sex,
+            'status' => $this->status,
+            'address' => $this->address,
+            'role_id' => $role->id,
+        ]);
     }
 
     public function save(): void

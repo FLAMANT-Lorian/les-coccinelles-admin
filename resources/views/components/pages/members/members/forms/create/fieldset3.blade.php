@@ -1,4 +1,4 @@
-<fieldset class="col-span-full">
+<fieldset {{ $attributes->merge(['class' => 'col-span-full']) }}>
     <legend>{{ __('pages/members.documents') }}</legend>
     <div class="grid-default">
         <x-forms.input.input-file
