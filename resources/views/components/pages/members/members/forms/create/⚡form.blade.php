@@ -3,10 +3,10 @@
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Livewire\Forms\MembersForm;
-use App\Models\Role;
 use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 new class extends Component {
 

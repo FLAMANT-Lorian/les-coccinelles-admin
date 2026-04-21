@@ -47,7 +47,7 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            <span>{{ $member->role->name }}</span>
+            <span>{{ $member->roles->first()->name }}</span>
         </div>
     </td>
     <td>

@@ -3,17 +3,19 @@
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Livewire\Forms\MembersForm;
-use App\Models\Role;
 use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 new class extends Component {
 
     public MembersForm $form;
+    public User $member;
 
     public function mount($member): void
     {
+        $this->member = $member;
         $this->form->setMember($member);
     }
 
@@ -27,6 +29,17 @@ new class extends Component {
     public function getRoles()
     {
         $query = Role::query();
+
+        $query->where(function ($q) {
+            $q->where('unique', false)
+                ->orWhere(function ($q) {
+                    $q->where('unique', true)
+                        ->whereDoesntHave('users')
+                        ->orWhereHas('users', function ($q) {
+                            $q->where('id', $this->member->id);
+                        });
+                });
+        });
 
         if (!empty($this->terms['role'])) {
             $query = $query->whereLike('name', '%' . $this->terms['role'] . '%');
@@ -95,10 +108,10 @@ new class extends Component {
 
     {{-- DOCUMENTS --}}
     <x-pages.members.members.forms.create.fieldset3
-        class="border-none"/>
+            class="border-none"/>
 
     {{-- BOUTON --}}
     <x-forms.buttons.submit-filled
-        :label="__('forms.save-changes')"
+            :label="__('forms.save-changes')"
     />
 </form>

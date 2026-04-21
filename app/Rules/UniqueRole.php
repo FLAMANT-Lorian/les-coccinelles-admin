@@ -2,16 +2,16 @@
 
 namespace App\Rules;
 
-use App\Models\Role;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
+use Spatie\Permission\Models\Role;
 
-class UniqueRole implements ValidationRule
+readonly class UniqueRole implements ValidationRule
 {
+
     public function __construct(private ?User $member = null)
     {
-        $this->member = $member;
     }
 
     public function validate(string $attribute, mixed $value, Closure $fail): void

@@ -5,7 +5,6 @@ use App\Enums\RoleMode;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
-use App\Models\Role;
 use App\Traits\CloseModal;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
@@ -15,6 +14,7 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use Spatie\Permission\Models\Role;
 
 new class extends Component {
 

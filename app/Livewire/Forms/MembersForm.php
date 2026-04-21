@@ -4,12 +4,12 @@ namespace App\Livewire\Forms;
 
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
-use App\Models\Role;
 use App\Models\User;
 use App\Rules\UniqueRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
+use Spatie\Permission\Models\Role;
 
 class MembersForm extends Form
 {
@@ -42,7 +42,7 @@ class MembersForm extends Form
         $this->birth_date = $member->birth_date;
         $this->sex = $member->sex;
         $this->status = $member->status;
-        $this->role = $member->role->name;
+        $this->role = $member->getRoleNames()->first();
     }
 
     public function rules(): array
@@ -57,7 +57,7 @@ class MembersForm extends Form
             ],
             'phone' => 'required',
             'city' => 'required',
-            'postal_code' => 'required|int',
+            'postal_code' => 'required',
             'password' => $this->member ? 'nullable' : 'required',
             'birth_date' => 'nullable',
             'sex' => ['nullable', Rule::enum(Sex::class)],
@@ -77,6 +77,8 @@ class MembersForm extends Form
 
         if (!$role || !$this->member) return;
 
+        $this->member->syncRoles($role);
+
         $this->member->update([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
@@ -88,7 +90,6 @@ class MembersForm extends Form
             'sex' => $this->sex,
             'status' => $this->status,
             'address' => $this->address,
-            'role_id' => $role->id,
         ]);
     }
 
@@ -98,7 +99,7 @@ class MembersForm extends Form
 
         if (!$role) return;
 
-        $role->users()->create([
+        User::create([
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'email' => $this->email,
@@ -111,5 +112,7 @@ class MembersForm extends Form
             'status' => $this->status,
             'address' => $this->address,
         ]);
+
+        $this->member->syncRoles($role);
     }
 }

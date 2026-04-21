@@ -45,7 +45,6 @@
             wire="form.postal_code"
             name="postal_code"
             field_name="postal_code"
-            type="number"
             :label="__('forms.postal-code')"
             placeholder="4000"
             :required="true"/>
