@@ -80,14 +80,14 @@ class MembersForm extends Form
         $this->member->syncRoles($role);
 
         $this->member->update([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+            'first_name' => empty(trim($this->first_name)) ? null : $this->first_name,
+            'last_name' => empty(trim($this->last_name)) ? null : $this->last_name,
             'email' => $this->email,
             'phone' => $this->phone,
             'city' => $this->city,
             'postal_code' => $this->postal_code,
-            'birth_date' => $this->birth_date,
-            'sex' => $this->sex,
+            'birth_date' => $this->birth_date ?? null,
+            'sex' => $this->sex ?? null,
             'status' => $this->status,
             'address' => $this->address,
         ]);
@@ -99,20 +99,20 @@ class MembersForm extends Form
 
         if (!$role) return;
 
-        User::create([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
+        $user = User::create([
+            'first_name' => empty(trim($this->first_name)) ? null : trim($this->first_name),
+            'last_name' => empty(trim($this->last_name)) ? null : trim($this->last_name),
             'email' => $this->email,
             'phone' => $this->phone,
             'city' => $this->city,
             'postal_code' => $this->postal_code,
             'password' => Hash::make($this->password),
-            'birth_date' => $this->birth_date,
-            'sex' => $this->sex,
+            'birth_date' => $this->birth_date ?? null,
+            'sex' => $this->sex ?? null,
             'status' => $this->status,
             'address' => $this->address,
         ]);
 
-        $this->member->syncRoles($role);
+        $user->assignRole($role);
     }
 }

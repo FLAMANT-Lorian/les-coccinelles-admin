@@ -33,7 +33,7 @@ new class extends Component {
     #[Computed]
     public function getMembers()
     {
-        $query = User::query();
+        $query = User::query()->with(['roles']);
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {

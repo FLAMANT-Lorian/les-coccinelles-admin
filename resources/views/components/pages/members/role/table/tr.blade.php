@@ -3,6 +3,10 @@
     'role' => MembersRole::class,
 ])
 
+@php
+    $user = $role->users->first();
+@endphp
+
 <tr x-data="{ open: false }"
     :class="open ? 'lg:[&_div]:bg-beige-medium' : ''"
     class="[&:has(input:checked)_div]:bg-beige-medium">
@@ -34,13 +38,37 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            <span>–</span>
+            @if($role->unique && $role->users->first())
+                @php
+                    $user = $role->users->first();
+                @endphp
+                <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $user]) }}"
+                   class="underline-link after:bg-brown {{ empty(trim($user->full_name)) ? 'italic text-gray-500' : '' }}"
+                   title="{{ __('general.view-profil-of') . $user->full_name }}"
+                   aria-label="{{ $user->full_name }}">
+                    {{ empty(trim($user->full_name)) ? __('general.not_specified') : $user->full_name }}
+                </a>
+            @else
+                <span>–</span>
+            @endif
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <span>–</span>
+            @if($role->unique && $role->users->first() && $role->users->first()->email)
+                @php
+                    $user = $role->users->first();
+                @endphp
+                <a href="mailto:{{ $role->users->first()->email }}"
+                   class="underline-link after:bg-brown"
+                   title="{{ __('general.send_email_to') . $role->users->first()->email }}"
+                   aria-label="{{ $role->users->first()->email }}">
+                    {{ $role->users->first()->email }}
+                </a>
+            @else
+                <span>–</span>
+            @endif
         </div>
     </td>
     <td data-action>
@@ -66,7 +94,7 @@
                 </button>
             </div>
 
-             {{--ACTION MOBILES --}}
+            {{--ACTION MOBILES --}}
             {{--<div class="actions-mobile">
                 <button type="button"
                         title="{{ __('modals.see-message') }}"

@@ -98,16 +98,16 @@ new class extends Component {
 <form wire:submit.prevent="update" novalidate>
     <div class="grid-default border-b border-beige-dark/60 pb-10">
         {{-- PICTURE --}}
-        <x-pages.members.members.forms.create.fieldset1/>
+        <x-pages.members.members.forms.fieldset1/>
 
         <span aria-hidden="true" class="col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
 
         {{-- BASE --}}
-        <x-pages.members.members.forms.create.fieldset2/>
+        <x-pages.members.members.forms.fieldset2/>
     </div>
 
     {{-- DOCUMENTS --}}
-    <x-pages.members.members.forms.create.fieldset3
+    <x-pages.members.members.forms.fieldset3
             class="border-none"/>
 
     {{-- BOUTON --}}

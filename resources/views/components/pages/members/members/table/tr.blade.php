@@ -19,11 +19,11 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-                <a class="underline-link after:bg-brown"
-                   aria-label="{{ trim($member->full_name) === '' ? '–' : $member->full_name }}"
+                <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
+                   aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
                    title="{{ __('pages/members.update-members') }}"
                    href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
-                    {{ trim($member->full_name) === '' ? '–' : $member->full_name }}
+                    {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
                 </a>
         </div>
     </td>
@@ -32,8 +32,8 @@
             <span>{{ __('tables.email') }}&nbsp;:</span>
             <a class="underline-link after:bg-brown"
                aria-label="{{ $member->email }}"
-               title="{{ __('pages/members.update-members') }}"
-               href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+               title="{{ __('general.send_email_to') . $member->email }}"
+               href="mailto:{{ $member->email }}">
                 {{ $member->email }}
             </a>
         </div>
