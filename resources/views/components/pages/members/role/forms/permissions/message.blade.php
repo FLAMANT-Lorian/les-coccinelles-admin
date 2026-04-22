@@ -1,6 +1,6 @@
 <div class="permission-card">
     <div class="heading">
-        <span class="title">Messages</span>
+        <span class="title">{{ __('general.permissions.message') }}</span>
         <div class="all-selector">
             <label for="all_selector">Tout</label>
             <input id="all_selector"
@@ -23,7 +23,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.messages.index">
-            <label for="message_index">Voir le tableau</label>
+            <label for="message_index">{{ __('general.see_table') }}</label>
         </div>
         <div class="permission">
             <input id="message_delete"
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.messages.delete">
-            <label for="message_delete">Supprimer</label>
+            <label for="message_delete">{{ __('general.delete') }}</label>
         </div>
     </div>
 </div>

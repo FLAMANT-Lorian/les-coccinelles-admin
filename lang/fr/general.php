@@ -5,4 +5,11 @@
      'view-profil-of' => 'Voir le profil de ',
      'not_specified' => 'Non renseigné',
      'view-role' => 'Voir le rôle ',
+
+     /* PERMISSIONS */
+     'permissions' => [
+         'message' => 'Messages'
+     ],
+     'see_table' => 'Voir le tableau',
+     'delete' => 'Supprimer',
  ];

@@ -1,5 +1,5 @@
 @php
-    use App\Enums\MessageTypes;use Illuminate\Validation\Rules\Can;
+    use App\Enums\MessageTypes;
 
     $segments = [
         [

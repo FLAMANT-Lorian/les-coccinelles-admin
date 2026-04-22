@@ -5,7 +5,6 @@ use App\Enums\RoleMode;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
-use App\Traits\CloseModal;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -21,7 +20,6 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-    use CloseModal;
 
     #[Url]
     public string $term = '';

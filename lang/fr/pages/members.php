@@ -15,6 +15,9 @@ return [
     'create-members' => 'Créer le profil du membre',
     'update-members' => 'Modifier le profil du membre',
     'profile-of' => 'Profil de',
+    'delete-member-title' => 'Supprimer le profil de ce membre',
+    'delete-member-description' => 'Après suppression, ce compte ne pourra plus être récupéré !',
+    'delete-member' => 'Supprimer le profil',
 
     /* Role */
     'role' => 'Rôle',

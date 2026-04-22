@@ -32,5 +32,14 @@
         {{-- FORM --}}
         <livewire:pages.members.members.forms.update.form
             :member="$member"/>
+
+        {{-- DANGER ZONE --}}
+        <x-pages.members.members.forms.update.danger-zone
+            :member="$member"/>
     </div>
+
+    {{-- MODAL --}}
+    @if($this->modalDeleteMember)
+        <x-widgets.modals.delete-member/>
+    @endif
 </div>

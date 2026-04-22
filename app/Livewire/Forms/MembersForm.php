@@ -115,4 +115,10 @@ class MembersForm extends Form
 
         $user->assignRole($role);
     }
+
+
+    public function deleteMember(): void
+    {
+        $this->member->delete();
+    }
 }
