@@ -22,4 +22,5 @@ return [
     'role-fieldset-1' => 'Informations de base',
     'role-fieldset-2' => 'Permissions',
     'add-role' => 'Ajouter un rôle',
+    'update-role' => 'Modifier le rôle',
 ];

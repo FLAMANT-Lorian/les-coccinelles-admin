@@ -5,16 +5,13 @@
             <label for="all_selector">Tout</label>
             <input id="all_selector"
                    type="checkbox"
-                   :checked="$wire.messageOptions.length === 4"
                    @change="
                         const permissions = $refs.permissions.querySelectorAll('input')
 
                         permissions.forEach((permission) => {
-                         if ($event.currentTarget.checked) {
-                            permission.checked = true;
-                        } else {
-                            permission.checked = false;
-                        }
+
+                        $event.currentTarget.checked ? permission.checked = true : permission.checked = false;
+
                         permission.dispatchEvent(new Event('change'));
                         });">
         </div>

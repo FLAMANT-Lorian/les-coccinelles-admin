@@ -23,10 +23,12 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            <button type="button" class="underline-link after:bg-brown"
-                    wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $role->id }}})">
+            <a class="underline-link after:bg-brown"
+               title="{{ __('general.view-role') . $role->name }}"
+               aria-label="{{ $role->name }}"
+               href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}">
                 {{ $role->name }}
-            </button>
+            </a>
         </div>
     </td>
     <td>

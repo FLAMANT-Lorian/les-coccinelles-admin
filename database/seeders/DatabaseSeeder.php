@@ -8,6 +8,7 @@ use App\Models\MessageType;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->createPermissions();
+
         $role = Role::create([
             'name' => 'Président',
             'guard_name' => 'web',
@@ -31,13 +34,11 @@ class DatabaseSeeder extends Seeder
             'unique' => false
         ]);
 
-
         $role3 = Role::create([
             'name' => 'Trésorier',
             'guard_name' => 'web',
             'unique' => true
         ]);
-
 
         $user1 = User::factory()
             ->create([
@@ -57,6 +58,17 @@ class DatabaseSeeder extends Seeder
                 ->create([
                     'name' => $messages_type->value,
                 ]);
+        }
+    }
+
+    private function createPermissions(): void
+    {
+        $messages_permissions = [
+            'messages.index',
+            'messages.delete',
+        ];
+        foreach ($messages_permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
     }
 }
