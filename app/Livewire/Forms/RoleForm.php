@@ -6,6 +6,7 @@ use App\Enums\YesOrNo;
 use App\Traits\CustomPermissions;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleForm extends Form
@@ -18,7 +19,7 @@ class RoleForm extends Form
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:roles,name',
             'unique' => ['required', Rule::enum(YesOrNo::class)],
         ];
     }
@@ -31,5 +32,19 @@ class RoleForm extends Form
             'guard_name' => 'web',
             'unique' => YesOrNo::from($this->unique)->toBoolean(),
         ]);
+
+        if (!empty($this->permissions['messages'])) {
+            foreach ($this->permissions['messages'] as $key => $permission) {
+                $rule = 'messages.' . $key;
+
+                $perm = Permission::create(
+                    ['name' => $rule,
+                        'guard_name' => 'web'
+                    ]);
+
+                $role->givePermissionTo($perm);
+            }
+        }
+
     }
 }

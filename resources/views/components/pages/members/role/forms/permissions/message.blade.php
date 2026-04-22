@@ -1,6 +1,6 @@
 <div class="permission-card">
     <div class="heading">
-        <span class="title">Membres</span>
+        <span class="title">Messages</span>
         <div class="all-selector">
             <label for="all_selector">Tout</label>
             <input id="all_selector"
@@ -15,6 +15,7 @@
                         } else {
                             permission.checked = false;
                         }
+                        permission.dispatchEvent(new Event('change'));
                         });">
         </div>
     </div>
