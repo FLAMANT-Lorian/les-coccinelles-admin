@@ -13,13 +13,15 @@ new class extends Component {
     }
 
     public bool $modalDeleteRole = false;
+    public ?int $roleToDelete = null;
 
 
     #[On('open-modal')]
-    public function openModal(string $modal): void
+    public function openModal(string $modal, string $id = null): void
     {
         if ($modal === 'deleteRole') {
             $this->modalDeleteRole = true;
+            $this->roleToDelete = $id;
         }
     }
 

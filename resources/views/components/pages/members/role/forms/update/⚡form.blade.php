@@ -2,12 +2,15 @@
 
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\RoleForm;
+use App\Traits\DeleteRole;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
 new class extends Component {
+
+    use DeleteRole;
 
     public RoleForm $form;
 
@@ -56,27 +59,6 @@ new class extends Component {
         session()->flash('success', __('flash-messages.role-updated'));
 
         $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles']);
-    }
-
-    #[On('delete-role')]
-    public function deleteRole(): void
-    {
-        $users = $this->role->users()->count();
-
-        if ($users > 0) {
-            session()->flash('error', __('flash-messages.role-cant-be-deleted', ['count' => $users]));
-
-            $this->dispatch('close-modal');
-
-            $this->redirectRoute('roles.update', ['locale' => app()->getLocale(), 'role' => $this->role], navigate: true);
-            return;
-        }
-
-        $this->form->deleteRole($this->role);
-
-        session()->flash('success', __('flash-messages.role-deleted'));
-
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
     }
 };
 ?>

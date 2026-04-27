@@ -1,6 +1,10 @@
 <?php
 
 return [
+    /* ACTION */
+    'update' => 'Modifier',
+    'delete' => 'Supprimer',
+
     /* GENERAL */
     'select_all' => 'Tout sélectionner',
     'previous' => 'Précédent',

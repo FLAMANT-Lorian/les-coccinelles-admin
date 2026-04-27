@@ -5,6 +5,7 @@ use App\Enums\RoleMode;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
+use App\Traits\DeleteRole;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,6 +21,7 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
+    use DeleteRole;
 
     #[Url]
     public string $term = '';
@@ -28,11 +30,6 @@ new class extends Component {
 
     #[Url]
     public array $filter = [];
-
-    public function mount(): void
-    {
-        $this->model = new Role();
-    }
 
     #[Computed]
     public function getRoles()
@@ -75,14 +72,6 @@ new class extends Component {
         }
         return $cases;
     }
-
-    public function deleteRole(int $id): void
-    {
-        $role = Role::findOrFail($id);
-
-        $role->delete();
-    }
-
 };
 ?>
 
@@ -116,6 +105,7 @@ new class extends Component {
     <x-general.selected-column
         :array="$this->selectedColumn"
         :options="['delete' => true]"
+        deleteAllModal="deleteAllRoles"
     />
 
     @if($this->getRoles->isNotEmpty())

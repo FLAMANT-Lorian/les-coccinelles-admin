@@ -72,6 +72,16 @@ new class extends Component {
         }
         return $cases;
     }
+
+    #[On('delete-member')]
+    public function deleteMember(int $id): void
+    {
+        $member = User::findOrFail($id);
+
+        $member->delete();
+
+        $this->dispatch('close-modal');
+    }
 };
 ?>
 

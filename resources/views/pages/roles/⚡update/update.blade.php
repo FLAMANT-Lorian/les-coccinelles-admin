@@ -38,11 +38,13 @@
             :role="$this->role"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.members.role.forms.update.danger-zone/>
+        <x-pages.members.role.forms.update.danger-zone
+            :role="$this->role"/>
     </div>
 
     {{-- MODAL --}}
     @if($this->modalDeleteRole)
-        <x-widgets.modals.delete-role/>
+        <x-widgets.modals.delete-role
+            :id="$this->roleToDelete"/>
     @endif
 </div>
