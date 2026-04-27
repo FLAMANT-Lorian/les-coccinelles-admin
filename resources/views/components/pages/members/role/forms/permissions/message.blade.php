@@ -1,10 +1,18 @@
-<div class="permission-card">
+<div class="permission-card"
+     x-data="{
+         perms: $wire.form.permissions.messages,
+         allSelected() {
+             const values = Object.values(this.perms);
+             return values.every(v => v === true);
+         },
+     }">
     <div class="heading">
         <span class="title">{{ __('general.permissions.message') }}</span>
         <div class="all-selector">
             <label for="all_selector">Tout</label>
             <input id="all_selector"
                    type="checkbox"
+                   :checked="allSelected"
                    @change="
                         const permissions = $refs.permissions.querySelectorAll('input')
 

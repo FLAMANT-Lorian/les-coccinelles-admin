@@ -7,7 +7,7 @@
         ],
         [
             'label' => __('pages/members.roles'),
-            'url' => route('members.index', ['tab' => 'roles',])
+            'url' => route('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'])
         ],
         [
             'label' => __('pages/members.add-role'),

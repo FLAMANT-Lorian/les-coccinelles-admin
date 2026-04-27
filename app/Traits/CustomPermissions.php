@@ -16,7 +16,7 @@ trait CustomPermissions
 
     public function setPermissions(): void
     {
-        $permissions = [];
+        $permissions = $this->permissions;
 
         foreach ($this->role->permissions as $permission) {
             $parts = explode('.', $permission->name);

@@ -34,8 +34,7 @@
             :member="$member"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.members.members.forms.update.danger-zone
-            :member="$member"/>
+        <x-pages.members.members.forms.update.danger-zone/>
     </div>
 
     {{-- MODAL --}}

@@ -6,7 +6,6 @@ use App\Enums\YesOrNo;
 use App\Traits\CustomPermissions;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class RoleForm extends Form
@@ -33,7 +32,10 @@ class RoleForm extends Form
                 'required',
                 Rule::unique('roles', 'name')->ignore($this->role),
             ],
-            'unique' => ['required', Rule::enum(YesOrNo::class)],
+            'unique' => [
+                'required',
+                Rule::enum(YesOrNo::class),
+            ],
         ];
     }
 
@@ -57,5 +59,10 @@ class RoleForm extends Form
         ]);
 
         $this->createPermissions($role);
+    }
+
+    public function deleteRole(Role $role): void
+    {
+        $role->delete();
     }
 }

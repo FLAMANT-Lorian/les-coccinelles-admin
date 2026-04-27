@@ -7,7 +7,7 @@
         ],
         [
             'label' => __('pages/members.roles'),
-            'url' => route('members.index', ['tab' => 'roles',])
+            'url' => route('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'])
         ],
         [
             'label' => $this->role->name,
@@ -36,5 +36,13 @@
         {{-- FORM --}}
         <livewire:pages.members.role.forms.update.form
             :role="$this->role"/>
+
+        {{-- DANGER ZONE --}}
+        <x-pages.members.role.forms.update.danger-zone/>
     </div>
+
+    {{-- MODAL --}}
+    @if($this->modalDeleteRole)
+        <x-widgets.modals.delete-role/>
+    @endif
 </div>

@@ -11,4 +11,6 @@ return [
     'close' => 'Fermer la modale',
     'deleteMember' => 'Supprimer le membre',
     'deleteMemberMessage' => 'Êtes-vous sûr de vouloir supprimer ce membre ?',
+    'deleteRole' => 'Supprimer le rôle',
+    'deleteRoleMessage' => 'Êtes-vous sûr de vouloir supprimer ce rôle ?',
 ];

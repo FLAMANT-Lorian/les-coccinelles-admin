@@ -3,7 +3,7 @@
     'message'
 ])
 
-<div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/50 px-6"
+<div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/50 px-6 "
      x-show="modalOpen"
      x-trap="modalOpen"
      @keydown.window.escape="$dispatch('close-modal'); modalOpen = false">
