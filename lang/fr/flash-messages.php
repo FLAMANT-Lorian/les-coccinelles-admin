@@ -1,6 +1,10 @@
 <?php
 
 return [
+    /* MESSAGES */
+    'message-deleted' => 'Le message a été supprimé avec succès !',
+    'messages-deleted' => 'Les messages ont été supprimés avec succès !',
+
     /* MEMBERS */
     'member-created' => 'Le membre a été créé avec succès !',
     'member-updated' => 'Le membre a été modifié avec succès !',

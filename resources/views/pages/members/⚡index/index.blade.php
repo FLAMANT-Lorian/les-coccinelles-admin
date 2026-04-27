@@ -49,6 +49,7 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteAll)
-        <x-widgets.modals.delete-selection/>
+        <x-widgets.modals.delete-selection
+            action="deleteMessages"/>
     @endif
 </div>

@@ -79,6 +79,10 @@ new class extends Component {
         $message = Message::findOrFail($id);
 
         $message->delete();
+
+        session()->flash('success', __('flash-messages.message-deleted'));
+
+        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
     }
 
 };
@@ -108,7 +112,11 @@ new class extends Component {
 
     <x-general.selected-column
         :array="$this->selectedColumn"
-        :options="['delete' => true,'markAsRead' => true, 'markAsNotRead' => true]"
+        :options="[
+            'delete' => true,
+            'markAsRead' => true,
+            'markAsNotRead' => true
+            ]"
     />
 
     @if($this->getContactMessages->isNotEmpty())

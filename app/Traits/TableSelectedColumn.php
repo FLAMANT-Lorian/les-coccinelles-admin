@@ -12,16 +12,22 @@ trait TableSelectedColumn
     public array $selectedColumn = [];
     public Model $model;
 
-    #[On('deleteSelection')]
-    public function deleteSelection(): void
+    #[On('deleteMessages')]
+    public function deleteMessages(): void
     {
-        foreach ($this->selectedColumn as $selection) {
-            $item = $this->model::query()->findOrFail($selection);
+        $messages = Message::whereIn('id', $this->selectedColumn)->get();
 
-            $item->delete();
+        foreach ($messages as $message) {
+            $message->delete();
         }
-        $this->selectedColumn = [];
+
         $this->dispatch('close-modal');
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.messages-deleted'));
+
+        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
+
     }
 
     #[On('markMessageSelectionAs')]
