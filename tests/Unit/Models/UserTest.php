@@ -1,13 +1,19 @@
 <?php
 
-
-use App\Models\Role;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 it('verifies if you can recover the role using the relation', function () {
-    $role = Role::factory()->create();
+    $role = Role::create([
+        'name' => 'Président',
+        'guard_name' => 'web',
+        'unique' => 0
+    ]);
 
-    $user = User::factory()->for($role)->create();
-    expect($user->role->name)->toBe($role->name)
-        ->and($user->role->unique)->toBe($role->unique);
+    $user = User::factory()->create();
+
+    $user->assignRole($role);
+
+    expect($user->roles()->first()->name)->toBe($role->name)
+        ->and($user->roles()->first()->unique)->toBe($role->unique);
 });
