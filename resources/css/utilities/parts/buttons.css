@@ -1,3 +1,8 @@
 @utility btn {
     @apply flex flex-row gap-x-2 items-center py-3 px-4 rounded-sm trans-all;
 }
+
+@utility btn-delete {
+    @apply btn bg-red text-white rounded-sm border border-red hover:bg-transparent hover:text-red trans-all;
+}
+

@@ -4,19 +4,22 @@
         <x-forms.input.input-text
             name="name"
             field_name="name"
+            wire="form.name"
             :label="__('forms.role-name')"
             :placeholder="__('forms.administrator')"
             :required="true"/>
 
-        <x-forms.input.custom-select
-            :collection="$this->getFilteredTerms"
+        <x-forms.input.custom-select-simple
+            :collection="$this->getYesOrNo"
             :label="__('forms.role-unique')"
-            :multiple="false"
-            key="unique"
+            :required="true"
+            :enum="true"
+            :translation="true"
             :term="$this->terms['unique']"
-            name="test"
+            name="unique"
             wire="terms.unique"
-            id="test"
+            select_wire="form.unique"
+            field_name="unique"
         />
     </div>
 </fieldset>

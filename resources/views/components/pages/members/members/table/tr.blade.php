@@ -19,13 +19,23 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-           <span>{{ $member->full_name }}</span>
+                <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
+                   aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
+                   title="{{ __('pages/members.update-members') }}"
+                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+                    {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
+                </a>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <span>{{ $member->email }}</span>
+            <a class="underline-link after:bg-brown"
+               aria-label="{{ $member->email }}"
+               title="{{ __('general.send_email_to') . $member->email }}"
+               href="mailto:{{ $member->email }}">
+                {{ $member->email }}
+            </a>
         </div>
     </td>
     <td>
@@ -37,7 +47,7 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            <span>{{ $member->role->name }}</span>
+            <span>{{ $member->roles->first()->name }}</span>
         </div>
     </td>
     <td>
@@ -69,7 +79,7 @@
                 </button>
             </div>
 
-             {{--ACTION MOBILES --}}
+            {{--ACTION MOBILES --}}
             {{--<div class="actions-mobile">
                 <button type="button"
                         title="{{ __('modals.see-message') }}"

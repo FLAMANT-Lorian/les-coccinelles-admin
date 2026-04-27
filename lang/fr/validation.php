@@ -203,7 +203,14 @@ return [
         'message' => 'message',
         'email' => 'adresse e-mail',
         'password' => 'mot de passe',
-        'acceptance' => 'conditions d’utilisation'
+        'acceptance' => 'conditions d’utilisation',
+        'role' => 'rôle',
+        'sex' => 'sexe',
+        'city' => 'ville',
+        'postal_code' => 'code postal',
+        'birth_date' => 'date de naissance',
+        'address' => 'adresse'
+
     ],
 
 ];

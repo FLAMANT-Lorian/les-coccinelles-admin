@@ -5,6 +5,19 @@ return [
     'heading' => 'Les membres de l’asbl',
     'subtitle' => 'Créez et gérez les profils des membres de l’asbl',
     'members' => 'Membres',
+    'add-members' => 'Ajouter un membre',
+    'profile-picture' => 'Photo de profil',
+    'add-avatar' => 'Ajouter un avatar',
+    'base' => 'Informations sur le membre',
+    'documents' => 'Documents',
+    'password' => 'Mot de passe',
+    'password-description' => 'Le mot de passe doit contenir au minimum 10 caractères',
+    'create-members' => 'Créer le profil du membre',
+    'update-members' => 'Modifier le profil du membre',
+    'profile-of' => 'Profil de',
+    'delete-member-title' => 'Supprimer le profil de ce membre',
+    'delete-member-description' => 'Après suppression, ce compte ne pourra plus être récupéré !',
+    'delete-member' => 'Supprimer le profil',
 
     /* Role */
     'role' => 'Rôle',
@@ -12,4 +25,7 @@ return [
     'role-fieldset-1' => 'Informations de base',
     'role-fieldset-2' => 'Permissions',
     'add-role' => 'Ajouter un rôle',
+    'update-role' => 'Modifier le rôle',
+    'delete-role' => 'Supprimer le rôle',
+    'delete-role-description' => 'Après suppression, ce rôle ne pourra plus être récupéré !',
 ];

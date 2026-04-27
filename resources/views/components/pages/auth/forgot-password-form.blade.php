@@ -5,7 +5,7 @@
 
         {{-- EMAIL --}}
         <x-forms.input.input-text
-                :label="__('forms.email_label')"
+                :label="__('forms.email')"
                 :required="true"
                 type="email"
                 field_name="email"

@@ -1,26 +1,20 @@
 <?php
 
 use App\Enums\YesOrNo;
-use App\Traits\SelectMultiple;
+use App\Livewire\Forms\RoleForm;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
 
-    use SelectMultiple;
+    public RoleForm $form;
 
     public array $terms = [
         'unique' => '',
     ];
 
-    public array $selected = [
-        'unique' => [],
-    ];
-
-    public array $membersOptions = [];
-
     #[Computed]
-    public function getFilteredTerms()
+    public function getYesOrNo()
     {
         $cases = YesOrNO::cases();
 
@@ -34,16 +28,27 @@ new class extends Component {
         }
         return $cases;
     }
+
+    public function save(): void
+    {
+        $this->form->validate();
+
+        $this->form->save();
+
+        session()->flash('success', __('flash-messages.role-created'));
+
+        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles']);
+    }
 };
 ?>
 
-<form>
+<form wire:submit.live="save" novalidate>
     <div>
         {{-- BASE --}}
-        <x-pages.members.role.forms.create.fieldset1/>
+        <x-pages.members.role.forms.fieldset1/>
 
         {{-- PERMISSIONS --}}
-        <x-pages.members.role.forms.create.fieldset2/>
+        <x-pages.members.role.forms.fieldset2/>
     </div>
 
     <x-forms.buttons.submit-filled

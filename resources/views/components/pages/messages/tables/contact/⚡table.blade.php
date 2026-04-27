@@ -19,7 +19,6 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-    use CloseModal;
 
     #[Url]
     public string $term = '';

@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Traits\SetActiveTab;
 use Livewire\Attributes\On;
 use Livewire\Component;

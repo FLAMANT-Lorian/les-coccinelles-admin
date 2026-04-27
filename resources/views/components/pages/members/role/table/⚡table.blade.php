@@ -5,8 +5,6 @@ use App\Enums\RoleMode;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
-use App\Models\Role;
-use App\Traits\CloseModal;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,13 +13,13 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use Spatie\Permission\Models\Role;
 
 new class extends Component {
 
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-    use CloseModal;
 
     #[Url]
     public string $term = '';
@@ -39,7 +37,7 @@ new class extends Component {
     #[Computed]
     public function getRoles()
     {
-        $query = Role::query();
+        $query = Role::query()->with(['users']);
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
@@ -109,7 +107,7 @@ new class extends Component {
             :enum="true"
         />
         <x-general.add-button
-            class="col-span-2 justify-self-end"
+            class="justify-center md:col-span-2 md:justify-self-end"
             :location="route('roles.create', ['locale' => app()->getLocale()])"
             :label="__('pages/members.add-role')"
         />

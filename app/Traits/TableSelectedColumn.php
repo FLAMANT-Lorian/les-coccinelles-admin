@@ -21,7 +21,7 @@ trait TableSelectedColumn
             $item->delete();
         }
         $this->selectedColumn = [];
-        $this->closeModal();
+        $this->dispatch('close-modal');
     }
 
     #[On('markMessageSelectionAs')]

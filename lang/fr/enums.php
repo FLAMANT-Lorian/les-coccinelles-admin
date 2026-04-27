@@ -4,6 +4,7 @@
 use App\Enums\MembersStatus;
 use App\Enums\MessageStatus;
 use App\Enums\RoleMode;
+use App\Enums\Sex;
 use App\Enums\YesOrNo;
 
 return [
@@ -18,6 +19,11 @@ return [
     // YesOrNo
     YesOrNo::YES->value => 'Oui',
     YesOrNo::NO->value => 'Non',
+
+    // Sex
+    Sex::male->value => 'Homme',
+    Sex::female->value => 'Femme',
+    Sex::other->value => 'Autre',
 
     // MembersStatus
     MembersStatus::active->value => 'Actif',

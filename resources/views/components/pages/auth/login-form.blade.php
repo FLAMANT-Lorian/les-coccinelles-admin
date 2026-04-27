@@ -5,7 +5,7 @@
 
         {{-- EMAIL --}}
         <x-forms.input.input-text
-            :label="__('forms.email_label')"
+            :label="__('forms.email')"
             :required="true"
             type="email"
             field_name="email"
@@ -16,7 +16,7 @@
         {{-- PASSWORD --}}
         <div class="flex flex-col gap-2">
             <x-forms.input.input-password
-                :label="__('forms.password_label')"
+                :label="__('forms.password')"
                 :required="true"
                 field_name="password"
                 name="password"

@@ -1,14 +1,29 @@
 <?php
 
-
-use App\Models\Role;
 use App\Models\User;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use function Pest\Laravel\assertDatabaseCount;
 
-it('verifies if you can recover the user using the relation', function () {
-    $role = Role::factory()->create();
+it('verifies if you can create a multiple role with permissions and give the role to different users', function () {
 
-    $user = User::factory()->for($role)->create();
+    $permission = Permission::create([
+        'name' => 'test.index',
+        'guard_name' => 'web',
+    ]);
 
-    expect($role->users()->count())->toBe(1)
-    ->and($role->users()->first()->first_name)->toBe($user->first_name);
+    $role = Role::create([
+        'name' => 'Président',
+        'guard_name' => 'web',
+        'unique' => 0
+    ]);
+
+    $role->givePermissionTo($permission);
+
+    $user = User::factory()->create();
+    $user->assignRole($role);
+
+    expect($user->roles()->first()->name)->toBe($role->name)
+        ->and($role->users()->first()->first_name)->toBe($user->first_name)
+        ->and($user->roles()->first()->permissions()->first()->name)->toBe($role->permissions()->first()->name);
 });
