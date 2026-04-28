@@ -24,7 +24,7 @@ it('verifies if you can’t delete a role and its permissions if the role is ass
 
     Livewire::test('pages.members.role.forms.update.form', [
         'role' => $role
-    ])->call('deleteRole');
+    ])->call('deleteRole', $role->id);
 
     assertDatabaseCount('roles', 1);
     assertDatabaseCount('permissions', 1);
@@ -46,7 +46,7 @@ it('verifies if you can delete a role and its permissions if the role is not ass
 
     Livewire::test('pages.members.role.forms.update.form', [
         'role' => $role
-    ])->call('deleteRole');
+    ])->call('deleteRole', $role->id);
 
     assertDatabaseCount('roles', 0);
     assertDatabaseCount('role_has_permissions', 0);
