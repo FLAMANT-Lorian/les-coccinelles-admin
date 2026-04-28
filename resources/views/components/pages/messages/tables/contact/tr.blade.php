@@ -62,19 +62,21 @@
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
             <div x-show="open" x-transition class="actions-table">
-                <button type="button" class="group" wire:click="deleteMessage({{ $contactMessage->id }})">
-                    <span>Supprimer</span>
+                <button type="button" class="group"
+                        @click="modalOpen = true"
+                        wire:click="$dispatch('open-modal', {modal: 'deleteMessage', id: {{ $contactMessage->id }}})">
+                    <span>{{ __('tables.delete') }}</span>
                 </button>
                 @if($contactMessage->status === MessageStatus::Unread->value)
                     <button type="button" class="group"
                             wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
-                        <span>Marquer comme lu</span>
+                        <span>{{ __('tables.mark-single-as-read') }}</span>
                     </button>
                 @endif
                 @if($contactMessage->status === MessageStatus::Read->value)
                     <button type="button" class="group"
                             wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $contactMessage->id }})">
-                        <span>Marquer comme non lu</span>
+                        <span>{{ __('tables.mark-single-as-not-read') }}</span>
                     </button>
                 @endif
             </div>

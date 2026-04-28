@@ -60,9 +60,4 @@ class RoleForm extends Form
 
         $this->createPermissions($role);
     }
-
-    public function deleteRole(Role $role): void
-    {
-        $role->delete();
-    }
 }

@@ -8,7 +8,9 @@ new class extends Component {
 
     public bool $modalDeleteAll = false;
     public bool $modalViewMessage = false;
+    public bool $modalDeleteMessage = false;
     public Message $messageToSee;
+    public ?int $messageToDelete;
 
 
     #[On('open-modal')]
@@ -16,7 +18,7 @@ new class extends Component {
     {
         if ($modal === 'deleteAll') {
             $this->modalDeleteAll = true;
-        } elseif ($modal === 'viewMessage' && !is_null($id)) {
+        } elseif ($modal === 'viewMessage') {
             $message = Message::findOrFail($id);
 
             if (!$message) return;
@@ -24,6 +26,10 @@ new class extends Component {
             $this->messageToSee = $message;
 
             $this->modalViewMessage = true;
+        } elseif ($modal === 'deleteMessage') {
+            $this->messageToDelete = $id;
+
+            $this->modalDeleteMessage = true;
         }
     }
 
@@ -32,5 +38,6 @@ new class extends Component {
     {
         $this->modalDeleteAll = false;
         $this->modalViewMessage = false;
+        $this->modalDeleteMessage = false;
     }
 };

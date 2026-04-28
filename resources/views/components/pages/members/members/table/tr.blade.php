@@ -19,12 +19,12 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-                <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
-                   aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
-                   title="{{ __('pages/members.update-members') }}"
-                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
-                    {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
-                </a>
+            <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
+               aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
+               title="{{ __('pages/members.update-members') }}"
+               href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+                {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
+            </a>
         </div>
     </td>
     <td>
@@ -58,7 +58,6 @@
     </td>
     <td data-action>
         <div class="justify-end lg:relative">
-            <span>TODO</span>
             <button type="button"
                     @click="open = !open"
                     @click.away="open = false"
@@ -71,23 +70,29 @@
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
             <div x-show="open" x-transition class="actions-table">
-                <button type="button" class="group cursor-not-allowed" disabled>
-                    <span>Modifier</span>
-                </button>
-                <button type="button" class="group cursor-not-allowed" disabled>
-                    <span>Supprimer</span>
+                <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
+                   class="group"
+                   aria-label="{{ __('tables.update') }}"
+                   title="{{ __('pages/members.update-members') }}">
+                    <span>{{ __('tables.update') }}</span>
+                </a>
+                <button type="button"
+                        class="group"
+                        @click="modalOpen = true"
+                        wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
+                    <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
 
             {{--ACTION MOBILES --}}
-            {{--<div class="actions-mobile">
-                <button type="button"
-                        title="{{ __('modals.see-message') }}"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
-                    <span class="whitespace-nowrap">{{ __('modals.reply') }}</span>
-                </button>
-            </div>--}}
+            <div class="actions-mobile">
+                <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
+                   title="{{ __('modals.edit-member') }}"
+                   aria-label="{{ __('modals.edit') }}"
+                   class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                    <span class="whitespace-nowrap">{{ __('modals.edit-member') }}</span>
+                </a>
+            </div>
         </div>
     </td>
 </tr>

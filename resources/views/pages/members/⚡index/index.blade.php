@@ -49,6 +49,16 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteAll)
-        <x-widgets.modals.delete-selection/>
+        <x-widgets.modals.delete-selection
+            action="deleteMembers"/>
+    @elseif($this->modalDeleteMember)
+        <x-widgets.modals.delete-member
+            :id="$this->memberToDelete"/>
+    @elseif($this->modalDeleteRole)
+        <x-widgets.modals.delete-role
+            :id="$this->roleToDelete"/>
+    @elseif($this->modalDeleteAllRoles)
+        <x-widgets.modals.delete-selection
+            action="deleteAllRoles"/>
     @endif
 </div>

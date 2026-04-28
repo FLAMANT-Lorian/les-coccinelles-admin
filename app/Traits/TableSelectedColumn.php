@@ -4,24 +4,80 @@ namespace App\Traits;
 
 use App\Enums\MessageStatus;
 use App\Models\Message;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 use Livewire\Attributes\On;
+use Spatie\Permission\Models\Role;
 
 trait TableSelectedColumn
 {
     public array $selectedColumn = [];
-    public Model $model;
 
-    #[On('deleteSelection')]
-    public function deleteSelection(): void
+    #[On('deleteMessages')]
+    public function deleteMessages(): void
     {
-        foreach ($this->selectedColumn as $selection) {
-            $item = $this->model::query()->findOrFail($selection);
+        $messages = Message::whereIn('id', $this->selectedColumn)->get();
 
-            $item->delete();
+        foreach ($messages as $message) {
+            $message->delete();
         }
-        $this->selectedColumn = [];
+
         $this->dispatch('close-modal');
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.messages-deleted'));
+
+        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
+    }
+
+    #[On('deleteMembers')]
+    public function deleteMembers(): void
+    {
+        $members = User::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($members as $member) {
+            $member->delete();
+        }
+
+        $this->dispatch('close-modal');
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.members-deleted'));
+
+        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'members'], navigate: true);
+    }
+
+    #[On('deleteAllRoles')]
+    public function deleteRoles(): void
+    {
+        $hasUsers = false;
+
+        $roles = Role::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($roles as $role) {
+            $users = $role->users()->count();
+
+            if ($users > 0) {
+                $hasUsers = true;
+                break;
+            }
+        }
+
+        if ($hasUsers) {
+            $this->dispatch('close-modal');
+
+            session()->flash('error', __('flash-messages.roles-cant-be-deleted', ['count' => $users]));
+
+            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+            return;
+        }
+
+        foreach ($roles as $role) {
+            $role->delete();
+
+            session()->flash('success', __('flash-messages.roles-deleted'));
+
+            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+        }
     }
 
     #[On('markMessageSelectionAs')]

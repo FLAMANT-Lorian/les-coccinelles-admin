@@ -112,7 +112,7 @@ table {
 .actions-table {
     @apply h-auto! flex flex-col items-stretch! divide-y divide-beige-dark/60 p-0! absolute right-0 top-12 lg:top-4/5 z-1 border border-brown bg-beige-medium! text-white rounded-sm shadow;
 
-    button {
+    button, a {
         @apply flex py-2 mx-4 text-brown trans-all;
 
         span {

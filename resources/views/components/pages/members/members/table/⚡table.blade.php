@@ -17,14 +17,6 @@ new class extends Component {
     use TableFilter;
     use TableSelectedColumn;
 
-    #[Url]
-    public string $term = '';
-
-    public string $filter_term = '';
-
-    #[Url]
-    public array $filter = [];
-
     public function mount(): void
     {
         $this->model = new User();
@@ -71,6 +63,16 @@ new class extends Component {
             });
         }
         return $cases;
+    }
+
+    #[On('delete-member')]
+    public function deleteMember(int $id): void
+    {
+        $member = User::findOrFail($id);
+
+        $member->delete();
+
+        $this->dispatch('close-modal');
     }
 };
 ?>

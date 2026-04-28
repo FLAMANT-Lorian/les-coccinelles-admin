@@ -75,7 +75,6 @@
     </td>
     <td data-action>
         <div class="justify-end lg:relative">
-            <span>TODO</span>
             <button type="button"
                     @click="open = !open"
                     @click.away="open = false"
@@ -88,23 +87,30 @@
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
             <div x-show="open" x-transition class="actions-table">
-                <button type="button" class="group cursor-not-allowed" disabled>
-                    <span>Modifier</span>
-                </button>
-                <button type="button" class="group" wire:click="deleteRole({{ $role->id }})">
-                    <span>Supprimer</span>
+                <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
+                   class="group"
+                   aria-label="{{ __('tables.update') }}"
+                   title="{{ __('modals.edit-role') }}">
+                    <span>{{ __('tables.update') }}</span>
+                </a>
+                <button type="button"
+                        class="group"
+                        @click="modalOpen = true"
+                        @click.away="open = false"
+                        @keydown.window.escape="open = false"
+                        wire:click="$dispatch('open-modal', {modal: 'deleteRole', id: {{ $role->id }}})">
+                    <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
 
-            {{--ACTION MOBILES --}}
-            {{--<div class="actions-mobile">
-                <button type="button"
-                        title="{{ __('modals.see-message') }}"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
-                    <span class="whitespace-nowrap">{{ __('modals.reply') }}</span>
-                </button>
-            </div>--}}
+            {{-- ACTION MOBILES --}}
+            <div class="actions-mobile">
+                <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
+                   title="{{ __('modals.edit-role') }}"
+                   class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                    <span class="whitespace-nowrap">{{ __('modals.edit-role') }}</span>
+                </a>
+            </div>
         </div>
     </td>
 </tr>

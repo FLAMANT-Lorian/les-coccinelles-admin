@@ -1,6 +1,10 @@
 <?php
 
 return [
+    /* ACTION */
+    'update' => 'Modifier',
+    'delete' => 'Supprimer',
+
     /* GENERAL */
     'select_all' => 'Tout sélectionner',
     'previous' => 'Précédent',
@@ -12,6 +16,8 @@ return [
     'multiple-delete' => 'Supprimer les éléments sélectionnés',
     'mark-as-read' => 'Marquer les éléments sélectionnés comme lu',
     'mark-as-not-read' => 'Marquer les éléments sélectionnés comme non lu',
+    'mark-single-as-read' => 'Marquer comme lu',
+    'mark-single-as-not-read' => 'Marquer comme non lu',
     'no-results' => 'Aucun résultat',
     'no-results-for' => 'Aucun résultat pour',
     'yes' => 'Oui',

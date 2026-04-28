@@ -18,6 +18,8 @@ trait SetActiveTab
             return;
         }
 
+        $this->dispatch('reset-filter');
+
         $this->tab = $tab;
     }
 
