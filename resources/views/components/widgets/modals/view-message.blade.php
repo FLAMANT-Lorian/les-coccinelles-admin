@@ -2,10 +2,10 @@
     'message'
 ])
 
-<x-widgets.modal-layout
+<x-widgets.message-modal-layout
     :title="__('modals.viewMessage') . $message->fullName"
     :message="false">
-    <div class="text-brown flex flex-col">
+    <div class="text-brown flex flex-col h-full">
         <div class="flex flex-col gap-1 pb-4 border-b border-b-beige-dark/60">
             <p>
                 <span class="font-semibold">{{ __('modals.object') }}</span>
@@ -24,7 +24,7 @@
         <p class="mt-4">
             {{ $message->message }}
         </p>
-        <div class="mt-8 self-end">
+        <div class="mt-auto self-end">
             <a class="flex flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent focus:bg-transparent hover:text-brown focus:text-brown trans-all"
                href="mailto:{{ $message->email }}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -36,4 +36,4 @@
             </a>
         </div>
     </div>
-</x-widgets.modal-layout>
+</x-widgets.message-modal-layout>

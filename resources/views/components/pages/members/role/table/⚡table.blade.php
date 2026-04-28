@@ -23,14 +23,6 @@ new class extends Component {
     use TableSelectedColumn;
     use DeleteRole;
 
-    #[Url]
-    public string $term = '';
-
-    public string $filter_term = '';
-
-    #[Url]
-    public array $filter = [];
-
     #[Computed]
     public function getRoles()
     {

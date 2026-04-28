@@ -4,7 +4,6 @@ use App\Enums\MessageTypes;
 use App\Models\Message;
 use App\Models\MessageType;
 use App\Enums\MessageStatus;
-use App\Traits\CloseModal;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,19 +18,6 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-
-    #[Url]
-    public string $term = '';
-
-    public string $filter_term = '';
-
-    #[Url]
-    public array $filter = [];
-
-    public function mount(): void
-    {
-        $this->model = new Message();
-    }
 
     #[Computed]
     public function getContactMessages()
@@ -74,6 +60,7 @@ new class extends Component {
         return $cases;
     }
 
+    #[On('deleteMessage')]
     public function deleteMessage(int $id): void
     {
         $message = Message::findOrFail($id);

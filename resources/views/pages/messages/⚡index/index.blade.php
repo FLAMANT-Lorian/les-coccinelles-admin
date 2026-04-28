@@ -34,6 +34,9 @@
     @elseif($this->modalViewMessage)
         <x-widgets.modals.view-message
             :message="$this->messageToSee"/>
+    @elseif($this->modalDeleteMessage)
+        <x-widgets.modals.delete-message
+            :id="$this->messageToDelete"/>
     @endif
 
 </div>

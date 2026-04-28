@@ -17,14 +17,6 @@ new class extends Component {
     use TableFilter;
     use TableSelectedColumn;
 
-    #[Url]
-    public string $term = '';
-
-    public string $filter_term = '';
-
-    #[Url]
-    public array $filter = [];
-
     public function mount(): void
     {
         $this->model = new User();
