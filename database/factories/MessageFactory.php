@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\MessageStatus;
+use App\Enums\MessageTypes;
 use App\Models\Message;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -16,11 +17,11 @@ class MessageFactory extends Factory
 
         $faker = $this->faker;
 
-        $states = array_map(function (MessageStatus $status) {
-            return $status->value;
-        }, MessageStatus::cases());
+        $states = enumToArray(MessageStatus::class);
+        $types = enumToArray(MessageTypes::class);
 
         return [
+            'type' => $faker->randomElement($types),
             'first_name' => $faker->firstName,
             'last_name' => $faker->lastName,
             'email' => $faker->email,

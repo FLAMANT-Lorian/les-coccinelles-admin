@@ -20,6 +20,7 @@ class Message extends Model
         'message',
         'status',
         'acceptance',
+        'type',
     ];
 
     protected function casts(): array
@@ -27,11 +28,6 @@ class Message extends Model
         return [
             'created_at' => 'date',
         ];
-    }
-
-    public function messageType(): BelongsTo
-    {
-        return $this->belongsTo(MessageType::class);
     }
 
     /**

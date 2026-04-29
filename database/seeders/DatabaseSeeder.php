@@ -42,23 +42,19 @@ class DatabaseSeeder extends Seeder
 
         $user1 = User::factory()
             ->create([
-            'first_name' => 'Lorian',
-            'last_name' => 'Flamant',
-            'email' => 'test@test.be',
-        ]);
+                'first_name' => 'Lorian',
+                'last_name' => 'Flamant',
+                'email' => 'test@test.be',
+            ]);
         $user1->assignRole($role->name);
 
         $user2 = User::factory()->create();
 
         $user2->assignRole($role2->name);
 
-        foreach (MessageTypes::cases() as $messages_type) {
-            MessageType::factory()
-                ->has(Message::factory()->count(30))
-                ->create([
-                    'name' => $messages_type->value,
-                ]);
-        }
+        Message::factory()
+            ->count(30)
+            ->create();
     }
 
     private function createPermissions(): void

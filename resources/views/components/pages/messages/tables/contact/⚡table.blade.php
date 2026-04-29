@@ -22,9 +22,7 @@ new class extends Component {
     #[Computed]
     public function getContactMessages()
     {
-        $query = Message::whereHas('messageType', function (Builder $q) {
-            $q->where('name', MessageTypes::contact->value);
-        });
+        $query = Message::where('type', MessageTypes::contact->value);
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
