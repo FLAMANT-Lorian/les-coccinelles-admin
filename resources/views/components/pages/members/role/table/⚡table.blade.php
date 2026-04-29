@@ -98,6 +98,7 @@ new class extends Component {
         :array="$this->selectedColumn"
         :options="['delete' => true]"
         deleteAllModal="deleteAllRoles"
+        deletePermission="roles.delete"
     />
 
     @if($this->getRoles->isNotEmpty())

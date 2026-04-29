@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Enums\MessageTypes;
 use App\Models\Message;
-use App\Models\MessageType;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -22,11 +20,15 @@ class DatabaseSeeder extends Seeder
     {
         $this->createPermissions();
 
+        $permissions = Permission::pluck('name');
+
         $role = Role::create([
             'name' => 'Président',
             'guard_name' => 'web',
             'unique' => true
         ]);
+
+        $role->givePermissionTo($permissions);
 
         $role2 = Role::create([
             'name' => 'Membre',
@@ -62,6 +64,7 @@ class DatabaseSeeder extends Seeder
         $messages_permissions = [
             'messages.index',
             'messages.delete',
+            'messages.update',
         ];
         foreach ($messages_permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);

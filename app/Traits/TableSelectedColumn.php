@@ -15,6 +15,8 @@ trait TableSelectedColumn
     #[On('deleteMessages')]
     public function deleteMessages(): void
     {
+        $this->authorize('delete', Message::class);
+
         $messages = Message::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($messages as $message) {
@@ -83,6 +85,8 @@ trait TableSelectedColumn
     #[On('markMessageSelectionAs')]
     public function markMessageSelectionAs(string $value): void
     {
+        $this->authorize('update', Message::class);
+
         if (!in_array($value, enumToArray(MessageStatus::class))) {
             $this->selectedColumn = [];
             return;
@@ -102,6 +106,10 @@ trait TableSelectedColumn
     #[On('markMessageAs')]
     public function markMessageAs(string $value, int $id): void
     {
+        if (!auth()->user()->hasPermissionTo('messages.update')) {
+            return;
+        }
+
         if (!in_array($value, enumToArray(MessageStatus::class))) {
             return;
         }

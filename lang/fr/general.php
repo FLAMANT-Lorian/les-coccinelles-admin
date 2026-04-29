@@ -12,4 +12,5 @@
      ],
      'see_table' => 'Voir le tableau',
      'delete' => 'Supprimer',
+     'update' => 'Modifier',
  ];

@@ -11,6 +11,7 @@ trait CustomPermissions
         'messages' => [
             'index' => false,
             'delete' => false,
+            'update' => false,
         ]
     ];
 

@@ -2,7 +2,6 @@
 
 use App\Enums\MessageTypes;
 use App\Models\Message;
-use App\Models\MessageType;
 use App\Enums\MessageStatus;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
@@ -61,6 +60,8 @@ new class extends Component {
     #[On('deleteMessage')]
     public function deleteMessage(int $id): void
     {
+        $this->authorize('delete', Message::class);
+
         $message = Message::findOrFail($id);
 
         $message->delete();
@@ -102,6 +103,7 @@ new class extends Component {
             'markAsRead' => true,
             'markAsNotRead' => true
             ]"
+        delete-permission="messages.delete"
     />
 
     @if($this->getContactMessages->isNotEmpty())

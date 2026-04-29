@@ -107,6 +107,7 @@ new class extends Component {
     <x-general.selected-column
         :array="$this->selectedColumn"
         :options="['delete' => true]"
+        deletePermission="members.delete"
     />
 
     @if($this->getMembers->isNotEmpty())

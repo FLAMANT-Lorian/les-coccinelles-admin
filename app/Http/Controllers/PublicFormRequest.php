@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\MessageStatus;
 use App\Enums\MessageTypes;
 use App\Models\Message;
-use App\Models\MessageType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

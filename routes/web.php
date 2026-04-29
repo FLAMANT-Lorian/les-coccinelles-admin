@@ -11,7 +11,9 @@ Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(functio
     Route::livewire('/', 'pages::dashboard')->name('dashboard');
 
     /* MESSAGES */
-    Route::livewire('/messages', 'pages::messages.index')->name('messages');
+    Route::livewire('/messages', 'pages::messages.index')
+        ->middleware('can:messages.index')
+        ->name('messages');
 
     /* MEMBERS */
     Route::livewire('/members', 'pages::members.index')->name('members.index');
