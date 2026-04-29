@@ -66,10 +66,10 @@ new class extends Component {
 <form wire:submit.live="update" novalidate>
     <div>
         {{-- BASE --}}
-        <x-pages.members.role.forms.fieldset1/>
+        <x-pages.roles.forms.fieldset1/>
 
         {{-- PERMISSIONS --}}
-        <x-pages.members.role.forms.fieldset2/>
+        <x-pages.roles.forms.fieldset2/>
     </div>
 
     <x-forms.buttons.submit-filled

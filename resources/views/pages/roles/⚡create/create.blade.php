@@ -6,16 +6,16 @@
             'url' => route('members.index', ['locale' => app()->getLocale()])
         ],
         [
-            'label' => __('pages/members.roles'),
+            'label' => __('pages/roles.roles'),
             'url' => route('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'])
         ],
         [
-            'label' => __('pages/members.add-role'),
+            'label' => __('pages/roles.add-role'),
         ],
     ];
 
     $heading = [
-        'title' => __('pages/members.add-role'),
+        'title' => __('pages/roles.add-role'),
         'subtitle' => __('forms.accessibility_text'),
     ];
 @endphp
@@ -31,6 +31,6 @@
             :heading="$heading"/>
 
         {{-- FORM --}}
-        <livewire:pages.members.role.forms.create.form/>
+        <livewire:pages.roles.forms.create.form/>
     </div>
 </div>

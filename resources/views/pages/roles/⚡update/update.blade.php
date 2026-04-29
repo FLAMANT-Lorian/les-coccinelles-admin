@@ -6,19 +6,19 @@
             'url' => route('members.index', ['locale' => app()->getLocale()])
         ],
         [
-            'label' => __('pages/members.roles'),
-            'url' => route('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'])
+            'label' => __('pages/roles.roles'),
+            'url' => route('roles.index', ['locale' => app()->getLocale()])
         ],
         [
             'label' => $this->role->name,
         ],
         [
-            'label' => __('pages/members.update-role'),
+            'label' => __('pages/roles.update-role'),
         ],
     ];
 
     $heading = [
-        'title' => __('pages/members.update-role'),
+        'title' => __('pages/roles.update-role'),
         'subtitle' => __('forms.accessibility_text'),
     ];
 @endphp
@@ -34,11 +34,11 @@
             :heading="$heading"/>
 
         {{-- FORM --}}
-        <livewire:pages.members.role.forms.update.form
+        <livewire:pages.roles.forms.update.form
             :role="$this->role"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.members.role.forms.update.danger-zone
+        <x-pages.roles.forms.update.danger-zone
             :role="$this->role"/>
     </div>
 

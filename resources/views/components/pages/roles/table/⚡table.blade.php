@@ -3,7 +3,6 @@
 use App\Enums\MessageTypes;
 use App\Enums\RoleMode;
 use App\Models\Message;
-use App\Models\MessageType;
 use App\Enums\MessageStatus;
 use App\Traits\DeleteRole;
 use App\Traits\TableFilter;
@@ -90,7 +89,7 @@ new class extends Component {
         <x-general.add-button
             class="justify-center md:col-span-2 md:justify-self-end"
             :location="route('roles.create', ['locale' => app()->getLocale()])"
-            :label="__('pages/members.add-role')"
+            :label="__('pages/roles.add-role')"
         />
     </div>
 
@@ -104,8 +103,8 @@ new class extends Component {
     @if($this->getRoles->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
-            <x-pages.members.role.table.table-head/>
-            <x-pages.members.role.table.table-body/>
+            <x-pages.roles.table.table-head/>
+            <x-pages.roles.table.table-body/>
         </table>
 
         <x-general.pagination

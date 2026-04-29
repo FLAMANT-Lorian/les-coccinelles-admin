@@ -4,12 +4,15 @@ use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Livewire\Forms\MembersForm;
 use App\Models\User;
+use App\Traits\DeleteMember;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Spatie\Permission\Models\Role;
 
 new class extends Component {
+
+    use DeleteMember;
 
     public MembersForm $form;
     public User $member;
@@ -93,38 +96,26 @@ new class extends Component {
 
         $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
     }
-
-    #[On('delete-member')]
-    public function deleteMember(): void
-    {
-        $this->form->deleteMember();
-
-        $this->dispatch('close-modal');
-
-        session()->flash('success', __('flash-messages.member-deleted'));
-
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
-    }
 };
 ?>
 
 <form wire:submit.prevent="update" novalidate>
     <div class="grid-default border-b border-beige-dark/60 pb-10">
         {{-- PICTURE --}}
-        <x-pages.members.members.forms.fieldset1/>
+        <x-pages.members.forms.fieldset1/>
 
         <span aria-hidden="true" class="col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
 
         {{-- BASE --}}
-        <x-pages.members.members.forms.fieldset2/>
+        <x-pages.members.forms.fieldset2/>
     </div>
 
     {{-- DOCUMENTS --}}
-    <x-pages.members.members.forms.fieldset3
-        class="border-none"/>
+    <x-pages.members.forms.fieldset3
+            class="border-none"/>
 
     {{-- BOUTON --}}
     <x-forms.buttons.submit-filled
-        :label="__('forms.save-changes')"
+            :label="__('forms.save-changes')"
     />
 </form>

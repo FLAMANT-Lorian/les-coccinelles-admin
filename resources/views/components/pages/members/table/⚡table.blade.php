@@ -2,6 +2,7 @@
 
 use App\Enums\MembersStatus;
 use App\Models\User;
+use App\Traits\DeleteMember;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,11 +17,7 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-
-    public function mount(): void
-    {
-        $this->model = new User();
-    }
+    use DeleteMember;
 
     #[Computed]
     public function getMembers()
@@ -64,16 +61,6 @@ new class extends Component {
         }
         return $cases;
     }
-
-    #[On('delete-member')]
-    public function deleteMember(int $id): void
-    {
-        $member = User::findOrFail($id);
-
-        $member->delete();
-
-        $this->dispatch('close-modal');
-    }
 };
 ?>
 
@@ -113,8 +100,8 @@ new class extends Component {
     @if($this->getMembers->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
-            <x-pages.members.members.table.table-head/>
-            <x-pages.members.members.table.table-body/>
+            <x-pages.members.table.table-head/>
+            <x-pages.members.table.table-body/>
         </table>
 
         <x-general.pagination

@@ -45,7 +45,7 @@ trait TableSelectedColumn
 
         session()->flash('success', __('flash-messages.members-deleted'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'members'], navigate: true);
+        $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
     }
 
     #[On('deleteAllRoles')]
@@ -69,7 +69,7 @@ trait TableSelectedColumn
 
             session()->flash('error', __('flash-messages.roles-cant-be-deleted', ['count' => $users]));
 
-            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
             return;
         }
 
@@ -78,7 +78,7 @@ trait TableSelectedColumn
 
             session()->flash('success', __('flash-messages.roles-deleted'));
 
-            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+            $this->redirectRoute('roles.update.index', ['locale' => app()->getLocale()], navigate: true);
         }
     }
 

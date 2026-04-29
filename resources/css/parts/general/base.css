@@ -5,6 +5,10 @@
 .tab {
     @apply cursor-pointer whitespace-nowrap paragraph trans-all relative;
 
+    &:hover {
+        @apply text-red;
+    }
+
     &.current-tab {
         @apply text-red trans-all;
 

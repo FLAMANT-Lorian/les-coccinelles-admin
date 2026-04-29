@@ -30,15 +30,16 @@
             :heading="$heading"/>
 
         {{-- FORM --}}
-        <livewire:pages.members.members.forms.update.form
+        <livewire:pages.members.forms.update.form
             :member="$member"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.members.members.forms.update.danger-zone/>
+        <x-pages.members.forms.update.danger-zone/>
     </div>
 
     {{-- MODAL --}}
     @if($this->modalDeleteMember)
-        <x-widgets.modals.delete-member/>
+        <x-widgets.modals.delete-member
+            :id="$this->memberToDelete"/>
     @endif
 </div>

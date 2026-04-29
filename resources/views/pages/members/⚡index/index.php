@@ -1,27 +1,12 @@
 <?php
 
-
-use App\Traits\SetActiveTab;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-new class extends Component
-{
-    use SetActiveTab;
-
-    public function mount(): void
-    {
-        $allowedTabs = ['roles', 'members'];
-
-        $this->checkAllowedTabs($allowedTabs, 'members');
-    }
-
+new class extends Component {
     public bool $modalDeleteAll = false;
     public bool $modalDeleteMember = false;
     public ?int $memberToDelete = null;
-    public bool $modalDeleteRole = false;
-    public ?int $roleToDelete = null;
-    public bool $modalDeleteAllRoles = false;
 
 
     #[On('open-modal')]
@@ -32,11 +17,6 @@ new class extends Component
         } elseif ($modal === 'deleteMember') {
             $this->modalDeleteMember = true;
             $this->memberToDelete = $id;
-        } elseif ($modal === 'deleteRole') {
-            $this->modalDeleteRole = true;
-            $this->roleToDelete = $id;
-        } elseif ($modal === 'deleteAllRoles') {
-            $this->modalDeleteAllRoles = true;
         }
     }
 
@@ -45,7 +25,5 @@ new class extends Component
     {
         $this->modalDeleteAll = false;
         $this->modalDeleteMember = false;
-        $this->modalDeleteRole = false;
-        $this->modalDeleteAllRoles = false;
     }
 };

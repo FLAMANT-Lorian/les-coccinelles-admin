@@ -18,14 +18,4 @@ return [
     'delete-member-title' => 'Supprimer le profil de ce membre',
     'delete-member-description' => 'Après suppression, ce compte ne pourra plus être récupéré !',
     'delete-member' => 'Supprimer le profil',
-
-    /* Role */
-    'role' => 'Rôle',
-    'roles' => 'Rôles',
-    'role-fieldset-1' => 'Informations de base',
-    'role-fieldset-2' => 'Permissions',
-    'add-role' => 'Ajouter un rôle',
-    'update-role' => 'Modifier le rôle',
-    'delete-role' => 'Supprimer le rôle',
-    'delete-role-description' => 'Après suppression, ce rôle ne pourra plus être récupéré !',
 ];

@@ -1,5 +1,5 @@
 <fieldset>
-    <legend>{{ __('pages/members.role-fieldset-1') }}</legend>
+    <legend>{{ __('pages/roles.role-fieldset-1') }}</legend>
     <div class="grid grid-cols-2 gap-y-4 gap-x-8">
         <x-forms.input.input-text
             name="name"

@@ -12,6 +12,7 @@ new class extends Component {
     }
 
     public bool $modalDeleteMember = false;
+    public ?int $memberToDelete = null;
 
 
     #[On('open-modal')]
@@ -19,6 +20,7 @@ new class extends Component {
     {
         if ($modal === 'deleteMember') {
             $this->modalDeleteMember = true;
+            $this->memberToDelete = $this->member->id;
         }
     }
 
