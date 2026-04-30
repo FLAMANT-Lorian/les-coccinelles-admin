@@ -10,6 +10,8 @@ trait DeleteMember
     #[On('delete-member')]
     public function deleteMember(int $id): void
     {
+        $this->authorize('delete', User::class);
+
         $member = User::findOrFail($id);
 
         $member->delete();

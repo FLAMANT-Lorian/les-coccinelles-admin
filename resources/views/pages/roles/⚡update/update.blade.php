@@ -38,8 +38,10 @@
             :role="$this->role"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.roles.forms.update.danger-zone
-            :role="$this->role"/>
+        @can('roles.delete')
+            <x-pages.roles.forms.update.danger-zone
+                :role="$this->role"/>
+        @endcan
     </div>
 
     {{-- MODAL --}}

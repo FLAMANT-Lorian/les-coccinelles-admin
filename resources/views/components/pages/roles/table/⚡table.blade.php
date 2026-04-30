@@ -86,11 +86,13 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
-        <x-general.add-button
-            class="justify-center md:col-span-2 md:justify-self-end"
-            :location="route('roles.create', ['locale' => app()->getLocale()])"
-            :label="__('pages/roles.add-role')"
-        />
+        @can('roles.create')
+            <x-general.add-button
+                class="justify-center md:col-span-2 md:justify-self-end"
+                :location="route('roles.create', ['locale' => app()->getLocale()])"
+                :label="__('pages/roles.add-role')"
+            />
+        @endcan
     </div>
 
     <x-general.selected-column

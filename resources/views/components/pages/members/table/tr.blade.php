@@ -102,14 +102,16 @@
             @endcanany
 
             {{--ACTION MOBILES --}}
-            <div class="actions-mobile">
-                <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
-                   title="{{ __('modals.edit-member') }}"
-                   aria-label="{{ __('modals.edit') }}"
-                   class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
-                    <span class="whitespace-nowrap">{{ __('modals.edit-member') }}</span>
-                </a>
-            </div>
+            @can('members.update')
+                <div class="actions-mobile">
+                    <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
+                       title="{{ __('modals.edit-member') }}"
+                       aria-label="{{ __('modals.edit') }}"
+                       class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                        <span class="whitespace-nowrap">{{ __('modals.edit-member') }}</span>
+                    </a>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

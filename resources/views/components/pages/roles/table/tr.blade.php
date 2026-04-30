@@ -23,12 +23,16 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            <a class="underline-link after:bg-brown"
-               title="{{ __('general.view-role') . $role->name }}"
-               aria-label="{{ $role->name }}"
-               href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}">
-                {{ $role->name }}
-            </a>
+            @can('roles.update')
+                <a class="underline-link after:bg-brown"
+                   title="{{ __('general.view-role') . $role->name }}"
+                   aria-label="{{ $role->name }}"
+                   href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}">
+                    {{ $role->name }}
+                </a>
+            @elsecannot('roles.delete')
+                <span>{{ $role->name }}</span>
+            @endcannot
         </div>
     </td>
     <td>
@@ -40,19 +44,30 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            @if($role->unique && $role->users->first())
-                @php
-                    $user = $role->users->first();
-                @endphp
-                <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $user]) }}"
-                   class="underline-link after:bg-brown {{ empty(trim($user->full_name)) ? 'italic text-gray-500' : '' }}"
-                   title="{{ __('general.view-profil-of') . $user->full_name }}"
-                   aria-label="{{ $user->full_name }}">
-                    {{ empty(trim($user->full_name)) ? __('general.not_specified') : $user->full_name }}
-                </a>
-            @else
-                <span>–</span>
-            @endif
+            @can('members.update')
+                @if($role->unique && $role->users->first())
+                    @php
+                        $user = $role->users->first();
+                    @endphp
+                    <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $user]) }}"
+                       class="underline-link after:bg-brown {{ empty(trim($user->full_name)) ? 'italic text-gray-500' : '' }}"
+                       title="{{ __('general.view-profil-of') . $user->full_name }}"
+                       aria-label="{{ $user->full_name }}">
+                        {{ empty(trim($user->full_name)) ? __('general.not_specified') : $user->full_name }}
+                    </a>
+                @else
+                    <span>–</span>
+                @endif
+            @elsecannot('members.update')
+                @if($role->unique && $role->users->first())
+                    @php
+                        $user = $role->users->first();
+                    @endphp
+                    <span>{{ empty(trim($user->full_name)) ? __('general.not_specified') : $user->full_name }}</span>
+                @else
+                    <span>–</span>
+                @endif
+            @endcan
         </div>
     </td>
     <td>
@@ -86,31 +101,39 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            <div x-show="open" x-transition class="actions-table">
-                <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
-                   class="group"
-                   aria-label="{{ __('tables.update') }}"
-                   title="{{ __('modals.edit-role') }}">
-                    <span>{{ __('tables.update') }}</span>
-                </a>
-                <button type="button"
-                        class="group"
-                        @click="modalOpen = true"
-                        @click.away="open = false"
-                        @keydown.window.escape="open = false"
-                        wire:click="$dispatch('open-modal', {modal: 'deleteRole', id: {{ $role->id }}})">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
+            @canany(['roles.update', 'roles.delete'])
+                <div x-show="open" x-transition class="actions-table">
+                    @can('roles.update')
+                        <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
+                           class="group"
+                           aria-label="{{ __('tables.update') }}"
+                           title="{{ __('modals.edit-role') }}">
+                            <span>{{ __('tables.update') }}</span>
+                        </a>
+                    @endcan
+                    @can('roles.delete')
+                        <button type="button"
+                                class="group"
+                                @click="modalOpen = true"
+                                @click.away="open = false"
+                                @keydown.window.escape="open = false"
+                                wire:click="$dispatch('open-modal', {modal: 'deleteRole', id: {{ $role->id }}})">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcanany
 
             {{-- ACTION MOBILES --}}
-            <div class="actions-mobile">
-                <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
-                   title="{{ __('modals.edit-role') }}"
-                   class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
-                    <span class="whitespace-nowrap">{{ __('modals.edit-role') }}</span>
-                </a>
-            </div>
+            @can('roles.update')
+                <div class="actions-mobile">
+                    <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
+                       title="{{ __('modals.edit-role') }}"
+                       class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                        <span class="whitespace-nowrap">{{ __('modals.edit-role') }}</span>
+                    </a>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

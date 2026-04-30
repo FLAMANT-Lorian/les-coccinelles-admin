@@ -10,6 +10,8 @@ trait DeleteRole
     #[On('delete-role')]
     public function deleteRole(int $id): void
     {
+        $this->authorize('delete', Role::class);
+
         $role = Role::findOrFail($id)->load(['users']);
 
         $users = $role->users()->count();

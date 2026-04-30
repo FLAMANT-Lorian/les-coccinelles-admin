@@ -4,6 +4,7 @@ use App\Enums\YesOrNo;
 use App\Livewire\Forms\RoleForm;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 new class extends Component {
 
@@ -31,6 +32,8 @@ new class extends Component {
 
     public function save(): void
     {
+        $this->authorize('create', Role::class);
+
         $this->form->validate();
 
         $this->form->save();

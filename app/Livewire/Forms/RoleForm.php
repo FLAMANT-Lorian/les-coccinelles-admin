@@ -52,8 +52,6 @@ class RoleForm extends Form
 
     public function save(): void
     {
-        $this->authorize('create', Role::class);
-
         $role = Role::create([
             'name' => $this->name,
             'guard_name' => 'web',
