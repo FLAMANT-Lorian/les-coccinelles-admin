@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\MessageTypes;
-use App\Models\Message;
-use App\Enums\MessageStatus;
+use App\Enums\MembersStatus;
+use App\Models\User;
+use App\Traits\DeleteMember;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,11 +17,12 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
+    use DeleteMember;
 
     #[Computed]
-    public function getContactMessages()
+    public function getMembers()
     {
-        $query = Message::where('type', MessageTypes::contact->value);
+        $query = User::query()->with(['roles']);
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
@@ -31,7 +32,11 @@ new class extends Component {
         }
 
         if (!empty($this->filter)) {
-            $query->whereIn('status', $this->filter);
+            $query->where(function (Builder $q) {
+                foreach ($this->filter as $status) {
+                    $q->orWhere('status', MembersStatus::from($status));
+                }
+            });
         }
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
@@ -44,33 +49,18 @@ new class extends Component {
     #[Computed]
     public function getFilteredTerms()
     {
-        $cases = MessageStatus::cases();
+        $cases = MembersStatus::cases();
 
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
                 return str_contains(
-                    strtolower(__('enums.' . $case->value)),
+                    strtolower($case->value),
                     strtolower($this->filter_term)
                 );
             });
         }
         return $cases;
     }
-
-    #[On('deleteMessage')]
-    public function deleteMessage(int $id): void
-    {
-        $this->authorize('delete', Message::class);
-
-        $message = Message::findOrFail($id);
-
-        $message->delete();
-
-        session()->flash('success', __('flash-messages.message-deleted'));
-
-        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
-    }
-
 };
 ?>
 
@@ -90,31 +80,34 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="message_filter"
-            :enum="true"
+            id="role_filter"
             :translation="true"
+            :enum="true"
         />
+        @can('members.create')
+            <x-general.add-button
+                class="justify-center md:col-span-2 md:justify-self-end"
+                :location="route('members.create', ['locale' => app()->getLocale()])"
+                :label="__('pages/members.add-members')"
+            />
+        @endcan
     </div>
 
     <x-general.selected-column
         :array="$this->selectedColumn"
-        :options="[
-            'delete' => true,
-            'markAsRead' => true,
-            'markAsNotRead' => true
-            ]"
-        delete-permission="messages.delete"
+        :options="['delete' => true]"
+        deletePermission="members.delete"
     />
 
-    @if($this->getContactMessages->isNotEmpty())
+    @if($this->getMembers->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="contact_table">
-            <x-pages.messages.tables.contact.table-head/>
-            <x-pages.messages.tables.contact.table-body/>
+        <table class="table" x-ref="table">
+            <x-pages.members.table.table-head/>
+            <x-pages.members.table.table-body/>
         </table>
 
         <x-general.pagination
-            :items="$this->getContactMessages"/>
+            :items="$this->getMembers"/>
     @else
         <x-general.no-results
             :term="$this->term"/>

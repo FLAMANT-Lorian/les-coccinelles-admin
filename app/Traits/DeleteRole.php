@@ -10,6 +10,8 @@ trait DeleteRole
     #[On('delete-role')]
     public function deleteRole(int $id): void
     {
+        $this->authorize('delete', Role::class);
+
         $role = Role::findOrFail($id)->load(['users']);
 
         $users = $role->users()->count();
@@ -19,7 +21,7 @@ trait DeleteRole
 
             $this->dispatch('close-modal');
 
-            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
             return;
         }
 
@@ -27,6 +29,6 @@ trait DeleteRole
 
         session()->flash('success', __('flash-messages.role-deleted'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
     }
 }

@@ -12,6 +12,7 @@ trait TableFilter
 
     public string $filter_term = '';
 
+    #[Url]
     public array $filter = [];
 
     #[Url]
@@ -29,13 +30,5 @@ trait TableFilter
 
         $this->filter_column = $column;
         $this->filter_direction = $direction;
-    }
-
-    #[On('reset-filter')]
-    public function resetFilter(): void
-    {
-        $this->term = '';
-        $this->filter_term = '';
-        $this->filter = [];
     }
 }

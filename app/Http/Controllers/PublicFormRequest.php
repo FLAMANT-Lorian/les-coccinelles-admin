@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Enums\MessageStatus;
 use App\Enums\MessageTypes;
 use App\Models\Message;
-use App\Models\MessageType;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -75,9 +74,7 @@ class PublicFormRequest extends Controller
 
     private function createMessage(array $data): void
     {
-        $message_type = MessageType::where('name', '=', $data['type'])->first();
-
-        $message_type->messages()->create([
+        Message::create([
             'last_name' => $data['last_name'],
             'first_name' => $data['first_name'],
             'email' => $data['email'],
@@ -85,7 +82,8 @@ class PublicFormRequest extends Controller
             'subject' => $data['object'],
             'message' => $data['message'],
             'acceptance' => true,
-            'status' => MessageStatus::Unread->value
+            'status' => MessageStatus::Unread->value,
+            'type' => $data['type']
         ]);
     }
 }

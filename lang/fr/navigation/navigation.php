@@ -8,6 +8,7 @@ return [
     'dashboard' => 'Tableau de bord',
     'messages' => 'Messages',
     'members' => 'Membres',
+    'roles' => 'Rôles',
 
     'open_menu_mobile' => 'Ouvrir le menu',
     'logout' => 'Me deconnecter',

@@ -1,8 +1,10 @@
 <?php
 
 use App\Enums\MessageTypes;
+use App\Enums\RoleMode;
 use App\Models\Message;
 use App\Enums\MessageStatus;
+use App\Traits\DeleteRole;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,27 +13,32 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
+use Spatie\Permission\Models\Role;
 
 new class extends Component {
 
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
+    use DeleteRole;
 
     #[Computed]
-    public function getContactMessages()
+    public function getRoles()
     {
-        $query = Message::where('type', MessageTypes::contact->value);
+        $query = Role::query()->with(['users']);
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
-                $q->whereLike('email', '%' . $this->term . '%')
-                    ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$this->term%"]);
+                $q->where('name', 'like', '%' . $this->term . '%');
             });
         }
 
         if (!empty($this->filter)) {
-            $query->whereIn('status', $this->filter);
+            $query->where(function (Builder $q) {
+                foreach ($this->filter as $role) {
+                    $q->orWhere('unique', RoleMode::from($role)->isSingle());
+                }
+            });
         }
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
@@ -44,33 +51,18 @@ new class extends Component {
     #[Computed]
     public function getFilteredTerms()
     {
-        $cases = MessageStatus::cases();
+        $cases = RoleMode::cases();
 
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
                 return str_contains(
-                    strtolower(__('enums.' . $case->value)),
+                    strtolower($case->value),
                     strtolower($this->filter_term)
                 );
             });
         }
         return $cases;
     }
-
-    #[On('deleteMessage')]
-    public function deleteMessage(int $id): void
-    {
-        $this->authorize('delete', Message::class);
-
-        $message = Message::findOrFail($id);
-
-        $message->delete();
-
-        session()->flash('success', __('flash-messages.message-deleted'));
-
-        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
-    }
-
 };
 ?>
 
@@ -90,31 +82,35 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="message_filter"
-            :enum="true"
+            id="role_filter"
             :translation="true"
+            :enum="true"
         />
+        @can('roles.create')
+            <x-general.add-button
+                class="justify-center md:col-span-2 md:justify-self-end"
+                :location="route('roles.create', ['locale' => app()->getLocale()])"
+                :label="__('pages/roles.add-role')"
+            />
+        @endcan
     </div>
 
     <x-general.selected-column
         :array="$this->selectedColumn"
-        :options="[
-            'delete' => true,
-            'markAsRead' => true,
-            'markAsNotRead' => true
-            ]"
-        delete-permission="messages.delete"
+        :options="['delete' => true]"
+        deleteAllModal="deleteAllRoles"
+        deletePermission="roles.delete"
     />
 
-    @if($this->getContactMessages->isNotEmpty())
+    @if($this->getRoles->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="contact_table">
-            <x-pages.messages.tables.contact.table-head/>
-            <x-pages.messages.tables.contact.table-body/>
+        <table class="table" x-ref="table">
+            <x-pages.roles.table.table-head/>
+            <x-pages.roles.table.table-body/>
         </table>
 
         <x-general.pagination
-            :items="$this->getContactMessages"/>
+            :items="$this->getRoles"/>
     @else
         <x-general.no-results
             :term="$this->term"/>

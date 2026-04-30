@@ -27,6 +27,6 @@
             :heading="$heading"/>
 
         {{-- FORM --}}
-        <livewire:pages.members.members.forms.create.form/>
+        <livewire:pages.members.forms.create.form/>
     </div>
 </div>

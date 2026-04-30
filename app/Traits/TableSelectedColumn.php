@@ -15,6 +15,8 @@ trait TableSelectedColumn
     #[On('deleteMessages')]
     public function deleteMessages(): void
     {
+        $this->authorize('delete', Message::class);
+
         $messages = Message::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($messages as $message) {
@@ -32,6 +34,8 @@ trait TableSelectedColumn
     #[On('deleteMembers')]
     public function deleteMembers(): void
     {
+        $this->authorize('delete', User::class);
+
         $members = User::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($members as $member) {
@@ -43,12 +47,14 @@ trait TableSelectedColumn
 
         session()->flash('success', __('flash-messages.members-deleted'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'members'], navigate: true);
+        $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
     }
 
     #[On('deleteAllRoles')]
     public function deleteRoles(): void
     {
+        $this->authorize('delete', Role::class);
+
         $hasUsers = false;
 
         $roles = Role::whereIn('id', $this->selectedColumn)->get();
@@ -67,7 +73,7 @@ trait TableSelectedColumn
 
             session()->flash('error', __('flash-messages.roles-cant-be-deleted', ['count' => $users]));
 
-            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
             return;
         }
 
@@ -76,13 +82,15 @@ trait TableSelectedColumn
 
             session()->flash('success', __('flash-messages.roles-deleted'));
 
-            $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'], navigate: true);
+            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
         }
     }
 
     #[On('markMessageSelectionAs')]
     public function markMessageSelectionAs(string $value): void
     {
+        $this->authorize('update', Message::class);
+
         if (!in_array($value, enumToArray(MessageStatus::class))) {
             $this->selectedColumn = [];
             return;
@@ -102,6 +110,10 @@ trait TableSelectedColumn
     #[On('markMessageAs')]
     public function markMessageAs(string $value, int $id): void
     {
+        if (!auth()->user()->can('messages.update')) {
+            return;
+        }
+
         if (!in_array($value, enumToArray(MessageStatus::class))) {
             return;
         }

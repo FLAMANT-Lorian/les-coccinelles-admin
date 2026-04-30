@@ -3,13 +3,17 @@
 
     $segments = [
         [
-            'label' => __('navigation/navigation.members')
+            'label' => __('navigation/navigation.members'),
+            'url' => route('members.index', ['locale' => app()->getLocale()])
+        ],
+        [
+            'label' => __('navigation/navigation.roles')
         ],
     ];
 
     $heading = [
-        'title' => __('pages/members.heading'),
-        'subtitle' => __('pages/members.subtitle'),
+        'title' => __('pages/roles.heading'),
+        'subtitle' => __('pages/roles.subtitle'),
     ];
 
     $tabs = [
@@ -42,15 +46,15 @@
             :tabs="$tabs"/>
 
         {{-- TABLE --}}
-        <livewire:pages.members.table.table/>
+        <livewire:pages.roles.table.table />
     </div>
 
     {{-- MODAL --}}
-    @if($this->modalDeleteAll)
+    @if($this->modalDeleteRole)
+        <x-widgets.modals.delete-role
+            :id="$this->roleToDelete"/>
+    @elseif($this->modalDeleteAllRoles)
         <x-widgets.modals.delete-selection
-            action="deleteMembers"/>
-    @elseif($this->modalDeleteMember)
-        <x-widgets.modals.delete-member
-            :id="$this->memberToDelete"/>
+            action="deleteAllRoles"/>
     @endif
 </div>
