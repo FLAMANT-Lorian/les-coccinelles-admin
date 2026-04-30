@@ -50,7 +50,9 @@ class DatabaseSeeder extends Seeder
             ]);
         $user1->assignRole($role->name);
 
-        $user2 = User::factory()->create();
+        $user2 = User::factory()->create(
+            ['email' => 'tests@test.be']
+        );
 
         $user2->assignRole($role2->name);
 
@@ -61,13 +63,31 @@ class DatabaseSeeder extends Seeder
 
     private function createPermissions(): void
     {
-        $messages_permissions = [
-            'messages.index',
-            'messages.delete',
-            'messages.update',
+        $permissions = [
+            'messages' => [
+                'index',
+                'update',
+                'delete',
+            ],
+            'members' => [
+                'index',
+                'create',
+                'update',
+                'delete',
+            ],
+            'roles' => [
+                'index',
+                'create',
+                'update',
+                'delete',
+            ]
         ];
-        foreach ($messages_permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
+
+        foreach ($permissions as $key => $permission) {
+            foreach ($permission as $action) {
+                $name = $key . '.' . $action;
+                Permission::firstOrCreate(['name' => $name, 'guard_name' => 'web']);
+            }
         }
     }
 }

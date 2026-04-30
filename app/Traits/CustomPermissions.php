@@ -12,6 +12,18 @@ trait CustomPermissions
             'index' => false,
             'delete' => false,
             'update' => false,
+        ],
+        'members' => [
+            'index' => false,
+            'create' => false,
+            'update' => false,
+            'delete' => false,
+        ],
+        'roles' => [
+            'index' => false,
+            'create' => false,
+            'update' => false,
+            'delete' => false,
         ]
     ];
 
@@ -32,29 +44,32 @@ trait CustomPermissions
 
     public function createPermissions(Role $role): void
     {
-        foreach ($this->permissions['messages'] as $key => $permission) {
-
-            if ($permission) {
-                $rule = 'messages.' . $key;
-                $perm = Permission::where('name', $rule)->first();
-                $role->givePermissionTo($perm);
+        foreach ($this->permissions as $key => $permissions) {
+            foreach ($permissions as $action => $permission) {
+                if ($permission) {
+                    $rule = $key . '.' . $action;
+                    $perm = Permission::where('name', $rule)->first();
+                    $role->givePermissionTo($perm);
+                }
             }
         }
     }
 
     public function updatePermissions(): void
     {
-        foreach ($this->permissions['messages'] as $key => $permission) {
-            $rule = 'messages.' . $key;
-            $perm = Permission::where('name', $rule)->first();
+        foreach ($this->permissions as $key => $permissions) {
+            foreach ($permissions as $action => $permission) {
+                $rule = $key . '.' . $action;
+                $perm = Permission::where('name', $rule)->first();
 
-            if ($permission) {
-                if (!$this->role->hasPermissionTo($perm)) {
-                    $this->role->givePermissionTo($perm);
-                }
-            } else {
-                if ($this->role->hasPermissionTo($perm)) {
-                    $this->role->revokePermissionTo($perm);
+                if ($permission) {
+                    if (!$this->role->hasPermissionTo($perm)) {
+                        $this->role->givePermissionTo($perm);
+                    }
+                } else {
+                    if ($this->role->hasPermissionTo($perm)) {
+                        $this->role->revokePermissionTo($perm);
+                    }
                 }
             }
         }

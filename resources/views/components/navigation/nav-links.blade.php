@@ -6,19 +6,19 @@
             'route' => route('dashboard', ['locale' => app()->getLocale()]),
             'icon' => 'dashboard',
             'wire_current_exact' => true,
-            'permission' => null
+            'permissions' => null
         ],
          [
             'label' => __('navigation/navigation.members'),
             'route' => route('members.index', ['locale' => app()->getLocale()]),
             'icon' => 'members',
-            'permission' => null
+            'permissions' => ['members.index', 'roles.index']
         ],
         [
             'label' => __('navigation/navigation.messages'),
             'route' => route('messages', ['locale' => app()->getLocale()]),
             'icon' => 'messages',
-            'permission' => 'messages.index'
+            'permissions' => ['messages.index']
         ],
     ];
 
@@ -26,7 +26,7 @@
 
 <ul class="flex flex-col gap-4">
     @foreach ($links as $link)
-        @if(!isset($link['permission']) || auth()->user()->can($link['permission']))
+        @if(!isset($link['permissions']) || auth()->user()->canAny($link['permissions']))
             <li>
                 <x-navigation.nav-link
                     :label="$link['label']"

@@ -19,12 +19,16 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
-               aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
-               title="{{ __('pages/members.update-members') }}"
-               href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
-                {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
-            </a>
+            @can('members.update')
+                <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
+                   aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
+                   title="{{ __('pages/members.update-members') }}"
+                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+                    {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
+                </a>
+            @elsecannot('members.update')
+                <span>{{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}</span>
+            @endcannot
         </div>
     </td>
     <td>
@@ -47,7 +51,14 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            <span>{{ $member->roles->first()->name }}</span>
+            @can('roles.update')
+                <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $member->roles->first()->id]) }}"
+                   class="underline-link after:bg-brown">
+                    {{ $member->roles->first()->name }}
+                </a>
+            @elsecannot('roles.update')
+                <span>{{ $member->roles->first()->name }}</span>
+            @endcannot
         </div>
     </td>
     <td>
@@ -69,20 +80,26 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            <div x-show="open" x-transition class="actions-table">
-                <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
-                   class="group"
-                   aria-label="{{ __('tables.update') }}"
-                   title="{{ __('pages/members.update-members') }}">
-                    <span>{{ __('tables.update') }}</span>
-                </a>
-                <button type="button"
-                        class="group"
-                        @click="modalOpen = true"
-                        wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
+            @canany(['members.update', 'members.delete'])
+                <div x-show="open" x-transition class="actions-table">
+                    @can('members.update')
+                        <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
+                           class="group"
+                           aria-label="{{ __('tables.update') }}"
+                           title="{{ __('pages/members.update-members') }}">
+                            <span>{{ __('tables.update') }}</span>
+                        </a>
+                    @endcan
+                    @can('members.delete')
+                        <button type="button"
+                                class="group"
+                                @click="modalOpen = true"
+                                wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcanany
 
             {{--ACTION MOBILES --}}
             <div class="actions-mobile">

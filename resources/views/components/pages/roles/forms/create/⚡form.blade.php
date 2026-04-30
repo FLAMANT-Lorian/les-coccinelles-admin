@@ -37,7 +37,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.role-created'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles']);
+        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()]);
     }
 };
 ?>

@@ -43,6 +43,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Role::class);
+
         $this->form->validate();
 
         $usersCount = $this->role->users()->count();
@@ -58,7 +60,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.role-updated'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles']);
+        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()]);
     }
 };
 ?>

@@ -9,12 +9,12 @@
     <div class="heading">
         <span class="title">{{ __('general.permissions.message') }}</span>
         <div class="all-selector">
-            <label for="all_selector">Tout</label>
-            <input id="all_selector"
+            <label for="all_messages_selector">Tout</label>
+            <input id="all_messages_selector"
                    type="checkbox"
                    :checked="allSelected"
                    @change="
-                        const permissions = $refs.permissions.querySelectorAll('input')
+                        const permissions = $refs.messages.querySelectorAll('input')
 
                         permissions.forEach((permission) => {
 
@@ -24,7 +24,7 @@
                         });">
         </div>
     </div>
-    <div x-ref="permissions" class="permissions">
+    <div x-ref="messages" class="permissions">
         <div class="permission">
             <input id="message_index"
                    value="index"

@@ -34,7 +34,9 @@
             :member="$member"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.members.forms.update.danger-zone/>
+        @can('members.delete')
+            <x-pages.members.forms.update.danger-zone/>
+        @endcan
     </div>
 
     {{-- MODAL --}}

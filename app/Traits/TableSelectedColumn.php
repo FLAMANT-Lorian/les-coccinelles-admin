@@ -34,6 +34,8 @@ trait TableSelectedColumn
     #[On('deleteMembers')]
     public function deleteMembers(): void
     {
+        $this->authorize('delete', User::class);
+
         $members = User::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($members as $member) {
@@ -51,6 +53,8 @@ trait TableSelectedColumn
     #[On('deleteAllRoles')]
     public function deleteRoles(): void
     {
+        $this->authorize('delete', Role::class);
+
         $hasUsers = false;
 
         $roles = Role::whereIn('id', $this->selectedColumn)->get();
@@ -78,7 +82,7 @@ trait TableSelectedColumn
 
             session()->flash('success', __('flash-messages.roles-deleted'));
 
-            $this->redirectRoute('roles.update.index', ['locale' => app()->getLocale()], navigate: true);
+            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
         }
     }
 
@@ -106,7 +110,7 @@ trait TableSelectedColumn
     #[On('markMessageAs')]
     public function markMessageAs(string $value, int $id): void
     {
-        if (!auth()->user()->hasPermissionTo('messages.update')) {
+        if (!auth()->user()->can('messages.update')) {
             return;
         }
 

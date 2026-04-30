@@ -8,9 +8,12 @@
 
      /* PERMISSIONS */
      'permissions' => [
-         'message' => 'Messages'
+         'message' => 'Messages',
+         'members' => 'Membres',
+         'roles' => 'Rôles',
      ],
      'see_table' => 'Voir le tableau',
+     'create' => 'Créer',
      'delete' => 'Supprimer',
      'update' => 'Modifier',
  ];

@@ -84,11 +84,13 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
-        <x-general.add-button
-            class="justify-center md:col-span-2 md:justify-self-end"
-            :location="route('members.create', ['locale' => app()->getLocale()])"
-            :label="__('pages/members.add-members')"
-        />
+        @can('members.create')
+            <x-general.add-button
+                class="justify-center md:col-span-2 md:justify-self-end"
+                :location="route('members.create', ['locale' => app()->getLocale()])"
+                :label="__('pages/members.add-members')"
+            />
+        @endcan
     </div>
 
     <x-general.selected-column

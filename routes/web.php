@@ -16,9 +16,17 @@ Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(functio
         ->name('messages');
 
     /* MEMBERS */
-    Route::livewire('/members', 'pages::members.index')->name('members.index');
-    Route::livewire('/members/create', 'pages::members.create')->name('members.create');
-    Route::livewire('/members/{member}/update', 'pages::members.update')->name('members.update');
+    Route::livewire('/members', 'pages::members.index')
+        ->middleware('can:members.index')
+        ->name('members.index');
+
+    Route::livewire('/members/create', 'pages::members.create')
+        ->middleware('can:members.create')
+        ->name('members.create');
+
+    Route::livewire('/members/{member}/update', 'pages::members.update')
+        ->middleware('can:members.update')
+        ->name('members.update');
 
     /* ROLES */
     Route::livewire('/members/role', 'pages::roles.index')->name('roles.index');
