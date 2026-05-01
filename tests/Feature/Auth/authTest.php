@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 describe('GUEST USER', function () {
     beforeEach(function () {
@@ -35,6 +36,12 @@ describe('GUEST USER', function () {
 describe('CONNECTED USER', function () {
     beforeEach(function () {
         $this->user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'admin',
+            'guard_name' => 'web',
+            'unique' => 1
+        ]);
+        $this->user->assignRole($role);
         $this->actingAs($this->user);
         $this->locale = config('app.locale');
     });

@@ -32,8 +32,12 @@
         </label>
         @if($this->form->avatar || (!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') .  $this->form->member->avatar_path)))
             <button type="button"
-                    class="btn-delete"
-                    wire:click="$dispatch('remove-avatar')">
+                    @if(!is_null($this->form->member))
+                        wire:click="$dispatch('remove-avatar', {id: {{ $this->form->member->id }}})"
+                    @else
+                        wire:click="$dispatch('remove-avatar')"
+                    @endif
+                    class="btn-delete">
                 {{ __('pages/members.remove-avatar') }}
             </button>
         @endif
