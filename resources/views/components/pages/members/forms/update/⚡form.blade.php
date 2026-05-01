@@ -8,11 +8,13 @@ use App\Traits\DeleteMember;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
 
 new class extends Component {
 
     use DeleteMember;
+    use WithFileUploads;
 
     public MembersForm $form;
     public User $member;
@@ -95,6 +97,16 @@ new class extends Component {
         session()->flash('success', __('flash-messages.member-updated'));
 
         $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
+    }
+
+    #[On('remove-avatar')]
+    public function removeAvatar(): void
+    {
+        $path = config('avatar.original_path') . $this->member->avatar_path;
+
+        if (Storage::disk(config('filesystems.default'))->exists($path)) {
+            Storage::disk(config('filesystems.default'))->delete($path);
+        }
     }
 };
 ?>

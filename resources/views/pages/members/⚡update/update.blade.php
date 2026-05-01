@@ -6,7 +6,7 @@
             'url' => route('members.index', ['locale' => app()->getLocale()])
         ],
         [
-            'label' => $this->member->full_name,
+            'label' => trim($this->member->full_name) !== '' ? $this->member->full_name : $this->member->email,
         ],
         [
             'label' => __('pages/members.update-members'),

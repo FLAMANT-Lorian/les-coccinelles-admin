@@ -6,13 +6,19 @@ use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Models\User;
 use App\Rules\UniqueRole;
+use App\Traits\CleanLivewireTMPFolder;
+use App\Traits\HandleImages;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Form;
 use Spatie\Permission\Models\Role;
 
 class MembersForm extends Form
 {
+    use HandleImages;
+    use CleanLivewireTMPFolder;
+
     public ?User $member = null;
 
     public ?string $first_name = null;
@@ -27,6 +33,7 @@ class MembersForm extends Form
     public string $status;
     public ?string $sex = null;
     public ?string $birth_date = null;
+    public ?TemporaryUploadedFile $avatar = null;
 
     public function setMember(User $member): void
     {
@@ -42,7 +49,7 @@ class MembersForm extends Form
         $this->birth_date = $member->birth_date;
         $this->sex = $member->sex;
         $this->status = $member->status;
-        $this->role = $member->getRoleNames()->first();
+        $this->role = $member->roles()->first()->name;
     }
 
     public function rules(): array
@@ -68,6 +75,7 @@ class MembersForm extends Form
             ],
             'status' => ['required', Rule::enum(MembersStatus::class)],
             'address' => 'required',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp',
         ];
     }
 
@@ -77,7 +85,11 @@ class MembersForm extends Form
 
         if (!$role || !$this->member) return;
 
-        $this->member->syncRoles($role);
+        if ($this->avatar) {
+            $this->removeOldAvatar($this->member->avatar_path);
+
+            $file_name = $this->storeAvatar($this->avatar);
+        }
 
         $this->member->update([
             'first_name' => empty(trim($this->first_name)) ? null : $this->first_name,
@@ -90,7 +102,12 @@ class MembersForm extends Form
             'sex' => $this->sex ?? null,
             'status' => $this->status,
             'address' => $this->address,
+            'avatar_path' => $file_name ?? null
         ]);
+
+        $this->member->syncRoles($role);
+
+        $this->cleanLivewireTMPFolder();
     }
 
     public function save(): void
@@ -98,6 +115,10 @@ class MembersForm extends Form
         $role = Role::where('name', $this->role)->first();
 
         if (!$role) return;
+
+        if ($this->avatar) {
+            $file_name = $this->storeAvatar($this->avatar);
+        }
 
         $user = User::create([
             'first_name' => empty(trim($this->first_name)) ? null : trim($this->first_name),
@@ -111,9 +132,12 @@ class MembersForm extends Form
             'sex' => $this->sex ?? null,
             'status' => $this->status,
             'address' => $this->address,
+            'avatar_path' => $file_name ?? null,
         ]);
 
         $user->assignRole($role);
+
+        $this->cleanLivewireTMPFolder();
     }
 
 
