@@ -29,10 +29,23 @@ trait DeleteMember
     {
         $member = User::findOrFail($id);
 
-        $path = config('avatar.original_path') . $member->avatar_path;
+        $original_path = config('avatar.original_path') . '/' . $member->avatar_path;
+        $disk = config('filesystems.default');
+        $sizes = config('avatar.sizes');
 
-        if (Storage::disk(config('filesystems.default'))->exists($path)) {
-            Storage::disk(config('filesystems.default'))->delete($path);
+        if (Storage::disk($disk)->exists($original_path)) {
+            Storage::disk($disk)->delete($original_path);
+        }
+
+        foreach ($sizes as $size) {
+            $variant_path = sprintf(
+                    config('avatar.variant_path'),
+                    $size['width'],
+                    $size['height']
+                ) . '/' . $member->avatar_path;
+            if (Storage::disk($disk)->exists($variant_path)) {
+                Storage::disk($disk)->delete($variant_path);
+            }
         }
     }
 }

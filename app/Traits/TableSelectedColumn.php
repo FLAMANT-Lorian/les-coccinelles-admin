@@ -10,6 +10,8 @@ use Spatie\Permission\Models\Role;
 
 trait TableSelectedColumn
 {
+    use HandleImages;
+
     public array $selectedColumn = [];
 
     #[On('deleteMessages')]
@@ -39,8 +41,10 @@ trait TableSelectedColumn
         $members = User::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($members as $member) {
+            $this->removeOldAvatar($member->avatar_path);
             $member->delete();
         }
+
 
         $this->dispatch('close-modal');
         $this->selectedColumn = [];

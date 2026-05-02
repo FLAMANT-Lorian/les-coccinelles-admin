@@ -5,9 +5,9 @@
             <img src="{{ $this->form->avatar->temporaryUrl() }}"
                  alt="{{ __('pages/members.avatar') }}"
                  class="w-full h-full object-cover rounded-full">
-        @elseif(!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') .  $this->form->member->avatar_path))
+        @elseif(!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->member->avatar_path))
             <img
-                src="{{ Storage::disk(config('filesystems.default'))->url(config('avatar.original_path') .  $this->form->member->avatar_path) }}"
+                src="{{ Storage::disk(config('filesystems.default'))->url(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->member->avatar_path) }}"
                 alt="{{ __('pages/members.avatar') }}"
                 class="w-full h-full object-cover rounded-full">
         @else
@@ -24,13 +24,13 @@
                name="avatar" accept="image/png, image/jpeg, image/jpg, image/webp">
         <label for="profile-picture"
                class="text-center cursor-pointer py-3 px-4 rounded-sm border border-brown bg-brown peer-focus:bg-transparent peer-focus:text-brown text-white hover:bg-transparent hover:text-brown trans-all">
-            @if($this->form->avatar || (!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') .  $this->form->member->avatar_path)))
+            @if($this->form->avatar || (!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') . '/' . $this->form->member->avatar_path)))
                 {{ __('pages/members.change-avatar') }}
             @else
                 {{ __('pages/members.add-avatar') }}
             @endif
         </label>
-        @if($this->form->avatar || (!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') .  $this->form->member->avatar_path)))
+        @if($this->form->avatar || (!is_null($this->form->member) && !is_null($this->form->member->avatar_path) && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') . '/' . $this->form->member->avatar_path)))
             <button type="button"
                     @if(!is_null($this->form->member))
                         wire:click="$dispatch('remove-avatar', {id: {{ $this->form->member->id }}})"

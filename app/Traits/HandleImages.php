@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Jobs\ProcessUploadImages;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
@@ -18,15 +19,31 @@ trait HandleImages
                 $file_name
             );
 
+        ProcessUploadImages::dispatch($file_name, 'avatar')->onQueue('avatar');
+
         return $file_name;
     }
 
     public function removeOldAvatar($file_name): void
     {
-        $path = config('avatar.original_path') . $file_name;
+        $original_path = config('avatar.original_path') . '/' . $file_name;
+        $disk = config('filesystems.default');
+        $sizes = config('avatar.sizes');
 
-        if (Storage::disk(config('filesystems.default'))->exists($path)) {
-            Storage::disk(config('filesystems.default'))->delete($path);
+        if (Storage::disk($disk)->exists($original_path)) {
+            Storage::disk($disk)->delete($original_path);
+        }
+
+        foreach ($sizes as $size) {
+            $variant_path = sprintf(
+                    config('avatar.variant_path'),
+                    $size['width'],
+                    $size['height']
+                ) . '/' . $file_name;
+
+            if (Storage::disk($disk)->exists($variant_path)) {
+                Storage::disk($disk)->delete($variant_path);
+            }
         }
     }
 }

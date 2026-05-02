@@ -1,6 +1,6 @@
 @php
     $file_name = auth()->user()->avatar_path;
-    $path = config('avatar.original_path') . $file_name;
+    $path = sprintf(config('avatar.variant_path'), config('avatar.sizes.128.width'), config('avatar.sizes.128.height')) . '/' .$file_name;
 @endphp
 <div class="mt-auto flex flex-col">
 
