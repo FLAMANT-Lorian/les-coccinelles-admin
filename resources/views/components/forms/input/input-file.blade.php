@@ -1,13 +1,21 @@
 @props([
     'field_name' => '',
     'label' => '',
-    'required' => false,
+    'required' => null,
+    'multiple' => null,
+    'wire' => '',
+    'form_property' => null,
 ])
 
 <div {{ $attributes->merge(['class' => 'grid grid-cols-1 md:grid-cols-2 gap-x-8']) }}>
 
-    <input multiple
-           id="{{ $field_name }}"
+    <input id="{{ $field_name }}"
+           @if($wire && $wire !== '')
+               wire:model="{{ $wire }}"
+           @endif
+           @if($multiple)
+               multiple
+           @endif
            type="file"
            class="sr-only"
            x-ref="input"
@@ -15,7 +23,7 @@
 
     <div class="flex flex-col items-start gap-1">
         <span class="text-brown text-base font-medium pl-3 cursor-default"
-        @click="$refs.input.click()">
+              @click="$refs.input.click()">
             {{ $label }}
             @if($required)
                 <strong class="text-red">*</strong>
@@ -30,7 +38,9 @@
             </svg>
         </label>
     </div>
-    <div class="file-container">
+    @if($form_property)
+        <div class="file-container">
 
-    </div>
+        </div>
+    @endif
 </div>

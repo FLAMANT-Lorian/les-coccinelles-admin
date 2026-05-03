@@ -34,6 +34,7 @@ class MembersForm extends Form
     public ?string $sex = null;
     public ?string $birth_date = null;
     public ?TemporaryUploadedFile $avatar = null;
+    public ?array $documents = null;
 
     public function setMember(User $member): void
     {
@@ -75,7 +76,9 @@ class MembersForm extends Form
             ],
             'status' => ['required', Rule::enum(MembersStatus::class)],
             'address' => 'required',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,webp',
+            'avatar' => 'nullable|image|mimes:jpg,png,webp',
+            'documents' => 'nullable|array',
+            'documents.*' => 'mimes:jpg,png,webp',
         ];
     }
 
@@ -86,9 +89,20 @@ class MembersForm extends Form
         if (!$role || !$this->member) return;
 
         if ($this->avatar) {
-            $this->removeOldAvatar($this->member->avatar_path);
+            if ($this->member->avatar_path) {
+                $this->removeOldAvatar($this->member->id);
+            }
 
             $file_name = $this->storeAvatar($this->avatar);
+        }
+
+        if ($this->documents) {
+            $documents = [];
+            foreach ($this->documents as $idx => $document) {
+                $documents[$idx] = $this->storeDocument($document);
+            }
+
+            $documents = array_merge($this->member->documents ?? [], $documents);
         }
 
         $this->member->update([
@@ -102,7 +116,8 @@ class MembersForm extends Form
             'sex' => $this->sex ?? null,
             'status' => $this->status,
             'address' => $this->address,
-            'avatar_path' => $file_name ?? null
+            'avatar_path' => $file_name ?? $this->member->avatar_path ?? null,
+            'documents' => $documents ?? $this->member->documents ?? null,
         ]);
 
         $this->member->syncRoles($role);
@@ -120,6 +135,13 @@ class MembersForm extends Form
             $file_name = $this->storeAvatar($this->avatar);
         }
 
+        if ($this->documents) {
+            $documents = [];
+            foreach ($this->documents as $idx => $document) {
+                $documents[$idx] = $this->storeDocument($document);
+            }
+        }
+
         $user = User::create([
             'first_name' => empty(trim($this->first_name)) ? null : trim($this->first_name),
             'last_name' => empty(trim($this->last_name)) ? null : trim($this->last_name),
@@ -133,6 +155,7 @@ class MembersForm extends Form
             'status' => $this->status,
             'address' => $this->address,
             'avatar_path' => $file_name ?? null,
+            'documents' => empty($documents) ? null : $documents,
         ]);
 
         $user->assignRole($role);

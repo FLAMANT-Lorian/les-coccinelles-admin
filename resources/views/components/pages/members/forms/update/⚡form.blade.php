@@ -99,6 +99,12 @@ new class extends Component {
 
         $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
     }
+
+    #[On('remove-card')]
+    public function removeCard($id): void
+    {
+        unset($this->form->documents[$id]);
+    }
 };
 ?>
 

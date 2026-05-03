@@ -97,6 +97,12 @@ new class extends Component {
         $this->form->avatar = null;
         $this->cleanLivewireTMPFolder();
     }
+
+    #[On('remove-card')]
+    public function removeCard($id): void
+    {
+        unset($this->form->documents[$id]);
+    }
 };
 ?>
 

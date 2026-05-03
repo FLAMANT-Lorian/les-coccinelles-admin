@@ -14,7 +14,7 @@ class ProcessUploadImages implements ShouldQueue
     /**
      * Create a new job instance.
      */
-    public function __construct(public $file_name, public $config_path)
+    public function __construct(public string $file_name, public string $config_path)
     {
         //
     }

@@ -24,8 +24,8 @@ class User extends Authenticatable
         'postal_code',
         'address',
         'status',
-        'identity_card_paths',
         'avatar_path',
+        'documents',
     ];
 
     protected $hidden = [
@@ -36,6 +36,7 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
+            'documents' => 'array',
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
