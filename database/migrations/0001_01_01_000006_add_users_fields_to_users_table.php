@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('postal_code')->after('city');
             $table->string('address')->after('postal_code');
             $table->string('status')->after('address');
-            $table->json('identity_card_paths')->after('status')->nullable();
-            $table->string('avatar_path')->after('identity_card_paths')->nullable();
+            $table->json('documents')->after('status')->nullable();
+            $table->string('avatar_path')->after('documents')->nullable();
         });
     }
 

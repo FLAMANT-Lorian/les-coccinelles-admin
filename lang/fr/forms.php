@@ -28,7 +28,8 @@ return [
     'address' => 'Adresse',
     'sex' => 'Sexe',
     'birth-date' => 'Date de naissance',
-    'identity-card' => 'Pièces d’identité',
+    'identity-documents' => 'Documents d’identité',
     'password' => 'Mot de passe',
-    'choose-files' => 'Choisir des fichiers&nbsp;&hellip;',
+    'choose-files' => 'Cliquer pour ajouter',
+    'available-file-types' => 'JPG, PNG, WEBP'
 ];

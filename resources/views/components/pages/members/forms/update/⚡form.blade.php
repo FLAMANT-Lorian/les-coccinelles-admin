@@ -8,11 +8,12 @@ use App\Traits\DeleteMember;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
 
 new class extends Component {
-
     use DeleteMember;
+    use WithFileUploads;
 
     public MembersForm $form;
     public User $member;
@@ -88,6 +89,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('members.update', User::class);
+
         $this->form->validate();
 
         $this->form->update();
@@ -95,6 +98,12 @@ new class extends Component {
         session()->flash('success', __('flash-messages.member-updated'));
 
         $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
+    }
+
+    #[On('remove-card')]
+    public function removeCard($id): void
+    {
+        unset($this->form->documents[$id]);
     }
 };
 ?>

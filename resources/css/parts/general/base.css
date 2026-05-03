@@ -5,7 +5,7 @@
 .tab {
     @apply cursor-pointer whitespace-nowrap paragraph trans-all relative;
 
-    &:hover {
+    &:hover, &:focus {
         @apply text-red;
     }
 

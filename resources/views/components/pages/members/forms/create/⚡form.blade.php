@@ -4,11 +4,17 @@ use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Livewire\Forms\MembersForm;
 use App\Models\User;
+use App\Traits\CleanLivewireTMPFolder;
 use Livewire\Attributes\Computed;
+use Livewire\Attributes\On;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Spatie\Permission\Models\Role;
 
 new class extends Component {
+
+    use WithFileUploads;
+    use CleanLivewireTMPFolder;
 
     public MembersForm $form;
 
@@ -83,6 +89,19 @@ new class extends Component {
         session()->flash('success', __('flash-messages.member-created'));
 
         $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
+    }
+
+    #[On('remove-avatar')]
+    public function removeAvatar(): void
+    {
+        $this->form->avatar = null;
+        $this->cleanLivewireTMPFolder();
+    }
+
+    #[On('remove-card')]
+    public function removeCard($id): void
+    {
+        unset($this->form->documents[$id]);
     }
 };
 ?>
