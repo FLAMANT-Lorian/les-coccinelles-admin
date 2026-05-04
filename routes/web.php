@@ -11,32 +11,14 @@ Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(functio
     Route::livewire('/', 'pages::dashboard')->name('dashboard');
 
     /* MESSAGES */
-    Route::livewire('/messages', 'pages::messages.index')
-        ->middleware('can:messages.index')
-        ->name('messages');
+    require __DIR__ . '/admin/messagesRoutes.php';
 
     /* MEMBERS */
-    Route::livewire('/members', 'pages::members.index')
-        ->middleware('can:members.index')
-        ->name('members.index');
-
-    Route::livewire('/members/create', 'pages::members.create')
-        ->middleware('can:members.create')
-        ->name('members.create');
-
-    Route::livewire('/members/{member}/update', 'pages::members.update')
-        ->middleware('can:members.update')
-        ->name('members.update');
+    require __DIR__ . '/admin/membersRoutes.php';
 
     /* ROLES */
-    Route::livewire('/members/roles', 'pages::roles.index')
-        ->middleware('can:roles.index')
-        ->name('roles.index');
+    require __DIR__ . '/admin/rolesRoutes.php';
 
-    Route::livewire('/members/roles/create', 'pages::roles.create')
-        ->middleware('can:roles.create')
-        ->name('roles.create');
-    Route::livewire('/members/roles/{role}/update', 'pages::roles.update')
-        ->middleware('can:roles.update')
-        ->name('roles.update');
+    /* HALL */
+    require __DIR__ . '/admin/hallRoutes.php';
 });
