@@ -24,6 +24,11 @@ trait CustomPermissions
             'create' => false,
             'update' => false,
             'delete' => false,
+        ],
+        'availabilities' => [
+            'index' => false,
+            'delete' => false,
+            'update' => false,
         ]
     ];
 

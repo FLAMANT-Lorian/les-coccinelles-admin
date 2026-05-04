@@ -102,7 +102,7 @@ trait TableSelectedColumn
     #[On('deleteAvailabilityRequests')]
     public function deleteAvailabilityRequests(): void
     {
-        //$this->authorize('delete', Message::class);
+        $this->authorize('delete', AvailabilityRequest::class);
 
         $availabilityRequests = AvailabilityRequest::whereIn('id', $this->selectedColumn)->get();
 
@@ -161,7 +161,7 @@ trait TableSelectedColumn
     #[On('markAvailabilityRequestsSelectionAs')]
     public function markAvailabilityRequestsSelectionAs(string $value): void
     {
-        //$this->authorize('update', Message::class);
+        $this->authorize('update', AvailabilityRequest::class);
 
         if (!in_array($value, enumToArray(MessageStatus::class))) {
             $this->selectedColumn = [];
@@ -182,7 +182,7 @@ trait TableSelectedColumn
     #[On('markAvailabilityRequestAs')]
     public function markAvailabilityRequestAs(string $value, int $id): void
     {
-        if (!auth()->user()->can('messages.update')) {
+        if (!auth()->user()->can('availabilities.update')) {
             return;
         }
 
