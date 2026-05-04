@@ -169,11 +169,11 @@ trait TableSelectedColumn
         }
 
         foreach ($this->selectedColumn as $id) {
-            $message = AvailabilityRequest::findOrFail($id);
+            $availabilityRequest = AvailabilityRequest::findOrFail($id);
 
-            if (!$message) return;
+            if (!$availabilityRequest) return;
 
-            $message->update([
+            $availabilityRequest->update([
                 'status' => $value
             ]);
         }
@@ -189,11 +189,11 @@ trait TableSelectedColumn
         if (!in_array($value, enumToArray(MessageStatus::class))) {
             return;
         }
-        $message = AvailabilityRequest::findOrFail($id);
+        $availabilityRequest = AvailabilityRequest::findOrFail($id);
 
-        if (!$message) return;
+        if (!$availabilityRequest) return;
 
-        $message->update([
+        $availabilityRequest->update([
             'status' => $value
         ]);
     }
