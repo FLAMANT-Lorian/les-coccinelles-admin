@@ -4,8 +4,7 @@
 ])
 
 <tr x-data="{ open: false }"
-    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''"
-    class="[&:has(input:checked)_div]:bg-beige-medium">
+    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''">
     <td>
         <div>
             <input type="checkbox"
@@ -55,7 +54,7 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
-                    class="actions p-2 text-brown hover:bg-beige-light focus:bg-beige-light trans-all cursor-pointer">
+                    class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
@@ -64,7 +63,7 @@
             {{--@canany()--}}
             <div x-show="open" x-transition class="actions-table">
                 @can('messages.delete')
-                    <button type="button" class="group"
+                    <button type="button"
                             @click="modalOpen = true"
                             wire:click="$dispatch('open-modal', {modal: 'deleteAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
                         <span>{{ __('tables.delete') }}</span>
@@ -72,13 +71,13 @@
                 @endcan
                 @can(null)
                     @if($availabilityRequest->status === MessageStatus::Unread->value)
-                        <button type="button" class="group"
+                        <button type="button"
                                 wire:click="markAvailabilityRequestAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">
                             <span>{{ __('tables.mark-single-as-read') }}</span>
                         </button>
                     @endif
                     @if($availabilityRequest->status === MessageStatus::Read->value)
-                        <button type="button" class="group"
+                        <button type="button"
                                 wire:click="markAvailabilityRequestAs('{{ MessageStatus::Unread->value }}', {{ $availabilityRequest->id }})">
                             <span>{{ __('tables.mark-single-as-not-read') }}</span>
                         </button>

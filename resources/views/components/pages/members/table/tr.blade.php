@@ -4,8 +4,7 @@
 ])
 
 <tr x-data="{ open: false }"
-    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''"
-    class="[&:has(input:checked)_div]:bg-beige-medium">
+    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''">
     <td>
         <div>
             <input type="checkbox"
@@ -74,7 +73,7 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
-                    class="actions p-2 text-brown hover:bg-beige-light trans-all cursor-pointer">
+                    class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
@@ -84,7 +83,6 @@
                 <div x-show="open" x-transition class="actions-table">
                     @can('members.update')
                         <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
-                           class="group"
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('pages/members.update-members') }}">
                             <span>{{ __('tables.update') }}</span>
@@ -92,7 +90,6 @@
                     @endcan
                     @can('members.delete')
                         <button type="button"
-                                class="group"
                                 @click="modalOpen = true"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
                             <span>{{ __('tables.delete') }}</span>
