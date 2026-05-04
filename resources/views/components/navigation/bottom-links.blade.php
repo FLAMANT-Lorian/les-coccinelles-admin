@@ -39,7 +39,7 @@
         </div>
         <div class="flex flex-col items-start gap-0.5">
             <p class="font-medium text-brown">{{ auth()->user()->full_name }}</p>
-            <p class="text-sm text-gray-500">{{ auth()->user()->roles()->first()->name }}</p>
+            <p class="text-sm text-gray-500">{{ auth()->user()->roles->first()->name }}</p>
         </div>
         <svg class="text-brown min-h-6 ml-auto" width="24" height="24" viewBox="0 0 24 24" fill="none"
              xmlns="http://www.w3.org/2000/svg">
