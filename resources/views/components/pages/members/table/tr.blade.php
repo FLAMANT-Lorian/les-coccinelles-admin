@@ -22,7 +22,8 @@
                 <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
                    aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
                    title="{{ __('pages/members.update-members') }}"
-                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}">
+                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}"
+                   wire:navigate>
                     {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
                 </a>
             @elsecannot('members.update')
@@ -52,6 +53,9 @@
             <span>{{ __('tables.role') }}&nbsp;:</span>
             @can('roles.update')
                 <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $member->roles->first()->id]) }}"
+                   wire:navigate
+                   aria-label="{{ $member->roles->first()->name }}"
+                   title="{{ __('pages/roles.update-role') }}"
                    class="underline-link after:bg-brown">
                     {{ $member->roles->first()->name }}
                 </a>

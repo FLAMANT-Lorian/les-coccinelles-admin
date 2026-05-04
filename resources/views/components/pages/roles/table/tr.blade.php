@@ -26,6 +26,7 @@
                 <a class="underline-link after:bg-brown"
                    title="{{ __('general.view-role') . $role->name }}"
                    aria-label="{{ $role->name }}"
+                   wire:navigate
                    href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}">
                     {{ $role->name }}
                 </a>
@@ -51,6 +52,7 @@
                     <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $user]) }}"
                        class="underline-link after:bg-brown {{ empty(trim($user->full_name)) ? 'italic text-gray-500' : '' }}"
                        title="{{ __('general.view-profil-of') . $user->full_name }}"
+                       wire:navigate
                        aria-label="{{ $user->full_name }}">
                         {{ empty(trim($user->full_name)) ? __('general.not_specified') : $user->full_name }}
                     </a>
@@ -104,6 +106,7 @@
                 <div x-show="open" x-transition class="actions-table">
                     @can('roles.update')
                         <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
+                           wire:navigate
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('modals.edit-role') }}">
                             <span>{{ __('tables.update') }}</span>

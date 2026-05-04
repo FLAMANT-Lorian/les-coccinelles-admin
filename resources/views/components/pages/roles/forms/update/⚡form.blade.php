@@ -60,7 +60,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.role-updated'));
 
-        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()]);
+        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
     }
 };
 ?>
