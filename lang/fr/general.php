@@ -6,6 +6,7 @@
      'not_specified' => 'Non renseigné',
      'view-role' => 'Voir le rôle ',
      'remove-image' => 'Supprimer l\'image',
+     'download-image' => 'Télécharger l\'image',
 
      /* PERMISSIONS */
      'permissions' => [

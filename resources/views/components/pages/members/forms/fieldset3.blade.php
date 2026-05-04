@@ -38,14 +38,14 @@
                         @endphp
 
                         @if(Storage::disk($disk)->exists($variantPath))
-                            <div class="w-27 h-27 relative border border-beige-dark rounded-sm">
+                            <div class="w-27 h-27 relative border border-beige-dark rounded-sm overflow-hidden">
                                 <img
                                     src="{{ Storage::disk($disk)->url($variantPath) }}"
                                     class="w-full h-full object-cover aspect-square"
                                     alt="Image">
                                 <button type="button"
                                         wire:click="removeOldDocument('{{ $document }}', {{ $this->form->member->id }})"
-                                        class="absolute top-2 right-2 cursor-pointer bg-red rounded-sm p-1 hover:rounded-lg trans-all">
+                                        class="absolute z-2 top-2 right-2 cursor-pointer bg-red rounded-sm p-1 hover:rounded-lg trans-all">
                                     <span class="sr-only">{{ __('general.remove-image') }}</span>
                                     <svg class="text-white" width="24" height="24" viewBox="0 0 24 24" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">
@@ -54,9 +54,27 @@
                                             fill="currentColor"/>
                                     </svg>
                                 </button>
+                                <a class="group hover:bg-black/60 trans-all absolute inset-0"
+                                   title="{{ __('general.download-image') }}"
+                                   aria-label="{{ __('general.download-image') }}"
+                                   href="{{ Storage::disk($disk)->url($originalPath) }}"
+                                   download>
+                                    <span class="sr-only">{{ __('general.download-image') }}</span>
+                                    <svg class="opacity-0 group-hover:opacity-100 group-hover:text-white trans-all absolute right-2 bottom-2"
+                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                         fill="none"
+                                         stroke="currentColor"
+                                         stroke-width="1"
+                                         stroke-linecap="round"
+                                         stroke-linejoin="round">
+                                        <path d="M12 15V3"/>
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <path d="m7 10 5 5 5-5"/>
+                                    </svg>
+                                </a>
                             </div>
                         @elseif(Storage::disk($disk)->exists($originalPath))
-                            <div class="h-27 w-27 relative border border-beige-dark rounded-sm">
+                            <div class="h-27 w-27 relative border border-beige-dark rounded-sm overflow-hidden">
                                 <svg class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-spin"
                                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                      fill="none"
@@ -71,7 +89,7 @@
                 @endif
                 @if($this->form->documents)
                     @foreach($this->form->documents as $id => $id_card)
-                        <div class="w-27 h-27 relative border border-beige-dark rounded-sm">
+                        <div class="w-27 h-27 relative border border-beige-dark rounded-sm overflow-hidden">
                             <img src="{{ $id_card->temporaryUrl() }}"
                                  class="w-full h-full object-cover aspect-square"
                                  alt="Image">
