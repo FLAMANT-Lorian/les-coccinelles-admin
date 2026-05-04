@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Enums\MessageStatus;
+use App\Models\AvailabilityRequest;
 use App\Models\Message;
 use App\Models\User;
 use Livewire\Attributes\On;
@@ -98,6 +99,25 @@ trait TableSelectedColumn
         }
     }
 
+    #[On('deleteAvailabilityRequests')]
+    public function deleteAvailabilityRequests(): void
+    {
+        //$this->authorize('delete', Message::class);
+
+        $availabilityRequests = AvailabilityRequest::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($availabilityRequests as $availabilityRequest) {
+            $availabilityRequest->delete();
+        }
+
+        $this->dispatch('close-modal');
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.availability-requests-deleted'));
+
+        $this->redirectRoute('availabilities', ['locale' => app()->getLocale()], navigate: true);
+    }
+
     #[On('markMessageSelectionAs')]
     public function markMessageSelectionAs(string $value): void
     {
@@ -130,6 +150,46 @@ trait TableSelectedColumn
             return;
         }
         $message = Message::findOrFail($id);
+
+        if (!$message) return;
+
+        $message->update([
+            'status' => $value
+        ]);
+    }
+
+    #[On('markAvailabilityRequestsSelectionAs')]
+    public function markAvailabilityRequestsSelectionAs(string $value): void
+    {
+        //$this->authorize('update', Message::class);
+
+        if (!in_array($value, enumToArray(MessageStatus::class))) {
+            $this->selectedColumn = [];
+            return;
+        }
+
+        foreach ($this->selectedColumn as $id) {
+            $message = AvailabilityRequest::findOrFail($id);
+
+            if (!$message) return;
+
+            $message->update([
+                'status' => $value
+            ]);
+        }
+    }
+
+    #[On('markAvailabilityRequestAs')]
+    public function markAvailabilityRequestAs(string $value, int $id): void
+    {
+        if (!auth()->user()->can('messages.update')) {
+            return;
+        }
+
+        if (!in_array($value, enumToArray(MessageStatus::class))) {
+            return;
+        }
+        $message = AvailabilityRequest::findOrFail($id);
 
         if (!$message) return;
 

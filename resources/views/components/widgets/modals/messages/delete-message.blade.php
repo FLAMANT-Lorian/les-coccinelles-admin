@@ -2,7 +2,7 @@
     'id' => '',
 ])
 
-<x-widgets.delete-modal-layout
+<x-widgets.modals.delete-modal-layout
     :title="__('modals.deleteMessage')"
     :message="__('modals.deleteMessageMessage')">
     <button type="button"
@@ -10,4 +10,4 @@
             @click="$dispatch('deleteMessage', {id: {{ $id }}})">
         {{ __('modals.deleteMessage') }}
     </button>
-</x-widgets.delete-modal-layout>
+</x-widgets.modals.delete-modal-layout>

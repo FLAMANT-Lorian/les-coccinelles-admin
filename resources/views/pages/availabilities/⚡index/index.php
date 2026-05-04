@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AvailabilityRequest;
 use App\Models\Message;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -9,7 +10,7 @@ new class extends Component
     public bool $modalDeleteAll = false;
     public bool $modalViewAvailabilityRequest = false;
     public bool $modalDeleteAvailabilityRequest = false;
-    public Message $availabilityRequestToSee;
+    public AvailabilityRequest $availabilityRequestToSee;
     public ?int $availabilityRequestToDelete;
 
 
@@ -19,7 +20,7 @@ new class extends Component
         if ($modal === 'deleteAll') {
             $this->modalDeleteAll = true;
         } elseif ($modal === 'viewAvailabilityRequest') {
-            $message = Message::findOrFail($id);
+            $message = AvailabilityRequest::findOrFail($id);
 
             if (!$message) return;
 

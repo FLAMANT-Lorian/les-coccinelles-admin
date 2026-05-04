@@ -3,7 +3,7 @@
 $tabs = [
     [
         'label' => __('navigation/navigation.availabilities'),
-        'location' => route('availabilities.index', ['locale' => app()->getLocale()]),
+        'location' => route('availabilities', ['locale' => app()->getLocale()]),
         'permission' => null
     ],
 ];

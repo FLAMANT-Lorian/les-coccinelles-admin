@@ -32,8 +32,8 @@
 
     {{-- MODALS --}}
     @if($this->modalDeleteAll)
-        <x-widgets.modals.delete-selection
-            action="deleteMessages"/>
+        <x-widgets.modals.selection.delete-selection
+            action="deleteAvailabilityRequests"/>
     @elseif($this->modalViewAvailabilityRequest)
         <x-widgets.modals.availability-requests.view-availability-request
             :availability-request="$this->availabilityRequestToSee"/>

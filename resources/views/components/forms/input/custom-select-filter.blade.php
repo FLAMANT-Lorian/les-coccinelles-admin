@@ -23,25 +23,26 @@
              @click="$refs.input.focus();">
             @if(!empty($this->filter))
                 @foreach($this->filter as $idx => $item)
-                    <button type="button"
-                            class="has-[svg:hover]:bg-red trans-all cursor-auto! relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown text-white rounded flex items-center gap-1">
-                        <svg data-value="{{ $item }}"
-                             @click="
+                    <div type="button"
+                         class="has-[button:hover]:bg-red has-[button:focus]:bg-red trans-all relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown text-white rounded flex items-center gap-1">
+                        <button @click="
                                  selected = selected.filter((item) => item !== $event.currentTarget.dataset.value);
                                  $wire.set('filter', selected);
                                  open = false;
                                  $refs.input.blur();
-                            "
-                             class="cursor-pointer"
-                             width="16"
-                             height="16"
-                             viewBox="0 0 16 16"
-                             fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <use href="#cross-filter"></use>
-                        </svg>
+                                 "
+                                data-value="{{ $item }}">
+
+                            <svg width="16"
+                                 height="16"
+                                 viewBox="0 0 16 16"
+                                 fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <use href="#cross-filter"></use>
+                            </svg>
+                        </button>
                         <span class="whitespace-nowrap">{{ $translation ? __('enums.' . $item) : $item }}</span>
-                    </button>
+                    </div>
                 @endforeach
             @endif
             <input
@@ -73,7 +74,7 @@
                 @foreach($collection as $item)
                     <button type="button"
                             data-value="{{ $enum ? $item->value : $item[$accessor] }}"
-                            class="px-4 py-3 text-left hover:bg-beige-medium trans-all"
+                            class="px-4 py-3 text-left hover:bg-beige-medium focus:bg-beige-medium trans-all"
                             @click="open = false;
                         $refs.input.blur();
 

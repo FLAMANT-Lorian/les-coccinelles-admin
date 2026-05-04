@@ -8,8 +8,7 @@
 @endphp
 
 <tr x-data="{ open: false }"
-    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''"
-    class="[&:has(input:checked)_div]:bg-beige-medium">
+    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''">
     <td>
         <div>
             <input type="checkbox"
@@ -95,7 +94,7 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
-                    class="actions p-2 text-brown hover:bg-beige-light trans-all cursor-pointer">
+                    class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
@@ -105,7 +104,6 @@
                 <div x-show="open" x-transition class="actions-table">
                     @can('roles.update')
                         <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $role]) }}"
-                           class="group"
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('modals.edit-role') }}">
                             <span>{{ __('tables.update') }}</span>
@@ -113,7 +111,6 @@
                     @endcan
                     @can('roles.delete')
                         <button type="button"
-                                class="group"
                                 @click="modalOpen = true"
                                 @click.away="open = false"
                                 @keydown.window.escape="open = false"

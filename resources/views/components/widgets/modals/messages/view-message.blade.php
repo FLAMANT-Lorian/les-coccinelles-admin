@@ -2,7 +2,7 @@
     'message'
 ])
 
-<x-widgets.message-modal-layout
+<x-widgets.modals.message-modal-layout
     :title="__('modals.viewMessage') . $message->fullName"
     :message="false">
     <div class="text-brown flex flex-col h-full">
@@ -32,8 +32,8 @@
                     <path d="M20 18v-2a4 4 0 0 0-4-4H4"/>
                     <path d="m9 17-5-5 5-5"/>
                 </svg>
-                <span>{{ __('modals.reply') }}</span>
+                <span>{{ __('modals.reply-to-message') }}</span>
             </a>
         </div>
     </div>
-</x-widgets.message-modal-layout>
+</x-widgets.modals.message-modal-layout>

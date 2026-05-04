@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\MessageTypes;
+use App\Models\AvailabilityRequest;
 use App\Models\Message;
 use App\Enums\MessageStatus;
 use App\Traits\TableFilter;
@@ -21,7 +22,7 @@ new class extends Component {
     #[Computed]
     public function getAvailabilityRequests()
     {
-        $query = Message::where('type', MessageTypes::availability_request->value);
+        $query = AvailabilityRequest::query();
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
@@ -60,15 +61,15 @@ new class extends Component {
     #[On('deleteAvailabilityRequest')]
     public function deleteAvailabilityRequest(int $id): void
     {
-        $this->authorize('delete', Message::class);
+        //$this->authorize('delete', Message::class);
 
-        $message = Message::findOrFail($id);
+        $availabilityRequest = AvailabilityRequest::findOrFail($id);
 
-        $message->delete();
+        $availabilityRequest->delete();
 
         session()->flash('success', __('flash-messages.availability-request-deleted'));
 
-        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('availabilities', ['locale' => app()->getLocale()], navigate: true);
     }
 
 };
@@ -100,8 +101,8 @@ new class extends Component {
         :array="$this->selectedColumn"
         :options="[
             'delete' => true,
-            'markAsRead' => true,
-            'markAsNotRead' => true
+            'markAvailabilityRequestAsRead' => true,
+            'markAvailabilityRequestAsNotRead' => true
             ]"
         :delete-permission="null"
     />

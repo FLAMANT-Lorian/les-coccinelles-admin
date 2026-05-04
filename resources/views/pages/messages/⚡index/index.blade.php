@@ -29,13 +29,13 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteAll)
-        <x-widgets.modals.delete-selection
+        <x-widgets.modals.selection.delete-selection
             action="deleteMessages"/>
     @elseif($this->modalViewMessage)
-        <x-widgets.modals.view-message
+        <x-widgets.modals.messages.view-message
             :message="$this->messageToSee"/>
     @elseif($this->modalDeleteMessage)
-        <x-widgets.modals.delete-message
+        <x-widgets.modals.messages.delete-message
             :id="$this->messageToDelete"/>
     @endif
 

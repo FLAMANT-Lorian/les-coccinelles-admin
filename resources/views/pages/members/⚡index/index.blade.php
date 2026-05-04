@@ -33,10 +33,10 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteAll)
-        <x-widgets.modals.delete-selection
+        <x-widgets.modals.selection.delete-selection
             action="deleteMembers"/>
     @elseif($this->modalDeleteMember)
-        <x-widgets.modals.delete-member
+        <x-widgets.modals.members.delete-member
             :id="$this->memberToDelete"/>
     @endif
 </div>
