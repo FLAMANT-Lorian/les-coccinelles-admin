@@ -7,6 +7,7 @@ return [
     /* NAV LINKS */
     'dashboard' => 'Tableau de bord',
     'hall' => 'Gestion de la salle',
+    'availabilities' => 'Demandes de disponibilité',
     'messages' => 'Messages',
     'members' => 'Membres',
     'roles' => 'Rôles',

@@ -1,6 +1,6 @@
 @php use App\Enums\MessageStatus; @endphp
 @props([
-    'contactMessage' => Message::class,
+    'availabilityRequest' => Message::class,
 ])
 
 <tr x-data="{ open: false }"
@@ -9,11 +9,11 @@
     <td>
         <div>
             <input type="checkbox"
-                   value="{{ $contactMessage->id }}"
-                   id="selector-{{ $contactMessage->id }}"
+                   value="{{ $availabilityRequest->id }}"
+                   id="selector-{{ $availabilityRequest->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $contactMessage->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $availabilityRequest->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
         </div>
     </td>
     <td>
@@ -21,8 +21,8 @@
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
             <button type="button" class="underline-link after:bg-brown"
                     @click="modalOpen = true"
-                    wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}}); markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
-                {{ $contactMessage->full_name }}
+                    wire:click="$dispatch('open-modal', {modal: 'viewAvailabilityRequest', id: {{ $availabilityRequest->id }}}); markMessageAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">
+                {{ $availabilityRequest->full_name }}
             </button>
         </div>
     </td>
@@ -30,22 +30,22 @@
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
             <a class="underline-link after:bg-brown"
-               href="mailto:{{ $contactMessage->email }}"
-               aria-label="{{ $contactMessage->email }}"
-               title="{{ __('tables.send-email-to') . $contactMessage->email }}"
-            >{{ $contactMessage->email }}</a>
+               href="mailto:{{ $availabilityRequest->email }}"
+               aria-label="{{ $availabilityRequest->email }}"
+               title="{{ __('tables.send-email-to') . $availabilityRequest->email }}"
+            >{{ $availabilityRequest->email }}</a>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.send_date') }}&nbsp;:</span>
-            <time datetime="{{ $date = formattedDate($contactMessage->created_at) }}">{{ $date }}</time>
+            <time datetime="{{ $date = formattedDate($availabilityRequest->created_at) }}">{{ $date }}</time>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            <x-general.status :status="$contactMessage->status"/>
+            <x-general.status :status="$availabilityRequest->status"/>
         </div>
     </td>
     <td data-action>
@@ -66,20 +66,20 @@
                     @can('messages.delete')
                         <button type="button" class="group"
                                 @click="modalOpen = true"
-                                wire:click="$dispatch('open-modal', {modal: 'deleteMessage', id: {{ $contactMessage->id }}})">
+                                wire:click="$dispatch('open-modal', {modal: 'deleteAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
                             <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
                     @can('messages.update')
-                        @if($contactMessage->status === MessageStatus::Unread->value)
+                        @if($availabilityRequest->status === MessageStatus::Unread->value)
                             <button type="button" class="group"
-                                    wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
+                                    wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">
                                 <span>{{ __('tables.mark-single-as-read') }}</span>
                             </button>
                         @endif
-                        @if($contactMessage->status === MessageStatus::Read->value)
+                        @if($availabilityRequest->status === MessageStatus::Read->value)
                             <button type="button" class="group"
-                                    wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $contactMessage->id }})">
+                                    wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $availabilityRequest->id }})">
                                 <span>{{ __('tables.mark-single-as-not-read') }}</span>
                             </button>
                         @endif
@@ -92,7 +92,7 @@
                 <button type="button"
                         title="{{ __('modals.see-message') }}"
                         class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
+                        wire:click="$dispatch('open-modal', {modal: 'viewAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
                     <span class="whitespace-nowrap">{{ __('modals.reply') }}</span>
                 </button>
             </div>

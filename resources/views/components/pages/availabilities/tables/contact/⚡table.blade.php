@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\MembersStatus;
-use App\Models\User;
-use App\Traits\DeleteMember;
+use App\Enums\MessageTypes;
+use App\Models\Message;
+use App\Enums\MessageStatus;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,12 +17,11 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
-    use DeleteMember;
 
     #[Computed]
-    public function getMembers()
+    public function getAvailabilityRequests()
     {
-        $query = User::query()->with(['roles']);
+        $query = Message::where('type', MessageTypes::availability_request->value);
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
@@ -32,11 +31,7 @@ new class extends Component {
         }
 
         if (!empty($this->filter)) {
-            $query->where(function (Builder $q) {
-                foreach ($this->filter as $status) {
-                    $q->orWhere('status', MembersStatus::from($status));
-                }
-            });
+            $query->whereIn('status', $this->filter);
         }
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
@@ -49,18 +44,33 @@ new class extends Component {
     #[Computed]
     public function getFilteredTerms()
     {
-        $cases = MembersStatus::cases();
+        $cases = MessageStatus::cases();
 
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
                 return str_contains(
-                    strtolower($case->value),
+                    strtolower(__('enums.' . $case->value)),
                     strtolower($this->filter_term)
                 );
             });
         }
         return $cases;
     }
+
+    #[On('deleteAvailabilityRequest')]
+    public function deleteAvailabilityRequest(int $id): void
+    {
+        $this->authorize('delete', Message::class);
+
+        $message = Message::findOrFail($id);
+
+        $message->delete();
+
+        session()->flash('success', __('flash-messages.availability-request-deleted'));
+
+        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
+    }
+
 };
 ?>
 
@@ -70,8 +80,8 @@ new class extends Component {
         class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
         <x-forms.input.input-search
             wire="term"
-            name="members_search"
-            id="members_search"
+            name="availability_search"
+            id="availability_search"
             :label="__('forms.search')"
             :placeholder="__('forms.search')"
         />
@@ -80,34 +90,31 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="role_filter"
-            :translation="true"
+            id="availability_filter"
             :enum="true"
+            :translation="true"
         />
-        @can('members.create')
-            <x-general.add-button
-                class="justify-center md:col-span-2 md:justify-self-end"
-                :location="route('members.create', ['locale' => app()->getLocale()])"
-                :label="__('pages/members.add-members')"
-            />
-        @endcan
     </div>
 
     <x-general.selected-column
         :array="$this->selectedColumn"
-        :options="['delete' => true]"
-        deletePermission="members.delete"
+        :options="[
+            'delete' => true,
+            'markAsRead' => true,
+            'markAsNotRead' => true
+            ]"
+        :delete-permission="null"
     />
 
-    @if($this->getMembers->isNotEmpty())
+    @if($this->getAvailabilityRequests->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
-            <x-pages.members.table.table-head/>
-            <x-pages.members.table.table-body/>
+            <x-pages.availabilities.tables.contact.table-head/>
+            <x-pages.availabilities.tables.contact.table-body/>
         </table>
 
         <x-general.pagination
-            :items="$this->getMembers"/>
+            :items="$this->getAvailabilityRequests"/>
     @else
         <x-general.no-results
             :term="$this->term"/>

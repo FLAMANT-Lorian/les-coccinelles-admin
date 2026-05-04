@@ -20,4 +20,8 @@ return [
     'role-deleted' => 'Le role a été supprimé avec succès !',
     'roles-deleted' => 'Les roles ont été supprimés avec succès !',
 
+    /* AVAILABILITIES */
+    'availability-request-deleted' => 'La demande de disponibilité a été supprimée avec succès !',
+    'availability-requests-deleted' => 'Les demandes de disponibilité ont été supprimées avec succès !',
+
 ];

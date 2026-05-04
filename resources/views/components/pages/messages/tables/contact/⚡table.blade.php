@@ -108,7 +108,7 @@ new class extends Component {
 
     @if($this->getContactMessages->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="contact_table">
+        <table class="table" x-ref="table">
             <x-pages.messages.tables.contact.table-head/>
             <x-pages.messages.tables.contact.table-body/>
         </table>

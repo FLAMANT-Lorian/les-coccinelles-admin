@@ -2,5 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::livewire('/availability-requests', 'pages::availability.index')
-    ->name('availability.index');
+Route::livewire('/availability-requests', 'pages::availabilities.index')
+    ->name('availabilities.index');

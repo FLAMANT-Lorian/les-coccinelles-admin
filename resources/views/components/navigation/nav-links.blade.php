@@ -10,7 +10,7 @@
         ],
         [
             'label' => __('navigation/navigation.hall'),
-            'route' => route('availability.index', ['locale' => app()->getLocale()]),
+            'route' => route('availabilities.index', ['locale' => app()->getLocale()]),
             'icon' => 'hall',
             'wire_current_exact' => true,
             'permissions' => null

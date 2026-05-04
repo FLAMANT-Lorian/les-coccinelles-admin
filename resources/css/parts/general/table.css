@@ -110,13 +110,13 @@ table {
 }
 
 .actions-table {
-    @apply h-auto! flex flex-col items-stretch! divide-y divide-beige-dark/60 p-0! absolute right-0 top-12 lg:top-4/5 z-1 border border-brown bg-beige-medium! text-white rounded-sm shadow;
+    @apply overflow-hidden h-auto! flex flex-col items-stretch! divide-y divide-beige-dark/60 p-0! absolute right-0 top-12 lg:top-4/5 z-1 border border-brown bg-beige-medium! text-white rounded-sm shadow;
 
     button, a {
-        @apply flex py-2 mx-4 text-brown trans-all;
+        @apply flex py-3 px-4 text-brown trans-all hover:bg-beige-light;
 
         span {
-            @apply w-full text-left whitespace-nowrap group-hover:bg-beige-light py-1 px-2 trans-all;
+            @apply w-full text-left whitespace-nowrap trans-all;
         }
     }
 }
