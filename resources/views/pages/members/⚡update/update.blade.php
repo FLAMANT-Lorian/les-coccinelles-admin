@@ -41,7 +41,7 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteMember)
-        <x-widgets.modals.delete-member
+        <x-widgets.modals.members.delete-member
             :id="$this->memberToDelete"/>
     @endif
 </div>

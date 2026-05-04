@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\MessageStatus;
 use App\Enums\MessageTypes;
+use App\Models\AvailabilityRequest;
 use App\Models\Message;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
@@ -43,7 +44,7 @@ class PublicFormRequest extends Controller
             $token = base64_encode(json_encode($data));
             if ($type === MessageTypes::contact->value) {
                 return redirect()->to(config('publicUrl.wordpress_contact_Url') . '?token=' . $token);
-            } elseif ($type === MessageTypes::booking->value) {
+            } elseif ($type === MessageTypes::availability_request->value) {
                 return redirect()->to(config('publicUrl.wordpress_booking_Url') . '?token=' . $token);
             }
         }
@@ -54,7 +55,11 @@ class PublicFormRequest extends Controller
             'message' => 'Votre demande à été prise en compte, nous vous recontacterons dès que possible !'
         ];
 
-        $this->createMessage($validator->validate());
+        if ($type === MessageTypes::contact->value) {
+            $this->createMessage($validator->validate());
+        } elseif ($type === MessageTypes::availability_request->value) {
+            $this->createAvailabilityRequest($validator->validate());
+        }
 
         if ($request->expectsJson()) {
             return response()->json($data);
@@ -65,7 +70,7 @@ class PublicFormRequest extends Controller
 
         if ($type === MessageTypes::contact->value) {
             return redirect()->to(config('publicUrl.wordpress_contact_Url') . '?success=true&token=' . $token);
-        } elseif ($type === MessageTypes::booking->value) {
+        } elseif ($type === MessageTypes::availability_request->value) {
             return redirect()->to(config('publicUrl.wordpress_booking_Url') . '?success=true&token=' . $token);
         }
 
@@ -83,7 +88,20 @@ class PublicFormRequest extends Controller
             'message' => $data['message'],
             'acceptance' => true,
             'status' => MessageStatus::Unread->value,
-            'type' => $data['type']
+        ]);
+    }
+
+    private function createAvailabilityRequest(array $data): void
+    {
+        AvailabilityRequest::create([
+            'last_name' => $data['last_name'],
+            'first_name' => $data['first_name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'subject' => $data['object'],
+            'message' => $data['message'],
+            'acceptance' => true,
+            'status' => MessageStatus::Unread->value,
         ]);
     }
 }

@@ -6,7 +6,7 @@
     'selectedColumn',
     'deleteAllModal' => 'deleteAll',
     'options',
-    'deletePermission'
+    'deletePermission',
 ])
 
 <div
@@ -53,6 +53,38 @@
                     {{ $this->selectedColumn ? '' : 'disabled' }}
                     class="p-1 hover:bg-beige-light trans-all rounded-sm"
                     wire:click="$dispatch('markMessageSelectionAs', { value: '{{ MessageStatus::Unread->value }}' })">
+                <svg class="text-brown" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                     fill="none">
+                    <use href="#markAsNotRead"/>
+                </svg>
+                <span class="sr-only">{{ __('tables.mark-as-not-read') }}</span>
+            </button>
+        @endif
+    @endcan
+
+    @can(null)
+        @if($options['markAvailabilityRequestAsRead'] ?? false)
+            <button title="{{ __('tables.mark-as-read') }}"
+                    type="button"
+                    {{ $this->selectedColumn ? '' : 'disabled' }}
+                    class="p-1 hover:bg-beige-light trans-all rounded-sm"
+                    wire:click="$dispatch('markAvailabilityRequestsSelectionAs', { value: '{{ MessageStatus::Read->value }}' })">
+                <svg class="text-brown" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                     fill="none">
+                    <use href="#markAsRead"/>
+                </svg>
+                <span class="sr-only">{{ __('tables.mark-as-read') }}</span>
+            </button>
+        @endif
+    @endcan
+
+    @can(null)
+        @if($options['markAvailabilityRequestAsNotRead'] ?? false)
+            <button title="{{ __('tables.mark-as-not-read') }}"
+                    type="button"
+                    {{ $this->selectedColumn ? '' : 'disabled' }}
+                    class="p-1 hover:bg-beige-light trans-all rounded-sm"
+                    wire:click="$dispatch('markAvailabilityRequestsSelectionAs', { value: '{{ MessageStatus::Unread->value }}' })">
                 <svg class="text-brown" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                      fill="none">
                     <use href="#markAsNotRead"/>

@@ -3,14 +3,13 @@
 namespace Database\Factories;
 
 use App\Enums\MessageStatus;
-use App\Enums\MessageTypes;
-use App\Models\Message;
+use App\Models\AvailabilityRequest;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MessageFactory extends Factory
+class AvailabilityRequestFactory extends Factory
 {
-    protected $model = Message::class;
+    protected $model = AvailabilityRequest::class;
 
     public function definition(): array
     {

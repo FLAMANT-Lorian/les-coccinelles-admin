@@ -46,7 +46,7 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteRole)
-        <x-widgets.modals.delete-role
+        <x-widgets.modals.roles.delete-role
             :id="$this->roleToDelete"/>
     @endif
 </div>

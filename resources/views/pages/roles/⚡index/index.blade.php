@@ -37,10 +37,10 @@
 
     {{-- MODAL --}}
     @if($this->modalDeleteRole)
-        <x-widgets.modals.delete-role
+        <x-widgets.modals.roles.delete-role
             :id="$this->roleToDelete"/>
     @elseif($this->modalDeleteAllRoles)
-        <x-widgets.modals.delete-selection
+        <x-widgets.modals.selection.delete-selection
             action="deleteAllRoles"/>
     @endif
 </div>

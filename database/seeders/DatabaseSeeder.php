@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AvailabilityRequest;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -57,6 +58,10 @@ class DatabaseSeeder extends Seeder
         $user2->assignRole($role2->name);
 
         Message::factory()
+            ->count(30)
+            ->create();
+
+        AvailabilityRequest::factory()
             ->count(30)
             ->create();
     }

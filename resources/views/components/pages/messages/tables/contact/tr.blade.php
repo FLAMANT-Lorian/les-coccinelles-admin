@@ -89,12 +89,12 @@
 
             {{-- ACTION MOBILES --}}
             <div class="actions-mobile">
-                <button type="button"
-                        title="{{ __('modals.see-message') }}"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        wire:click="$dispatch('open-modal', {modal: 'viewMessage', id: {{ $contactMessage->id }}})">
-                    <span class="whitespace-nowrap">{{ __('modals.reply') }}</span>
-                </button>
+                <a href="mailto:{{ $contactMessage->email }}"
+                   title="{{ __('modals.reply-to-message') }}"
+                   aria-label="{{ __('modals.reply-to-message') }}"
+                   class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                    <span class="text-left">{{ __('modals.reply-to-message') }}</span>
+                </a>
             </div>
         </div>
     </td>

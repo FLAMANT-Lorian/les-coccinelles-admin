@@ -4,9 +4,11 @@ return [
     'deleteSelection' => 'Supprimer la sélection',
     'deleteSelectionMessage' => 'Après suppression, les éléments sélectionnés ne pourront plus être récupérés !',
     'viewMessage' => 'Message de ',
+    'viewAvailabilityRequest' => 'Demande de ',
     'object' => 'Objet : ',
     'from' => 'De : ',
-    'reply' => 'Répondre au message',
+    'reply-to-message' => 'Répondre au message',
+    'reply-to-availability-request' => 'Répondre à la demande',
     'see-message' => 'Voir le message',
     'close' => 'Fermer la modale',
     'deleteMember' => 'Supprimer le membre',
@@ -17,5 +19,9 @@ return [
     'edit-role' => 'Modifier le rôle',
     'edit' => 'Modifier',
     'deleteMessage' => 'Supprimer le message',
-    'deleteMessageMessage' => 'Êtes-vous sûr de vouloir supprimer ce message ?'
+    'deleteMessageMessage' => 'Êtes-vous sûr de vouloir supprimer ce message ?',
+    'deleteAvailabilityRequest' => 'Supprimer la demande',
+    'deleteAvailabilityRequestMessage' => 'Êtes-vous sûr de vouloir supprimer cette demande ?',
+
+
 ];
