@@ -20,11 +20,11 @@ new class extends Component
         if ($modal === 'deleteAll') {
             $this->modalDeleteAll = true;
         } elseif ($modal === 'viewAvailabilityRequest') {
-            $message = AvailabilityRequest::findOrFail($id);
+            $availabilityRequest = AvailabilityRequest::findOrFail($id);
 
-            if (!$message) return;
+            if (!$availabilityRequest) return;
 
-            $this->availabilityRequestToSee = $message;
+            $this->availabilityRequestToSee = $availabilityRequest;
 
             $this->modalViewAvailabilityRequest = true;
         } elseif ($modal === 'deleteAvailabilityRequest') {
