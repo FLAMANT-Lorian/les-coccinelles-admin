@@ -48,17 +48,17 @@
         </label>
 
         <div class="result-container flex rounded-sm flex-row cursor-pointer trans-all"
-             @click="$refs.input.focus();"
-             :class="open ? 'rounded-b-none!' : ''">
+             @click="$refs.input.focus();">
 
             <template x-if="value">
                 <button type="button"
+                        class="group cursor-auto! relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown has-[svg:hover]:bg-red text-white rounded flex items-center gap-1 trans-all">
+                    <svg class="cursor-pointer group-hover:text-white"
                         @click.stop="toggle(value)"
-                        class="relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown text-white rounded flex items-center gap-1">
-                    <svg width="16" height="16">
+                         width="16"
+                         height="16">
                         <use href="#cross-filter"></use>
                     </svg>
-
                     <span class="whitespace-nowrap"
                           x-text="labels[value] ?? value">
                     </span>
@@ -87,7 +87,13 @@
         </div>
     </div>
 
-    <div class="custom-select absolute top-full inset-x-0 z-20 bg-beige-light border border-brown border-t-0 -mt-px"
+    <div class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden"
+         x-transition:enter="transition ease-in-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-1"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in-out duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-1"
          x-show="open">
         <div class="flex flex-col divide-y divide-beige-medium shadow-xl">
 
@@ -97,7 +103,7 @@
                         $value = $enum ? $item->value : $item[$accessor];
                     @endphp
                     <button type="button"
-                            class="mx-4 py-3 text-left flex justify-between"
+                            class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all"
                             @click="
                             toggle('{{ $value }}')
                             open = false;

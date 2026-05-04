@@ -20,20 +20,23 @@
             {{ __('tables.filter') }}
         </label>
         <div class="result-container flex rounded-sm flex-row cursor-pointer trans-all"
-             @click="$refs.input.focus();"
-             :class="open ? 'rounded-b-none!' : ''">
+             @click="$refs.input.focus();">
             @if(!empty($this->filter))
                 @foreach($this->filter as $idx => $item)
-                    <button data-value="{{ $item }}"
-                            type="button"
-                            @click="
+                    <button type="button"
+                            class="has-[svg:hover]:bg-red trans-all cursor-auto! relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown text-white rounded flex items-center gap-1">
+                        <svg data-value="{{ $item }}"
+                             @click="
                                  selected = selected.filter((item) => item !== $event.currentTarget.dataset.value);
                                  $wire.set('filter', selected);
                                  open = false;
                                  $refs.input.blur();
                             "
-                            class="relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown text-white rounded flex items-center gap-1">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                             class="cursor-pointer"
+                             width="16"
+                             height="16"
+                             viewBox="0 0 16 16"
+                             fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <use href="#cross-filter"></use>
                         </svg>
@@ -47,7 +50,6 @@
                 @endif
                 x-ref="input"
                 @focus="open = true"
-                :class="open ? 'rounded-b-none!' : ''"
                 placeholder="Filtrer"
                 class="w-20" type="text" name="status_filter_term" id="status_filter">
             <svg :class="open ? 'rotate-90' : '-rotate-90'"
@@ -58,14 +60,20 @@
         </div>
     </div>
     <div
-        class="custom-select rounded-b-sm absolute top-full -mt-px inset-x-0 z-10 bg-beige-light border border-brown border-t-0 roundned-sm"
+        class="overflow-hidden custom-select rounded-sm absolute top-[calc(100%+8px)] inset-x-0 z-10 bg-beige-light border border-brown"
+        x-transition:enter="transition ease-in-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in-out duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-1"
         x-show="open">
         <div class="flex flex-col divide-y divide-beige-medium open">
             @if(!empty($collection))
                 @foreach($collection as $item)
                     <button type="button"
                             data-value="{{ $enum ? $item->value : $item[$accessor] }}"
-                            class="mx-4 py-3 text-left"
+                            class="px-4 py-3 text-left hover:bg-beige-medium trans-all"
                             @click="open = false;
                         $refs.input.blur();
 
