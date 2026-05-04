@@ -2,7 +2,7 @@
     'label',
     'route',
     'icon',
-    'wire_current_exact' => false
+    'wire_current_exact' => null
 ])
 <a wire:navigate
    @if($wire_current_exact)

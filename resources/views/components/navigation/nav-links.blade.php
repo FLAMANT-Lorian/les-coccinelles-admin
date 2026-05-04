@@ -8,7 +8,14 @@
             'wire_current_exact' => true,
             'permissions' => null
         ],
-         [
+        [
+            'label' => __('navigation/navigation.hall'),
+            'route' => route('availability.index', ['locale' => app()->getLocale()]),
+            'icon' => 'hall',
+            'wire_current_exact' => true,
+            'permissions' => null
+        ],
+        [
             'label' => __('navigation/navigation.members'),
             'route' => route('members.index', ['locale' => app()->getLocale()]),
             'icon' => 'members',

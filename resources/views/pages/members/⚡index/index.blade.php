@@ -12,19 +12,6 @@
         'subtitle' => __('pages/members.subtitle'),
     ];
 
-    $tabs = [
-        [
-            'label' => __('pages/members.members'),
-            'location' => route('members.index', ['locale' => app()->getLocale()]),
-            'permission' => 'members.index'
-        ],
-        [
-            'label' => __('pages/roles.role'),
-            'location' => route('roles.index', ['locale' => app()->getLocale()]),
-            'permission' => 'roles.index'
-        ]
-    ];
-
 @endphp
 
 <div class="wrapper" x-data="{ modalOpen: false }">
@@ -38,8 +25,7 @@
             :heading="$heading"/>
 
         {{-- TAB --}}
-        <x-general.tabs
-            :tabs="$tabs"/>
+        <x-tabs.members-tabs/>
 
         {{-- TABLE --}}
         <livewire:pages.members.table.table/>
