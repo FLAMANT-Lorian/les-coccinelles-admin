@@ -85,6 +85,11 @@ class DatabaseSeeder extends Seeder
                 'create',
                 'update',
                 'delete',
+            ],
+            'availabilities' => [
+                'index',
+                'update',
+                'delete',
             ]
         ];
 

@@ -2,7 +2,6 @@
 
 use App\Enums\MessageTypes;
 use App\Models\AvailabilityRequest;
-use App\Models\Message;
 use App\Enums\MessageStatus;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
@@ -61,7 +60,7 @@ new class extends Component {
     #[On('deleteAvailabilityRequest')]
     public function deleteAvailabilityRequest(int $id): void
     {
-        //$this->authorize('delete', Message::class);
+        $this->authorize('delete', AvailabilityRequest::class);
 
         $availabilityRequest = AvailabilityRequest::findOrFail($id);
 
@@ -104,7 +103,7 @@ new class extends Component {
             'markAvailabilityRequestAsRead' => true,
             'markAvailabilityRequestAsNotRead' => true
             ]"
-        :delete-permission="null"
+        delete-permission="availabilities.delete"
     />
 
     @if($this->getAvailabilityRequests->isNotEmpty())

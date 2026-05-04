@@ -13,7 +13,7 @@
             'route' => route('availabilities', ['locale' => app()->getLocale()]),
             'icon' => 'hall',
             'wire_current_exact' => true,
-            'permissions' => null
+            'permissions' => ['availabilities.index']
         ],
         [
             'label' => __('navigation/navigation.members'),

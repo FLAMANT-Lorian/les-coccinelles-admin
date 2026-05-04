@@ -9,7 +9,7 @@
     <div class="heading">
         <span class="title">{{ __('general.permissions.members') }}</span>
         <div class="all-selector">
-            <label for="all_members_selector">Tout</label>
+            <label for="all_members_selector">{{ __('general.all') }}</label>
             <input id="all_members_selector"
                    type="checkbox"
                    :checked="allSelected"

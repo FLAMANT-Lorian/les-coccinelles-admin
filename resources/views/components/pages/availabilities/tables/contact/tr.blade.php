@@ -60,16 +60,16 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            {{--@canany()--}}
+            @canany(['availabilities.delete', 'availabilities.update'])
             <div x-show="open" x-transition class="actions-table">
-                @can('messages.delete')
+                @can('availabilities.delete')
                     <button type="button"
                             @click="modalOpen = true"
                             wire:click="$dispatch('open-modal', {modal: 'deleteAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
                         <span>{{ __('tables.delete') }}</span>
                     </button>
                 @endcan
-                @can(null)
+                @can('availabilities.update')
                     @if($availabilityRequest->status === MessageStatus::Unread->value)
                         <button type="button"
                                 wire:click="markAvailabilityRequestAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">
@@ -84,7 +84,7 @@
                     @endif
                 @endcan
             </div>
-            {{--@endcan--}}
+            @endcan
 
             {{-- ACTION MOBILES --}}
             <div class="actions-mobile">

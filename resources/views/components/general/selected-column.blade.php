@@ -62,7 +62,7 @@
         @endif
     @endcan
 
-    @can(null)
+    @can('availabilities.update')
         @if($options['markAvailabilityRequestAsRead'] ?? false)
             <button title="{{ __('tables.mark-as-read') }}"
                     type="button"
@@ -78,7 +78,7 @@
         @endif
     @endcan
 
-    @can(null)
+    @can('availabilities.update')
         @if($options['markAvailabilityRequestAsNotRead'] ?? false)
             <button title="{{ __('tables.mark-as-not-read') }}"
                     type="button"
