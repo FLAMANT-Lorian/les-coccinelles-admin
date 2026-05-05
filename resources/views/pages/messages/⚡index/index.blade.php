@@ -24,7 +24,7 @@
             :heading="$heading"/>
 
         {{-- TABLE --}}
-        <livewire:pages.messages.tables.contact.table/>
+        <livewire:pages.messages.table.table/>
     </div>
 
     {{-- MODAL --}}
