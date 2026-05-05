@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\AvailabilityRequest;
+use App\Models\HallRate;
 use App\Models\Message;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -37,7 +38,7 @@ class DatabaseSeeder extends Seeder
             'unique' => false
         ]);
 
-        $role3 = Role::create([
+        Role::create([
             'name' => 'Trésorier',
             'guard_name' => 'web',
             'unique' => true
@@ -63,6 +64,10 @@ class DatabaseSeeder extends Seeder
 
         AvailabilityRequest::factory()
             ->count(30)
+            ->create();
+
+        HallRate::factory()
+            ->count(3)
             ->create();
     }
 
