@@ -35,5 +35,12 @@
         <x-widgets.modals.hall-rates.create-hall-rate/>
     @elseif($this->updateHallRateModalOpen)
         <x-widgets.modals.hall-rates.update-hall-rate/>
+    @elseif($this->deleteHallRateModalOpen)
+        <x-widgets.modals.hall-rates.delete-hall-rates
+            :id="$this->hallRate->id"/>
+    @elseif($this->deleteHallRatesModalOpen)
+        <x-widgets.modals.selection.delete-selection
+            action="deleteHallRates"
+        />
     @endif
 </div>

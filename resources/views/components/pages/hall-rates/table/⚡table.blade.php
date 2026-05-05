@@ -33,6 +33,18 @@ new class extends Component {
 
         return $query->paginate(config('table.pagination-numbers'));
     }
+
+    #[On('delete-hall-rate')]
+    public function deleteHallRate(int $id): void
+    {
+        $hallRate = HallRate::findOrFail($id);
+
+        $hallRate->delete();
+
+        session()->flash('success', __('flash-messages.hall-rate-deleted'));
+
+        $this->redirectRoute('hall-rates', ['locale' => app()->getLocale()], navigate: true);
+    }
 };
 ?>
 
