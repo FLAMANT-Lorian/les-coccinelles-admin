@@ -10,17 +10,25 @@ new class extends Component {
     public HallRatesForm $form;
     public bool $createHallRateModalOpen = false;
     public bool $updateHallRateModalOpen = false;
+    public bool $deleteHallRateModalOpen = false;
+    public bool $deleteHallRatesModalOpen = false;
+    public ?HallRate $hallRate = null;
 
     #[On('open-modal')]
     public function openModal($modal, $id = null): void
     {
+        if ($id) {
+            $this->hallRate = HallRate::findOrFail($id);
+        }
         if ($modal === 'openCreateModal') {
             $this->createHallRateModalOpen = true;
         } elseif ($modal === 'openUpdateModal') {
-            $hallRate = HallRate::findOrFail($id);
-
-            $this->form->setHallRate($hallRate);
+            $this->form->setHallRate($this->hallRate);
             $this->updateHallRateModalOpen = true;
+        } elseif ($modal === 'deleteHallRateModal') {
+            $this->deleteHallRateModalOpen = true;
+        } elseif ($modal === 'deleteAll') {
+            $this->deleteHallRatesModalOpen = true;
         }
     }
 
@@ -29,6 +37,8 @@ new class extends Component {
     {
         $this->createHallRateModalOpen = false;
         $this->updateHallRateModalOpen = false;
+        $this->deleteHallRateModalOpen = false;
+        $this->deleteHallRatesModalOpen = false;
     }
 
     public function save(): void

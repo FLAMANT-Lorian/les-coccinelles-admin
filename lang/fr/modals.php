@@ -23,7 +23,7 @@ return [
     'deleteAvailabilityRequest' => 'Supprimer la demande',
     'deleteAvailabilityRequestMessage' => 'Êtes-vous sûr de vouloir supprimer cette demande ?',
     'createHallRate' => 'Ajouter le tarif',
-    'updateHallRate' => 'Modifier le tarif'
-
-
+    'updateHallRate' => 'Modifier le tarif',
+    'deleteHallRate' => 'Supprimer le tarif',
+    'deleteHallRateMessage' => 'Êtes-vous sûr de vouloir supprimer ce tarif ?',
 ];

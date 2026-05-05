@@ -28,4 +28,5 @@ return [
     'hall-rate-created' => 'Le tarif a été créé avec succès !',
     'hall-rate-updated' => 'Le tarif a été modifié avec succès !',
     'hall-rate-deleted' => 'Le tarif a été supprimé avec succès !',
+    'hall-rates-deleted' => 'Les tarifs ont été supprimés avec succès !',
 ];

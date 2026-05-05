@@ -17,7 +17,7 @@
             <button type="button"
                     title="{{ __('modals.close') }}"
                     class="w-8 h-8 cursor-pointer"
-                    @click="$dispatch('close-modal'); modalOpen = false">
+                    wire:click="$dispatch('close-modal'); modalOpen = false">
                 <svg class=" hover:bg-brown rounded-sm text-brown hover:text-white trans-all" width="32" height="32"
                      viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path

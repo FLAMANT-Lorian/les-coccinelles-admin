@@ -51,7 +51,14 @@
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
             <div x-show="open" x-transition class="actions-table">
-                <button type="button">
+                <button type="button"
+                        title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
+                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
+                    <span>{{ __('tables.update') }}</span>
+                </button>
+                <button type="button"
+                        title="{{ __('pages/hall.hall-rates.delete-hall-rate') }}"
+                        wire:click="$dispatch('open-modal', {modal: 'deleteHallRateModal', id: {{ $hallRate->id }}})">
                     <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
