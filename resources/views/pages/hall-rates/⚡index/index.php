@@ -35,6 +35,8 @@ new class extends Component {
     #[On('close-modal')]
     public function closeModal(): void
     {
+        $this->form->reset();
+
         $this->createHallRateModalOpen = false;
         $this->updateHallRateModalOpen = false;
         $this->deleteHallRateModalOpen = false;

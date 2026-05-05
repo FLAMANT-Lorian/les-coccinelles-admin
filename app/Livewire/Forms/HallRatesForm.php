@@ -20,9 +20,9 @@ class HallRatesForm extends Form
 {
     public ?HallRate $hallRate = null;
 
-    public string $type;
-    public float $base_price;
-    public float $member_price;
+    public ?string $type = null;
+    public ?float $base_price = null;
+    public ?float $member_price = null;
 
     public function rules(): array
     {
