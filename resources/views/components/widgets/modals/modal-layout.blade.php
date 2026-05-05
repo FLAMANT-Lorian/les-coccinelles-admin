@@ -3,7 +3,7 @@
     'message'
 ])
 
-<div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/50 px-6"
+<div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/60 px-6"
      x-trap="modalOpen"
      @keydown.window.escape="$dispatch('close-modal'); modalOpen = false">
     <div class="flex flex-col gap-4 w-full max-w-200 bg-beige-medium rounded-sm p-6">
@@ -11,7 +11,7 @@
             <div class="flex flex-col gap-1">
                 <p class="text-2xl text-brown font-medium">{{ $title }}</p>
                 @if($message)
-                    <p class="text-base">{{ $message }}</p>
+                    <p class="text-base">{!! $message !!}</p>
                 @endif
             </div>
             <button type="button"

@@ -31,5 +31,9 @@ return [
     'identity-documents' => 'Documents d’identité',
     'password' => 'Mot de passe',
     'choose-files' => 'Cliquer pour ajouter',
-    'available-file-types' => 'JPG, PNG, WEBP'
+    'available-file-types' => 'JPG, PNG, WEBP',
+    'type' => 'Type',
+    'type_placeholder' => 'Type pour ...',
+    'base_price' => 'Prix de base (€ / jour)',
+    'member_price' => 'Prix avec carte de membre (€ / jour)',
 ];

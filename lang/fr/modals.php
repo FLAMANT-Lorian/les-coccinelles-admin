@@ -22,6 +22,8 @@ return [
     'deleteMessageMessage' => 'Êtes-vous sûr de vouloir supprimer ce message ?',
     'deleteAvailabilityRequest' => 'Supprimer la demande',
     'deleteAvailabilityRequestMessage' => 'Êtes-vous sûr de vouloir supprimer cette demande ?',
+    'addHallRate' => 'Ajouter un tarif pour la salle',
+    'createHallRate' => 'Ajouter le tarif'
 
 
 ];

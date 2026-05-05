@@ -31,5 +31,7 @@
     </div>
 
     {{-- MODALS --}}
-
+    @if($this->createHallRateModalOpen)
+        <x-widgets.modals.hall-rates.create-hall-rate/>
+    @endif
 </div>

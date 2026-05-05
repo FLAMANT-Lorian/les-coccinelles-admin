@@ -7,5 +7,6 @@ return [
     'hall-rates' => [
         'heading' => 'Tarifs de la salle',
         'subtitle' => 'Consultez les tarifs de la salle',
+        'add-hall-rate' => 'Ajouter un tarif',
     ],
 ];
