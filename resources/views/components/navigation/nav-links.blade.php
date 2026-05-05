@@ -1,5 +1,27 @@
 @php
 
+    $hallRoutes = [
+        'availabilities' => [
+            'route' => 'availabilities',
+            'permission' => 'availabilities.index'
+        ],
+        'hallRates' => [
+            'route' => 'hall-rates',
+            'permission' => 'hallRates.index'
+        ]
+    ];
+
+    $membersRoutes = [
+        'members' => [
+            'route' => 'members.index',
+            'permission' => 'members.index'
+        ],
+        'hallRates' => [
+            'route' => 'roles.index',
+            'permission' => 'roles.index'
+        ]
+    ];
+
     $links = [
         [
             'label' => __('navigation/navigation.dashboard'),
@@ -11,14 +33,14 @@
         ],
         [
             'label' => __('navigation/navigation.hall'),
-            'route' => route('availabilities', ['locale' => app()->getLocale()]),
+            'route' => getCorrectRoute($hallRoutes),
             'icon' => 'hall',
-            'active' => request()->routeIs('availabilities') || request()->routeIs('hall-rates'),
-            'permissions' => ['availabilities.index']
+            'active' => request()->routeIs(array_column($hallRoutes, 'route')),
+            'permissions' => ['availabilities.index', 'hallRates.index']
         ],
         [
             'label' => __('navigation/navigation.members'),
-            'route' => route('members.index', ['locale' => app()->getLocale()]),
+            'route' => getCorrectRoute($membersRoutes),
             'icon' => 'members',
             'wire-current' => true,
             'permissions' => ['members.index', 'roles.index']

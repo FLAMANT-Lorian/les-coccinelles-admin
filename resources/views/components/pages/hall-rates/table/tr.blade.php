@@ -18,11 +18,15 @@
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
-            <button type="button"
-                    wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})"
-                    class="underline-link after:bg-brown">
-                {{ $hallRate->name }}
-            </button>
+            @can('hallRates.update')
+                <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})"
+                        class="underline-link after:bg-brown">
+                    {{ $hallRate->name }}
+                </button>
+            @else
+                <span>{{ $hallRate->name }}</span>
+            @endcan
         </div>
     </td>
     <td>
@@ -50,28 +54,36 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            <div x-show="open" x-transition class="actions-table">
-                <button type="button"
-                        title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
-                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
-                    <span>{{ __('tables.update') }}</span>
-                </button>
-                <button type="button"
-                        title="{{ __('pages/hall.hall-rates.delete-hall-rate') }}"
-                        wire:click="$dispatch('open-modal', {modal: 'deleteHallRateModal', id: {{ $hallRate->id }}})">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
+            @canany(['hallRates.update', 'hallRates.delete'])
+                <div x-show="open" x-transition class="actions-table">
+                    <button type="button"
+                            title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
+                            wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
+                        <span>{{ __('tables.update') }}</span>
+                    </button>
+                    @can('hallRates.update')
+                    @endcan
+                    @can('hallRates.delete')
+                        <button type="button"
+                                title="{{ __('pages/hall.hall-rates.delete-hall-rate') }}"
+                                wire:click="$dispatch('open-modal', {modal: 'deleteHallRateModal', id: {{ $hallRate->id }}})">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcan
 
             {{-- ACTION MOBILES --}}
-            <div class="actions-mobile">
-                <button type="button"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
-                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
-                    <span>{{ __('pages/hall.hall-rates.update-hall-rate') }}</span>
-                </button>
-            </div>
+            @can('hallRates.update')
+                <div class="actions-mobile">
+                    <button type="button"
+                            class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
+                            wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
+                        <span>{{ __('pages/hall.hall-rates.update-hall-rate') }}</span>
+                    </button>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

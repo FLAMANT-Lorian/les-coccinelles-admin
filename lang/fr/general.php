@@ -15,6 +15,7 @@
          'members' => 'Membres',
          'roles' => 'Rôles',
          'availabilities' => 'Demandes de disponibilité',
+         'hallRates' => 'Tarifs de la salle',
      ],
      'all' => 'Tout',
      'see_table' => 'Voir le tableau',

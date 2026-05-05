@@ -95,6 +95,12 @@ class DatabaseSeeder extends Seeder
                 'index',
                 'update',
                 'delete',
+            ],
+            'hallRates' => [
+                'index',
+                'create',
+                'update',
+                'delete',
             ]
         ];
 
