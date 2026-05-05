@@ -117,6 +117,8 @@ trait DeleteSelection
     #[On('deleteHallRates')]
     public function deleteHallRates(): void
     {
+        $this->authorize('delete', HallRate::class);
+
         $hallRates = HallRate::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($hallRates as $hallRate) {

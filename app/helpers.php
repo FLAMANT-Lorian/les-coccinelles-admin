@@ -15,3 +15,14 @@ if (!function_exists('enumToArray')) {
         }, $enum::cases());
     }
 }
+
+if (!function_exists('getCorrectRoute')) {
+    function getCorrectRoute(array $hallRoutes)
+    {
+        foreach ($hallRoutes as $hallRoute) {
+            if (auth()->user()->can($hallRoute['permission'])) {
+                return route($hallRoute['route'], ['locale' => app()->getLocale()]);
+            }
+        }
+    }
+}

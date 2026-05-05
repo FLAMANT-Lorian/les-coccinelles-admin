@@ -5,5 +5,6 @@
         <x-pages.roles.forms.permissions.members/>
         <x-pages.roles.forms.permissions.roles/>
         <x-pages.roles.forms.permissions.availabilities/>
+        <x-pages.roles.forms.permissions.hallRates/>
     </div>
 </fieldset>

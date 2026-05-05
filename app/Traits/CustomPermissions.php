@@ -10,8 +10,8 @@ trait CustomPermissions
     public array $permissions = [
         'messages' => [
             'index' => false,
-            'delete' => false,
             'update' => false,
+            'delete' => false,
         ],
         'members' => [
             'index' => false,
@@ -27,9 +27,15 @@ trait CustomPermissions
         ],
         'availabilities' => [
             'index' => false,
-            'delete' => false,
             'update' => false,
-        ]
+            'delete' => false,
+        ],
+        'hallRates' => [
+            'index' => false,
+            'create' => false,
+            'update' => false,
+            'delete' => false,
+        ],
     ];
 
     public function setPermissions(): void

@@ -9,7 +9,7 @@ $tabs = [
     [
         'label' => __('navigation/navigation.hall-rates'),
         'location' => route('hall-rates', ['locale' => app()->getLocale()]),
-        'permission' => null
+        'permission' => 'hallRates.index'
     ],
 ];
 
