@@ -20,7 +20,7 @@
                             @if ($paginator->onFirstPage())
                                 <span aria-disabled="true" aria-label="{{ __('tables.previous') }}">
                                     <span
-                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-base font-medium text-beige-dark bg-white border border-beige-dark/60 rounded-sm"
+                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-base font-medium text-beige-dark bg-white border border-beige-dark/60 rounded-sm cursor-not-allowed"
                                         aria-hidden="true">
                                         <svg width="6" height="11" viewBox="0 0 6 11" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
@@ -94,7 +94,7 @@
                             @else
                                 <span aria-disabled="true" aria-label="{{ __('tables.next') }}">
                                     <span
-                                        class="relative inline-flex gap-2 items-center px-2 py-2 -ml-px text-base font-medium text-gray-500 bg-white border border-gray-300 cursor-default rounded-r-md leading-5 dark:bg-gray-800 dark:border-gray-600"
+                                        class="relative inline-flex gap-2 items-center px-2 py-2 text-base font-medium text-beige-dark bg-white border border-beige-dark/60 rounded-sm cursor-not-allowed"
                                         aria-hidden="true">
                                         <span>{{ __('tables.next') }}</span>
                                         <svg class="rotate-180" width="6" height="11" viewBox="0 0 6 11" fill="none"

@@ -5,26 +5,29 @@
             'label' => __('navigation/navigation.dashboard'),
             'route' => route('dashboard', ['locale' => app()->getLocale()]),
             'icon' => 'dashboard',
-            'wire_current_exact' => true,
+            'wire-current-exact' => true,
+            'wire-current' => true,
             'permissions' => null
         ],
         [
             'label' => __('navigation/navigation.hall'),
             'route' => route('availabilities', ['locale' => app()->getLocale()]),
             'icon' => 'hall',
-            'wire_current_exact' => true,
+            'active' => request()->routeIs('availabilities') || request()->routeIs('hall-rates'),
             'permissions' => ['availabilities.index']
         ],
         [
             'label' => __('navigation/navigation.members'),
             'route' => route('members.index', ['locale' => app()->getLocale()]),
             'icon' => 'members',
+            'wire-current' => true,
             'permissions' => ['members.index', 'roles.index']
         ],
         [
             'label' => __('navigation/navigation.messages'),
             'route' => route('messages', ['locale' => app()->getLocale()]),
             'icon' => 'messages',
+            'wire-current' => true,
             'permissions' => ['messages.index']
         ],
     ];
@@ -39,7 +42,9 @@
                     :label="$link['label']"
                     :route="$link['route']"
                     :icon="$link['icon']"
-                    :wire_current_exact="$link['wire_current_exact'] ?? false"
+                    :wire_current_exact="$link['wire-current-exact'] ?? false"
+                    :wire_current="$link['wire-current'] ?? false"
+                    :active="$link['active'] ?? false"
                 />
             </li>
         @endif

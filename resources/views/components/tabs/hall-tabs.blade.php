@@ -4,6 +4,11 @@ $tabs = [
     [
         'label' => __('navigation/navigation.availabilities'),
         'location' => route('availabilities', ['locale' => app()->getLocale()]),
+        'permission' => 'availabilities.index'
+    ],
+    [
+        'label' => __('navigation/navigation.hall-rates'),
+        'location' => route('hall-rates', ['locale' => app()->getLocale()]),
         'permission' => null
     ],
 ];

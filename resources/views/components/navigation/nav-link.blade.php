@@ -2,15 +2,22 @@
     'label',
     'route',
     'icon',
-    'wire_current_exact' => null
+    'wire_current_exact' => false,
+    'wire_current' => false,
+    'active' => false,
 ])
+
+@php
+    $current = $active ? 'bg-red text-white' : '';
+@endphp
 <a wire:navigate
-   @if($wire_current_exact)
-       wire:current.exact="bg-red text-white"
-   @else
+   @if ($wire_current)
        wire:current="bg-red text-white"
    @endif
-   {{ $attributes->merge(['class' => 'paragraph btn text-brown hover:bg-red hover:text-white focus:bg-red focus:text-white']) }}
+   @if($wire_current_exact)
+       wire:current.exact="bg-red text-white"
+   @endif
+   {{ $attributes->merge(['class' => 'paragraph btn text-brown hover:bg-red hover:text-white focus:bg-red focus:text-white ' . $current]) }}
    aria-label="{{ $label }}"
    title="{{ __('navigation/navigation.got_to_title') . $label }}"
    href="{{ $route }}">
