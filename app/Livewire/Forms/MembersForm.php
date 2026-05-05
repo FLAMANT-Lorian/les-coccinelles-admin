@@ -66,7 +66,7 @@ class MembersForm extends Form
             'phone' => 'required',
             'city' => 'required',
             'postal_code' => 'required',
-            'password' => $this->member ? 'nullable' : 'required',
+            'password' => $this->member ? 'nullable' : 'required|min:10',
             'birth_date' => 'nullable',
             'sex' => ['nullable', Rule::enum(Sex::class)],
             'role' => [

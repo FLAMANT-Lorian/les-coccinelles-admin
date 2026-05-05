@@ -23,7 +23,7 @@
            autocomplete="off">
 
     @error($wire)
-    <p class="absolute -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
+    <p class="whitespace-nowrap absolute -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
     @enderror
 
     <svg @click="showPassword = !showPassword" :class="showPassword ? 'hidden' : 'block'"
