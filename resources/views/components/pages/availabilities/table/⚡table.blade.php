@@ -109,8 +109,8 @@ new class extends Component {
     @if($this->getAvailabilityRequests->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
-            <x-pages.availabilities.tables.contact.table-head/>
-            <x-pages.availabilities.tables.contact.table-body/>
+            <x-pages.availabilities.table.table-head/>
+            <x-pages.availabilities.table.table-body/>
         </table>
 
         <x-general.pagination

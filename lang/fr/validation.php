@@ -40,7 +40,7 @@ return [
     'date' => 'Le champ :attribute doit être une date valide.',
     'date_equals' => 'Le champ :attribute doit être une date égale à :date.',
     'date_format' => 'Le champ :attribute doit correspondre au format :format.',
-    'decimal' => 'Le champ :attribute doit avoir :decimal décimales.',
+    'decimal' => 'Le champ :attribute doit avoir entre :decimal décimales.',
     'declined' => 'Le champ :attribute doit être refusé.',
     'declined_if' => 'Le champ :attribute doit être refusé lorsque :other est :value.',
     'different' => 'Le champ :attribute et :other doivent être différents.',
@@ -209,8 +209,9 @@ return [
         'city' => 'ville',
         'postal_code' => 'code postal',
         'birth_date' => 'date de naissance',
-        'address' => 'adresse'
-
+        'address' => 'adresse',
+        'type' => 'type',
+        'base_price' => 'prix de base',
+        'member_price' => 'prix avec carte de membre',
     ],
-
 ];
