@@ -41,7 +41,7 @@ describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
         $this->role->givePermissionTo($permission);
         $availability = AvailabilityRequest::factory()->create();
 
-        Livewire::test('pages.availabilities.tables.contact.table')
+        Livewire::test('pages.availabilities.table.table')
             ->call('deleteAvailabilityRequest', id: $availability->id)
             ->assertOk();
 
@@ -58,7 +58,7 @@ describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
             'status' => MessageStatus::Unread->value
         ]);
 
-        Livewire::test('pages.availabilities.tables.contact.table')
+        Livewire::test('pages.availabilities.table.table')
             ->call('markAvailabilityRequestAs', value: MessageStatus::Read->value, id: $availability->id)
             ->assertOk();
 
@@ -90,7 +90,7 @@ describe('AVAILABILITY REQUESTS WITHOUT PERMISSIONS', function () {
 
         $availability = AvailabilityRequest::factory()->create();
 
-        Livewire::test('pages.availabilities.tables.contact.table')
+        Livewire::test('pages.availabilities.table.table')
             ->call('deleteAvailabilityRequest', id: $availability->id)
             ->assertForbidden();
 
@@ -102,7 +102,7 @@ describe('AVAILABILITY REQUESTS WITHOUT PERMISSIONS', function () {
             'status' => MessageStatus::Unread->value
         ]);
 
-        Livewire::test('pages.availabilities.tables.contact.table')
+        Livewire::test('pages.availabilities.table.table')
             ->call('markAvailabilityRequestAs', value: MessageStatus::Read->value, id: $availability->id)
             ->assertOk();
 
