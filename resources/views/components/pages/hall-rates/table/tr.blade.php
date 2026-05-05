@@ -18,7 +18,9 @@
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
-            <button type="button" class="underline-link after:bg-brown">
+            <button type="button"
+                    wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})"
+                    class="underline-link after:bg-brown">
                 {{ $hallRate->name }}
             </button>
         </div>

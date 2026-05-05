@@ -24,4 +24,8 @@ return [
     'availability-request-deleted' => 'La demande de disponibilité a été supprimée avec succès !',
     'availability-requests-deleted' => 'Les demandes de disponibilité ont été supprimées avec succès !',
 
+    /* HALL RATES */
+    'hall-rate-created' => 'Le tarif a été créé avec succès !',
+    'hall-rate-updated' => 'Le tarif a été modifié avec succès !',
+    'hall-rate-deleted' => 'Le tarif a été supprimé avec succès !',
 ];
