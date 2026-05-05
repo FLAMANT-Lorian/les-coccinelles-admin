@@ -80,7 +80,7 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="role_filter"
+            id="members_filter"
             :translation="true"
             :enum="true"
         />

@@ -27,7 +27,7 @@
         <x-tabs.hall-tabs/>
 
         {{-- TABLE --}}
-
+        <livewire:pages.hall-rates.table.table/>
     </div>
 
     {{-- MODALS --}}

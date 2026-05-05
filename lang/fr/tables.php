@@ -32,4 +32,7 @@ return [
     'actions' => 'Actions',
     'role' => 'Rôle',
     'unique_role' => 'Rôle unique',
+    'type' => 'Type',
+    'base_price' => 'Prix de base',
+    'member_price' => 'Prix carte de membre',
 ];

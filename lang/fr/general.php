@@ -7,6 +7,7 @@
      'view-role' => 'Voir le rôle ',
      'remove-image' => 'Supprimer l\'image',
      'download-image' => 'Télécharger l\'image',
+     'day' => 'Jour',
 
      /* PERMISSIONS */
      'permissions' => [
