@@ -8,6 +8,7 @@ return [
     'dashboard' => 'Tableau de bord',
     'hall' => 'Gestion de la salle',
     'availabilities' => 'Demandes de disponibilité',
+    'hall-rates' => 'Tarifs de la salle',
     'messages' => 'Messages',
     'members' => 'Membres',
     'roles' => 'Rôles',
