@@ -8,7 +8,7 @@
     'accessor' => ''
 ])
 
-<div {{ $attributes->merge(['class' => 'field w-full']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
+<div {{ $attributes->merge(['class' => 'field min-w-40']) }} x-data="{ open: false , selected: $wire.filter ?? [] }"
      @click.away="open = false;
          $refs.input.blur();"
      @keydown.window.escape="open = false;

@@ -6,7 +6,7 @@
     'placeholder',
 ])
 
-<div {!! $attributes->merge(['class' => 'field w']) !!}>
+<div {!! $attributes->merge(['class' => 'field']) !!}>
     <label class="sr-only" for="{!! $id !!}">
         {!! $label !!}
     </label>

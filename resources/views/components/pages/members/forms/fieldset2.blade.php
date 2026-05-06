@@ -98,7 +98,7 @@
 
         <x-forms.input.textarea
             wire="form.address"
-            class="md:row-span-2 lg:col-start-3 lg:row-start-3"
+            class="md:row-span-2 md:col-start-2 md:row-start-5 lg:col-start-3 lg:row-start-3"
             name="address"
             field_name="address"
             :label="__('forms.address')"

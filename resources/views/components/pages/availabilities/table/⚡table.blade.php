@@ -89,6 +89,7 @@ new class extends Component {
         />
 
         <x-forms.input.custom-select-filter
+            class="md:col-span-2 md:justify-self-start"
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
