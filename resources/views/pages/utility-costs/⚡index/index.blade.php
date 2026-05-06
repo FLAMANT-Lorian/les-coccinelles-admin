@@ -31,5 +31,8 @@
     </div>
 
     {{-- MODALS --}}
+    @if($this->createUtilityCostModalOpen)
+        <x-widgets.modals.utility-costs.create-utility-cost/>
+    @endif
 
 </div>

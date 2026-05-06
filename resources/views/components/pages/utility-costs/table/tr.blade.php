@@ -49,21 +49,21 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-                <div x-show="open" x-transition class="actions-table">
-                    <button type="button"
-                            title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
-                        <span>{{ __('tables.update') }}</span>
-                    </button>
-                </div>
+            <div x-show="open" x-transition class="actions-table">
+                <button type="button"
+                        title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
+                    <span>{{ __('tables.update') }}</span>
+                </button>
+            </div>
 
             {{-- ACTION MOBILES --}}
-                <div class="actions-mobile">
-                    <button type="button"
-                            class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                            title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
-                        <span>{{ __('pages/hall.utility-costs.update-utility-cost') }}</span>
-                    </button>
-                </div>
+            <div class="actions-mobile">
+                <button type="button"
+                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                        title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
+                    <span>{{ __('pages/hall.utility-costs.update-utility-cost') }}</span>
+                </button>
+            </div>
         </div>
     </td>
 </tr>
