@@ -40,12 +40,24 @@ class UtilityCostsForm extends Form
 
     public function setUtilityCost($utilityCost): void
     {
+        $this->utilityCost = $utilityCost;
 
+        $this->type = $utilityCost->type;
+        $this->price = $utilityCost->price;
+        $this->status = $utilityCost->status;
+        $this->unit = $utilityCost->unit;
     }
 
     public function update(): void
     {
+        $price = Money::fromEuros($this->price)->cents();
 
+        $this->utilityCost->update([
+            'type' => $this->type,
+            'price' => $price,
+            'status' => $this->status,
+            'unit' => $this->unit,
+        ]);
     }
 
     public function save(): void

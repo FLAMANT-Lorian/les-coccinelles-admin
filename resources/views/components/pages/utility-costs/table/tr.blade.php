@@ -21,7 +21,11 @@
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
-            <span>{{ $utilityCost->type }}</span>
+            <button type="button"
+                    class="underline-link after:bg-brown"
+            wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})">
+                <span>{{ $utilityCost->type }}</span>
+            </button>
         </div>
     </td>
     <td>

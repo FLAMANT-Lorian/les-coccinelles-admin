@@ -2,6 +2,7 @@
 
 use App\Enums\UtilityCostsStatus;
 use App\Livewire\Forms\UtilityCostsForm;
+use App\Models\UtilityCost;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -14,19 +15,29 @@ new class extends Component {
     ];
 
     public bool $createUtilityCostModalOpen = false;
+    public bool $updateUtilityCostModalOpen = false;
 
     #[On('open-modal')]
-    public function openModal(string $modal): void
+    public function openModal(string $modal, $id = null): void
     {
-        if ($modal == 'createUtilityCost') {
+        if ($modal === 'createUtilityCost') {
             $this->createUtilityCostModalOpen = true;
+        } elseif ($modal === 'updateUtilityCost') {
+            $utilityCost = UtilityCost::findOrFail($id);
+
+            $this->form->setUtilityCost($utilityCost);
+
+            $this->updateUtilityCostModalOpen = true;
         }
     }
 
     #[On('close-modal')]
     public function closeModal(): void
     {
+        $this->form->reset();
+
         $this->createUtilityCostModalOpen = false;
+        $this->updateUtilityCostModalOpen = false;
     }
 
     #[Computed]

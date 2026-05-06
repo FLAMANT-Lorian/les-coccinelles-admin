@@ -33,6 +33,8 @@
     {{-- MODALS --}}
     @if($this->createUtilityCostModalOpen)
         <x-widgets.modals.utility-costs.create-utility-cost/>
+    @elseif($this->updateUtilityCostModalOpen)
+        <x-widgets.modals.utility-costs.update-utility-cost/>
     @endif
 
 </div>
