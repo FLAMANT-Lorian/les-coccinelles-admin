@@ -4,6 +4,7 @@ namespace App\Models;
 
 use  Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -40,6 +41,16 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function createdInterventions(): HasMany
+    {
+        return $this->hasMany(Intervention::class, 'created_by');
+    }
+
+    public function assignedInterventions(): HasMany
+    {
+        return $this->hasMany(Intervention::class, 'assigned_to');
     }
 
     /**
