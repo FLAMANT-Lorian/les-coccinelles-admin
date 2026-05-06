@@ -27,7 +27,7 @@ return [
     'updateHallRate' => 'Modifier le tarif',
     'deleteHallRate' => 'Supprimer le tarif',
     'deleteHallRateMessage' => 'Êtes-vous sûr de vouloir supprimer ce tarif ?',
-    'addUtilityCost' => 'Ajouter un tarif pour une charge',
-    'createUtilityCost' => 'Ajouter le tarif',
-    'updateUtilityCost' => 'Modifier le tarif',
+    'addUtilityCost' => 'Ajouter un coût pour une charge',
+    'createUtilityCost' => 'Ajouter le coût',
+    'updateUtilityCost' => 'Modifier le coût',
 ];
