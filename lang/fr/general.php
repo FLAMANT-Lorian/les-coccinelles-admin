@@ -16,6 +16,7 @@
          'roles' => 'Rôles',
          'availabilities' => 'Demandes de disponibilité',
          'hallRates' => 'Tarifs de la salle',
+         'utilityCosts' => 'Coûts des charges',
      ],
      'all' => 'Tout',
      'see_table' => 'Voir le tableau',

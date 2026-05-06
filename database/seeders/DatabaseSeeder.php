@@ -106,7 +106,13 @@ class DatabaseSeeder extends Seeder
                 'create',
                 'update',
                 'delete',
-            ]
+            ],
+            'utilityCosts' => [
+                'index',
+                'create',
+                'update',
+                'delete',
+            ],
         ];
 
         foreach ($permissions as $key => $permission) {

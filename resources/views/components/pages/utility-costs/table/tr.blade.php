@@ -21,11 +21,15 @@
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
-            <button type="button"
-                    class="underline-link after:bg-brown"
-            wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})">
+            @can('utilityCosts.update')
+                <button type="button"
+                        class="underline-link after:bg-brown"
+                        wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})">
+                    <span>{{ $utilityCost->type }}</span>
+                </button>
+            @else
                 <span>{{ $utilityCost->type }}</span>
-            </button>
+            @endcan
         </div>
     </td>
     <td>
@@ -53,28 +57,36 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            <div x-show="open" x-transition class="actions-table">
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
-                        title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
-                    <span>{{ __('tables.update') }}</span>
-                </button>
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'deleteUtilityCost', id: {{ $utilityCost->id }}})"
-                        title="{{ __('pages/hall.utility-costs.delete-utility-cost') }}">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
+            @canany(['utilityCosts.update', 'utilityCosts.delete'])
+                <div x-show="open" x-transition class="actions-table">
+                    @can('utilityCosts.update')
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
+                                title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
+                            <span>{{ __('tables.update') }}</span>
+                        </button>
+                    @endcan
+                    @can('utilityCosts.delete')
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', {modal: 'deleteUtilityCost', id: {{ $utilityCost->id }}})"
+                                title="{{ __('pages/hall.utility-costs.delete-utility-cost') }}">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcanany
 
             {{-- ACTION MOBILES --}}
-            <div class="actions-mobile">
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
-                    <span>{{ __('pages/hall.utility-costs.update-utility-cost') }}</span>
-                </button>
-            </div>
+            @can('utilityCosts.update')
+                <div class="actions-mobile">
+                    <button type="button"
+                            wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
+                            class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
+                        <span>{{ __('pages/hall.utility-costs.update-utility-cost') }}</span>
+                    </button>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

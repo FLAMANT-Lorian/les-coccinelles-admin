@@ -136,6 +136,8 @@ trait DeleteSelection
     #[On('deleteUtilityCosts')]
     public function deleteUtilityCosts(): void
     {
+        $this->authorize('delete', UtilityCost::class);
+
         $utilityCosts = UtilityCost::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($utilityCosts as $utilityCost) {

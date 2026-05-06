@@ -98,8 +98,9 @@ new class extends Component {
 
     <x-general.selected-column
         :array="$this->selectedColumn"
-        :options="['delete' => true]"
-        deleteAllModal="deleteAllRoles"
+        :options="[
+            'delete' => true
+        ]"
         deletePermission="roles.delete"
     />
 

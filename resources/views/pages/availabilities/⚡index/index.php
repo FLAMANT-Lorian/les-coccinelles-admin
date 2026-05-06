@@ -17,7 +17,7 @@ new class extends Component
     #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
     {
-        if ($modal === 'deleteAll') {
+        if ($modal === 'deleteSelection') {
             $this->modalDeleteAll = true;
         } elseif ($modal === 'viewAvailabilityRequest') {
             $availabilityRequest = AvailabilityRequest::findOrFail($id);

@@ -16,7 +16,7 @@ new class extends Component
        if ($modal === 'deleteRole') {
             $this->modalDeleteRole = true;
             $this->roleToDelete = $id;
-        } elseif ($modal === 'deleteAllRoles') {
+        } elseif ($modal === 'deleteSelection') {
             $this->modalDeleteAllRoles = true;
         }
     }

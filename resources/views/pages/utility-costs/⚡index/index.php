@@ -35,7 +35,7 @@ new class extends Component {
             $this->updateUtilityCostModalOpen = true;
         } elseif ($modal === 'deleteUtilityCost') {
             $this->deleteUtilityCostModalOpen = true;
-        } elseif ($modal === 'deleteAll') {
+        } elseif ($modal === 'deleteSelection') {
             $this->deleteSelectionModalOpen = true;
         }
     }
@@ -69,6 +69,8 @@ new class extends Component {
 
     public function save(): void
     {
+        $this->authorize('create', UtilityCost::class);
+
         $this->form->validate();
 
         $this->form->save();
@@ -80,6 +82,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', UtilityCost::class);
+
         $this->form->validate();
 
         $this->form->update();
@@ -91,6 +95,8 @@ new class extends Component {
 
     public function deleteUtilityCost(int $id): void
     {
+        $this->authorize('delete', UtilityCost::class);
+
         $utilityCost = UtilityCost::findOrFail($id);
 
         $utilityCost->delete();
