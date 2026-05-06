@@ -23,7 +23,7 @@ new class extends Component {
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
-                $q->whereLike('name', '%' . $this->term . '%');
+                $q->whereLike('type', '%' . $this->term . '%');
             });
         }
 

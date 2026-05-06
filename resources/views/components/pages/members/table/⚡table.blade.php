@@ -33,9 +33,7 @@ new class extends Component {
 
         if (!empty($this->filter)) {
             $query->where(function (Builder $q) {
-                foreach ($this->filter as $status) {
-                    $q->orWhere('status', MembersStatus::from($status));
-                }
+                $q->whereIn('status', $this->filter);
             });
         }
 

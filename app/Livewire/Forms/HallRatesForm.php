@@ -39,7 +39,7 @@ class HallRatesForm extends Form
         $member_price = Money::fromCents($hallRate->member_price)->euros();
 
         $this->hallRate = $hallRate;
-        $this->type = $hallRate->name;
+        $this->type = $hallRate->type;
         $this->base_price = $base_price;
         $this->member_price = $member_price;
     }
