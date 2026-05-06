@@ -67,9 +67,4 @@ class HallRatesForm extends Form
             'member_price' => $member_price,
         ]);
     }
-
-    public function deleteMember(): void
-    {
-
-    }
 }

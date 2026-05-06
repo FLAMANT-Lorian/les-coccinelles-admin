@@ -19,7 +19,7 @@
                aria-label="{{ __('tables.filter') }}">
             {{ __('tables.filter') }}
         </label>
-        <div class="result-container flex rounded-sm flex-row cursor-pointer trans-all"
+        <div class="result-container flex rounded-sm flex-row gap-1 flex-wrap cursor-pointer trans-all"
              @click="$refs.input.focus();">
             @if(!empty($this->filter))
                 @foreach($this->filter as $idx => $item)

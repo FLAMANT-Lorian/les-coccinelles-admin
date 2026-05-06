@@ -22,8 +22,12 @@ return [
     'deleteMessageMessage' => 'Êtes-vous sûr de vouloir supprimer ce message ?',
     'deleteAvailabilityRequest' => 'Supprimer la demande',
     'deleteAvailabilityRequestMessage' => 'Êtes-vous sûr de vouloir supprimer cette demande ?',
+    'addHallRate' => 'Ajouter un tarif pour la salle',
     'createHallRate' => 'Ajouter le tarif',
     'updateHallRate' => 'Modifier le tarif',
     'deleteHallRate' => 'Supprimer le tarif',
     'deleteHallRateMessage' => 'Êtes-vous sûr de vouloir supprimer ce tarif ?',
+    'addUtilityCost' => 'Ajouter un coût pour une charge',
+    'createUtilityCost' => 'Ajouter le coût',
+    'updateUtilityCost' => 'Modifier le coût',
 ];

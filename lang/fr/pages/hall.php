@@ -12,10 +12,10 @@ return [
         'delete-hall-rate' => 'Supprimer le tarif',
     ],
     'utility-costs' => [
-        'heading' => 'Tarifs des charges',
-        'subtitle' => 'Détail des charges et de leurs tarifs',
-        'add-utility-cost' => 'Ajouter un tarif',
-        'update-utility-cost' => 'Modifier le tarif',
-        'delete-utility-cost' => 'Supprimer le tarif',
+        'heading' => 'Coûts des charges',
+        'subtitle' => 'Détail des charges et de leurs coûts',
+        'add-utility-cost' => 'Ajouter un coût',
+        'update-utility-cost' => 'Modifier le coût',
+        'delete-utility-cost' => 'Supprimer le coût',
     ],
 ];
