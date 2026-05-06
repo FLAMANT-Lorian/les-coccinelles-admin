@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('hall_rates', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('type');
             $table->bigInteger('base_price');
             $table->bigInteger('member_price');
             $table->timestamps();

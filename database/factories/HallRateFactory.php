@@ -15,7 +15,7 @@ class HallRateFactory extends Factory
         return [
             'base_price' => $this->faker->randomNumber(),
             'member_price' => $this->faker->randomNumber(),
-            'name' => $this->faker->word()
+            'type' => $this->faker->word()
         ];
     }
 }
