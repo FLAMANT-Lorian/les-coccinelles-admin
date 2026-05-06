@@ -1,5 +1,7 @@
 @php
-    use App\Enums\MembersStatus;use App\Enums\MessageStatus;
+    use App\Enums\MembersStatus;
+    use App\Enums\MessageStatus;
+    use App\Enums\UtilityCostsStatus;
 @endphp
 
 @props([
@@ -16,6 +18,10 @@
         MembersStatus::active->value => 'bg-status-green-light before:bg-status-green',
         MembersStatus::pause->value => 'bg-status-blue-light before:bg-status-blue',
         MembersStatus::inactive->value => 'bg-status-red-light before:bg-status-red',
+
+        // UTILITY COSTS
+        UtilityCostsStatus::upToDate->value => 'bg-status-green-light before:bg-status-green',
+        UtilityCostsStatus::outOfDate->value => 'bg-status-red-light before:bg-status-red',
 
 
     ];
