@@ -11,6 +11,11 @@ $tabs = [
         'location' => route('hall-rates', ['locale' => app()->getLocale()]),
         'permission' => 'hallRates.index'
     ],
+    [
+        'label' => __('navigation/navigation.utility-costs'),
+        'location' => route('utility-costs', ['locale' => app()->getLocale()]),
+        'permission' => null
+    ],
 ];
 
 ?>

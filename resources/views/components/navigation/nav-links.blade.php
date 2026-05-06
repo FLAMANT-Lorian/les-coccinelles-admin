@@ -8,7 +8,11 @@
         'hallRates' => [
             'route' => 'hall-rates',
             'permission' => 'hallRates.index'
-        ]
+        ],
+        'utilityCosts' => [
+            'route' => 'utility-costs',
+            'permission' => null
+        ],
     ];
 
     $membersRoutes = [
@@ -19,7 +23,7 @@
         'hallRates' => [
             'route' => 'roles.index',
             'permission' => 'roles.index'
-        ]
+        ],
     ];
 
     $links = [

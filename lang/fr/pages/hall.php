@@ -11,4 +11,8 @@ return [
         'update-hall-rate' => 'Modifier le taril',
         'delete-hall-rate' => 'Supprimer le tarif',
     ],
+    'utility-costs' => [
+        'heading' => 'Tarifs des charges',
+        'subtitle' => 'Détail des charges et de leurs tarifs',
+    ],
 ];
