@@ -71,8 +71,8 @@
                 @endif
                 x-ref="input"
                 @focus="open = true"
-                class="w-fit"
-                :class="open ? 'rounded-b-none!' : ''"
+                class=""
+                :class="`${open ? 'rounded-b-none!' : ''} ${value ? 'max-w-35' : ''}`"
                 :placeholder="value ? '{{ __('forms.change-option') }}' : '{{ __('forms.select-option') }}'"
                 type="text"
                 name="{{ $name }}"
