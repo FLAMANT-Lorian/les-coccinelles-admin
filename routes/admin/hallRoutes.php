@@ -11,4 +11,5 @@ Route::livewire('/hall-rates', 'pages::hall-rates.index')
     ->name('hall-rates');
 
 Route::livewire('/utility-costs', 'pages::utility-costs.index')
+    ->middleware('can:utilityCosts.index')
     ->name('utility-costs');
