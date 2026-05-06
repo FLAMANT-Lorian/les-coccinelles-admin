@@ -47,7 +47,7 @@
             @endif
         </label>
 
-        <div class="result-container flex rounded-sm flex-row cursor-pointer trans-all"
+        <div class="result-container flex rounded-sm flex-row gap-1 flex-wrap cursor-pointer trans-all"
              @click="$refs.input.focus();">
 
             <template x-if="value">
@@ -71,6 +71,7 @@
                 @endif
                 x-ref="input"
                 @focus="open = true"
+                class="w-fit"
                 :class="open ? 'rounded-b-none!' : ''"
                 :placeholder="value ? '{{ __('forms.change-option') }}' : '{{ __('forms.select-option') }}'"
                 type="text"
