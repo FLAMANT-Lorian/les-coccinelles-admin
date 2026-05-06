@@ -7,17 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('hall_rates', function (Blueprint $table) {
+        Schema::create('utility_costs', function (Blueprint $table) {
             $table->id();
+            $table->string('status');
             $table->string('type');
-            $table->bigInteger('base_price');
-            $table->bigInteger('member_price');
+            $table->bigInteger('price');
+            $table->string('unit');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('hall_rates');
+        Schema::dropIfExists('utility_costs');
     }
 };

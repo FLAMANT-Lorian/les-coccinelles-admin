@@ -45,7 +45,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
             ->assertOk();
 
         assertDatabaseHas('hall_rates', [
-            'name' => 'test',
+            'type' => 'test',
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -59,7 +59,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
         $this->role->givePermissionTo($permission);
 
         $hallRate = HallRate::create([
-            'name' => 'test',
+            'type' => 'test',
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -73,7 +73,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
             ->assertOk();
 
         assertDatabaseHas('hall_rates', [
-            'name' => 'New',
+            'type' => 'New',
             'base_price' => 1080,
             'member_price' => 960,
         ]);
@@ -87,7 +87,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
         $this->role->givePermissionTo($permission);
 
         $hallRate = HallRate::create([
-            'name' => 'test',
+            'type' => 'test',
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -130,7 +130,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
 
     it('verifies if a user with the permission can’t update a hall rate', function () {
         $hallRate = HallRate::create([
-            'name' => 'test',
+            'type' => 'test',
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -144,7 +144,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
 
         assertDatabaseHas('hall_rates', [
-            'name' => 'test',
+            'type' => 'test',
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -152,7 +152,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
 
     it('verifies if a user with the permission can’t delete a hall rate', function () {
         $hallRate = HallRate::create([
-            'name' => 'test',
+            'type' => 'test',
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
