@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Enums\InterventionStatus;
 use App\Enums\MembersStatus;
 use App\Enums\MessageStatus;
 use App\Enums\RoleMode;
@@ -34,4 +35,8 @@ return [
     // UtilityCostsStatus
     UtilityCostsStatus::upToDate->value => 'À jour',
     UtilityCostsStatus::outOfDate->value => 'Pas à jour',
+
+    // InterventionStatus
+    InterventionStatus::todo->value => 'À faire',
+    InterventionStatus::done->value => 'Terminée',
 ];
