@@ -9,6 +9,7 @@ return [
     'hall' => 'Gestion de la salle',
     'availabilities' => 'Demandes de disponibilité',
     'hall-rates' => 'Tarifs de la salle',
+    'utility-costs' => 'Tarifs des charges',
     'messages' => 'Messages',
     'members' => 'Membres',
     'roles' => 'Rôles',
