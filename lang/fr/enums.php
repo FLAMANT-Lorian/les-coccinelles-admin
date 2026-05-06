@@ -5,6 +5,7 @@ use App\Enums\MembersStatus;
 use App\Enums\MessageStatus;
 use App\Enums\RoleMode;
 use App\Enums\Sex;
+use App\Enums\UtilityCostsStatus;
 use App\Enums\YesOrNo;
 
 return [
@@ -29,4 +30,8 @@ return [
     MembersStatus::active->value => 'Actif',
     MembersStatus::pause->value => 'Pause',
     MembersStatus::inactive->value => 'Inactif',
+
+    // UtilityCostsStatus
+    UtilityCostsStatus::upToDate->value => 'À jour',
+    UtilityCostsStatus::outOfDate->value => 'Pas à jour',
 ];

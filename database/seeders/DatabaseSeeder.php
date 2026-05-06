@@ -6,6 +6,7 @@ use App\Models\AvailabilityRequest;
 use App\Models\HallRate;
 use App\Models\Message;
 use App\Models\User;
+use App\Models\UtilityCost;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -67,6 +68,10 @@ class DatabaseSeeder extends Seeder
             ->create();
 
         HallRate::factory()
+            ->count(3)
+            ->create();
+
+        UtilityCost::factory()
             ->count(3)
             ->create();
     }
