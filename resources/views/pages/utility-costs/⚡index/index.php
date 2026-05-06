@@ -35,7 +35,7 @@ new class extends Component {
             $this->updateUtilityCostModalOpen = true;
         } elseif ($modal === 'deleteUtilityCost') {
             $this->deleteUtilityCostModalOpen = true;
-        } elseif ($modal === 'deleteAll') {
+        } elseif ($modal === 'deleteSelection') {
             $this->deleteSelectionModalOpen = true;
         }
     }

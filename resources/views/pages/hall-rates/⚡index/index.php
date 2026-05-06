@@ -27,7 +27,7 @@ new class extends Component {
             $this->updateHallRateModalOpen = true;
         } elseif ($modal === 'deleteHallRateModal') {
             $this->deleteHallRateModalOpen = true;
-        } elseif ($modal === 'deleteAll') {
+        } elseif ($modal === 'deleteSelection') {
             $this->deleteHallRatesModalOpen = true;
         }
     }
