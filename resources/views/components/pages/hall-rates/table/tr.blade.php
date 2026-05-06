@@ -22,10 +22,10 @@
                 <button type="button"
                         wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})"
                         class="underline-link after:bg-brown">
-                    {{ $hallRate->name }}
+                    {{ $hallRate->type }}
                 </button>
             @else
-                <span>{{ $hallRate->name }}</span>
+                <span>{{ $hallRate->type }}</span>
             @endcan
         </div>
     </td>
@@ -56,12 +56,12 @@
             </button>
             @canany(['hallRates.update', 'hallRates.delete'])
                 <div x-show="open" x-transition class="actions-table">
+                    @can('hallRates.update')
                     <button type="button"
                             title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
                         <span>{{ __('tables.update') }}</span>
                     </button>
-                    @can('hallRates.update')
                     @endcan
                     @can('hallRates.delete')
                         <button type="button"

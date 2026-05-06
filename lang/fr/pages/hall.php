@@ -14,5 +14,8 @@ return [
     'utility-costs' => [
         'heading' => 'Tarifs des charges',
         'subtitle' => 'Détail des charges et de leurs tarifs',
+        'add-utility-cost' => 'Ajouter un tarif',
+        'update-utility-cost' => 'Modifier le tarif',
+        'delete-utility-cost' => 'Supprimer le tarif',
     ],
 ];

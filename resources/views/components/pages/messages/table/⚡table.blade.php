@@ -31,7 +31,9 @@ new class extends Component {
         }
 
         if (!empty($this->filter)) {
-            $query->whereIn('status', $this->filter);
+            $query->where(function (Builder $q) {
+                $q->whereIn('status', $this->filter);
+            });
         }
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {

@@ -1,8 +1,7 @@
 <?php
 
-use App\Enums\MessageTypes;
-use App\Models\AvailabilityRequest;
-use App\Enums\MessageStatus;
+use App\Enums\UtilityCostsStatus;
+use App\Models\UtilityCost;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,14 +18,13 @@ new class extends Component {
     use TableSelectedColumn;
 
     #[Computed]
-    public function getAvailabilityRequests()
+    public function getUtilityCosts()
     {
-        $query = AvailabilityRequest::query();
+        $query = UtilityCost::query();
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
-                $q->whereLike('email', '%' . $this->term . '%')
-                    ->orWhereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$this->term%"]);
+                $q->whereLike('type', '%' . $this->term . '%');
             });
         }
 
@@ -46,33 +44,18 @@ new class extends Component {
     #[Computed]
     public function getFilteredTerms()
     {
-        $cases = MessageStatus::cases();
+        $cases = UtilityCostsStatus::cases();
 
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
                 return str_contains(
-                    strtolower(__('enums.' . $case->value)),
+                    strtolower($case->value),
                     strtolower($this->filter_term)
                 );
             });
         }
         return $cases;
     }
-
-    #[On('deleteAvailabilityRequest')]
-    public function deleteAvailabilityRequest(int $id): void
-    {
-        $this->authorize('delete', AvailabilityRequest::class);
-
-        $availabilityRequest = AvailabilityRequest::findOrFail($id);
-
-        $availabilityRequest->delete();
-
-        session()->flash('success', __('flash-messages.availability-request-deleted'));
-
-        $this->redirectRoute('availabilities', ['locale' => app()->getLocale()], navigate: true);
-    }
-
 };
 ?>
 
@@ -82,8 +65,8 @@ new class extends Component {
         class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
         <x-forms.input.input-search
             wire="term"
-            name="availability_search"
-            id="availability_search"
+            name="utility_costs_search"
+            id="utility_costs_search"
             :label="__('forms.search')"
             :placeholder="__('forms.search')"
         />
@@ -92,34 +75,30 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="availability_filter"
-            :enum="true"
+            id="utility_costs_filter"
             :translation="true"
-        />
+            :enum="true"/>
     </div>
 
     <x-general.selected-column
         :array="$this->selectedColumn"
         :options="[
             'delete' => true,
-            'markAvailabilityRequestAsRead' => true,
-            'markAvailabilityRequestAsNotRead' => true
             ]"
-        delete-permission="availabilities.delete"
+        :delete-permission="null"
     />
 
-    @if($this->getAvailabilityRequests->isNotEmpty())
+    @if($this->getUtilityCosts->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
-            <x-pages.availabilities.table.table-head/>
-            <x-pages.availabilities.table.table-body/>
+            <x-pages.utility-costs.table.table-head/>
+            <x-pages.utility-costs.table.table-body/>
         </table>
 
         <x-general.pagination
-            :items="$this->getAvailabilityRequests"/>
+            :items="$this->getUtilityCosts"/>
     @else
         <x-general.no-results
             :term="$this->term"/>
     @endif
-
 </div>

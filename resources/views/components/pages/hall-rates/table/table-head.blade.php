@@ -39,7 +39,7 @@
                     member_price = 'middle';
                     name = 'middle'
                 }
-                $wire.sortBy('name', name)">
+                $wire.sortBy('type', name)">
                 <span>{{ __('tables.type') }}</span>
                 <svg :class="{
                             'rotate-0': name === 'desc',

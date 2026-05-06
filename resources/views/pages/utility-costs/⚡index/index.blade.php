@@ -27,7 +27,7 @@
         <x-tabs.hall-tabs/>
 
         {{-- TABLE --}}
-
+        <livewire:pages.utility-costs.table.table/>
     </div>
 
     {{-- MODALS --}}
