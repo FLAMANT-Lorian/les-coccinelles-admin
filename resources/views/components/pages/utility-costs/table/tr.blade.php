@@ -55,8 +55,14 @@
             </button>
             <div x-show="open" x-transition class="actions-table">
                 <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
                         title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
                     <span>{{ __('tables.update') }}</span>
+                </button>
+                <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'deleteUtilityCost', id: {{ $utilityCost->id }}})"
+                        title="{{ __('pages/hall.utility-costs.delete-utility-cost') }}">
+                    <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
 

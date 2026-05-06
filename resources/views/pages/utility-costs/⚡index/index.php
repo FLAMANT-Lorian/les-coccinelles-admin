@@ -16,18 +16,27 @@ new class extends Component {
 
     public bool $createUtilityCostModalOpen = false;
     public bool $updateUtilityCostModalOpen = false;
+    public bool $deleteUtilityCostModalOpen = false;
+    public bool $deleteSelectionModalOpen = false;
+    public UtilityCost $utilityCost;
 
     #[On('open-modal')]
     public function openModal(string $modal, $id = null): void
     {
+        if ($id) {
+            $this->utilityCost = UtilityCost::findOrFail($id);
+        }
+
         if ($modal === 'createUtilityCost') {
             $this->createUtilityCostModalOpen = true;
         } elseif ($modal === 'updateUtilityCost') {
-            $utilityCost = UtilityCost::findOrFail($id);
-
-            $this->form->setUtilityCost($utilityCost);
+            $this->form->setUtilityCost($this->utilityCost);
 
             $this->updateUtilityCostModalOpen = true;
+        } elseif ($modal === 'deleteUtilityCost') {
+            $this->deleteUtilityCostModalOpen = true;
+        } elseif ($modal === 'deleteAll') {
+            $this->deleteSelectionModalOpen = true;
         }
     }
 
@@ -38,6 +47,8 @@ new class extends Component {
 
         $this->createUtilityCostModalOpen = false;
         $this->updateUtilityCostModalOpen = false;
+        $this->deleteUtilityCostModalOpen = false;
+        $this->deleteSelectionModalOpen = false;
     }
 
     #[Computed]
@@ -74,6 +85,17 @@ new class extends Component {
         $this->form->update();
 
         session()->flash('success', __('flash-messages.utility-cost-updated'));
+
+        $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
+    }
+
+    public function deleteUtilityCost(int $id): void
+    {
+        $utilityCost = UtilityCost::findOrFail($id);
+
+        $utilityCost->delete();
+
+        session()->flash('success', __('flash-messages.utility-cost-deleted'));
 
         $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
     }

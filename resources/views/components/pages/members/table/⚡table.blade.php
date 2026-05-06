@@ -75,6 +75,7 @@ new class extends Component {
         />
 
         <x-forms.input.custom-select-filter
+            class="md:col-span-2 md:justify-self-start"
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
@@ -84,7 +85,7 @@ new class extends Component {
         />
         @can('members.create')
             <x-general.add-button
-                class="justify-center md:col-span-2 md:justify-self-end"
+                class="justify-center md:col-start-4 md:justify-self-end"
                 :location="route('members.create', ['locale' => app()->getLocale()])"
                 :label="__('pages/members.add-members')"
             />

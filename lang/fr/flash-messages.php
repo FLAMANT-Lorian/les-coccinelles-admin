@@ -31,8 +31,8 @@ return [
     'hall-rates-deleted' => 'Les tarifs ont été supprimés avec succès !',
 
     /* UTILITY COSTS */
-    'utility-cost-created' => 'Le tarif a été créé avec succès !',
-    'utility-cost-updated' => 'Le tarif a été modifié avec succès !',
-    'utility-cost-deleted' => 'Le tarif a été supprimé avec succès !',
-    'utility-costs-deleted' => 'Les tarifs ont été supprimés avec succès !',
+    'utility-cost-created' => 'Le coût a été créé avec succès !',
+    'utility-cost-updated' => 'Le coût a été modifié avec succès !',
+    'utility-cost-deleted' => 'Le coût a été supprimé avec succès !',
+    'utility-costs-deleted' => 'Les coûts ont été supprimés avec succès !',
 ];

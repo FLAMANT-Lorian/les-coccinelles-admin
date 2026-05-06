@@ -30,4 +30,6 @@ return [
     'addUtilityCost' => 'Ajouter un coût pour une charge',
     'createUtilityCost' => 'Ajouter le coût',
     'updateUtilityCost' => 'Modifier le coût',
+    'deleteUtilityCost' => 'Supprimer le coût',
+    'deleteUtilityCostMessage' => 'Êtes-vous sûr de vouloir supprimer ce coût ?',
 ];

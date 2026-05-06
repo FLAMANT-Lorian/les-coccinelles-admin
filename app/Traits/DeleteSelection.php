@@ -7,6 +7,7 @@ use App\Models\AvailabilityRequest;
 use App\Models\HallRate;
 use App\Models\Message;
 use App\Models\User;
+use App\Models\UtilityCost;
 use Livewire\Attributes\On;
 use Spatie\Permission\Models\Role;
 
@@ -130,5 +131,21 @@ trait DeleteSelection
         session()->flash('success', __('flash-messages.hall-rates-deleted'));
 
         $this->redirectRoute('hall-rates', ['locale' => app()->getLocale()], navigate: true);
+    }
+
+    #[On('deleteUtilityCosts')]
+    public function deleteUtilityCosts(): void
+    {
+        $utilityCosts = UtilityCost::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($utilityCosts as $utilityCost) {
+            $utilityCost->delete();
+        }
+
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.utility-costs-deleted'));
+
+        $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
     }
 }

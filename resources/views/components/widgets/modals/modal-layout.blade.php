@@ -7,7 +7,7 @@
      x-trap="modalOpen"
      @keydown.window.escape="$dispatch('close-modal'); modalOpen = false">
     <div class="flex flex-col gap-4 w-full max-w-200 bg-beige-medium rounded-sm p-6">
-        <div class="flex flex-row gap-12 justify-between">
+        <div class="flex flex-row gap-4 justify-between">
             <div class="flex flex-col gap-1">
                 <p class="text-2xl text-brown font-medium">{{ $title }}</p>
                 @if($message)
