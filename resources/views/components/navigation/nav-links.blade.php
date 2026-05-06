@@ -11,7 +11,7 @@
         ],
         'utilityCosts' => [
             'route' => 'utility-costs',
-            'permission' => null
+            'permission' => 'utilityCosts.index'
         ],
     ];
 

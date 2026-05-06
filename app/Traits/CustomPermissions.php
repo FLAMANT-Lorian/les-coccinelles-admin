@@ -36,6 +36,12 @@ trait CustomPermissions
             'update' => false,
             'delete' => false,
         ],
+        'utilityCosts' => [
+            'index' => false,
+            'create' => false,
+            'update' => false,
+            'delete' => false,
+        ],
     ];
 
     public function setPermissions(): void
