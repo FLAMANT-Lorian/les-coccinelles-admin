@@ -1,5 +1,5 @@
 <thead>
-    <tr x-data="{ role: 'middle', name: 'middle', email: 'middle' }">
+    <tr x-data="{ role: 'middle' }">
         <th>
             <div class="flex items-center justify-center">
                 <input :checked="$wire.selectedColumn.length > 0"
@@ -27,16 +27,10 @@
         <th>
             <button type="button" class="flex items-center gap-2" @click="
             if (role === 'middle') {
-                    name = 'middle';
-                    email = 'middle';
                     role = 'desc'
                 } else if (role === 'desc') {
-                     name = 'middle';
-                    email = 'middle';
                     role = 'asc'
                 } else if (role === 'asc') {
-                     name = 'middle';
-                    email = 'middle';
                     role = 'middle'
                 }
                 $wire.sortBy('name', role)">

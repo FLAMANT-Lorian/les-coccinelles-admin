@@ -45,13 +45,13 @@ new class extends Component {
         }
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
-            if (str_starts_with($this->filter_column, 'creator.')) {
+            if (str_starts_with($this->filter_column, 'creator')) {
                 $column = str_replace('creator.', '', $this->filter_column);
 
                 $query->leftJoin('users', 'interventions.created_by', 'users.id')
                     ->orderBy($column, $this->filter_direction)
                     ->select('interventions.*');
-            } elseif (str_starts_with($this->filter_column, 'assignee.')) {
+            } elseif (str_starts_with($this->filter_column, 'assignee')) {
                 $column = str_replace('assignee.', '', $this->filter_column);
 
                 $query->leftJoin('users', 'interventions.assigned_to', 'users.id')
