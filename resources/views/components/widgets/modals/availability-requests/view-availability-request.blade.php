@@ -1,9 +1,14 @@
+@php
+    use App\Models\AvailabilityRequest;
+    /** @var AvailabilityRequest $availabilityRequest */
+@endphp
+
 @props([
     'availabilityRequest'
 ])
 
 <x-widgets.modals.message-modal-layout
-    :title="__('modals.viewAvailabilityRequest') . $availabilityRequest->fullName"
+    :title="__('modals.viewAvailabilityRequest') . $availabilityRequest->full_name"
     :message="false">
     <div class="text-brown flex flex-col h-full">
         <div class="flex flex-col gap-1 pb-4 border-b border-b-beige-dark/60">

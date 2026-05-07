@@ -1,9 +1,14 @@
+@php
+    use App\Models\Message;
+    /** @var Message $message */
+@endphp
+
 @props([
     'message'
 ])
 
 <x-widgets.modals.message-modal-layout
-    :title="__('modals.viewMessage') . $message->fullName"
+    :title="__('modals.viewMessage') . $message->full_name"
     :message="false">
     <div class="text-brown flex flex-col h-full">
         <div class="flex flex-col gap-1 pb-4 border-b border-b-beige-dark/60">
