@@ -16,6 +16,11 @@ $tabs = [
         'location' => route('utility-costs', ['locale' => app()->getLocale()]),
         'permission' => 'utilityCosts.index'
     ],
+    [
+        'label' => __('navigation/navigation.interventions'),
+        'location' => route('interventions', ['locale' => app()->getLocale()]),
+        'permission' => null
+    ],
 ];
 
 ?>

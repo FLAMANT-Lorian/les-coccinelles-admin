@@ -18,4 +18,8 @@ return [
         'update-utility-cost' => 'Modifier le coût',
         'delete-utility-cost' => 'Supprimer le coût',
     ],
+    'interventions' => [
+        'heading' => 'Interventions',
+        'subtitle' => 'Suivi des interventions',
+    ],
 ];

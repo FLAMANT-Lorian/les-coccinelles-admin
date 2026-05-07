@@ -10,6 +10,7 @@ return [
     'availabilities' => 'Demandes de disponibilité',
     'hall-rates' => 'Tarifs de la salle',
     'utility-costs' => 'Coûts des charges',
+    'interventions' => 'Interventions',
     'messages' => 'Messages',
     'members' => 'Membres',
     'roles' => 'Rôles',
