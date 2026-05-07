@@ -3,6 +3,10 @@
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Models\User;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -57,7 +61,12 @@ describe('CREATE MEMBER WITHOUT PERMISSION', function () {
     });
 
     it('verifies if you can’t access to the create members form if you don’t have thepermission to', function () {
-        $this->get(route('members.create', ['locale' => config('app.locale')]))
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('members.create', ['locale' => config('app.locale')]))
             ->assertForbidden();
     });
 });

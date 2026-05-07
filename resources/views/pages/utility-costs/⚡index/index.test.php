@@ -3,6 +3,11 @@
 use App\Enums\UtilityCostsStatus;
 use App\Models\User;
 use App\Models\UtilityCost;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
@@ -10,6 +15,8 @@ use function Pest\Laravel\assertDatabaseHas;
 
 describe('UTILITY COST WITH PERMISSIONS', function () {
     beforeEach(function () {
+        LaravelLocalization::setLocale('fr');
+
         $this->role = Role::create([
             'name' => 'member',
             'guard_name' => 'web',
@@ -27,7 +34,12 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
         ]);
         $this->role->givePermissionTo($permission);
 
-        $this->get(route('utility-costs', ['locale' => config('app.locale')]))
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('utility-costs'))
             ->assertOk();
     });
 
@@ -109,6 +121,12 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
 
 describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
     beforeEach(function () {
+        Permission::create([
+            'name' => 'utilityCosts.index',
+            'guard_name' => 'web',
+        ]);
+        LaravelLocalization::setLocale('fr');
+
         $role = Role::create([
             'name' => 'member',
             'guard_name' => 'web',
@@ -119,8 +137,13 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can’t access to the utility cost index', function () {
-        $this->get(route('utility-costs', ['locale' => config('app.locale')]))
+    it('verifies if a user without the permission can’t access to the utility cost index', function () {
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('utility-costs'))
             ->assertForbidden();
     });
 
@@ -136,7 +159,7 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
         assertDatabaseCount('utility_costs', 0);
     });
 
-    it('verifies if a user with the permission can’t update an utility cost', function () {
+    it('verifies if a user without the permission can’t update an utility cost', function () {
         $utilityCost = UtilityCost::create([
             'type' => 'test',
             'price' => 1050,
@@ -161,7 +184,7 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user with the permission can’t delete an utility cost', function () {
+    it('verifies if a user without the permission can’t delete an utility cost', function () {
         $utilityCost = UtilityCost::create([
             'type' => 'test',
             'price' => 1050,

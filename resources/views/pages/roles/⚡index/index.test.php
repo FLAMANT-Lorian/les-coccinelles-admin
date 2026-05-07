@@ -1,6 +1,10 @@
 <?php
 
 use App\Models\User;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -23,7 +27,12 @@ describe('VIEW ROLES WITH PERMISSIONS', function () {
     });
 
     it('verifies if a user with the permission can access to the role index', function () {
-        $this->get(route('roles.index', ['locale' => config('app.locale')]))
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('roles.index', ['locale' => config('app.locale')]))
             ->assertOk();
     });
 });
@@ -41,7 +50,12 @@ describe('VIEW ROLES WITHOUT PERMISSIONS', function () {
     });
 
     it('verifies if a user with the permission can access to the member index', function () {
-        $this->get(route('roles.index', ['locale' => config('app.locale')]))
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('roles.index', ['locale' => config('app.locale')]))
             ->assertForbidden();
     });
 });
