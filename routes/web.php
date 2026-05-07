@@ -1,24 +1,28 @@
 <?php
 
-use App\Http\Middleware\SetLocale;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/', function () {
     return redirect('/' . app()->getLocale());
 });
 
-Route::prefix('{locale}')->middleware([SetLocale::class, 'auth'])->group(function () {
-    Route::livewire('/', 'pages::dashboard')->name('dashboard');
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
+],
+    function () {
+        Route::livewire('/', 'pages::dashboard')->name('dashboard');
 
-    /* MESSAGES */
-    require __DIR__ . '/admin/messagesRoutes.php';
+        /* MESSAGES */
+        require __DIR__ . '/admin/messagesRoutes.php';
 
-    /* MEMBERS */
-    require __DIR__ . '/admin/membersRoutes.php';
+        /* MEMBERS */
+        require __DIR__ . '/admin/membersRoutes.php';
 
-    /* ROLES */
-    require __DIR__ . '/admin/rolesRoutes.php';
+        /* ROLES */
+        require __DIR__ . '/admin/rolesRoutes.php';
 
-    /* HALL */
-    require __DIR__ . '/admin/hallRoutes.php';
-});
+        /* HALL */
+        require __DIR__ . '/admin/hallRoutes.php';
+    });

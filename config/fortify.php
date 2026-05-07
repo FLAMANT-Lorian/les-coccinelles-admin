@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Middleware\SetLocale;
 use Laravel\Fortify\Features;
 
 return [
@@ -102,7 +101,7 @@ return [
     |
     */
 
-    'middleware' => ['web', SetLocale::class],
+    'middleware' => ['web', 'localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
 
     /*
     |--------------------------------------------------------------------------

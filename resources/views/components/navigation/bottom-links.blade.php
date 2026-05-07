@@ -48,7 +48,7 @@
     </a>
 
     {{-- LOGOUT --}}
-    <form action="{{ route('logout') }}" method="POST" class="mt-4 w-full">
+    <form action="{{ route('logout', ['locale' => app()->getLocale()]) }}" method="POST" class="mt-4 w-full">
         @csrf
         <button type="submit"
                 class="w-full btn justify-center bg-brown outline outline-brown text-white hover:text-brown hover:bg-transparent focus:text-brown focus:bg-transparent">

@@ -2,17 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::livewire('/availability-requests', 'pages::availabilities.index')
+Route::livewire(LaravelLocalization::transRoute('routes.availabilities'), 'pages::availabilities.index')
     ->middleware('can:availabilities.index')
     ->name('availabilities');
 
-Route::livewire('/hall-rates', 'pages::hall-rates.index')
+Route::livewire(LaravelLocalization::transRoute('routes.hall-rates'), 'pages::hall-rates.index')
     ->middleware('can:hallRates.index')
     ->name('hall-rates');
 
-Route::livewire('/utility-costs', 'pages::utility-costs.index')
+Route::livewire(LaravelLocalization::transRoute('routes.utility-costs'), 'pages::utility-costs.index')
     ->middleware('can:utilityCosts.index')
     ->name('utility-costs');
 
-Route::livewire('/interventions', 'pages::interventions.index')
+Route::livewire(LaravelLocalization::transRoute('routes.interventions'), 'pages::interventions.index')
     ->name('interventions');
