@@ -19,9 +19,7 @@ trait DeleteRole
         if ($users > 0) {
             session()->flash('error', __('flash-messages.role-cant-be-deleted', ['count' => $users]));
 
-            $this->dispatch('close-modal');
-
-            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
+            $this->redirectRoute('roles.index', navigate: true);
             return;
         }
 
@@ -29,6 +27,6 @@ trait DeleteRole
 
         session()->flash('success', __('flash-messages.role-deleted'));
 
-        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('roles.index', navigate: true);
     }
 }

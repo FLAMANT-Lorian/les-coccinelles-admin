@@ -3,6 +3,7 @@
     'label',
     'name',
     'required' => false,
+    'textarea_class' => '',
     'placeholder',
     'field_name',
     'wire' => ''
@@ -18,6 +19,7 @@
     <textarea @if($wire && $wire !== '')
                   wire:model="{{ $wire }}"
               @endif
+              class="{{ $textarea_class }}"
               id="{{ $field_name }}"
               type="{{ $type ?? 'text' }}"
               name="{{ $name }}"

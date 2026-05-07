@@ -32,7 +32,7 @@ trait DeleteSelection
 
         session()->flash('success', __('flash-messages.messages-deleted'));
 
-        $this->redirectRoute('messages', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('messages', navigate: true);
     }
 
     #[On('deleteMembers')]
@@ -59,7 +59,7 @@ trait DeleteSelection
 
         session()->flash('success', __('flash-messages.members-deleted'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('members.index', navigate: true);
     }
 
     #[On('deleteAllRoles')]
@@ -84,7 +84,7 @@ trait DeleteSelection
 
             session()->flash('error', __('flash-messages.roles-cant-be-deleted', ['count' => $users]));
 
-            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
+            $this->redirectRoute('roles.index', navigate: true);
             return;
         }
 
@@ -93,7 +93,7 @@ trait DeleteSelection
 
             session()->flash('success', __('flash-messages.roles-deleted'));
 
-            $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
+            $this->redirectRoute('roles.index', navigate: true);
         }
     }
 
@@ -112,7 +112,7 @@ trait DeleteSelection
 
         session()->flash('success', __('flash-messages.availability-requests-deleted'));
 
-        $this->redirectRoute('availabilities', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('availabilities', navigate: true);
     }
 
     #[On('deleteHallRates')]
@@ -130,7 +130,7 @@ trait DeleteSelection
 
         session()->flash('success', __('flash-messages.hall-rates-deleted'));
 
-        $this->redirectRoute('hall-rates', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('hall-rates', navigate: true);
     }
 
     #[On('deleteUtilityCosts')]
@@ -148,6 +148,6 @@ trait DeleteSelection
 
         session()->flash('success', __('flash-messages.utility-costs-deleted'));
 
-        $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('utility-costs', navigate: true);
     }
 }

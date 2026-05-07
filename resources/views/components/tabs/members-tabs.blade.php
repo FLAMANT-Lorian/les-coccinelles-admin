@@ -3,12 +3,12 @@
 $tabs = [
     [
         'label' => __('pages/members.members'),
-        'location' => route('members.index'),
+        'location' => LaravelLocalization::localizeURL(route('members.index')),
         'permission' => 'members.index'
     ],
     [
         'label' => __('pages/roles.role'),
-        'location' => route('roles.index'),
+        'location' => LaravelLocalization::localizeURL(route('roles.index')),
         'permission' => 'roles.index'
     ]
 ];
@@ -16,4 +16,4 @@ $tabs = [
 ?>
 
 <x-general.tabs
-    :tabs="$tabs"/>
+        :tabs="$tabs"/>

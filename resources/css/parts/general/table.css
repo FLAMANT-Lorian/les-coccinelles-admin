@@ -48,7 +48,7 @@ table {
             @apply max-lg:w-full w-35 text-right;
 
             .actions {
-                @apply p-2 text-brown hover:bg-beige-light focus:bg-beige-light trans-all cursor-pointer;
+                @apply p-2 text-brown hover:bg-beige-light focus:bg-beige-light trans-all cursor-pointer rounded-sm;
             }
 
             > div > button {

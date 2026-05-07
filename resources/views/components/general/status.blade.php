@@ -31,6 +31,6 @@
     $classes = $states[(string)$status];
 @endphp
 
-<span {!! $attributes->merge(['class' => $classes . ' ' . 'w-fit font-normal flex items-center gap-2 px-2 py-1 rounded-2xl before:block before:content[""] before:w-2.5 before:h-2.5 before:rounded-full']) !!}>
+<span {!! $attributes->merge(['class' => $classes . ' ' . 'w-fit font-normal flex items-center gap-2 px-2 py-1 rounded-xl before:block before:content[""] before:w-2.5 before:h-2.5 before:rounded-full']) !!}>
             {{ __('enums.' . $status) }}
 </span>

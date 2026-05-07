@@ -21,5 +21,8 @@ return [
     'interventions' => [
         'heading' => 'Interventions',
         'subtitle' => 'Suivi des interventions',
+        'add-intervention' => 'Ajouter une intervention',
+        'update-intervention' => 'Modifier l’intervention',
+        'delete-intervention' => 'Supprimer l’intervention',
     ],
 ];

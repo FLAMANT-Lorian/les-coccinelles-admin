@@ -31,5 +31,7 @@
     </div>
 
     {{-- MODALS --}}
-
+    @if($this->openCreateModal)
+        <x-widgets.modals.interventions.create-intervention/>
+    @endif
 </div>

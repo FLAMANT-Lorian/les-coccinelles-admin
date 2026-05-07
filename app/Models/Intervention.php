@@ -15,6 +15,7 @@ class Intervention extends Model
         'description',
         'status',
         'deadline',
+        'assigned_to',
     ];
 
     protected function casts(): array

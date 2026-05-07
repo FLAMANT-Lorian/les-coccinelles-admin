@@ -5,7 +5,7 @@
            class="w-40 h-12 lg:w-50 lg:h-15"
            title="{{ __('navigation/navigation.back_to_dashboard') }}"
            aria-label="{{ __('navigation/navigation.back_to_dashboard') }}"
-           href="{{ route('dashboard', ['locale' => app()->getLocale()]) }}">
+           href="{{ route('dashboard') }}">
             <span class="sr-only">{{ __('navigation/navigation.back_to_dashboard') }}</span>
             <svg class="min-w-40  w-full h-full" width="160" height="48">
                 <use href="#logo"></use>
