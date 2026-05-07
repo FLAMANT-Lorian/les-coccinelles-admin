@@ -52,7 +52,7 @@ new class extends Component {
         if ($usersCount > 1 && $this->form->unique === YesOrNo::YES->value) {
             session()->flash('error', __('flash-messages.role-cant-be-unique', ['count' => $usersCount]));
 
-            $this->redirectRoute('roles.update', ['locale' => app()->getLocale(), 'role' => $this->role], navigate: true);
+            $this->redirectRoute('roles.update', ['role' => $this->role], navigate: true);
             return;
         }
 
@@ -60,7 +60,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.role-updated'));
 
-        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('roles.index', navigate: true);
     }
 };
 ?>

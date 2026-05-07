@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('login.store') }}" {{ $attributes->merge(['class' => '']) }}>
+<form method="POST" action="{{ route('login.store', ['locale' => app()->getLocale()]) }}" {{ $attributes->merge(['class' => '']) }}>
     @csrf
     <fieldset class="flex flex-col gap-6 mb-6">
         <legend class="sr-only">{{ __('auth/login.legend') }}</legend>
@@ -24,7 +24,7 @@
             <a wire:navigate
                title="{!! __('auth/login.forgotten_password_text') !!}"
                aria-label="{!! __('auth/login.forgotten_password_text') !!}"
-               href="{{ route('password.request') }}"
+               href="{{ route('password.request', ['locale' => app()->getLocale()]) }}"
                class="text-base font-medium text-blue-600 underline-link after:bg-blue-600 self-end">
                 {!! __('auth/login.forgotten_password_text') !!}
             </a>

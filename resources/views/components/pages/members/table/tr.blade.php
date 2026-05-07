@@ -22,7 +22,7 @@
                 <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
                    aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
                    title="{{ __('pages/members.update-members') }}"
-                   href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member->id]) }}"
+                   href="{{ route('members.update', ['member' => $member->id]) }}"
                    wire:navigate>
                     {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
                 </a>
@@ -52,7 +52,7 @@
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
             @can('roles.update')
-                <a href="{{ route('roles.update', ['locale' => app()->getLocale(), 'role' => $member->roles->first()->id]) }}"
+                <a href="{{ route('roles.update', ['role' => $member->roles->first()->id]) }}"
                    wire:navigate
                    aria-label="{{ $member->roles->first()->name }}"
                    title="{{ __('pages/roles.update-role') }}"
@@ -86,7 +86,7 @@
             @canany(['members.update', 'members.delete'])
                 <div x-show="open" x-transition class="actions-table">
                     @can('members.update')
-                        <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
+                        <a href="{{ route('members.update', ['member' => $member]) }}"
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('pages/members.update-members') }}">
                             <span>{{ __('tables.update') }}</span>
@@ -105,7 +105,7 @@
             {{--ACTION MOBILES --}}
             @can('members.update')
                 <div class="actions-mobile">
-                    <a href="{{ route('members.update', ['locale' => app()->getLocale(), 'member' => $member]) }}"
+                    <a href="{{ route('members.update', ['member' => $member]) }}"
                        title="{{ __('modals.edit-member') }}"
                        aria-label="{{ __('modals.edit') }}"
                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">

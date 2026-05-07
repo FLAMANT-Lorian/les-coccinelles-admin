@@ -40,7 +40,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.role-created'));
 
-        $this->redirectRoute('roles.index', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('roles.index', navigate: true);
     }
 };
 ?>

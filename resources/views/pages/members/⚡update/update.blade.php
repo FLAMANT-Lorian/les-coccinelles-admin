@@ -3,7 +3,7 @@
     $segments = [
         [
             'label' => __('navigation/navigation.members'),
-            'url' => route('members.index', ['locale' => app()->getLocale()])
+            'url' => route('members.index')
         ],
         [
             'label' => trim($this->member->full_name) !== '' ? $this->member->full_name : $this->member->email,

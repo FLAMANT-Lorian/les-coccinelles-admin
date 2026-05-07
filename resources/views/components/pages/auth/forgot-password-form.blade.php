@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('password.email') }}" {{ $attributes->merge(['class' => '']) }}>
+<form method="POST" action="{{ route('password.email', app()->getLocale()) }}" {{ $attributes->merge(['class' => '']) }}>
     @csrf
     <fieldset class="flex flex-col gap-6 mb-6">
         <legend class="sr-only">{{ __('auth/forgot-password.legend') }}</legend>

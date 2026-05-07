@@ -33,7 +33,7 @@
     $links = [
         [
             'label' => __('navigation/navigation.dashboard'),
-            'route' => route('dashboard', ['locale' => app()->getLocale()]),
+            'route' => route('dashboard'),
             'icon' => 'dashboard',
             'wire-current-exact' => true,
             'wire-current' => true,
@@ -55,7 +55,7 @@
         ],
         [
             'label' => __('navigation/navigation.messages'),
-            'route' => route('messages', ['locale' => app()->getLocale()]),
+            'route' => route('messages'),
             'icon' => 'messages',
             'wire-current' => true,
             'permissions' => ['messages.index']

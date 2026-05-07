@@ -3,11 +3,11 @@
     $segments = [
         [
             'label' => __('navigation/navigation.members'),
-            'url' => route('members.index', ['locale' => app()->getLocale()])
+            'url' => route('members.index')
         ],
         [
             'label' => __('pages/roles.roles'),
-            'url' => route('members.index', ['locale' => app()->getLocale(), 'tab' => 'roles'])
+            'url' => route('roles.index')
         ],
         [
             'label' => __('pages/roles.add-role'),

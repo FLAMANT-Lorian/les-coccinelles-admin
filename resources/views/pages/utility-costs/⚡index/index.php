@@ -77,7 +77,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.utility-cost-created'));
 
-        $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('utility-costs', navigate: true);
     }
 
     public function update(): void
@@ -90,7 +90,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.utility-cost-updated'));
 
-        $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('utility-costs', navigate: true);
     }
 
     public function deleteUtilityCost(int $id): void
@@ -103,6 +103,6 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.utility-cost-deleted'));
 
-        $this->redirectRoute('utility-costs', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('utility-costs', navigate: true);
     }
 };
