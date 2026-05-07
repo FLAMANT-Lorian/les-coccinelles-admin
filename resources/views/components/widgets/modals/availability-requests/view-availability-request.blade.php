@@ -21,7 +21,7 @@
                 </a>
             </p>
         </div>
-        <p class="mt-4">
+        <p class="mt-4 whitespace-pre-line">
             {{ $availabilityRequest->message }}
         </p>
         <div class="mt-auto self-end">

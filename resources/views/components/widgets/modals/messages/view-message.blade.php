@@ -21,7 +21,7 @@
                 </a>
             </p>
         </div>
-        <p class="mt-4">
+        <p class="mt-4 whitespace-pre-line">
             {{ $message->message }}
         </p>
         <div class="mt-auto self-end">
