@@ -49,7 +49,7 @@ form {
 }
 
 .result-container {
-    @apply border border-beige-dark px-4 py-3 bg-beige-light relative;
+    @apply border border-beige-dark pl-4 pr-8 py-3 bg-beige-light relative;
 
     &:has(input:focus), &:hover {
         @apply border-brown;

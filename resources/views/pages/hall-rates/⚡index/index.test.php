@@ -2,6 +2,10 @@
 
 use App\Models\HallRate;
 use App\Models\User;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
@@ -26,7 +30,12 @@ describe('HALL RATES WITH PERMISSIONS', function () {
     });
 
     it('verifies if a user with the permission can access to the hall rates index', function () {
-        $this->get(route('hall-rates', ['locale' => config('app.locale')]))
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('hall-rates', ['locale' => config('app.locale')]))
             ->assertOk();
     });
 
@@ -113,7 +122,12 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
     });
 
     it('verifies if a user with the permission can’t access to the hall rates index', function () {
-        $this->get(route('hall-rates', ['locale' => config('app.locale')]))
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('hall-rates', ['locale' => config('app.locale')]))
             ->assertForbidden();
     });
 

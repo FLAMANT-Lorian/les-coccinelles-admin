@@ -27,7 +27,7 @@
         <x-tabs.hall-tabs/>
 
         {{-- TABLE --}}
-
+        <livewire:pages.interventions.table.table/>
     </div>
 
     {{-- MODALS --}}
