@@ -4,19 +4,22 @@
     'field_name',
     'label',
     'required' => true,
-    'translation' => true,
-    'enum' => true,
     'accessor' => '',
     'wire',
-    'select_wire' => ''
+    'select_wire' => '',
+    'full_name' => false,
 ])
 
 @php
     $labels = [];
 
     foreach ($collection as $item) {
-        $val = $enum ? $item->value : $item[$accessor];
-        $labels[$val] = $translation ? __('enums.' . $val) : $val;
+        if ($full_name) {
+            $val = $item->$full_name;
+        } else {
+            $val = $item[$accessor];
+        }
+        $labels[$val] = $val;
     }
 @endphp
 
@@ -24,13 +27,16 @@
      x-data="{
         open: false,
         labels: @js($labels),
-        value: $wire.entangle('{{ $select_wire }}'),
+        value: null,
+        id: $wire.entangle('{{ $select_wire }}'),
 
-        toggle(val) {
+        toggle(val, id) {
             if (this.value === val) {
-                this.value = null
+                this.value = null;
+                this.id = null;
             } else {
-                this.value = val
+                this.value = val;
+                this.id = id;
             }
             this.open = false;
         }
@@ -54,7 +60,7 @@
                 <button type="button"
                         class="group cursor-auto! relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown has-[svg:hover]:bg-red text-white rounded flex items-center gap-1 trans-all">
                     <svg class="cursor-pointer group-hover:text-white"
-                        @click.stop="toggle(value)"
+                         @click.stop="toggle(value, id)"
                          width="16"
                          height="16">
                         <use href="#cross-filter"></use>
@@ -88,32 +94,37 @@
         </div>
     </div>
 
-    <div class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden max-h-60 overflow-y-scroll"
-         x-transition:enter="transition ease-in-out duration-200"
-         x-transition:enter-start="opacity-0 -translate-y-1"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         x-transition:leave="transition ease-in-out duration-200"
-         x-transition:leave-start="opacity-100 translate-y-0"
-         x-transition:leave-end="opacity-0 -translate-y-1"
-         x-show="open">
+    <div
+        class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden max-h-60 overflow-y-scroll"
+        x-transition:enter="transition ease-in-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in-out duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-1"
+        x-show="open">
         <div class="flex flex-col divide-y divide-beige-medium shadow-xl">
 
             @if(!empty($collection))
                 @foreach($collection as $item)
                     @php
-                        $value = $enum ? $item->value : $item[$accessor];
+                        if ($full_name) {
+                            $value = $item->full_name;
+                        } else {
+                            $value = $item[$accessor];
+                        }
                     @endphp
                     <button type="button"
                             class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all"
                             :class="value === '{{ $value }}' ? 'bg-beige-medium' : ''"
                             @click="
-                            toggle('{{ $value }}')
+                            toggle('{{ $value }}', '{{ $item->id }}')
                             open = false;
                             $refs.input.blur();
                             "
                             wire:click="$wire.set('{!! $wire !!}', '')">
 
-                    <span>{{ $translation ? __('enums.' . $value) : $value }}
+                    <span>{{ $value }}
                         <template x-if="value === '{{ $value }}'">
                             <span> ({!! __('forms.selected') !!})</span>
                         </template>
