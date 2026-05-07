@@ -39,6 +39,8 @@ new class extends Component {
 
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
             $query->orderBy($this->filter_column, $this->filter_direction);
+        } else {
+            $query->orderBy('updated_at', 'desc');
         }
 
         return $query->paginate(config('table.pagination-numbers'));
@@ -86,7 +88,7 @@ new class extends Component {
         @can('members.create')
             <x-general.add-button
                 class="justify-center md:col-start-4 md:justify-self-end"
-                :location="route('members.create', ['locale' => app()->getLocale()])"
+                :location="route('members.create')"
                 :label="__('pages/members.add-members')"
             />
         @endcan

@@ -97,7 +97,7 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.member-updated'));
 
-        $this->redirectRoute('members.index', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('members.index', navigate: true);
     }
 
     #[On('remove-card')]

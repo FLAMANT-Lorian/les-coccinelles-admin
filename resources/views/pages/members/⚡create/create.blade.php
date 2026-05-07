@@ -3,7 +3,7 @@
     $segments = [
         [
             'label' => __('navigation/navigation.members'),
-            'url' => route('members.index', ['locale' => app()->getLocale()])
+            'url' => route('members.index')
         ],
         [
             'label' => __('pages/members.add-members'),

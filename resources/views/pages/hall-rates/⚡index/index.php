@@ -56,7 +56,7 @@ new class extends Component {
         session()->flash('success', __('flash-messages.hall-rate-created'));
 
 
-        $this->redirectRoute('hall-rates', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('hall-rates', navigate: true);
     }
 
     public function update(): void
@@ -71,6 +71,6 @@ new class extends Component {
 
         session()->flash('success', __('flash-messages.hall-rate-updated'));
 
-        $this->redirectRoute('hall-rates', ['locale' => app()->getLocale()], navigate: true);
+        $this->redirectRoute('hall-rates', navigate: true);
     }
 };

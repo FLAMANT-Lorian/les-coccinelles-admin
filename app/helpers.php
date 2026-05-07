@@ -21,7 +21,7 @@ if (!function_exists('getCorrectRoute')) {
     {
         foreach ($hallRoutes as $hallRoute) {
             if (auth()->user()->can($hallRoute['permission'])) {
-                return route($hallRoute['route'], ['locale' => app()->getLocale()]);
+                return route($hallRoute['route']);
             }
         }
         return null;
