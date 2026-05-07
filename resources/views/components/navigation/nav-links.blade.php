@@ -13,6 +13,10 @@
             'route' => 'utility-costs',
             'permission' => 'utilityCosts.index'
         ],
+        'interventions' => [
+            'route' => 'interventions',
+            'permission' => null
+        ],
     ];
 
     $membersRoutes = [
