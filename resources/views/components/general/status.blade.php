@@ -1,5 +1,5 @@
 @php
-    use App\Enums\MembersStatus;
+    use App\Enums\InterventionStatus;use App\Enums\MembersStatus;
     use App\Enums\MessageStatus;
     use App\Enums\UtilityCostsStatus;
 @endphp
@@ -23,7 +23,9 @@
         UtilityCostsStatus::upToDate->value => 'bg-status-green-light before:bg-status-green',
         UtilityCostsStatus::outOfDate->value => 'bg-status-red-light before:bg-status-red',
 
-
+        // INTERVENTIONS
+        InterventionStatus::todo->value => 'bg-status-blue-light before:bg-status-blue',
+        InterventionStatus::done->value => 'bg-status-green-light before:bg-status-green',
     ];
 
     $classes = $states[(string)$status];
