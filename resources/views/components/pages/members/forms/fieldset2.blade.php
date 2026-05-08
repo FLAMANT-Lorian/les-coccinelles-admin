@@ -1,3 +1,8 @@
+@php
+    use App\Enums\MembersStatus;
+    use App\Enums\Sex;
+    use Spatie\Permission\Models\Role;
+    @endphp
 <fieldset class="col-span-full lg:col-start-4 lg:col-span-9 lg:p-0!">
     <legend>{{ __('pages/members.base') }}</legend>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
@@ -49,17 +54,16 @@
             placeholder="4000"
             :required="true"/>
 
-        <x-forms.input.custom-select-simple
+        <x-forms.input.custom-select-simple-enum
             :collection="$this->getSex"
             :label="__('forms.sex')"
-            :required="false"
-            :enum="true"
-            :translation="true"
-            :term="$this->terms['sex']"
             name="sex"
-            wire="terms.sex"
+            search_wire="terms.sex"
             select_wire="form.sex"
+            :form_property="$this->form->sex"
+            state="sexSelectState"
             field_name="sex"
+            :enum="Sex::class"
         />
 
         <x-forms.input.input-date
@@ -68,32 +72,29 @@
             field_name="birth_date"
             :label="__('forms.birth-date')"/>
 
-        <x-forms.input.custom-select-simple
+        <x-forms.input.custom-select-simple-db
             :collection="$this->getRoles"
             :label="__('forms.role')"
-            :multiple="false"
-            :enum="false"
-            :translation="false"
-            accessor="name"
-            :term="$this->terms['role']"
             name="role"
-            wire="terms.role"
+            search_wire="terms.role"
             select_wire="form.role"
+            :form_property="$this->form->role"
+            state="roleSelectState"
+            :model="Role::class"
             field_name="role"
+            accessor="name"
         />
 
-        <x-forms.input.custom-select-simple
+        <x-forms.input.custom-select-simple-enum
             :collection="$this->getStatus"
             :label="__('forms.status')"
-            :multiple="false"
-            :required="true"
-            :enum="true"
-            :translation="true"
-            :term="$this->terms['status']"
             name="status"
-            wire="terms.status"
+            search_wire="terms.status"
             select_wire="form.status"
+            :form_property="$this->form->status"
+            state="statusSelectState"
             field_name="status"
+            :enum="MembersStatus::class"
         />
 
         <x-forms.input.textarea

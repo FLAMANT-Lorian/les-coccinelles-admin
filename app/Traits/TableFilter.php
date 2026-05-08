@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 
 trait TableFilter

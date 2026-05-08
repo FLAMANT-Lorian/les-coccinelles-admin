@@ -50,5 +50,12 @@ class UserSeeder extends Seeder
         );
 
         $user2->assignRole($role2->name);
+
+        $users = User::factory()->count(20)
+            ->create();
+
+        foreach ($users as $user) {
+            $user->assignRole($role2->name);
+        }
     }
 }

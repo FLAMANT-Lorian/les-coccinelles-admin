@@ -38,4 +38,10 @@ return [
     'member_price' => 'Prix avec carte de membre (€ / jour)',
     'utility_cost' => 'Prix de base (€)',
     'unit' => 'Unité',
+    'intervention' => 'Nom de l’intevrention',
+    'intervention_placeholder' => 'Intervention de ...',
+    'more_information' => 'Explications supplémentaires',
+    'more_information_placeholder' => 'Il faut aussi ...',
+    'assignee' => 'Personne assignée',
+    'deadline' => 'Échéance'
 ];

@@ -18,6 +18,10 @@ new class extends Component {
     public MembersForm $form;
     public User $member;
 
+    public bool $roleSelectState = false;
+    public bool $statusSelectState = false;
+    public bool $sexSelectState = false;
+
     public function mount($member): void
     {
         $this->member = $member;

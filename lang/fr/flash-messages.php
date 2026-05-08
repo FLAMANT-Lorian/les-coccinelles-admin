@@ -35,4 +35,10 @@ return [
     'utility-cost-updated' => 'Le coût a été modifié avec succès !',
     'utility-cost-deleted' => 'Le coût a été supprimé avec succès !',
     'utility-costs-deleted' => 'Les coûts ont été supprimés avec succès !',
+
+    /* INTERVENTIONS */
+    'intervention-created' => 'L’intervention a été créée avec succès !',
+    'intervention-updated' => 'L’intervention a été modifiée avec succès !',
+    'intervention-deleted' => 'L’intervention a été supprimée avec succès !',
+    'interventions-deleted' => 'Les interventions ont été supprimées avec succès !',
 ];

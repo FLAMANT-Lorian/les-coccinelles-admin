@@ -10,6 +10,8 @@ use Livewire\Component;
 new class extends Component {
 
     public UtilityCostsForm $form;
+
+    public bool $statusSelectState = false;
     public array $terms = [
         'status' => ''
     ];

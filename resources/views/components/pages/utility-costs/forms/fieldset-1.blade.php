@@ -1,3 +1,6 @@
+@php
+    use App\Enums\UtilityCostsStatus;
+@endphp
 <fieldset class="grid! rg:grid-cols-2 gap-6! border-b-0!">
     <x-forms.input.input-text
         :label="__('forms.type')"
@@ -8,17 +11,16 @@
         wire="form.type"
     />
 
-    <x-forms.input.custom-select-simple
+    <x-forms.input.custom-select-simple-enum
         :collection="$this->getStatus"
         :label="__('forms.status')"
-        :required="false"
-        :enum="true"
-        :translation="true"
-        :term="$this->terms['status']"
         name="status"
-        wire="terms.status"
+        search_wire="terms.status"
         select_wire="form.status"
+        :form_property="$this->form->status"
+        state="statusSelectState"
         field_name="status"
+        :enum="UtilityCostsStatus::class"
     />
 
     <x-forms.input.input-price

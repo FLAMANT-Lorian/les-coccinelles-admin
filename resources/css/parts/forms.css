@@ -65,7 +65,7 @@ form {
 }
 
 .permissions-container {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 gap-8;
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8;
 
     .permission-card {
         @apply p-4 border border-beige-dark rounded-sm bg-beige-light;

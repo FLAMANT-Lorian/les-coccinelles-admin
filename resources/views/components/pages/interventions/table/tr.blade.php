@@ -22,7 +22,12 @@
     <td>
         <div>
             <span>{{ __('tables.intervention-name') }}&nbsp;:</span>
-            <span>{{ $intervention->name }}</span>
+            <button type="button"
+                    title="{{ __('modals.updateIntervention') }}"
+                    class="underline-link after:bg-brown"
+                    wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})">
+                {{ $intervention->name }}
+            </button>
         </div>
     </td>
     <td>

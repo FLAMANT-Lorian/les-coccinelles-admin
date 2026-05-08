@@ -32,4 +32,9 @@ return [
     'updateUtilityCost' => 'Modifier le coût',
     'deleteUtilityCost' => 'Supprimer le coût',
     'deleteUtilityCostMessage' => 'Êtes-vous sûr de vouloir supprimer ce coût ?',
+    'addIntervention' => 'Ajouter une intervention',
+    'createIntervention' => 'Ajouter l’intervention',
+    'updateIntervention' => 'Modifier l’intervention',
+    'deleteIntervention' => 'Supprimer l’intervention',
+    'deleteInterventionMessage' => 'Êtes-vous sûr de vouloir supprimer cette intervention ?',
 ];

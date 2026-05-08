@@ -2,19 +2,9 @@
 
 namespace App\Livewire\Forms;
 
-use App\Enums\MembersStatus;
-use App\Enums\Sex;
 use App\Models\HallRate;
-use App\Models\User;
-use App\Rules\UniqueRole;
-use App\Traits\CleanLivewireTMPFolder;
-use App\Traits\HandleImages;
 use App\ValueObjects\Money;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Form;
-use Spatie\Permission\Models\Role;
 
 class HallRatesForm extends Form
 {
@@ -35,13 +25,10 @@ class HallRatesForm extends Form
 
     public function setHallRate($hallRate): void
     {
-        $base_price = Money::fromCents($hallRate->base_price)->euros();
-        $member_price = Money::fromCents($hallRate->member_price)->euros();
-
         $this->hallRate = $hallRate;
         $this->type = $hallRate->type;
-        $this->base_price = $base_price;
-        $this->member_price = $member_price;
+        $this->base_price = Money::fromCents($hallRate->base_price)->euros();
+        $this->member_price = Money::fromCents($hallRate->member_price)->euros();
     }
 
     public function update(): void
