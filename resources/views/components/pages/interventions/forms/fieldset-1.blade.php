@@ -1,3 +1,8 @@
+@php
+    use App\Models\User;
+    use App\Enums\InterventionStatus;
+@endphp
+
 <fieldset class="grid! rg:grid-cols-2 gap-6! border-b-0!">
     <x-forms.input.input-text
         class="col-span-full"
@@ -23,28 +28,25 @@
         class="col-span-full"
         :collection="$this->getMembers"
         :label="__('forms.assignee')"
-        :multiple="false"
-        accessor="first_name"
-        :term="$this->terms['assignee']"
         name="assignee"
-        wire="terms.assignee"
+        search_wire="terms.assignee"
         select_wire="form.assignee"
+        :form_property="$this->form->assignee"
+        state="openAssigneeSelectState"
+        :model="User::class"
         field_name="assignee"
         :full_name="true"
     />
-
     <x-forms.input.custom-select-simple
         :collection="$this->getStatus"
         :label="__('forms.status')"
-        :multiple="false"
-        :required="true"
-        :enum="true"
-        :translation="true"
-        :term="$this->terms['status']"
         name="status"
-        wire="terms.status"
+        search_wire="terms.status"
         select_wire="form.status"
+        :form_property="$this->form->status"
+        state="openStatusSelectState"
         field_name="status"
+        :enum="InterventionStatus::class"
     />
 
     <x-forms.input.input-date

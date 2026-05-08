@@ -4,37 +4,19 @@
     'field_name',
     'label',
     'required' => true,
-    'translation' => true,
-    'enum' => true,
-    'accessor' => '',
-    'wire',
-    'select_wire' => ''
+    'search_wire' => '',
+    'select_wire' => '',
+    'form_property',
+    'state',
+    'enum'
 ])
 
 @php
-    $labels = [];
-
-    foreach ($collection as $item) {
-        $val = $enum ? $item->value : $item[$accessor];
-        $labels[$val] = $translation ? __('enums.' . $val) : $val;
-    }
+    $selected_item = null;
 @endphp
 
 <div {{ $attributes->merge(['class' => 'field w-full']) }}
-     x-data="{
-        open: false,
-        labels: @js($labels),
-        value: $wire.entangle('{{ $select_wire }}'),
-
-        toggle(val) {
-            if (this.value === val) {
-                this.value = null
-            } else {
-                this.value = val
-            }
-            this.open = false;
-        }
-     }"
+     x-data="{ open: false }"
      @click.away="open = false; $refs.input.blur();"
      @keydown.window.escape="open = false; $refs.input.blur();">
     <div class="w-full flex flex-col gap-1">
@@ -50,30 +32,33 @@
         <div class="result-container flex rounded-sm flex-row gap-1 flex-wrap cursor-pointer trans-all"
              @click="$refs.input.focus();">
 
-            <template x-if="value">
+            @if($form_property)
+
+                @php
+                    $selected_item = $enum::from($form_property);
+                @endphp
+
                 <button type="button"
-                        class="group cursor-auto! relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown has-[svg:hover]:bg-red text-white rounded flex items-center gap-1 trans-all">
-                    <svg class="cursor-pointer group-hover:text-white"
-                        @click.stop="toggle(value)"
-                         width="16"
+                        wire:click="set('{{ $select_wire }}', null)"
+                        class="group relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown hover:bg-red text-white rounded flex items-center gap-1 trans-all">
+                    <svg width="16"
                          height="16">
                         <use href="#cross-filter"></use>
                     </svg>
-                    <span class="whitespace-nowrap"
-                          x-text="labels[value] ?? value">
+                    <span class="whitespace-nowrap">
+                        {{ __('enums.' . $selected_item->value) }}
                     </span>
                 </button>
-            </template>
+            @endif
 
             <input
-                @if($wire && $wire !== '')
-                    wire:model.live="{{ $wire }}"
+                @if($search_wire && $search_wire !== '')
+                    wire:model.live="{{ $search_wire }}"
                 @endif
                 x-ref="input"
                 @focus="open = true"
-                class=""
-                :class="`${open ? 'rounded-b-none!' : ''} ${value ? 'max-w-35' : ''}`"
-                :placeholder="value ? '{{ __('forms.change-option') }}' : '{{ __('forms.select-option') }}'"
+                :class="open ? 'rounded-b-none!' : ''"
+                placeholder="{{ $selected_item ? __('forms.change-option') : __('forms.select-option') }}"
                 type="text"
                 name="{{ $name }}"
                 id="{{ $field_name }}"
@@ -88,35 +73,34 @@
         </div>
     </div>
 
-    <div class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden max-h-60 overflow-y-scroll"
-         x-transition:enter="transition ease-in-out duration-200"
-         x-transition:enter-start="opacity-0 -translate-y-1"
-         x-transition:enter-end="opacity-100 translate-y-0"
-         x-transition:leave="transition ease-in-out duration-200"
-         x-transition:leave-start="opacity-100 translate-y-0"
-         x-transition:leave-end="opacity-0 -translate-y-1"
-         x-show="open">
+    <div
+        class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden max-h-60 overflow-y-scroll"
+        x-transition:enter="transition ease-in-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-1"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in-out duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-1"
+        x-show="open">
         <div class="flex flex-col divide-y divide-beige-medium shadow-xl">
 
             @if(!empty($collection))
                 @foreach($collection as $item)
-                    @php
-                        $value = $enum ? $item->value : $item[$accessor];
-                    @endphp
                     <button type="button"
-                            class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all"
-                            :class="value === '{{ $value }}' ? 'bg-beige-medium' : ''"
+                            class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all {{ ($select_wire && $form_property == $item->value) ? 'bg-beige-medium' : '' }}"
                             @click="
-                            toggle('{{ $value }}')
-                            open = false;
-                            $refs.input.blur();
+                                open = false;
+                                $refs.input.blur();
                             "
-                            wire:click="$wire.set('{!! $wire !!}', '')">
-
-                    <span>{{ $translation ? __('enums.' . $value) : $value }}
-                        <template x-if="value === '{{ $value }}'">
-                            <span> ({!! __('forms.selected') !!})</span>
-                        </template>
+                            wire:click="
+                                set('{{ $select_wire }}', '{{ $item->value }}')
+                                set('{{ $state }}', false)
+                                set('{{ $search_wire }}', '')
+                            ">
+                    <span>{{ __('enums.' . $item->value) }}
+                        @if($select_wire && $form_property == $item->value)
+                            ({{ __('forms.selected') }})
+                        @endif
                     </span>
                     </button>
                 @endforeach

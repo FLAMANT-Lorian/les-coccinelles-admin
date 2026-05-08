@@ -5,8 +5,6 @@ namespace App\Livewire\Forms;
 use App\Enums\InterventionStatus;
 use App\Models\Intervention;
 use App\Models\User;
-use App\Models\UtilityCost;
-use App\ValueObjects\Money;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
 
@@ -17,7 +15,7 @@ class InterventionsForm extends Form
     public ?string $name = null;
     public ?string $description = null;
     public ?string $status = null;
-    public ?string $assignee = null;
+    public ?int $assignee = null;
     public ?string $deadline = null;
 
     public function rules(): array

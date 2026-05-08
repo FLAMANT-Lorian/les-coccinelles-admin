@@ -5,42 +5,20 @@
     'label',
     'required' => true,
     'accessor' => '',
-    'wire',
+    'search_wire' => '',
     'select_wire' => '',
+    'form_property',
+    'state',
     'full_name' => false,
+    'model',
 ])
 
 @php
-    $labels = [];
-
-    foreach ($collection as $item) {
-        if ($full_name) {
-            $val = $item->$full_name;
-        } else {
-            $val = $item[$accessor];
-        }
-        $labels[$val] = $val;
-    }
+    $selected_item = null;
 @endphp
 
 <div {{ $attributes->merge(['class' => 'field w-full']) }}
-     x-data="{
-        open: false,
-        labels: @js($labels),
-        value: null,
-        id: $wire.entangle('{{ $select_wire }}'),
-
-        toggle(val, id) {
-            if (this.value === val) {
-                this.value = null;
-                this.id = null;
-            } else {
-                this.value = val;
-                this.id = id;
-            }
-            this.open = false;
-        }
-     }"
+     x-data="{ open: false }"
      @click.away="open = false; $refs.input.blur();"
      @keydown.window.escape="open = false; $refs.input.blur();">
     <div class="w-full flex flex-col gap-1">
@@ -56,30 +34,33 @@
         <div class="result-container flex rounded-sm flex-row gap-1 flex-wrap cursor-pointer trans-all"
              @click="$refs.input.focus();">
 
-            <template x-if="value">
+            @if($form_property)
+
+                @php
+                    $selected_item = $model::findOrFail($form_property);
+                @endphp
+
                 <button type="button"
-                        class="group cursor-auto! relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown has-[svg:hover]:bg-red text-white rounded flex items-center gap-1 trans-all">
-                    <svg class="cursor-pointer group-hover:text-white"
-                         @click.stop="toggle(value, id)"
-                         width="16"
+                        wire:click="set('{{ $select_wire }}', null)"
+                        class="group relative mr-2 z-10 text-sm px-2 py-0.5 bg-brown hover:bg-red text-white rounded flex items-center gap-1 trans-all">
+                    <svg width="16"
                          height="16">
                         <use href="#cross-filter"></use>
                     </svg>
-                    <span class="whitespace-nowrap"
-                          x-text="labels[value] ?? value">
+                    <span class="whitespace-nowrap">
+                        {{ $full_name ? $selected_item->full_name : $selected_item[$accessor] }}
                     </span>
                 </button>
-            </template>
+            @endif
 
             <input
-                @if($wire && $wire !== '')
-                    wire:model.live="{{ $wire }}"
+                @if($search_wire && $search_wire !== '')
+                    wire:model.live="{{ $search_wire }}"
                 @endif
                 x-ref="input"
                 @focus="open = true"
-                class=""
-                :class="`${open ? 'rounded-b-none!' : ''} ${value ? 'max-w-35' : ''}`"
-                :placeholder="value ? '{{ __('forms.change-option') }}' : '{{ __('forms.select-option') }}'"
+                :class="open ? 'rounded-b-none!' : ''"
+                placeholder="{{ $selected_item ? __('forms.change-option') : __('forms.select-option') }}"
                 type="text"
                 name="{{ $name }}"
                 id="{{ $field_name }}"
@@ -115,19 +96,20 @@
                         }
                     @endphp
                     <button type="button"
-                            class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all"
-                            :class="value === '{{ $value }}' ? 'bg-beige-medium' : ''"
+                            class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all {{ ($select_wire && $form_property == $item->id) ? 'bg-beige-medium' : '' }}"
                             @click="
-                            toggle('{{ $value }}', '{{ $item->id }}')
-                            open = false;
-                            $refs.input.blur();
+                                open = false;
+                                $refs.input.blur();
                             "
-                            wire:click="$wire.set('{!! $wire !!}', '')">
-
+                            wire:click="
+                                set('{{ $select_wire }}', {{ $item->id }})
+                                set('{{ $state }}', false)
+                                set('{{ $search_wire }}', '')
+                            ">
                     <span>{{ $value }}
-                        <template x-if="value === '{{ $value }}'">
-                            <span> ({!! __('forms.selected') !!})</span>
-                        </template>
+                        @if($select_wire && $form_property == $item->id)
+                            ({{ __('forms.selected') }})
+                        @endif
                     </span>
                     </button>
                 @endforeach

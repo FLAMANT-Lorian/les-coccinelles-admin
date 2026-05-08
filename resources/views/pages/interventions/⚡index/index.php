@@ -3,11 +3,14 @@
 use App\Enums\InterventionStatus;
 use App\Livewire\Forms\InterventionsForm;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 new class extends Component {
+    public bool $openAssigneeSelectState = false;
+    public bool $openStatusSelectState = false;
     public array $terms = [
         'assignee' => '',
         'status' => '',
@@ -39,7 +42,9 @@ new class extends Component {
         $query = User::query();
 
         if (!empty($this->terms['assignee'])) {
-            $query = $query->whereLike('first_name', '%' . $this->terms['assignee'] . '%');
+            $query->where(function (Builder $q) {
+                $q->whereLike('first_name', '%' . $this->terms['assignee'] . '%');
+            });
         }
 
         $members = $query->get();
