@@ -37,7 +37,8 @@
         field_name="assignee"
         :full_name="true"
     />
-    <x-forms.input.custom-select-simple
+
+    <x-forms.input.custom-select-simple-enum
         :collection="$this->getStatus"
         :label="__('forms.status')"
         name="status"

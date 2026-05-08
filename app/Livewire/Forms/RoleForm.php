@@ -13,7 +13,7 @@ class RoleForm extends Form
     use CustomPermissions;
 
     public string $name;
-    public string $unique;
+    public ?string $unique = null;
     public ?Role $role = null;
 
     public function setRole(Role $role): void
@@ -42,6 +42,7 @@ class RoleForm extends Form
     public function update(): void
     {
         $this->updatePermissions();
+
         $this->role->update([
             'name' => $this->name,
             'guard_name' => 'web',

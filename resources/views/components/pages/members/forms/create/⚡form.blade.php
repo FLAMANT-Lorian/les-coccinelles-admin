@@ -16,6 +16,10 @@ new class extends Component {
     use WithFileUploads;
     use CleanLivewireTMPFolder;
 
+    public bool $roleSelectState = false;
+    public bool $statusSelectState = false;
+    public bool $sexSelectState = false;
+
     public MembersForm $form;
 
     public array $terms = [

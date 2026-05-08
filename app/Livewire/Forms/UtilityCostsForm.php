@@ -32,7 +32,7 @@ class UtilityCostsForm extends Form
         $this->utilityCost = $utilityCost;
 
         $this->type = $utilityCost->type;
-        $this->price = $utilityCost->price;
+        $this->price = Money::fromCents($utilityCost->price)->euros();
         $this->status = $utilityCost->status;
         $this->unit = $utilityCost->unit;
     }

@@ -1,3 +1,7 @@
+@php
+    use App\Enums\YesOrNo;
+@endphp
+
 <fieldset>
     <legend>{{ __('pages/roles.role-fieldset-1') }}</legend>
     <div class="grid md:grid-cols-2 gap-y-4 gap-x-8">
@@ -9,17 +13,16 @@
             :placeholder="__('forms.administrator')"
             :required="true"/>
 
-        <x-forms.input.custom-select-simple
+        <x-forms.input.custom-select-simple-enum
             :collection="$this->getYesOrNo"
             :label="__('forms.role-unique')"
-            :required="true"
-            :enum="true"
-            :translation="true"
-            :term="$this->terms['unique']"
             name="unique"
-            wire="terms.unique"
+            search_wire="terms.unique"
             select_wire="form.unique"
+            :form_property="$this->form->unique"
+            state="uniqueSelectState"
             field_name="unique"
+            :enum="YesOrNo::class"
         />
     </div>
 </fieldset>

@@ -19,7 +19,7 @@
      x-data="{ open: false }"
      @click.away="open = false; $refs.input.blur();"
      @keydown.window.escape="open = false; $refs.input.blur();">
-    <div class="w-full flex flex-col gap-1">
+    <div class="relative w-full flex flex-col gap-1">
         <label for="{{ $field_name }}"
                aria-label="{{ $label }}"
                @click="$refs.input.focus();"
@@ -58,6 +58,7 @@
                 x-ref="input"
                 @focus="open = true"
                 :class="open ? 'rounded-b-none!' : ''"
+                class="{{ $selected_item ? 'grow' : '' }}"
                 placeholder="{{ $selected_item ? __('forms.change-option') : __('forms.select-option') }}"
                 type="text"
                 name="{{ $name }}"
@@ -71,28 +72,26 @@
                 <use href="#arrow-pagination"></use>
             </svg>
         </div>
-    </div>
+        <div
+            class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden max-h-60 overflow-y-scroll"
+            x-transition:enter="transition ease-in-out duration-200"
+            x-transition:enter-start="opacity-0 -translate-y-1"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in-out duration-200"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 -translate-y-1"
+            x-show="open">
+            <div class="flex flex-col divide-y divide-beige-medium shadow-xl">
 
-    <div
-        class="custom-select absolute top-[calc(100%+8px)] inset-x-0 z-20 bg-beige-light border border-brown overflow-hidden max-h-60 overflow-y-scroll"
-        x-transition:enter="transition ease-in-out duration-200"
-        x-transition:enter-start="opacity-0 -translate-y-1"
-        x-transition:enter-end="opacity-100 translate-y-0"
-        x-transition:leave="transition ease-in-out duration-200"
-        x-transition:leave-start="opacity-100 translate-y-0"
-        x-transition:leave-end="opacity-0 -translate-y-1"
-        x-show="open">
-        <div class="flex flex-col divide-y divide-beige-medium shadow-xl">
-
-            @if(!empty($collection))
-                @foreach($collection as $item)
-                    <button type="button"
-                            class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all {{ ($select_wire && $form_property == $item->value) ? 'bg-beige-medium' : '' }}"
-                            @click="
+                @if(!empty($collection))
+                    @foreach($collection as $item)
+                        <button type="button"
+                                class="px-4 py-3 text-left flex justify-between hover:bg-beige-medium trans-all {{ ($select_wire && $form_property == $item->value) ? 'bg-beige-medium' : '' }}"
+                                @click="
                                 open = false;
                                 $refs.input.blur();
                             "
-                            wire:click="
+                                wire:click="
                                 set('{{ $select_wire }}', '{{ $item->value }}')
                                 set('{{ $state }}', false)
                                 set('{{ $search_wire }}', '')
@@ -102,11 +101,12 @@
                             ({{ __('forms.selected') }})
                         @endif
                     </span>
-                    </button>
-                @endforeach
-            @else
-                <span class="mx-4 py-2 text-left">{{ __('forms.no_result') }}</span>
-            @endif
+                        </button>
+                    @endforeach
+                @else
+                    <span class="mx-4 py-2 text-left">{{ __('forms.no_result') }}</span>
+                @endif
+            </div>
         </div>
     </div>
 

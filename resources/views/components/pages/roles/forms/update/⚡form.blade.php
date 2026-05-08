@@ -15,6 +15,9 @@ new class extends Component {
     public RoleForm $form;
 
     public Role $role;
+
+    public bool $uniqueSelectState = false;
+
     public array $terms = [
         'unique' => '',
     ];

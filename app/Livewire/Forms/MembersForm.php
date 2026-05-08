@@ -29,8 +29,8 @@ class MembersForm extends Form
     public string $postal_code;
     public string $city;
     public ?string $password = null;
-    public string $role;
-    public string $status;
+    public ?int $role = null;
+    public ?string $status = null;
     public ?string $sex = null;
     public ?string $birth_date = null;
     public ?TemporaryUploadedFile $avatar = null;
@@ -50,7 +50,7 @@ class MembersForm extends Form
         $this->birth_date = $member->birth_date;
         $this->sex = $member->sex;
         $this->status = $member->status;
-        $this->role = $member->roles()->first()->name;
+        $this->role = $member->roles()->first()->id;
     }
 
     public function rules(): array
@@ -71,7 +71,7 @@ class MembersForm extends Form
             'sex' => ['nullable', Rule::enum(Sex::class)],
             'role' => [
                 'required',
-                'exists:roles,name',
+                'exists:roles,id',
                 new UniqueRole($this->member),
             ],
             'status' => ['required', Rule::enum(MembersStatus::class)],
@@ -84,7 +84,7 @@ class MembersForm extends Form
 
     public function update(): void
     {
-        $role = Role::where('name', $this->role)->first();
+        $role = Role::where('id', $this->role)->first();
 
         if (!$role || !$this->member) return;
 
@@ -127,7 +127,7 @@ class MembersForm extends Form
 
     public function save(): void
     {
-        $role = Role::where('name', $this->role)->first();
+        $role = Role::where('id', $this->role)->first();
 
         if (!$role) return;
 
