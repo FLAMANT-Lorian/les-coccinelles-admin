@@ -29,26 +29,41 @@ class InterventionsForm extends Form
         ];
     }
 
-    public function setIntervention($intervention): void
+    public function setIntervention(Intervention $intervention): void
     {
         $this->intervention = $intervention;
+
+        $this->name = $intervention->name;
+        $this->description = $intervention->description;
+        $this->status = $intervention->status;
+        $this->assignee = $intervention->assignee->id ?? null;
+        $this->deadline = $intervention->deadline->format('Y-m-d');
     }
 
     public function update(): void
     {
+        $assignee = User::findOrFail($this->assignee);
 
+        $this->intervention->update([
+            'name' => $this->name,
+            'description' => $this->description,
+            'status' => $this->status,
+            'deadline' => $this->deadline,
+            'created_by' => auth()->user()->id,
+            'assigned_to' => $assignee->id,
+        ]);
     }
 
     public function save(): void
     {
         $assignee = User::findOrFail($this->assignee);
 
-       auth()->user()->createdInterventions()->create([
-           'name' => $this->name,
-           'description' => $this->description,
-           'status' => $this->status,
-           'deadline' => $this->deadline,
-           'assigned_to' => $assignee->id,
-       ]);
+        auth()->user()->createdInterventions()->create([
+            'name' => $this->name,
+            'description' => $this->description,
+            'status' => $this->status,
+            'deadline' => $this->deadline,
+            'assigned_to' => $assignee->id,
+        ]);
     }
 }
