@@ -162,10 +162,4 @@ class MembersForm extends Form
 
         $this->cleanLivewireTMPFolder();
     }
-
-
-    public function deleteMember(): void
-    {
-        $this->member->delete();
-    }
 }
