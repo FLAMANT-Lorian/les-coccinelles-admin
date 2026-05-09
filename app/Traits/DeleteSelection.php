@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Enums\MessageStatus;
 use App\Models\AvailabilityRequest;
 use App\Models\HallRate;
+use App\Models\Intervention;
 use App\Models\Message;
 use App\Models\User;
 use App\Models\UtilityCost;
@@ -149,5 +150,21 @@ trait DeleteSelection
         session()->flash('success', __('flash-messages.utility-costs-deleted'));
 
         $this->redirectRoute('utility-costs', navigate: true);
+    }
+
+    #[On('deleteInterventions')]
+    public function deleteInterventions(): void
+    {
+        $interventions = Intervention::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($interventions as $intervention) {
+            $intervention->delete();
+        }
+
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.interventions-deleted'));
+
+        $this->redirectRoute('interventions', navigate: true);
     }
 }

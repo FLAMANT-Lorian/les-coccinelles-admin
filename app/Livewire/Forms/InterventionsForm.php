@@ -22,7 +22,7 @@ class InterventionsForm extends Form
     {
         return [
             'name' => 'required',
-            'description' => 'required',
+            'description' => '',
             'assignee' => 'required|exists:users,id',
             'status' => ['required', Rule::enum(InterventionStatus::class)],
             'deadline' => 'required|date',
