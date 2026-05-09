@@ -15,8 +15,6 @@ use function Pest\Laravel\assertDatabaseHas;
 
 describe('UTILITY COST WITH PERMISSIONS', function () {
     beforeEach(function () {
-        LaravelLocalization::setLocale('fr');
-
         $this->role = Role::create([
             'name' => 'member',
             'guard_name' => 'web',
@@ -125,7 +123,6 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
             'name' => 'utilityCosts.index',
             'guard_name' => 'web',
         ]);
-        LaravelLocalization::setLocale('fr');
 
         $role = Role::create([
             'name' => 'member',
@@ -173,7 +170,7 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
             ->set('form.price', 10)
             ->set('form.status', UtilityCostsStatus::upToDate)
             ->set('form.unit', 'litre')
-            ->call('save')
+            ->call('update')
             ->assertForbidden();
 
         assertDatabaseHas('utility_costs', [
