@@ -35,5 +35,10 @@
         <x-widgets.modals.interventions.create-intervention/>
     @elseif($this->openUpdateModal)
         <x-widgets.modals.interventions.update-intervention/>
+    @elseif($this->openDeleteModal)
+        <x-widgets.modals.interventions.delete-intervention/>
+    @elseif($this->openDeleteSelectionModal)
+        <x-widgets.modals.selection.delete-selection
+            action="deleteInterventions"/>
     @endif
 </div>

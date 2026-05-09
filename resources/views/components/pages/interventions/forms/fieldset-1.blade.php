@@ -14,16 +14,6 @@
         wire="form.name"
     />
 
-    <x-forms.input.textarea
-        wire="form.description"
-        class="col-span-full"
-        textarea_class="min-h-40!"
-        name="description"
-        field_name="description"
-        :label="__('forms.more_information')"
-        :placeholder="__('forms.more_information')"
-        :required="true"/>
-
     <x-forms.input.custom-select-simple-db
         class="col-span-full"
         :collection="$this->getMembers"
@@ -55,5 +45,15 @@
         name="deadline"
         field_name="deadline"
         :label="__('forms.deadline')"/>
+
+    <x-forms.input.textarea
+        wire="form.description"
+        class="col-span-full"
+        textarea_class="min-h-40!"
+        name="description"
+        field_name="description"
+        :label="__('forms.more_information')"
+        :placeholder="__('forms.more_information')"
+    />
 
 </fieldset>

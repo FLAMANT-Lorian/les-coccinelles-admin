@@ -89,15 +89,27 @@
             </button>
             {{--@canany()--}}
             <div x-show="open" x-transition class="actions-table">
-                <button type="button">
+                <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
+                        title="{{ __('pages/hall.interventions.update-intervention') }}">
                     <span>{{ __('tables.update') }}</span>
+                </button>
+                <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'openDeleteModal', id: {{ $intervention->id }}})"
+                        title="{{ __('pages/hall.interventions.delete-intervention') }}">
+                    <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
             {{--@endcanany--}}
 
             {{--ACTION MOBILES --}}
             <div class="actions-mobile">
-
+                <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
+                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                        title="{{ __('pages/hall.interventions.update-intervention') }}">
+                    <span>{{ __('pages/hall.interventions.update-intervention') }}</span>
+                </button>
             </div>
         </div>
     </td>
