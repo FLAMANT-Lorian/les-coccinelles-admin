@@ -12,7 +12,7 @@ class InterventionPolicy
 
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->can('interventions.index');
     }
 
     public function view(User $user, Intervention $intervention): bool
@@ -22,17 +22,17 @@ class InterventionPolicy
 
     public function create(User $user): bool
     {
-        return false;
+        return $user->can('interventions.create');
     }
 
-    public function update(User $user, Intervention $intervention): bool
+    public function update(User $user): bool
     {
-        return false;
+        return $user->can('interventions.update');
     }
 
-    public function delete(User $user, Intervention $intervention): bool
+    public function delete(User $user): bool
     {
-        return false;
+        return $user->can('interventions.delete');
     }
 
     public function restore(User $user, Intervention $intervention): bool

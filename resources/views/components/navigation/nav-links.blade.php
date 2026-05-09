@@ -15,7 +15,7 @@
         ],
         'interventions' => [
             'route' => 'interventions',
-            'permission' => null
+            'permission' => 'interventions.index'
         ],
     ];
 
