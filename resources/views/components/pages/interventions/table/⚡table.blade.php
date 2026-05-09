@@ -107,11 +107,13 @@ new class extends Component {
             :enum="true"
         />
 
-        <button type="button"
-                wire:click="$dispatch('open-modal', 'openCreateModal')"
-                class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
-            {{ __('pages/hall.interventions.add-intervention') }}
-        </button>
+        @can('interventions.create')
+            <button type="button"
+                    wire:click="$dispatch('open-modal', 'openCreateModal')"
+                    class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
+                {{ __('pages/hall.interventions.add-intervention') }}
+            </button>
+        @endcan
     </div>
 
     <x-general.selected-column
@@ -121,7 +123,7 @@ new class extends Component {
             'markAsToDo' => true,
             'markAsDone' => true,
         ]"
-        :deletePermission="null"
+        deletePermission="interventions.delete"
     />
 
     @if($this->getInterventions->isNotEmpty())

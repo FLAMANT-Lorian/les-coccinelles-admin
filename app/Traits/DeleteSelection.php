@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Enums\MessageStatus;
 use App\Models\AvailabilityRequest;
 use App\Models\HallRate;
 use App\Models\Intervention;
@@ -155,6 +154,8 @@ trait DeleteSelection
     #[On('deleteInterventions')]
     public function deleteInterventions(): void
     {
+        $this->authorize('delete', Intervention::class);
+
         $interventions = Intervention::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($interventions as $intervention) {

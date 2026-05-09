@@ -91,6 +91,8 @@ new class extends Component {
 
     public function save(): void
     {
+        $this->authorize('create', Intervention::class);
+
         $this->form->validate();
 
         $this->form->save();
@@ -102,6 +104,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Intervention::class);
+
         $this->form->validate();
 
         $this->form->update();
@@ -114,6 +118,8 @@ new class extends Component {
     #[On('delete-intervention')]
     public function deleteIntervention(): void
     {
+        $this->authorize('delete', Intervention::class);
+
         $this->intervention->delete();
 
         session()->flash('success', __('flash-messages.intervention-deleted'));

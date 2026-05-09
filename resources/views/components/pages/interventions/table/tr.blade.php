@@ -22,12 +22,16 @@
     <td>
         <div>
             <span>{{ __('tables.intervention-name') }}&nbsp;:</span>
-            <button type="button"
-                    title="{{ __('modals.updateIntervention') }}"
-                    class="underline-link after:bg-brown"
-                    wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})">
-                {{ $intervention->name }}
-            </button>
+            @can('interventions.update')
+                <button type="button"
+                        title="{{ __('modals.updateIntervention') }}"
+                        class="underline-link after:bg-brown"
+                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})">
+                    {{ $intervention->name }}
+                </button>
+            @else
+                <span>{{ $intervention->name }}</span>
+            @endcan
         </div>
     </td>
     <td>
@@ -40,13 +44,17 @@
         <div>
             <span>{{ __('tables.creator') }}&nbsp;:</span>
             @if($intervention->creator)
-                <a href="{{ route('members.update', ['member' => $intervention->creator->id]) }}"
-                   class="underline-link after:bg-brown"
-                   wire:navigate
-                   title="{{ __('pages/members.update-members') }}"
-                   aria-label="{{ $intervention->creator->full_name }}">
+                @can('members.update')
+                    <a href="{{ route('members.update', ['member' => $intervention->creator->id]) }}"
+                       class="underline-link after:bg-brown"
+                       wire:navigate
+                       title="{{ __('pages/members.update-members') }}"
+                       aria-label="{{ $intervention->creator->full_name }}">
+                        <span>{{ $intervention->creator->full_name }}</span>
+                    </a>
+                @else
                     <span>{{ $intervention->creator->full_name }}</span>
-                </a>
+                @endcan
             @else
                 <span>–</span>
             @endif
@@ -56,13 +64,17 @@
         <div>
             <span>{{ __('tables.assignee') }}&nbsp;:</span>
             @if($intervention->assignee)
-                <a href="{{ route('members.update', ['member' => $intervention->assignee->id]) }}"
-                   class="underline-link after:bg-brown"
-                   wire:navigate
-                   title="{{ __('pages/members.update-members') }}"
-                   aria-label="{{ $intervention->assignee->full_name }}">
+                @can('members.update')
+                    <a href="{{ route('members.update', ['member' => $intervention->assignee->id]) }}"
+                       class="underline-link after:bg-brown"
+                       wire:navigate
+                       title="{{ __('pages/members.update-members') }}"
+                       aria-label="{{ $intervention->assignee->full_name }}">
+                        <span>{{ $intervention->assignee->full_name }}</span>
+                    </a>
+                @else
                     <span>{{ $intervention->assignee->full_name }}</span>
-                </a>
+                @endcan
             @else
                 <span>–</span>
             @endif
@@ -87,30 +99,36 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            {{--@canany()--}}
-            <div x-show="open" x-transition class="actions-table">
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
-                        title="{{ __('pages/hall.interventions.update-intervention') }}">
-                    <span>{{ __('tables.update') }}</span>
-                </button>
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'openDeleteModal', id: {{ $intervention->id }}})"
-                        title="{{ __('pages/hall.interventions.delete-intervention') }}">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
-            {{--@endcanany--}}
+            @canany(['interventions.update', 'interventions.delete'])
+                <div x-show="open" x-transition class="actions-table">
+                    @can('interventions.update')
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
+                                title="{{ __('pages/hall.interventions.update-intervention') }}">
+                            <span>{{ __('tables.update') }}</span>
+                        </button>
+                    @endcan
+                    @can('interventions.delete')
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', {modal: 'openDeleteModal', id: {{ $intervention->id }}})"
+                                title="{{ __('pages/hall.interventions.delete-intervention') }}">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcanany
 
             {{--ACTION MOBILES --}}
-            <div class="actions-mobile">
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        title="{{ __('pages/hall.interventions.update-intervention') }}">
-                    <span>{{ __('pages/hall.interventions.update-intervention') }}</span>
-                </button>
-            </div>
+            @can('interventions.update')
+                <div class="actions-mobile">
+                    <button type="button"
+                            wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
+                            class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            title="{{ __('pages/hall.interventions.update-intervention') }}">
+                        <span>{{ __('pages/hall.interventions.update-intervention') }}</span>
+                    </button>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

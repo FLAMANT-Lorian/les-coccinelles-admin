@@ -16,4 +16,5 @@ Route::livewire(LaravelLocalization::transRoute('routes.utility-costs'), 'pages:
     ->name('utility-costs');
 
 Route::livewire(LaravelLocalization::transRoute('routes.interventions'), 'pages::interventions.index')
+    ->middleware('can:interventions.index')
     ->name('interventions');

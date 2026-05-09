@@ -19,7 +19,7 @@ $tabs = [
     [
         'label' => __('navigation/navigation.interventions'),
         'location' => LaravelLocalization::localizeURL(route('interventions')),
-        'permission' => null
+        'permission' => 'interventions.index'
     ],
 ];
 
