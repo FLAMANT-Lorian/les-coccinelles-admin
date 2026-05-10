@@ -27,7 +27,7 @@
         <x-tabs.hall-tabs/>
 
         {{-- TABLE --}}
-
+        <livewire:pages.contacts.table.table/>
     </div>
 
     {{-- MODALS --}}
