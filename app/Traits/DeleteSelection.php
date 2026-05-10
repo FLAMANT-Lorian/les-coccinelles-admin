@@ -173,6 +173,8 @@ trait DeleteSelection
     #[On('deleteContacts')]
     public function deleteContacts(): void
     {
+        $this->authorize('delete', Contact::class);
+
         $contacts = Contact::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($contacts as $contact) {
