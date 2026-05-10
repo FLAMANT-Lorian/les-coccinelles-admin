@@ -26,6 +26,7 @@ return [
     'role' => 'Rôle',
     'status' => 'Statut',
     'address' => 'Adresse',
+    'address_placeholder' => 'Rue du ...',
     'sex' => 'Sexe',
     'birth-date' => 'Date de naissance',
     'identity-documents' => 'Documents d’identité',
@@ -43,5 +44,6 @@ return [
     'more_information' => 'Explications supplémentaires',
     'more_information_placeholder' => 'Il faut aussi ...',
     'assignee' => 'Personne assignée',
-    'deadline' => 'Échéance'
+    'deadline' => 'Échéance',
+    'member_card' => 'Carte de membre',
 ];

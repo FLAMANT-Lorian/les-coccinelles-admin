@@ -1,6 +1,12 @@
-@php use App\Enums\MessageStatus; @endphp
+@php
+    use App\Enums\MessageStatus;
+    use App\Models\User;
+    /**
+     * @var User $member;
+     */
+@endphp
 @props([
-    'member' => User::class,
+    'member',
 ])
 
 <tr x-data="{ open: false }"
@@ -45,7 +51,11 @@
     <td>
         <div>
             <span>{{ __('tables.phone') }}&nbsp;:</span>
-            <span>{{ $member->phone }}</span>
+            <a class="underline-link after:bg-brown"
+               href="tel:{{ $member->phone }}"
+               aria-label="{{ $member->phone }}"
+               title="{{ __('tables.phone-to') . $member->phone }}"
+            >{{ $member->phone }}</a>
         </div>
     </td>
     <td>

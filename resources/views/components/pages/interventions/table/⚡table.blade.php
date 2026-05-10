@@ -75,7 +75,7 @@ new class extends Component {
         if (!empty($this->filter_term)) {
             return array_filter($cases, function ($case) {
                 return str_contains(
-                    strtolower($case->value),
+                    strtolower(__('enums.' . $case->value)),
                     strtolower($this->filter_term)
                 );
             });

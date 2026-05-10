@@ -41,4 +41,10 @@ return [
     'intervention-updated' => 'L’intervention a été modifiée avec succès !',
     'intervention-deleted' => 'L’intervention a été supprimée avec succès !',
     'interventions-deleted' => 'Les interventions ont été supprimées avec succès !',
+
+    /* CONTACTS */
+    'contact-created' => 'Le contact a été créé avec succès !',
+    'contact-updated' => 'Le contact a été modifié avec succès !',
+    'contact-deleted' => 'Le contact a été supprimé avec succès !',
+    'contacts-deleted' => 'Les contacts ont été supprimés avec succès !',
 ];

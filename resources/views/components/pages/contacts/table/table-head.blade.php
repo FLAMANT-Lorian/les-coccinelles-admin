@@ -1,5 +1,5 @@
 <thead>
-    <tr x-data="{ name: 'middle', email: 'middle', phone: 'middle' }">
+    <tr x-data="{ name: 'middle', email: 'middle' }">
         <th>
             <div class="flex items-center justify-center">
                 <input :checked="$wire.selectedColumn.length > 0"
@@ -28,15 +28,12 @@
             <button type="button" class="flex items-center gap-2" @click="
             if (name === 'middle') {
                     email = 'middle';
-                    phone = 'middle';
                     name = 'desc'
                 } else if (name === 'desc') {
                      email = 'middle';
-                    phone = 'middle';
                     name = 'asc'
                 } else if (name === 'asc') {
                      email = 'middle';
-                    phone = 'middle';
                     name = 'middle'
                 }
                 $wire.sortBy('first_name', name)">
@@ -56,15 +53,12 @@
             <button type="button" class="flex items-center gap-2" @click="
             if (email === 'middle') {
                     name = 'middle';
-                    phone = 'middle';
                     email = 'desc'
                 } else if (email === 'desc') {
                      name = 'middle';
-                    phone = 'middle';
                     email = 'asc'
                 } else if (email === 'asc') {
                      name = 'middle';
-                    phone = 'middle';
                     email = 'middle'
                 }
                 $wire.sortBy('email', email)">
@@ -80,31 +74,7 @@
             </button>
         </th>
         <th>
-            <button type="button" class="flex items-center gap-2"  @click="
-            if (phone === 'middle') {
-                    email = 'middle';
-                    name = 'middle';
-                    phone = 'desc'
-                } else if (phone === 'desc') {
-                     email = 'middle';
-                    name = 'middle';
-                    phone = 'asc'
-                } else if (phone === 'asc') {
-                     email = 'middle';
-                    name = 'middle';
-                    phone = 'middle'
-                }
-                $wire.sortBy('telephone', phone)">
-                <span>{{ __('tables.phone') }}</span>
-                <svg :class="{
-                            'rotate-0': phone === 'desc',
-                            '-rotate-180': phone === 'asc',
-                            '-rotate-90': phone === 'middle'
-                         }"
-                     class="trans-all" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <use href="#th-filter-arrow"></use>
-                </svg>
-            </button>
+            <span>{{ __('tables.phone') }}</span>
         </th>
         <th>
             <span>{{ __('tables.member_card') }}</span>

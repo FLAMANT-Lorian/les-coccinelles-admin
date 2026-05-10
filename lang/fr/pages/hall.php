@@ -28,5 +28,8 @@ return [
     'contacts' => [
         'heading' => 'Contacts',
         'subtitle' => 'Gérez les différents contacts',
+        'add-contact' => 'Ajouter un contact',
+        'update-contact' => 'Modifier le contact',
+        'delete-contact' => 'Supprimer le contact',
     ],
 ];

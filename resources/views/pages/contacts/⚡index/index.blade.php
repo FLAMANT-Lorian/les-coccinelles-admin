@@ -31,5 +31,9 @@
     </div>
 
     {{-- MODALS --}}
-
+    @if($this->openCreateModal)
+        <x-widgets.modals.contacts.create-contact/>
+    @elseif($this->openUpdateModal)
+        <x-widgets.modals.contacts.update-contact/>
+    @endif
 </div>
