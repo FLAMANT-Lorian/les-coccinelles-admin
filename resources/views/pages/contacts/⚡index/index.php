@@ -19,7 +19,10 @@ new class extends Component {
 
     public bool $openCreateModal = false;
     public bool $openUpdateModal = false;
-    public Contact $contact;
+    public bool $openDeleteModal = false;
+    public bool $deleteSelectionModal = false;
+
+    public ?Contact $contact = null;
 
     #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
@@ -33,6 +36,10 @@ new class extends Component {
         } elseif ($modal === 'openUpdateModal') {
             $this->form->setContact($this->contact);
             $this->openUpdateModal = true;
+        } elseif ($modal === 'openDeleteModal') {
+            $this->openDeleteModal = true;
+        } elseif ($modal === 'deleteSelection') {
+            $this->deleteSelectionModal = true;
         }
     }
 
@@ -44,6 +51,8 @@ new class extends Component {
 
         $this->openCreateModal = false;
         $this->openUpdateModal = false;
+        $this->openDeleteModal = true;
+        $this->deleteSelectionModal = false;
     }
 
     #[Computed]
@@ -80,6 +89,18 @@ new class extends Component {
         $this->form->update();
 
         session()->flash('success', __('flash-messages.contact-updated'));
+
+        $this->redirectRoute('contacts', navigate: true);
+    }
+
+    #[On('delete-contact')]
+    public function delete(): void
+    {
+        $this->contact->delete();
+
+        session()->flash('success', __('flash-messages.contact-deleted'));
+
+        $this->contact = null;
 
         $this->redirectRoute('contacts', navigate: true);
     }
