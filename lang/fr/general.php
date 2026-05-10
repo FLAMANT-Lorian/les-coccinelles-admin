@@ -18,6 +18,7 @@
          'hallRates' => 'Tarifs de la salle',
          'utilityCosts' => 'Coûts des charges',
          'interventions' => 'Interventions',
+         'contacts' => 'Contacts'
      ],
      'all' => 'Tout',
      'see_table' => 'Voir le tableau',

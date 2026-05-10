@@ -8,5 +8,6 @@
         <x-pages.roles.forms.permissions.hallRates/>
         <x-pages.roles.forms.permissions.utilityCosts/>
         <x-pages.roles.forms.permissions.interventions/>
+        <x-pages.roles.forms.permissions.contacts/>
     </div>
 </fieldset>

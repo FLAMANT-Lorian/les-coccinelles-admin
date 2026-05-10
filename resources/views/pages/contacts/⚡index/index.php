@@ -73,6 +73,8 @@ new class extends Component {
 
     public function save(): void
     {
+        $this->authorize('create', Contact::class);
+
         $this->form->validate();
 
         $this->form->save();
@@ -84,6 +86,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Contact::class);
+
         $this->form->validate();
 
         $this->form->update();
@@ -96,6 +100,8 @@ new class extends Component {
     #[On('delete-contact')]
     public function delete(): void
     {
+        $this->authorize('delete', Contact::class);
+
         $this->contact->delete();
 
         session()->flash('success', __('flash-messages.contact-deleted'));

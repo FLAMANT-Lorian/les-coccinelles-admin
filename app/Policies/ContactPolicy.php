@@ -12,7 +12,7 @@ class ContactPolicy
 
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->can('contacts.index');
     }
 
     public function view(User $user, Contact $contact): bool
@@ -22,17 +22,17 @@ class ContactPolicy
 
     public function create(User $user): bool
     {
-        return false;
+        return $user->can('contacts.create');
     }
 
-    public function update(User $user, Contact $contact): bool
+    public function update(User $user): bool
     {
-        return false;
+        return $user->can('contacts.update');
     }
 
-    public function delete(User $user, Contact $contact): bool
+    public function delete(User $user): bool
     {
-        return false;
+        return $user->can('contacts.delete');
     }
 
     public function restore(User $user, Contact $contact): bool

@@ -19,7 +19,7 @@
         ],
         'contacts' => [
             'route' => 'contacts',
-            'permission' => null
+            'permission' => 'contacts.index'
         ],
     ];
 

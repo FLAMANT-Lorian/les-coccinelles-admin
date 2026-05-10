@@ -20,5 +20,6 @@ Route::livewire(LaravelLocalization::transRoute('routes.interventions'), 'pages:
     ->name('interventions');
 
 Route::livewire(LaravelLocalization::transRoute('routes.contacts'), 'pages::contacts.index')
+    ->middleware('can:contacts.index')
     ->name('contacts');
 

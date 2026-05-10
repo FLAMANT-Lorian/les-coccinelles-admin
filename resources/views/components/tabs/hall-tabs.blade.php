@@ -24,7 +24,7 @@ $tabs = [
     [
         'label' => __('navigation/navigation.contacts'),
         'location' => LaravelLocalization::localizeURL(route('contacts')),
-        'permission' => null
+        'permission' => 'contacts.index'
     ],
 ];
 

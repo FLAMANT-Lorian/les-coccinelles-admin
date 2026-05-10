@@ -24,11 +24,15 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            <button type="button"
-                    wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}})"
-                    class="underline-link after:bg-brown">
+            @can('contacts.update')
+                <button type="button"
+                        wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}})"
+                        class="underline-link after:bg-brown">
+                    <span>{{ $contact->full_name }}</span>
+                </button>
+            @else
                 <span>{{ $contact->full_name }}</span>
-            </button>
+            @endcan
         </div>
     </td>
     <td>
@@ -70,30 +74,36 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            {{--@canany()--}}
-            <div x-show="open" x-transition class="actions-table">
-                <button type="button"
-                        title="{{ __('pages/hall.contacts.update-contact') }}"
-                        wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
-                    <span>{{ __('tables.update') }}</span>
-                </button>
-                <button type="button"
-                        title="{{ __('pages/hall.contacts.delete-contact') }}"
-                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
-            {{--@endcan--}}
+            @canany(['contacts.update', 'contacts.delete'])
+                <div x-show="open" x-transition class="actions-table">
+                    @can('contacts.update')
+                        <button type="button"
+                                title="{{ __('pages/hall.contacts.update-contact') }}"
+                                wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
+                            <span>{{ __('tables.update') }}</span>
+                        </button>
+                    @endcan
+                    @can('contacts.delete')
+                        <button type="button"
+                                title="{{ __('pages/hall.contacts.delete-contact') }}"
+                                wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcan
 
             {{-- ACTION MOBILES --}}
-            <div class="actions-mobile">
-                <button type="button"
-                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"
-                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        title="{{ __('pages/hall.contacts.update-contact') }}">
-                    <span>{{ __('pages/hall.contacts.update-contact') }}</span>
-                </button>
-            </div>
+            @can('contacts.update')
+                <div class="actions-mobile">
+                    <button type="button"
+                            wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"
+                            class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            title="{{ __('pages/hall.contacts.update-contact') }}">
+                        <span>{{ __('pages/hall.contacts.update-contact') }}</span>
+                    </button>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>
