@@ -47,6 +47,12 @@ trait CustomPermissions
             'create' => false,
             'update' => false,
             'delete' => false,
+        ],
+        'contacts' => [
+            'index' => false,
+            'create' => false,
+            'update' => false,
+            'delete' => false,
         ]
     ];
 
