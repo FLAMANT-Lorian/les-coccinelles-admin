@@ -37,4 +37,9 @@ return [
     'updateIntervention' => 'Modifier l’intervention',
     'deleteIntervention' => 'Supprimer l’intervention',
     'deleteInterventionMessage' => 'Êtes-vous sûr de vouloir supprimer cette intervention ?',
+    'addContact' => 'Ajouter un contact',
+    'createContact' => 'Ajouter le contact',
+    'updateContact' => 'Modifier le contact',
+    'deleteContact' => 'Supprimer le contact',
+    'deleteContactMessage' => 'Êtes-vous sûr de vouloir supprimer ce contact ?',
 ];
