@@ -17,6 +17,10 @@
             'route' => 'interventions',
             'permission' => 'interventions.index'
         ],
+        'contacts' => [
+            'route' => 'contacts',
+            'permission' => null
+        ],
     ];
 
     $membersRoutes = [

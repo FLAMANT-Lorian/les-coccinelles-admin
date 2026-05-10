@@ -11,6 +11,7 @@ return [
     'hall-rates' => 'Tarifs de la salle',
     'utility-costs' => 'Coûts des charges',
     'interventions' => 'Interventions',
+    'contacts' => 'Contacts',
     'messages' => 'Messages',
     'members' => 'Membres',
     'roles' => 'Rôles',

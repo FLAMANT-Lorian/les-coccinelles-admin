@@ -12,4 +12,5 @@ return [
     'roles' => 'members/roles',
     'roles-create' => 'members/roles/create',
     'roles-edit' => 'members/roles/{role}/update',
+    'contacts' => 'contacts',
 ];
