@@ -21,6 +21,11 @@ $tabs = [
         'location' => LaravelLocalization::localizeURL(route('interventions')),
         'permission' => 'interventions.index'
     ],
+    [
+        'label' => __('navigation/navigation.contacts'),
+        'location' => LaravelLocalization::localizeURL(route('contacts')),
+        'permission' => null
+    ],
 ];
 
 ?>

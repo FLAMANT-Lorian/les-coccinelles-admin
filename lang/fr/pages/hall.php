@@ -25,4 +25,8 @@ return [
         'update-intervention' => 'Modifier l’intervention',
         'delete-intervention' => 'Supprimer l’intervention',
     ],
+    'contacts' => [
+        'heading' => 'Contacts',
+        'subtitle' => 'Gérez les différents contacts',
+    ],
 ];
