@@ -24,7 +24,11 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            <span>{{ $contact->full_name }}</span>
+            <button type="button"
+                    wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}})"
+                    class="underline-link after:bg-brown">
+                <span>{{ $contact->full_name }}</span>
+            </button>
         </div>
     </td>
     <td>

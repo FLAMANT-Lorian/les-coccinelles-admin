@@ -2,6 +2,7 @@
 
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\ContactsForm;
+use App\Models\Contact;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -17,19 +18,32 @@ new class extends Component {
     ];
 
     public bool $openCreateModal = false;
+    public bool $openUpdateModal = false;
+    public Contact $contact;
 
     #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
     {
+        if ($id) {
+            $this->contact = Contact::findOrFail($id);
+        }
+
         if ($modal === 'openCreateModal') {
             $this->openCreateModal = true;
+        } elseif ($modal === 'openUpdateModal') {
+            $this->form->setContact($this->contact);
+            $this->openUpdateModal = true;
         }
     }
 
     #[On('close-modal')]
     public function closeModal(): void
     {
+        $this->form->reset();
+        $this->resetErrorBag();
+
         $this->openCreateModal = false;
+        $this->openUpdateModal = false;
     }
 
     #[Computed]
@@ -55,6 +69,17 @@ new class extends Component {
         $this->form->save();
 
         session()->flash('success', __('flash-messages.contact-created'));
+
+        $this->redirectRoute('contacts', navigate: true);
+    }
+
+    public function update(): void
+    {
+        $this->form->validate();
+
+        $this->form->update();
+
+        session()->flash('success', __('flash-messages.contact-updated'));
 
         $this->redirectRoute('contacts', navigate: true);
     }
