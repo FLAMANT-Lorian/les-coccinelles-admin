@@ -87,7 +87,12 @@
 
             {{-- ACTION MOBILES --}}
             <div class="actions-mobile">
-
+                <button type="button"
+                        wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"
+                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                        title="{{ __('pages/hall.contacts.update-contact') }}">
+                    <span>{{ __('pages/hall.contacts.update-contact') }}</span>
+                </button>
             </div>
         </div>
     </td>
