@@ -2,6 +2,7 @@
 
 
 use App\Enums\InterventionStatus;
+use App\Enums\MemberCardStatus;
 use App\Enums\MembersStatus;
 use App\Enums\MessageStatus;
 use App\Enums\RoleMode;
@@ -39,4 +40,8 @@ return [
     // InterventionStatus
     InterventionStatus::todo->value => 'À faire',
     InterventionStatus::done->value => 'Terminée',
+
+    // Member card
+    MemberCardStatus::WITH_MEMBER_CARD->value => 'Avec carte',
+    MemberCardStatus::WITHOUT_MEMBER_CARD->value => 'Sans carte',
 ];

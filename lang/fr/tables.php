@@ -10,6 +10,7 @@ return [
     'previous' => 'Précédent',
     'next' => 'Suivant',
     'send-email-to' => 'Envoyer un mail à ',
+    'phone-to' => 'Téléphone à ',
     'fast-actions' => 'Actions rapides',
     'filter' => 'Filtrer les éléments',
     'multiple-selected' => 'éléments sélectionnés',
@@ -39,4 +40,5 @@ return [
     'creator' => 'Créateur',
     'assignee' => 'Assigné',
     'intervention-name' => 'Nom de l’intervention',
+    'member_card' => 'Carte de membre'
 ];
