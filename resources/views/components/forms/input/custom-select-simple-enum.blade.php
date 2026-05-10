@@ -35,7 +35,7 @@
             @if($form_property)
 
                 @php
-                    $selected_item = $enum::from($form_property);
+                    $selected_item = $enum::tryFrom($form_property) ?? $enum::cases()[0];
                 @endphp
 
                 <button type="button"

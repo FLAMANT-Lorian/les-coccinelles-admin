@@ -140,7 +140,7 @@ return [
     'prohibited_unless' => 'Le champ :attribute est interdit sauf si :other est dans :values.',
     'prohibits' => 'Le champ :attribute empêche la présence de :other.',
     'regex' => 'Le format du champ :attribute est invalide.',
-    'required' => 'Le champ :attribute est obligatoire.',
+    'required' => 'Ce champ est obligatoire.',
     'required_array_keys' => 'Le champ :attribute doit contenir des entrées pour : :values.',
     'required_if' => 'Le champ :attribute est obligatoire lorsque :other est :value.',
     'required_if_accepted' => 'Le champ :attribute est obligatoire lorsque :other est accepté.',
@@ -213,5 +213,13 @@ return [
         'type' => 'type',
         'base_price' => 'prix de base',
         'member_price' => 'prix avec carte de membre',
+        'member_card' => 'carte de membre',
+        'deadline' => 'échéance',
+        'assignee' => 'personne assignée',
+        'intervention' => 'nom de l’intervention',
+        'name' => 'nom',
+        'status' => 'statut',
+        'price' => 'prix',
+        'unit' => 'unité'
     ],
 ];
