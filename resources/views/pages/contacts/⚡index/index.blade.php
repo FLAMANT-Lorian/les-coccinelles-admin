@@ -35,5 +35,10 @@
         <x-widgets.modals.contacts.create-contact/>
     @elseif($this->openUpdateModal)
         <x-widgets.modals.contacts.update-contact/>
+    @elseif($this->openDeleteModal)
+        <x-widgets.modals.contacts.delete-contact/>
+    @elseif($this->deleteSelectionModal)
+        <x-widgets.modals.selection.delete-selection
+            action="deleteContacts"/>
     @endif
 </div>

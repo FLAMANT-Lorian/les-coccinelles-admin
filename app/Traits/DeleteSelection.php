@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\AvailabilityRequest;
+use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\Intervention;
 use App\Models\Message;
@@ -167,5 +168,21 @@ trait DeleteSelection
         session()->flash('success', __('flash-messages.interventions-deleted'));
 
         $this->redirectRoute('interventions', navigate: true);
+    }
+
+    #[On('deleteContacts')]
+    public function deleteContacts(): void
+    {
+        $contacts = Contact::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($contacts as $contact) {
+            $contact->delete();
+        }
+
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.contacts-deleted'));
+
+        $this->redirectRoute('contacts', navigate: true);
     }
 }

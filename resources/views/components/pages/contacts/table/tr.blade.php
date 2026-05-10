@@ -72,8 +72,15 @@
             </button>
             {{--@canany()--}}
             <div x-show="open" x-transition class="actions-table">
-                <button type="button">
+                <button type="button"
+                        title="{{ __('pages/hall.contacts.update-contact') }}"
+                        wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
                     <span>{{ __('tables.update') }}</span>
+                </button>
+                <button type="button"
+                        title="{{ __('pages/hall.contacts.delete-contact') }}"
+                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
+                    <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
             {{--@endcan--}}
