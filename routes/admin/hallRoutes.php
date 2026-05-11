@@ -26,3 +26,6 @@ Route::livewire(LaravelLocalization::transRoute('routes.contacts'), 'pages::cont
 Route::livewire(LaravelLocalization::transRoute('routes.bookings'), 'pages::bookings.index')
     ->name('bookings.index');
 
+Route::livewire(LaravelLocalization::transRoute('routes.create-bookings'), 'pages::bookings.create')
+    ->name('bookings.create');
+

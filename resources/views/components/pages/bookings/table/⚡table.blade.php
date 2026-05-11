@@ -99,6 +99,12 @@ new class extends Component {
             :enum="true"
             :translation="true"
         />
+
+        <x-general.add-button
+            class="justify-center md:col-start-4 md:justify-self-end"
+            :location="route('bookings.create')"
+            :label="__('pages/hall.bookings.add-booking')"
+        />
     </div>
 
     <x-general.selected-column

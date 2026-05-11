@@ -14,4 +14,5 @@ return [
     'roles-edit' => 'membres/roles/{role}/modifier',
     'contacts' => 'contacts',
     'bookings' => 'reservations',
+    'create-bookings' => 'reservations/ajouter',
 ];

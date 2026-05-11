@@ -35,5 +35,16 @@ return [
     'bookings' => [
         'heading' => 'Réservations',
         'subtitle' => 'Consultez et gérez vos réservations',
-    ]
+        'add-booking' => 'Ajouter une résevration'
+    ],
+    'bookings-create' => [
+        'heading' => 'Ajouter une réservation',
+        'subtitle' => 'Toutes les informations sur la réservation',
+        'create-booking' => 'Créer la réservation',
+        'fieldset-1' => 'Informations sur le locataire',
+        'fieldset-2' => 'Informations sur la résevration',
+        'fieldset-3' => 'Relevés des compteurs',
+        'tab-1' => 'Avant réservation',
+        'tab-2' => 'Après réservation'
+    ],
 ];
