@@ -23,3 +23,6 @@ Route::livewire(LaravelLocalization::transRoute('routes.contacts'), 'pages::cont
     ->middleware('can:contacts.index')
     ->name('contacts');
 
+Route::livewire(LaravelLocalization::transRoute('routes.bookings'), 'pages::bookings.index')
+    ->name('bookings.index');
+

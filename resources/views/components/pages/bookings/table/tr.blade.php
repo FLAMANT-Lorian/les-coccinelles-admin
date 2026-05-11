@@ -1,0 +1,75 @@
+@php
+    use App\Enums\MessageStatus;
+    use App\Models\Booking;
+    /**
+     * @var Booking $booking;
+     */
+@endphp
+
+@props([
+    'booking',
+])
+
+<tr x-data="{ open: false }"
+    :class="open ? 'lg:[&_div]:bg-beige-medium' : ''">
+    <td>
+        <div>
+            <input type="checkbox"
+                   value="{{ $booking->id }}"
+                   id="selector-{{ $booking->id }}"
+                   wire:model.live="selectedColumn"
+                   @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
+            <label for="selector-{{ $booking->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.email') }}&nbsp;:</span>
+            <span>{{ $booking->contact->email }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.start_date') }}&nbsp;:</span>
+            <span>{{ formattedDate($booking->start_date) }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.type') }}&nbsp;:</span>
+            <span>{{ $booking->hall_rate->type }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.status') }}&nbsp;:</span>
+            <x-general.status :status="$booking->status"/>
+        </div>
+    </td>
+    <td data-action>
+        <div class="justify-end lg:relative">
+            <button type="button"
+                    @click="open = !open"
+                    @click.away="open = false"
+                    @keydown.window.escape="open = false"
+                    :class="open ? 'lg:bg-beige-light' : ''"
+                    class="actions">
+                <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#table-actions"></use>
+                </svg>
+                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+            </button>
+            @canany(['availabilities.delete', 'availabilities.update'])
+                <div x-show="open" x-transition class="actions-table">
+                        <button type="button">
+                            <span>{{ __('tables.update') }}</span>
+                        </button>
+                </div>
+            @endcan
+
+            {{-- ACTION MOBILES --}}
+            <div class="actions-mobile">
+            </div>
+        </div>
+    </td>
+</tr>

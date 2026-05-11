@@ -32,4 +32,8 @@ return [
         'update-contact' => 'Modifier le contact',
         'delete-contact' => 'Supprimer le contact',
     ],
+    'bookings' => [
+        'heading' => 'Réservations',
+        'subtitle' => 'Consultez et gérez vos réservations',
+    ]
 ];
