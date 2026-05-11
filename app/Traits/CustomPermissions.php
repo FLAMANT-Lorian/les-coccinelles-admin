@@ -38,9 +38,7 @@ trait CustomPermissions
         ],
         'utilityCosts' => [
             'index' => false,
-            'create' => false,
             'update' => false,
-            'delete' => false,
         ],
         'interventions' => [
             'index' => false,

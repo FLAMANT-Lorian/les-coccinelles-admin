@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UtilityCostsStatus;
 use App\Models\UtilityCost;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class UtilityCostSeeder extends Seeder
@@ -13,8 +13,31 @@ class UtilityCostSeeder extends Seeder
      */
     public function run(): void
     {
+        // EAU
         UtilityCost::factory()
-            ->count(3)
-            ->create();
+            ->create([
+                'type' => 'Eau',
+                'price' => 0,
+                'status' => UtilityCostsStatus::outOfDate->value,
+                'unit' => 'm3'
+            ]);
+
+        // ÉLECTRICITÉ
+        UtilityCost::factory()
+            ->create([
+                'type' => 'Électricité',
+                'price' => 0,
+                'status' => UtilityCostsStatus::outOfDate->value,
+                'unit' => 'kWh'
+            ]);
+
+        // MAZOUT
+        UtilityCost::factory()
+            ->create([
+                'type' => 'Mazout',
+                'price' => 0,
+                'status' => UtilityCostsStatus::outOfDate->value,
+                'unit' => 'litre'
+            ]);
     }
 }
