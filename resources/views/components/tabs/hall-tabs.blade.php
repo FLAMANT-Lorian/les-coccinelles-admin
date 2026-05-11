@@ -3,8 +3,13 @@
 $tabs = [
     [
         'label' => __('navigation/navigation.availabilities'),
-        'location' =>LaravelLocalization::localizeURL( route('availabilities')),
+        'location' => LaravelLocalization::localizeURL(route('availabilities')),
         'permission' => 'availabilities.index'
+    ],
+    [
+        'label' => __('navigation/navigation.bookings'),
+        'location' => LaravelLocalization::localizeURL(route('bookings.index')),
+        'permission' => null
     ],
     [
         'label' => __('navigation/navigation.hall-rates'),

@@ -22,6 +22,13 @@ class Booking extends Model
         'billing_address'
     ];
 
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'date'
+        ];
+    }
+
     public function contact(): BelongsTo
     {
         return $this->belongsTo(Contact::class);

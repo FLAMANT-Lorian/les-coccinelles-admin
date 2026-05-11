@@ -29,6 +29,7 @@ return [
     'email' => 'Email',
     'phone' => 'Téléphone',
     'send_date' => 'Date d’envoi',
+    'start_date' => 'Date de début',
     'status' => 'Statut',
     'deadline' => 'Échéance',
     'actions' => 'Actions',

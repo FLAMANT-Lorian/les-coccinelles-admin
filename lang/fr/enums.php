@@ -48,5 +48,5 @@ return [
 
     BookingStatus::NOW->value => 'En cours',
     BookingStatus::PAST->value => 'Passée',
-    BookingStatus::NOW->value => 'Bientôt',
+    BookingStatus::SOON->value => 'Bientôt',
 ];
