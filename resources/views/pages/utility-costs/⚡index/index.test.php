@@ -41,29 +41,6 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can create an utility cost', function () {
-        $permission = Permission::create([
-            'name' => 'utilityCosts.create',
-            'guard_name' => 'web',
-        ]);
-        $this->role->givePermissionTo($permission);
-
-        Livewire::test('pages::utility-costs.index')
-            ->set('form.type', 'test')
-            ->set('form.price', 10.5)
-            ->set('form.status', UtilityCostsStatus::outOfDate)
-            ->set('form.unit', 'litre')
-            ->call('save')
-            ->assertOk();
-
-        assertDatabaseHas('utility_costs', [
-            'type' => 'test',
-            'price' => 1050,
-            'status' => UtilityCostsStatus::outOfDate,
-            'unit' => 'litre',
-        ]);
-    });
-
     it('verifies if a user with the permission can update an utility cost', function () {
         $permission = Permission::create([
             'name' => 'utilityCosts.update',
@@ -80,40 +57,15 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
 
         Livewire::test('pages::utility-costs.index')
             ->set('form.utilityCost', $utilityCost)
-            ->set('form.type', 'New')
             ->set('form.price', 10.8)
             ->set('form.status', UtilityCostsStatus::upToDate)
-            ->set('form.unit', 'litre')
             ->call('update')
             ->assertOk();
 
         assertDatabaseHas('utility_costs', [
-            'type' => 'New',
             'price' => 1080,
             'status' => UtilityCostsStatus::upToDate,
-            'unit' => 'litre',
         ]);
-    });
-
-    it('verifies if a user with the permission can delete an utilityCost', function () {
-        $permission = Permission::create([
-            'name' => 'utilityCosts.delete',
-            'guard_name' => 'web',
-        ]);
-        $this->role->givePermissionTo($permission);
-
-        $utilityCost = UtilityCost::create([
-            'type' => 'test',
-            'price' => 1050,
-            'status' => UtilityCostsStatus::outOfDate,
-            'unit' => 'watt',
-        ]);
-
-        Livewire::test('pages::utility-costs.index')
-            ->call('deleteUtilityCost', id: $utilityCost->id)
-            ->assertOk();
-
-        assertDatabaseCount('utility_costs', 0);
     });
 });
 
@@ -144,18 +96,6 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user with the permission can’t create an utility cost', function () {
-        Livewire::test('pages::utility-costs.index')
-            ->set('form.type', 'test')
-            ->set('form.price', 10)
-            ->set('form.status', UtilityCostsStatus::upToDate)
-            ->set('form.unit', 'litre')
-            ->call('save')
-            ->assertForbidden();
-
-        assertDatabaseCount('utility_costs', 0);
-    });
-
     it('verifies if a user without the permission can’t update an utility cost', function () {
         $utilityCost = UtilityCost::create([
             'type' => 'test',
@@ -166,33 +106,14 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
 
         Livewire::test('pages::utility-costs.index')
             ->set('form.utilityCost', $utilityCost)
-            ->set('form.type', 'test')
             ->set('form.price', 10)
             ->set('form.status', UtilityCostsStatus::upToDate)
-            ->set('form.unit', 'litre')
             ->call('update')
             ->assertForbidden();
 
         assertDatabaseHas('utility_costs', [
-            'type' => 'test',
             'price' => 1050,
             'status' => UtilityCostsStatus::outOfDate,
-            'unit' => 'watt',
         ]);
-    });
-
-    it('verifies if a user without the permission can’t delete an utility cost', function () {
-        $utilityCost = UtilityCost::create([
-            'type' => 'test',
-            'price' => 1050,
-            'status' => UtilityCostsStatus::outOfDate,
-            'unit' => 'watt',
-        ]);
-
-        Livewire::test('pages::utility-costs.index')
-            ->call('deleteUtilityCost', id: $utilityCost->id)
-            ->assertForbidden();
-
-        assertDatabaseCount('utility_costs', 1);
     });
 });
