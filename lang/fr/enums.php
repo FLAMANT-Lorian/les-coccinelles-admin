@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Enums\BookingStatus;
 use App\Enums\InterventionStatus;
 use App\Enums\MemberCardStatus;
 use App\Enums\MembersStatus;
@@ -44,4 +45,8 @@ return [
     // Member card
     MemberCardStatus::WITH_MEMBER_CARD->value => 'Avec carte',
     MemberCardStatus::WITHOUT_MEMBER_CARD->value => 'Sans carte',
+
+    BookingStatus::NOW->value => 'En cours',
+    BookingStatus::PAST->value => 'Passée',
+    BookingStatus::NOW->value => 'Bientôt',
 ];
