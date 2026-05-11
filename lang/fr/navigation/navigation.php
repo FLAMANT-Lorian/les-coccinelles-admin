@@ -22,4 +22,5 @@ return [
     'settings' => 'Voir les paramètres de mon compte',
     'help' => 'Demander de l’aide',
     'main-navigation' => 'Navigation principale',
+    'create' => 'Créer'
 ];

@@ -25,4 +25,5 @@
      'create' => 'Créer',
      'delete' => 'Supprimer',
      'update' => 'Modifier',
+     'or' => 'OU'
  ];

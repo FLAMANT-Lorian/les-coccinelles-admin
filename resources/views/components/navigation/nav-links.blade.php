@@ -21,8 +21,12 @@
             'route' => 'contacts',
             'permission' => 'contacts.index'
         ],
-         'bookings' => [
+        'bookings' => [
             'route' => 'bookings.index',
+            'permission' => null
+        ],
+        'bookings-create' => [
+            'route' => 'bookings.create',
             'permission' => null
         ],
     ];
