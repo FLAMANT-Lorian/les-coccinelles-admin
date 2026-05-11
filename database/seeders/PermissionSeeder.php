@@ -44,9 +44,7 @@ class PermissionSeeder extends Seeder
             ],
             'utilityCosts' => [
                 'index',
-                'create',
                 'update',
-                'delete',
             ],
             'interventions' => [
                 'index',

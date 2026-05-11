@@ -1,23 +1,17 @@
 @php
+    use App\Models\UtilityCost;
     use App\ValueObjects\Money;
+     /**
+     * @var UtilityCost $utilityCost
+     */
 @endphp
 
 @props([
-    'utilityCost' => UtilityCost::class,
+    'utilityCost',
 ])
 
 <tr x-data="{ open: false }"
     :class="open ? 'lg:[&_div]:bg-beige-medium' : ''">
-    <td>
-        <div>
-            <input type="checkbox"
-                   value="{{ $utilityCost->id }}"
-                   id="selector-{{ $utilityCost->id }}"
-                   wire:model.live="selectedColumn"
-                   @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $utilityCost->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
-        </div>
-    </td>
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
@@ -57,20 +51,13 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['utilityCosts.update', 'utilityCosts.delete'])
+            @canany(['utilityCosts.update'])
                 <div x-show="open" x-transition class="actions-table">
                     @can('utilityCosts.update')
                         <button type="button"
                                 wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
                                 title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
                             <span>{{ __('tables.update') }}</span>
-                        </button>
-                    @endcan
-                    @can('utilityCosts.delete')
-                        <button type="button"
-                                wire:click="$dispatch('open-modal', {modal: 'deleteUtilityCost', id: {{ $utilityCost->id }}})"
-                                title="{{ __('pages/hall.utility-costs.delete-utility-cost') }}">
-                            <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
                 </div>

@@ -12,18 +12,14 @@ class UtilityCostsForm extends Form
 {
     public ?UtilityCost $utilityCost = null;
 
-    public ?string $type = null;
     public ?float $price = null;
     public ?string $status = null;
-    public ?string $unit = null;
 
     public function rules(): array
     {
         return [
-            'type' => 'required',
             'status' => ['required', Rule::enum(UtilityCostsStatus::class)],
             'price' => 'required|numeric|min:0|decimal:0,2',
-            'unit' => 'required',
         ];
     }
 
@@ -31,10 +27,8 @@ class UtilityCostsForm extends Form
     {
         $this->utilityCost = $utilityCost;
 
-        $this->type = $utilityCost->type;
         $this->price = Money::fromCents($utilityCost->price)->euros();
         $this->status = $utilityCost->status;
-        $this->unit = $utilityCost->unit;
     }
 
     public function update(): void
@@ -42,22 +36,8 @@ class UtilityCostsForm extends Form
         $price = Money::fromEuros($this->price)->cents();
 
         $this->utilityCost->update([
-            'type' => $this->type,
             'price' => $price,
             'status' => $this->status,
-            'unit' => $this->unit,
-        ]);
-    }
-
-    public function save(): void
-    {
-        $price = Money::fromEuros($this->price)->cents();
-
-        UtilityCost::create([
-            'type' => $this->type,
-            'price' => $price,
-            'status' => $this->status,
-            'unit' => $this->unit,
         ]);
     }
 }

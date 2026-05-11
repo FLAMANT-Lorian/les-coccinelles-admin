@@ -34,28 +34,12 @@
             <label for="utilityCosts_index">{{ __('general.see_table') }}</label>
         </div>
         <div class="permission">
-            <input id="utilityCosts_create"
-                   value="create"
-                   type="checkbox"
-                   name="create"
-                   wire:model.live="form.permissions.utilityCosts.create">
-            <label for="utilityCosts_create">{{ __('general.create') }}</label>
-        </div>
-        <div class="permission">
             <input id="utilityCosts_update"
                    value="update"
                    type="checkbox"
                    name="update"
                    wire:model.live="form.permissions.utilityCosts.update">
             <label for="utilityCosts_update">{{ __('general.update') }}</label>
-        </div>
-        <div class="permission">
-            <input id="utilityCosts_delete"
-                   value="delete"
-                   type="checkbox"
-                   name="delete"
-                   wire:model.live="form.permissions.utilityCosts.delete">
-            <label for="utilityCosts_delete">{{ __('general.delete') }}</label>
         </div>
     </div>
 </div>

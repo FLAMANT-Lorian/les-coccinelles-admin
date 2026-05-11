@@ -134,24 +134,6 @@ trait DeleteSelection
         $this->redirectRoute('hall-rates', navigate: true);
     }
 
-    #[On('deleteUtilityCosts')]
-    public function deleteUtilityCosts(): void
-    {
-        $this->authorize('delete', UtilityCost::class);
-
-        $utilityCosts = UtilityCost::whereIn('id', $this->selectedColumn)->get();
-
-        foreach ($utilityCosts as $utilityCost) {
-            $utilityCost->delete();
-        }
-
-        $this->selectedColumn = [];
-
-        session()->flash('success', __('flash-messages.utility-costs-deleted'));
-
-        $this->redirectRoute('utility-costs', navigate: true);
-    }
-
     #[On('deleteInterventions')]
     public function deleteInterventions(): void
     {

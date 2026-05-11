@@ -22,7 +22,7 @@ class UtilityCostPolicy
 
     public function create(User $user): bool
     {
-        return $user->can('utilityCosts.create');
+        return false;
     }
 
     public function update(User $user): bool
@@ -32,7 +32,7 @@ class UtilityCostPolicy
 
     public function delete(User $user): bool
     {
-        return $user->can('utilityCosts.delete');
+        return false;
     }
 
     public function restore(User $user, UtilityCost $utilityCost): bool
