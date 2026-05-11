@@ -22,7 +22,8 @@ class DatabaseSeeder extends Seeder
             HallRateSeeder::class,
             UtilityCostSeeder::class,
             InterventionSeeder::class,
-            ContactSeeder::class
+            ContactSeeder::class,
+            BookingSeeder::class
         ]);
     }
 }
