@@ -31,16 +31,8 @@
     </div>
 
     {{-- MODALS --}}
-    @if($this->createUtilityCostModalOpen)
-        <x-widgets.modals.utility-costs.create-utility-cost/>
-    @elseif($this->updateUtilityCostModalOpen)
+    @if($this->updateUtilityCostModalOpen)
         <x-widgets.modals.utility-costs.update-utility-cost/>
-    @elseif($this->deleteUtilityCostModalOpen)
-        <x-widgets.modals.utility-costs.delete-utility-cost
-            :id="$this->utilityCost->id"/>
-    @elseif($this->deleteSelectionModalOpen)
-        <x-widgets.modals.selection.delete-selection
-            action="deleteUtilityCosts"/>
     @endif
 
 </div>

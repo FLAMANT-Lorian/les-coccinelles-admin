@@ -1,30 +1,6 @@
 <thead>
     <tr x-data="{ type: 'middle', price: 'middle',}">
         <th>
-            <div class="flex items-center justify-center">
-                <input :checked="$wire.selectedColumn.length > 0"
-                       type="checkbox" id="all-selector"
-                       class="all-selector"
-                       @change="
-                checkboxes = $refs.table.querySelectorAll(`tbody input[type='checkbox']`);
-
-                let ids = [];
-
-                checkboxes.forEach((checkbox) => {
-                if ($event.currentTarget.checked) {
-                    checkbox.checked = true;
-                    ids.push(checkbox.value);
-                } else {
-                    checkbox.checked = false;
-                    ids = [];
-                }
-                });
-                $wire.set('selectedColumn', ids);
-                ">
-                <label for="all-selector" class="sr-only">{{ __('tables.select_all') }}</label>
-            </div>
-        </th>
-        <th>
             <button type="button" class="flex items-center gap-2" @click="
             if (type === 'middle') {
                     price = 'middle';

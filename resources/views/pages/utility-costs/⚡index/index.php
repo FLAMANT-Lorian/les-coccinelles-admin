@@ -12,14 +12,11 @@ new class extends Component {
     public UtilityCostsForm $form;
 
     public bool $statusSelectState = false;
+
     public array $terms = [
         'status' => ''
     ];
-
-    public bool $createUtilityCostModalOpen = false;
     public bool $updateUtilityCostModalOpen = false;
-    public bool $deleteUtilityCostModalOpen = false;
-    public bool $deleteSelectionModalOpen = false;
     public UtilityCost $utilityCost;
 
     #[On('open-modal')]
@@ -29,16 +26,9 @@ new class extends Component {
             $this->utilityCost = UtilityCost::findOrFail($id);
         }
 
-        if ($modal === 'createUtilityCost') {
-            $this->createUtilityCostModalOpen = true;
-        } elseif ($modal === 'updateUtilityCost') {
+        if ($modal === 'updateUtilityCost') {
             $this->form->setUtilityCost($this->utilityCost);
-
             $this->updateUtilityCostModalOpen = true;
-        } elseif ($modal === 'deleteUtilityCost') {
-            $this->deleteUtilityCostModalOpen = true;
-        } elseif ($modal === 'deleteSelection') {
-            $this->deleteSelectionModalOpen = true;
         }
     }
 
@@ -47,10 +37,7 @@ new class extends Component {
     {
         $this->form->reset();
 
-        $this->createUtilityCostModalOpen = false;
         $this->updateUtilityCostModalOpen = false;
-        $this->deleteUtilityCostModalOpen = false;
-        $this->deleteSelectionModalOpen = false;
     }
 
     #[Computed]
@@ -69,19 +56,6 @@ new class extends Component {
         return $cases;
     }
 
-    public function save(): void
-    {
-        $this->authorize('create', UtilityCost::class);
-
-        $this->form->validate();
-
-        $this->form->save();
-
-        session()->flash('success', __('flash-messages.utility-cost-created'));
-
-        $this->redirectRoute('utility-costs', navigate: true);
-    }
-
     public function update(): void
     {
         $this->authorize('update', UtilityCost::class);
@@ -91,19 +65,6 @@ new class extends Component {
         $this->form->update();
 
         session()->flash('success', __('flash-messages.utility-cost-updated'));
-
-        $this->redirectRoute('utility-costs', navigate: true);
-    }
-
-    public function deleteUtilityCost(int $id): void
-    {
-        $this->authorize('delete', UtilityCost::class);
-
-        $utilityCost = UtilityCost::findOrFail($id);
-
-        $utilityCost->delete();
-
-        session()->flash('success', __('flash-messages.utility-cost-deleted'));
 
         $this->redirectRoute('utility-costs', navigate: true);
     }
