@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Booking extends Model
 {
@@ -36,6 +37,11 @@ class Booking extends Model
 
     public function hall_rate(): BelongsTo
     {
-        return $this->belongsTo(HallRate::class, 'hall_rate_id');
+        return $this->belongsTo(HallRate::class);
+    }
+
+    public function meterReading(): HasOne
+    {
+        return $this->hasOne(MeterReading::class);
     }
 }
