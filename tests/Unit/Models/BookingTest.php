@@ -23,15 +23,15 @@ it('verifies if relations works correctly between bookings, hall rates and conta
 it('verifies if relations works correctly between bookings and meter readings', function () {
     $contact = Contact::factory()->create();
     $hall_rate = HallRate::factory()->create();
+    $meter_reading = MeterReading::factory()->create();
 
     $booking = Booking::factory()
         ->create([
             'contact_id' => $contact->id,
-            'hall_rate_id' => $hall_rate->id
+            'hall_rate_id' => $hall_rate->id,
+            'meter_reading_id' => $meter_reading->id
         ]);
 
-    $meter_reading = MeterReading::factory()
-        ->create(['booking_id' => $booking->id]);
 
     expect($booking->meterReading->before_water_general)->toBe($meter_reading->before_water_general)
         ->and($meter_reading->booking->hall_rate->type)->toBe($hall_rate->type)

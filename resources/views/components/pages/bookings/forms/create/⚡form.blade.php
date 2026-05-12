@@ -3,8 +3,10 @@
 use App\Enums\BookingStatus;
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\BookingsForm;
+use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -87,9 +89,28 @@ new class extends Component {
         return $cases;
     }
 
+    public function getDisabledDates(): array
+    {
+        $disabled_dates = [];
+        $bookings = Booking::all();
+
+        foreach ($bookings as $key => $booking) {
+            $disabled_dates[$key]['from'] = $booking->start_date->format('Y-m-d');
+            $disabled_dates[$key]['to'] = $booking->end_date->format('Y-m-d');
+        }
+
+        return $disabled_dates;
+    }
+
     public function save(): void
     {
-        //
+        $this->form->validate();
+
+        $this->form->save();
+
+        session()->flash('success', __('flash-messages.bookings-created'));
+
+        $this->redirectRoute('bookings.index', navigate: true);
     }
 };
 ?>

@@ -6,8 +6,7 @@
     'placeholder',
     'field_name',
     'wire' => '',
-    'date_range' => false,
-    'ignore' => false
+    'disabled' => []
 ])
 
 <div {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -17,11 +16,12 @@
             <strong> *</strong>
         @endif
     </label>
-    <div @if($ignore) wire:ignore @endif>
+    <div wire:ignore>
         <input @if($wire && $wire !== '')
                    wire:model="{{ $wire }}"
                @endif
-               class="{{ $date_range ? 'date-range' : '' }} w-full"
+               data-dates="{{ json_encode($disabled) }}"
+               class="date-range w-full"
                id="{{ $field_name }}"
                type="{{ $type ?? 'text' }}"
                name="{{ $name }}"

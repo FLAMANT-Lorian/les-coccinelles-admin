@@ -3,7 +3,8 @@
     'name',
     'required' => false,
     'field_name',
-    'wire' => ''
+    'wire' => '',
+    'date_range' => false
 ])
 
 <div {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -16,6 +17,7 @@
     <input @if($wire && $wire !== '')
                wire:model="{{ $wire }}"
            @endif
+           class="{{ $date_range ? 'date-range' : '' }}"
            id="{{ $field_name }}"
            type="date"
            name="{{ $name }}"

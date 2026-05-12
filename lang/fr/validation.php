@@ -148,7 +148,7 @@ return [
     'required_unless' => 'Le champ :attribute est obligatoire sauf si :other est dans :values.',
     'required_with' => 'Le champ :attribute est obligatoire lorsque :values est présent.',
     'required_with_all' => 'Le champ :attribute est obligatoire lorsque :values sont présents.',
-    'required_without' => 'Le champ :attribute est obligatoire lorsque :values n’est pas présent.',
+    'required_without' => 'Ce champ est obligatoire.',
     'required_without_all' => 'Le champ :attribute est obligatoire lorsque aucune des valeurs :values n’est présente.',
     'same' => 'Le champ :attribute doit correspondre à :other.',
     'size' => [
