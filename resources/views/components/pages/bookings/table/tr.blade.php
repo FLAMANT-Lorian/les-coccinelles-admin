@@ -1,6 +1,7 @@
 @php
-    use App\Enums\MessageStatus;
+    use App\Enums\BookingStatus;
     use App\Models\Booking;
+    use Carbon\Carbon;
     /**
      * @var Booking $booking;
      */
@@ -48,7 +49,13 @@
     <td>
         <div>
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            <x-general.status :status="$booking->status"/>
+            @if(Carbon::parse($booking->start_date)->format('Y-m-d') > Carbon::now()->format('Y-m-d'))
+                <x-general.status :status="BookingStatus::SOON->value"/>
+            @elseif(Carbon::parse($booking->start_date)->format('Y-m-d') < Carbon::now()->format('Y-m-d'))
+                <x-general.status :status="BookingStatus::PAST->value"/>
+            @else
+                <x-general.status :status="BookingStatus::NOW->value"/>
+            @endif
         </div>
     </td>
     <td data-action>

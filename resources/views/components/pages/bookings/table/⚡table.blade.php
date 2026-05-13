@@ -32,8 +32,18 @@ new class extends Component {
         }
 
         if (!empty($this->filter)) {
-            $query->where(function (Builder $q) {
-                $q->whereIn('status', $this->filter);
+            $today = now()->format('Y-m-d');
+
+            $query->where(function (Builder $q) use ($today) {
+                if (in_array(BookingStatus::SOON->value, $this->filter)) {
+                    $q->orWhereDate('start_date', '>', $today);
+                }
+                if (in_array(BookingStatus::PAST->value, $this->filter)) {
+                    $q->orWhereDate('start_date', '<', $today);
+                }
+                if (in_array(BookingStatus::NOW->value, $this->filter)) {
+                    $q->orWhereDate('start_date', '=', $today);
+                }
             });
         }
 

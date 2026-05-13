@@ -28,11 +28,10 @@ class BookingFactory extends Factory
             'contact_id' => $contact->id,
             'hall_rate_id' => HallRate::factory()->create()->id,
             'meter_reading_id' => MeterReading::factory()->create()->id,
-            'status' => $faker->randomElement(enumToArray(BookingStatus::class)),
-            'key_handover_date' => Carbon::now()->addDay(),
-            'key_return_date' => Carbon::now()->addDays(3),
-            'start_date' => Carbon::now()->addDay(),
-            'end_date' => Carbon::now()->addDays(3),
+            'key_handover_date' => Carbon::now()->subDays(3),
+            'key_return_date' => Carbon::now()->subDay(),
+            'start_date' => Carbon::now()->subDays(3),
+            'end_date' => Carbon::now()->subDay(),
             'message' => $faker->realText(100),
             'billing_address' => $faker->address
         ];

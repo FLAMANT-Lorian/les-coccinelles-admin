@@ -27,7 +27,6 @@ class BookingsForm extends Form
 
     //FIELDSET 2
     public ?int $type = null;
-    public ?string $status = null;
     public string $dates;
     public string $handover_date;
     public string $return_date;
@@ -60,7 +59,6 @@ class BookingsForm extends Form
 
             // BOOKING
             'type' => 'required|exists:hall_rates,id',
-            'status' => ['required', Rule::enum(BookingStatus::class)],
             'dates' => 'required',
             'handover_date' => 'required',
             'return_date' => 'required',
@@ -87,7 +85,6 @@ class BookingsForm extends Form
 
         $this->tenant = $booking->contact->id;
         $this->type = $booking->hall_rate->id;
-        $this->status = BookingStatus::from($booking->status)->value;
         if (Carbon::parse($booking->start_date)->format('Y-m-d') === Carbon::parse($booking->end_date)->format('Y-m-d')) {
             $this->dates = $booking->start_date->format('Y-m-d');
         } else {
@@ -159,7 +156,6 @@ class BookingsForm extends Form
             'contact_id' => $contact->id,
             'hall_rate_id' => $type->id,
             'meter_reading_id' => $meter_reading->id,
-            'status' => $this->status,
             'key_handover_date' => $this->handover_date,
             'key_return_date' => $this->return_date,
             'start_date' => $start_date,
@@ -216,7 +212,6 @@ class BookingsForm extends Form
             'contact_id' => $contact->id,
             'hall_rate_id' => $type->id,
             'meter_reading_id' => $this->booking->meterReading->id,
-            'status' => $this->status,
             'key_handover_date' => $this->handover_date,
             'key_return_date' => $this->return_date,
             'start_date' => $start_date,
