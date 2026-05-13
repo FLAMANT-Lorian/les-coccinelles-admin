@@ -33,21 +33,25 @@
             :enum="BookingStatus::class"
         />
 
-        <x-forms.input.input-date
+        <x-forms.input.input-date-range
             class="lg:col-span-2"
-            wire="form.handover_date"
+            type="handover_date"
+            :label="__('forms.key_handover_date')"
+            :placeholder="__('forms.booking-dates-placeholder')"
             name="handover_date"
+            :required="true"
             field_name="handover_date"
-            :required="true"
-            :label="__('forms.key_handover_date')"/>
+            wire="form.handover_date"/>
 
-        <x-forms.input.input-date
+        <x-forms.input.input-date-range
             class="lg:col-span-2"
-            wire="form.return_date"
+            type="return_date"
+            :label="__('forms.key_return_date')"
+            :placeholder="__('forms.booking-dates-placeholder')"
             name="return_date"
-            field_name="return_date"
             :required="true"
-            :label="__('forms.key_return_date')"/>
+            field_name="return_date"
+            wire="form.return_date"/>
 
         <x-forms.input.input-date-range
             class="lg:col-span-4"
@@ -55,6 +59,7 @@
             :label="__('forms.booking-dates')"
             :placeholder="__('forms.booking-dates-placeholder')"
             name="dates"
+            :date_range="true"
             :required="true"
             field_name="dates"
             wire="form.dates"
