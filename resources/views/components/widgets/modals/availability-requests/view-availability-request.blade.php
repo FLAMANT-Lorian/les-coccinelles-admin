@@ -29,7 +29,7 @@
         <p class="mt-4 whitespace-pre-line">
             {{ $availabilityRequest->message }}
         </p>
-        <div class="mt-auto self-end">
+        <div class="mt-auto md:self-end flex flex-col md:flex-row gap-6">
             <a class="flex flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent focus:bg-transparent hover:text-brown focus:text-brown trans-all"
                title="{{ __('modals.reply-to-availability-request') }}"
                aria-label="{{ __('modals.reply-to-availability-request') }}"
@@ -41,6 +41,15 @@
                 </svg>
                 <span>{{ __('modals.reply-to-availability-request') }}</span>
             </a>
+            <button type="button"
+                    wire:click="$dispatch('open-modal', { modal: 'openCreateContactModal', id: {{ $availabilityRequest->id }} })"
+                    class="flex flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent focus:bg-transparent hover:text-brown focus:text-brown trans-all"
+                    title="{{ __('modals.create-a-contact') }}">
+                <span>{{ __('modals.create-a-contact') }}</span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#add"/>
+                </svg>
+            </button>
         </div>
     </div>
 </x-widgets.modals.message-modal-layout>
