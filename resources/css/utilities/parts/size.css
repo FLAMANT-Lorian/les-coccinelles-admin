@@ -1,5 +1,5 @@
 @utility max-limit-width {
-    @apply max-w-500 mx-auto;
+    @apply max-w-600;
 }
 
 @utility px-default {

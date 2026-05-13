@@ -35,7 +35,7 @@ return [
     'bookings' => [
         'heading' => 'Réservations',
         'subtitle' => 'Consultez et gérez vos réservations',
-        'add-booking' => 'Ajouter une résevration'
+        'add-booking' => 'Ajouter une réservation'
     ],
     'bookings-create' => [
         'heading' => 'Ajouter une réservation',
@@ -46,5 +46,10 @@ return [
         'fieldset-3' => 'Relevés des compteurs',
         'tab-1' => 'Avant réservation',
         'tab-2' => 'Après réservation'
+    ],
+    'bookings-update' => [
+        'heading' => 'Réservation de ',
+        'subtitle' => 'Toutes les informations sur la réservation',
+        'update-booking' => 'Modifier la réservation',
     ],
 ];

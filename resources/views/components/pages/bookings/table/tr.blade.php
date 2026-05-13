@@ -1,6 +1,7 @@
 @php
-    use App\Enums\MessageStatus;
+    use App\Enums\BookingStatus;
     use App\Models\Booking;
+    use Carbon\Carbon;
     /**
      * @var Booking $booking;
      */
@@ -25,13 +26,22 @@
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <span>{{ $booking->contact->email }}</span>
+            <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+               class="underline-link after:bg-brown"
+               title="{{ __('pages/hall.bookings-update.update-booking') }}"
+               aria-label="{{ $booking->contact->full_name }}">
+                {{ $booking->contact->full_name }}
+            </a>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.start_date') }}&nbsp;:</span>
-            <span>{{ formattedDate($booking->start_date) }}</span>
+            @if(Carbon::parse($booking->start_date)->format('Y-m-d') === Carbon::parse($booking->end_date)->format('Y-m-d'))
+                <span>{{ formattedDate($booking->start_date) }}</span>
+            @else
+                <span>{{ formattedDate($booking->start_date) . __('general.date-picker-format') . formattedDate($booking->end_date) }}</span>
+            @endif
         </div>
     </td>
     <td>
@@ -43,7 +53,13 @@
     <td>
         <div>
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            <x-general.status :status="$booking->status"/>
+            @if(Carbon::parse($booking->start_date)->format('Y-m-d') > Carbon::now()->format('Y-m-d'))
+                <x-general.status :status="BookingStatus::SOON->value"/>
+            @elseif(Carbon::parse($booking->start_date)->format('Y-m-d') < Carbon::now()->format('Y-m-d'))
+                <x-general.status :status="BookingStatus::PAST->value"/>
+            @else
+                <x-general.status :status="BookingStatus::NOW->value"/>
+            @endif
         </div>
     </td>
     <td data-action>
@@ -61,9 +77,9 @@
             </button>
             @canany(['availabilities.delete', 'availabilities.update'])
                 <div x-show="open" x-transition class="actions-table">
-                        <button type="button">
-                            <span>{{ __('tables.update') }}</span>
-                        </button>
+                    <button type="button">
+                        <span>{{ __('tables.update') }}</span>
+                    </button>
                 </div>
             @endcan
 

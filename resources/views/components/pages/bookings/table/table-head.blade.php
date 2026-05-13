@@ -1,5 +1,5 @@
 <thead>
-    <tr x-data="{ email: 'middle', start_date: 'middle', type: 'middle' }">
+    <tr x-data="{ name: 'middle', start_date: 'middle', type: 'middle' }">
         <th>
             <div class="flex items-center justify-center">
                 <input :checked="$wire.selectedColumn.length > 0"
@@ -26,25 +26,25 @@
         </th>
         <th>
             <button type="button" class="flex items-center gap-2" @click="
-            if (email === 'middle') {
+            if (name === 'middle') {
                     start_date = 'middle';
                     type = 'middle';
-                    email = 'desc'
-                } else if (email === 'desc') {
+                    name = 'desc'
+                } else if (name === 'desc') {
                      start_date = 'middle';
                     type = 'middle';
-                    email = 'asc'
-                } else if (email === 'asc') {
+                    name = 'asc'
+                } else if (name === 'asc') {
                      start_date = 'middle';
                     type = 'middle';
-                    email = 'middle'
+                    name = 'middle'
                 }
-                $wire.sortBy('contact.email', email)">
-                <span>{{ __('tables.email') }}</span>
+                $wire.sortBy('contact.first_name', name)">
+                <span>{{ __('tables.full_name') }}</span>
                 <svg :class="{
-                            'rotate-0': email === 'desc',
-                            '-rotate-180': email === 'asc',
-                            '-rotate-90': email === 'middle'
+                            'rotate-0': name === 'desc',
+                            '-rotate-180': name === 'asc',
+                            '-rotate-90': name === 'middle'
                          }"
                      class="trans-all" width="11" height="16" viewBox="0 0 11 16" fill="none"
                      xmlns="http://www.w3.org/2000/svg">
@@ -55,20 +55,20 @@
         <th>
             <button type="button" class="flex items-center gap-2" @click="
             if (start_date === 'middle') {
-                    email = 'middle';
+                    name = 'middle';
                     type = 'middle';
                     start_date = 'desc'
                 } else if (start_date === 'desc') {
-                     email = 'middle';
+                     name = 'middle';
                     type = 'middle';
                     start_date = 'asc'
                 } else if (start_date === 'asc') {
-                     email = 'middle';
+                     name = 'middle';
                     type = 'middle';
                     start_date = 'middle'
                 }
                 $wire.sortBy('start_date', start_date)">
-                <span>{{ __('tables.start_date') }}</span>
+                <span>{{ __('tables.dates') }}</span>
                 <svg :class="{
                             'rotate-0': start_date === 'desc',
                             '-rotate-180': start_date === 'asc',
@@ -83,15 +83,15 @@
             <button type="button" class="flex items-center gap-2"  @click="
             if (type === 'middle') {
                     start_date = 'middle';
-                    email = 'middle';
+                    name = 'middle';
                     type = 'desc'
                 } else if (type === 'desc') {
                      start_date = 'middle';
-                    email = 'middle';
+                    name = 'middle';
                     type = 'asc'
                 } else if (type === 'asc') {
                      start_date = 'middle';
-                    email = 'middle';
+                    name = 'middle';
                     type = 'middle'
                 }
                 $wire.sortBy('hall_rate.type', type)">

@@ -9,14 +9,15 @@ return new class extends Migration {
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
+            $table->string('uniqid');
             $table->foreignId('contact_id')->constrained('contacts')->cascadeOnDelete();
             $table->foreignId('hall_rate_id')->nullable()->constrained('hall_rates')->nullOnDelete();
-            $table->string('status');
+            $table->foreignId('meter_reading_id')->constrained('meter_readings')->cascadeOnDelete();
             $table->string('key_handover_date');
             $table->string('key_return_date');
             $table->string('start_date');
             $table->string('end_date');
-            $table->text('message');
+            $table->text('message')->nullable();
             $table->string('billing_address');
             $table->timestamps();
         });

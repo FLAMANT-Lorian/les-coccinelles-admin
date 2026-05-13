@@ -13,8 +13,6 @@ class BookingSeeder extends Seeder
      */
     public function run(): void
     {
-        Booking::factory(20)
-            ->has(MeterReading::factory())
-            ->create();
+        Booking::factory()->create();
     }
 }

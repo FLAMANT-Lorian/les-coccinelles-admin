@@ -29,6 +29,10 @@
             'route' => 'bookings.create',
             'permission' => null
         ],
+        'bookings-update' => [
+            'route' => 'bookings.update',
+            'permission' => null
+        ],
     ];
 
     $membersRoutes = [

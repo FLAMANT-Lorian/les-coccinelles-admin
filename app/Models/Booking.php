@@ -5,8 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-
 class Booking extends Model
 {
     use HasFactory;
@@ -14,19 +12,22 @@ class Booking extends Model
     protected $fillable = [
         'contact_id',
         'hall_rate_id',
+        'meter_reading_id',
         'status',
         'key_handover_date',
         'key_return_date',
         'start_date',
         'end_date',
         'message',
-        'billing_address'
+        'billing_address',
+        'uniqid'
     ];
 
     protected function casts(): array
     {
         return [
-            'start_date' => 'date'
+            'start_date' => 'date',
+            'end_date' => 'date'
         ];
     }
 
@@ -40,8 +41,8 @@ class Booking extends Model
         return $this->belongsTo(HallRate::class);
     }
 
-    public function meterReading(): HasOne
+    public function meterReading(): BelongsTo
     {
-        return $this->hasOne(MeterReading::class);
+        return $this->belongsTo(MeterReading::class);
     }
 }

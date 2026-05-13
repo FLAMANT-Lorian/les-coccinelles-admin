@@ -24,16 +24,27 @@ new class extends Component {
         $query = Booking::query();
 
         if (!empty($this->term)) {
-            $query->where(function (Builder $q) {
-                $q->whereHas('contact', function (Builder $q) {
-                    $q->whereLike('email', "%$this->term%");
+            $term = $this->term;
+            $query->where(function (Builder $q) use ($term) {
+                $q->whereHas('contact', function (Builder $q) use ($term) {
+                    $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$term%"]);
                 });
             });
         }
 
         if (!empty($this->filter)) {
-            $query->where(function (Builder $q) {
-                $q->whereIn('status', $this->filter);
+            $today = now()->format('Y-m-d');
+
+            $query->where(function (Builder $q) use ($today) {
+                if (in_array(BookingStatus::SOON->value, $this->filter)) {
+                    $q->orWhereDate('start_date', '>', $today);
+                }
+                if (in_array(BookingStatus::PAST->value, $this->filter)) {
+                    $q->orWhereDate('start_date', '<', $today);
+                }
+                if (in_array(BookingStatus::NOW->value, $this->filter)) {
+                    $q->orWhereDate('start_date', '=', $today);
+                }
             });
         }
 
@@ -81,38 +92,38 @@ new class extends Component {
 <div class="flex flex-col relative">
     {{-- FILTER --}}
     <div
-        class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
+            class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
         <x-forms.input.input-search
-            wire="term"
-            name="availability_search"
-            id="availability_search"
-            :label="__('forms.search')"
-            :placeholder="__('forms.search')"
+                wire="term"
+                name="availability_search"
+                id="availability_search"
+                :label="__('forms.search')"
+                :placeholder="__('forms.search')"
         />
 
         <x-forms.input.custom-select-filter
-            class="md:col-span-2 md:justify-self-start"
-            :collection="$this->getFilteredTerms"
-            name="filter"
-            wire="filter_term"
-            id="availability_filter"
-            :enum="true"
-            :translation="true"
+                class="md:col-span-2 md:justify-self-start"
+                :collection="$this->getFilteredTerms"
+                name="filter"
+                wire="filter_term"
+                id="availability_filter"
+                :enum="true"
+                :translation="true"
         />
 
         <x-general.add-button
-            class="justify-center md:col-start-4 md:justify-self-end"
-            :location="route('bookings.create')"
-            :label="__('pages/hall.bookings.add-booking')"
+                class="justify-center md:col-start-4 md:justify-self-end"
+                :location="route('bookings.create')"
+                :label="__('pages/hall.bookings.add-booking')"
         />
     </div>
 
     <x-general.selected-column
-        :array="$this->selectedColumn"
-        :options="[
+            :array="$this->selectedColumn"
+            :options="[
             'delete' => true
             ]"
-        :delete-permission="null"
+            :delete-permission="null"
     />
 
     @if($this->getBookings->isNotEmpty())
@@ -123,10 +134,10 @@ new class extends Component {
         </table>
 
         <x-general.pagination
-            :items="$this->getBookings"/>
+                :items="$this->getBookings"/>
     @else
         <x-general.no-results
-            :term="$this->term"/>
+                :term="$this->term"/>
     @endif
 
 </div>

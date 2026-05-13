@@ -13,6 +13,8 @@ use Livewire\Component;
 
 new class extends Component {
 
+    public Booking $booking;
+
     public bool $tenantSelectState = false;
     public bool $memberCardSelectState = false;
     public bool $typeSelectState = false;
@@ -27,13 +29,10 @@ new class extends Component {
         'status' => ''
     ];
 
-    public function mount(): void
+    public function mount(Booking $booking): void
     {
-        $contactID = request()->query('contact');
-
-        if ($contactID) {
-            $this->form->tenant = Contact::findOrFail($contactID)->id;
-        }
+        $this->booking = $booking;
+        $this->form->setBooking($booking);
     }
 
     #[Computed]
@@ -101,7 +100,7 @@ new class extends Component {
     public function getDisabledDates(): array
     {
         $disabled_dates = [];
-        $bookings = Booking::all();
+        $bookings = Booking::all()->except([$this->booking->id]);
 
         foreach ($bookings as $key => $booking) {
             $disabled_dates[$key]['from'] = $booking->start_date->format('Y-m-d');
@@ -111,20 +110,20 @@ new class extends Component {
         return $disabled_dates;
     }
 
-    public function save(): void
+    public function update(): void
     {
         $this->form->validate();
 
-        $this->form->save();
+        $this->form->update();
 
-        session()->flash('success', __('flash-messages.bookings-created'));
+        session()->flash('success', __('flash-messages.bookings-updated'));
 
         $this->redirectRoute('bookings.index', navigate: true);
     }
 };
 ?>
 
-<form wire:submit.prevent="save" novalidate>
+<form wire:submit.prevent="update" novalidate>
 
     <x-pages.bookings.forms.fieldset1/>
     <x-pages.bookings.forms.fieldset2/>
@@ -132,6 +131,6 @@ new class extends Component {
 
     {{-- BOUTON --}}
     <x-forms.buttons.submit-filled
-        :label="__('pages/hall.bookings-create.create-booking')"
+        :label="__('pages/hall.bookings-update.update-booking')"
     />
 </form>

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MeterReading extends Model
 {
@@ -23,8 +23,8 @@ class MeterReading extends Model
         'after_mazout_general',
     ];
 
-    public function booking(): BelongsTo
+    public function booking(): HasOne
     {
-        return $this->belongsTo(Booking::class);
+        return $this->hasOne(Booking::class);
     }
 }

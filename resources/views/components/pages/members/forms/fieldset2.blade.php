@@ -66,11 +66,13 @@
             :enum="Sex::class"
         />
 
-        <x-forms.input.input-date
-            wire="form.birth_date"
+        <x-forms.input.input-date-range
+            type="birth_date"
+            :label="__('forms.birth-date')"
+            :placeholder="__('forms.booking-dates-placeholder')"
             name="birth_date"
             field_name="birth_date"
-            :label="__('forms.birth-date')"/>
+            wire="form.birth_date"/>
 
         <x-forms.input.custom-select-simple-db
             :collection="$this->getRoles"

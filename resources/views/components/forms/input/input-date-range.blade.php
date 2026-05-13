@@ -1,13 +1,12 @@
 @props([
-    'type',
     'label',
     'name',
     'required' => false,
     'placeholder',
     'field_name',
     'wire' => '',
-    'date_range' => false,
-    'ignore' => false
+    'disabled' => [],
+    'date_range' => false
 ])
 
 <div {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -17,13 +16,16 @@
             <strong> *</strong>
         @endif
     </label>
-    <div @if($ignore) wire:ignore @endif>
+    <div wire:ignore>
         <input @if($wire && $wire !== '')
                    wire:model="{{ $wire }}"
                @endif
-               class="{{ $date_range ? 'date-range' : '' }} w-full"
+               @if($date_range)
+                   data-dates="{{ json_encode($disabled) }}"
+               @endif
+               class="{{ $date_range ? 'date-range-picker' : 'date-picker' }} w-full"
                id="{{ $field_name }}"
-               type="{{ $type ?? 'text' }}"
+               type="text"
                name="{{ $name }}"
                placeholder="{{ $placeholder ?? '' }}"
                autocomplete="off">

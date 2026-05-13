@@ -31,7 +31,7 @@
             @endforeach
         </div>
         <div
-            :class="activeTab === 'before-booking' ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0 absolute inset-0'"
+            :class="activeTab === 'before-booking' ? 'block' : 'hidden'"
             class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 trans-all">
             <x-forms.input.input-number
                 :label="__('forms.water-general')"
@@ -71,7 +71,7 @@
         </div>
 
         <div
-            :class="activeTab === 'after-booking' ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0 absolute inset-0'"
+            :class="activeTab === 'after-booking' ? 'block' : 'hidden'"
             class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 trans-all">
             <x-forms.input.input-number
                 :label="__('forms.water-general')"

@@ -40,5 +40,7 @@
     @elseif($this->modalDeleteAvailabilityRequest)
         <x-widgets.modals.availability-requests.delete-availability-request
             :id="$this->availabilityRequestToDelete"/>
+    @elseif($this->openCreateContactModal)
+        <x-widgets.modals.contacts.create-contact/>
     @endif
 </div>
