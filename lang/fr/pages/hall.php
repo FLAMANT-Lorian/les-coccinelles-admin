@@ -47,4 +47,9 @@ return [
         'tab-1' => 'Avant réservation',
         'tab-2' => 'Après réservation'
     ],
+    'bookings-update' => [
+        'heading' => 'Réservation de ',
+        'subtitle' => 'Toutes les informations sur la réservation',
+        'update-booking' => 'Modifier la réservation',
+    ],
 ];

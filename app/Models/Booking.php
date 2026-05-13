@@ -19,7 +19,8 @@ class Booking extends Model
         'start_date',
         'end_date',
         'message',
-        'billing_address'
+        'billing_address',
+        'uniqid'
     ];
 
     protected function casts(): array

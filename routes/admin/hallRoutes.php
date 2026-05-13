@@ -29,3 +29,8 @@ Route::livewire(LaravelLocalization::transRoute('routes.bookings'), 'pages::book
 Route::livewire(LaravelLocalization::transRoute('routes.create-bookings'), 'pages::bookings.create')
     ->name('bookings.create');
 
+Route::livewire(LaravelLocalization::transRoute('routes.update-bookings'), 'pages::bookings.update')
+    ->name('bookings.update');
+
+
+

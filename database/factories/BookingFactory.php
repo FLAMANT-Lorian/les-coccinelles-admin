@@ -18,14 +18,20 @@ class BookingFactory extends Factory
     {
         $faker = $this->faker;
 
+        $contact = Contact::factory()->create();
+        $start_date = str_replace('-', '', Carbon::now()->addDay()->format('Y-m-d'));
+
+        $uniqid = $start_date . '-' . $contact->first_name . '-' . $contact->last_name;
+
         return [
-            'contact_id' => Contact::factory()->create()->id,
+            'uniqid' => $uniqid,
+            'contact_id' => $contact->id,
             'hall_rate_id' => HallRate::factory()->create()->id,
             'meter_reading_id' => MeterReading::factory()->create()->id,
             'status' => $faker->randomElement(enumToArray(BookingStatus::class)),
-            'key_handover_date' => Carbon::now()->subDays(rand(2, 10)),
-            'key_return_date' => Carbon::now()->subDays(rand(2, 10)),
-            'start_date' => Carbon::now(),
+            'key_handover_date' => Carbon::now()->addDay(),
+            'key_return_date' => Carbon::now()->addDays(3),
+            'start_date' => Carbon::now()->addDay(),
             'end_date' => Carbon::now()->addDays(3),
             'message' => $faker->realText(100),
             'billing_address' => $faker->address

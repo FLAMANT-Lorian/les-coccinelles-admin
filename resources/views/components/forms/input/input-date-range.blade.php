@@ -20,7 +20,7 @@
         <input @if($wire && $wire !== '')
                    wire:model="{{ $wire }}"
                @endif
-               @if(!empty($disabled) && $date_range)
+               @if($date_range)
                    data-dates="{{ json_encode($disabled) }}"
                @endif
                class="{{ $date_range ? 'date-range-picker' : 'date-picker' }} w-full"

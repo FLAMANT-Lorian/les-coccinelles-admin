@@ -15,4 +15,5 @@ return [
     'contacts' => 'contacts',
     'bookings' => 'reservations',
     'create-bookings' => 'reservations/ajouter',
+    'update-bookings' => 'reservations/{booking}/modifier',
 ];

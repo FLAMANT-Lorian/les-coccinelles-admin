@@ -25,7 +25,12 @@
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <span>{{ $booking->contact->email }}</span>
+            <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+               class="underline-link after:bg-brown"
+               title="{{ __('pages/hall.bookings-update.update-booking') }}"
+               aria-label="{{ $booking->contact->full_name }}">
+                {{ $booking->contact->full_name }}
+            </a>
         </div>
     </td>
     <td>
@@ -61,9 +66,9 @@
             </button>
             @canany(['availabilities.delete', 'availabilities.update'])
                 <div x-show="open" x-transition class="actions-table">
-                        <button type="button">
-                            <span>{{ __('tables.update') }}</span>
-                        </button>
+                    <button type="button">
+                        <span>{{ __('tables.update') }}</span>
+                    </button>
                 </div>
             @endcan
 

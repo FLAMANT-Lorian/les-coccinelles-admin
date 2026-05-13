@@ -1,5 +1,5 @@
 .wrapper {
-    @apply px-default py-12 flex flex-col gap-8;
+    @apply px-default py-12 flex flex-col gap-8 max-limit-width;
 }
 
 .tab {
