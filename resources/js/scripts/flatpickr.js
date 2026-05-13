@@ -12,7 +12,6 @@ function initDateRangePicker() {
         altInput: true,
         altFormat: "d F Y",
         allowInput: false,
-        minDate: 'today',
     });
 }
 
