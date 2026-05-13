@@ -90,6 +90,12 @@
                             <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
+                    <a class="whitespace-nowrap"
+                       title="{{ __('tables.start_booking') }}"
+                       aria-label="{{ __('tables.start_booking') }}"
+                       href="{{ route('bookings.create', ['contact' => $contact->id]) }}">
+                        {{ __('tables.start_booking') }}
+                    </a>
                 </div>
             @endcan
 

@@ -27,6 +27,15 @@ new class extends Component {
         'status' => ''
     ];
 
+    public function mount(): void
+    {
+        $contactID = request()->query('contact');
+
+        if ($contactID) {
+            $this->form->tenant = Contact::findOrFail($contactID)->id;
+        }
+    }
+
     #[Computed]
     public function getContacts()
     {

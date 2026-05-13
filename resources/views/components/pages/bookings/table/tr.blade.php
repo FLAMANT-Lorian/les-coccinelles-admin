@@ -36,7 +36,7 @@
     <td>
         <div>
             <span>{{ __('tables.start_date') }}&nbsp;:</span>
-            <span>{{ formattedDate($booking->start_date) }}</span>
+            <span>{{ formattedDate($booking->start_date) . __('general.date-picker-format') . formattedDate($booking->end_date) }}</span>
         </div>
     </td>
     <td>

@@ -4,6 +4,7 @@ return [
     /* ACTION */
     'update' => 'Modifier',
     'delete' => 'Supprimer',
+    'start_booking' => 'Démarrer une réservation',
 
     /* GENERAL */
     'select_all' => 'Tout sélectionner',
@@ -30,6 +31,7 @@ return [
     'phone' => 'Téléphone',
     'send_date' => 'Date d’envoi',
     'start_date' => 'Date de début',
+    'dates' => 'Date de la réservation',
     'status' => 'Statut',
     'deadline' => 'Échéance',
     'actions' => 'Actions',

@@ -68,7 +68,7 @@
                     start_date = 'middle'
                 }
                 $wire.sortBy('start_date', start_date)">
-                <span>{{ __('tables.start_date') }}</span>
+                <span>{{ __('tables.dates') }}</span>
                 <svg :class="{
                             'rotate-0': start_date === 'desc',
                             '-rotate-180': start_date === 'asc',
