@@ -37,7 +37,11 @@
     <td>
         <div>
             <span>{{ __('tables.start_date') }}&nbsp;:</span>
-            <span>{{ formattedDate($booking->start_date) . __('general.date-picker-format') . formattedDate($booking->end_date) }}</span>
+            @if(Carbon::parse($booking->start_date)->format('Y-m-d') === Carbon::parse($booking->end_date)->format('Y-m-d'))
+                <span>{{ formattedDate($booking->start_date) }}</span>
+            @else
+                <span>{{ formattedDate($booking->start_date) . __('general.date-picker-format') . formattedDate($booking->end_date) }}</span>
+            @endif
         </div>
     </td>
     <td>
