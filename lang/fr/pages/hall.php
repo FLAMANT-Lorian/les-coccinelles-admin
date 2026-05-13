@@ -35,7 +35,7 @@ return [
     'bookings' => [
         'heading' => 'Réservations',
         'subtitle' => 'Consultez et gérez vos réservations',
-        'add-booking' => 'Ajouter une résevration'
+        'add-booking' => 'Ajouter une réservation'
     ],
     'bookings-create' => [
         'heading' => 'Ajouter une réservation',
