@@ -107,7 +107,7 @@ new class extends Component {
             :enum="true"
         />
 
-        @can('interventions.create')
+        @can('create', Intervention::class)
             <button type="button"
                     wire:click="$dispatch('open-modal', 'openCreateModal')"
                     class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
@@ -123,7 +123,7 @@ new class extends Component {
             'markAsToDo' => true,
             'markAsDone' => true,
         ]"
-        deletePermission="interventions.delete"
+        :model="Intervention::class"
     />
 
     @if($this->getInterventions->isNotEmpty())

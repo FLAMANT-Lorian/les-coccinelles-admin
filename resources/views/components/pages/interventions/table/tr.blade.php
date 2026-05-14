@@ -1,6 +1,6 @@
 @php
     use App\Enums\MessageStatus;
-    use App\Models\Intervention;
+    use App\Models\Intervention;use App\Models\User;
     /** @var Intervention $intervention */
 @endphp
 @props([
@@ -22,7 +22,7 @@
     <td>
         <div>
             <span>{{ __('tables.intervention-name') }}&nbsp;:</span>
-            @can('interventions.update')
+            @can('update', Intervention::class)
                 <button type="button"
                         title="{{ __('modals.updateIntervention') }}"
                         class="underline-link after:bg-brown"
@@ -44,7 +44,7 @@
         <div>
             <span>{{ __('tables.creator') }}&nbsp;:</span>
             @if($intervention->creator)
-                @can('members.update')
+                @can('update', User::class)
                     <a href="{{ route('members.edit', ['member' => $intervention->creator->id]) }}"
                        class="underline-link after:bg-brown"
                        wire:navigate
@@ -64,7 +64,7 @@
         <div>
             <span>{{ __('tables.assignee') }}&nbsp;:</span>
             @if($intervention->assignee)
-                @can('members.update')
+                @can('update', User::class)
                     <a href="{{ route('members.edit', ['member' => $intervention->assignee->id]) }}"
                        class="underline-link after:bg-brown"
                        wire:navigate
@@ -99,16 +99,16 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['interventions.update', 'interventions.delete'])
+            @canany(['update', 'delete'], Intervention::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('interventions.update')
+                    @can('update', Intervention::class)
                         <button type="button"
                                 wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
                                 title="{{ __('pages/hall.interventions.update-intervention') }}">
                             <span>{{ __('tables.update') }}</span>
                         </button>
                     @endcan
-                    @can('interventions.delete')
+                    @can('delete', Intervention::class)
                         <button type="button"
                                 wire:click="$dispatch('open-modal', {modal: 'openDeleteModal', id: {{ $intervention->id }}})"
                                 title="{{ __('pages/hall.interventions.delete-intervention') }}">
@@ -119,7 +119,7 @@
             @endcanany
 
             {{--ACTION MOBILES --}}
-            @can('interventions.update')
+            @can('update', Intervention::class)
                 <div class="actions-mobile">
                     <button type="button"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
