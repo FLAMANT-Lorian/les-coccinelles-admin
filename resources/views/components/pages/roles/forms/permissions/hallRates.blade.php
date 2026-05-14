@@ -42,12 +42,12 @@
             <label for="hallRates_create">{{ __('general.create') }}</label>
         </div>
         <div class="permission">
-            <input id="hallRates_update"
-                   value="update"
+            <input id="hallRates_edit"
+                   value="edit"
                    type="checkbox"
-                   name="update"
-                   wire:model.live="form.permissions.hallRates.update">
-            <label for="hallRates_update">{{ __('general.update') }}</label>
+                   name="edit"
+                   wire:model.live="form.permissions.hallRates.edit">
+            <label for="hallRates_edit">{{ __('general.update') }}</label>
         </div>
         <div class="permission">
             <input id="hallRates_delete"

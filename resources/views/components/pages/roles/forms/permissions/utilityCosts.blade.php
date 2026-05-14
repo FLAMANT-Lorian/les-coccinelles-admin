@@ -34,12 +34,12 @@
             <label for="utilityCosts_index">{{ __('general.see_table') }}</label>
         </div>
         <div class="permission">
-            <input id="utilityCosts_update"
-                   value="update"
+            <input id="utilityCosts_edit"
+                   value="edit"
                    type="checkbox"
-                   name="update"
-                   wire:model.live="form.permissions.utilityCosts.update">
-            <label for="utilityCosts_update">{{ __('general.update') }}</label>
+                   name="edit"
+                   wire:model.live="form.permissions.utilityCosts.edit">
+            <label for="utilityCosts_edit">{{ __('general.update') }}</label>
         </div>
     </div>
 </div>

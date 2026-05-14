@@ -42,12 +42,12 @@
             <label for="interventions_create">{{ __('general.create') }}</label>
         </div>
         <div class="permission">
-            <input id="interventions_update"
-                   value="update"
+            <input id="interventions_edit"
+                   value="edit"
                    type="checkbox"
-                   name="update"
-                   wire:model.live="form.permissions.interventions.update">
-            <label for="interventions_update">{{ __('general.update') }}</label>
+                   name="edit"
+                   wire:model.live="form.permissions.interventions.edit">
+            <label for="interventions_edit">{{ __('general.update') }}</label>
         </div>
         <div class="permission">
             <input id="interventions_delete"
