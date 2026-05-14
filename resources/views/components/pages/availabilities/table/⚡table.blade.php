@@ -108,7 +108,7 @@ new class extends Component {
             'markAvailabilityRequestAsRead' => true,
             'markAvailabilityRequestAsNotRead' => true
             ]"
-        delete-permission="availabilities.delete"
+        :model="AvailabilityRequest::class"
     />
 
     @if($this->getAvailabilityRequests->isNotEmpty())

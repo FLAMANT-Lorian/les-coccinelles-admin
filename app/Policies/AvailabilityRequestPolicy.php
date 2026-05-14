@@ -36,7 +36,7 @@ class AvailabilityRequestPolicy
      */
     public function update(User $user): bool
     {
-        return $user->can('availabilities.update');
+        return $user->can('availabilities.edit');
     }
 
     /**

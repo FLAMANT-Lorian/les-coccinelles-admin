@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 trait TableSelectedColumn
 {
     use DeleteSelection;
+
     public array $selectedColumn = [];
 
     #[On('markMessageSelectionAs')]
@@ -38,7 +39,7 @@ trait TableSelectedColumn
     #[On('markMessageAs')]
     public function markMessageAs(string $value, int $id): void
     {
-        if (!auth()->user()->can('messages.update')) {
+        if (!auth()->user()->can('update', Message::class)) {
             return;
         }
 
@@ -78,7 +79,7 @@ trait TableSelectedColumn
     #[On('markAvailabilityRequestAs')]
     public function markAvailabilityRequestAs(string $value, int $id): void
     {
-        if (!auth()->user()->can('availabilities.update')) {
+        if (!auth()->user()->can('update', AvailabilityRequest::class)) {
             return;
         }
 
