@@ -11,6 +11,6 @@ Route::livewire(LaravelLocalization::transRoute('routes.roles-create'), 'pages::
     ->middleware('can:roles.create')
     ->name('roles.create');
 
-Route::livewire(LaravelLocalization::transRoute('routes.roles-edit'), 'pages::roles.update')
+Route::livewire(LaravelLocalization::transRoute('routes.roles-edit'), 'pages::roles.edit')
     ->middleware('can:roles.update')
-    ->name('roles.update');
+    ->name('roles.edit');
