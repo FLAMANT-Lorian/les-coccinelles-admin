@@ -21,9 +21,7 @@ class UserSeeder extends Seeder
             'name' => 'Président',
             'guard_name' => 'web',
             'unique' => true
-        ]);
-
-        $role->givePermissionTo($permissions);
+        ])->givePermissionTo($permissions);
 
         $role2 = Role::create([
             'name' => 'Membre',
@@ -31,31 +29,18 @@ class UserSeeder extends Seeder
             'unique' => false
         ]);
 
-        Role::create([
-            'name' => 'Trésorier',
-            'guard_name' => 'web',
-            'unique' => true
-        ]);
-
-        $user1 = User::factory()
+        User::factory()
             ->create([
                 'first_name' => 'Lorian',
                 'last_name' => 'Flamant',
                 'email' => 'test@test.be',
-            ]);
-        $user1->assignRole($role->name);
+            ])
+            ->assignRole($role);
 
-        $user2 = User::factory()->create(
-            ['email' => 'tests@test.be']
-        );
-
-        $user2->assignRole($role2->name);
-
-        $users = User::factory()->count(20)
-            ->create();
-
-        foreach ($users as $user) {
-            $user->assignRole($role2->name);
-        }
+        User::factory()
+            ->create([
+                'email' => 'tests@test.be'
+            ])
+            ->assignRole($role2);
     }
 }

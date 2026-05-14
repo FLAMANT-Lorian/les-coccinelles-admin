@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\Booking;
 use App\Models\MeterReading;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
 class MeterReadingFactory extends Factory
 {

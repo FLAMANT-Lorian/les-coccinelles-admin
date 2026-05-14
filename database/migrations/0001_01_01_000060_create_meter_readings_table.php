@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('meter_readings', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
             $table->bigInteger('before_water_general')->nullable();
             $table->bigInteger('after_water_general')->nullable();
             $table->bigInteger('before_water_cdj')->nullable();

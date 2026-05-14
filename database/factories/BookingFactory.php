@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Enums\BookingStatus;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
-use App\Models\MeterReading;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -27,7 +25,6 @@ class BookingFactory extends Factory
             'uniqid' => $uniqid,
             'contact_id' => $contact->id,
             'hall_rate_id' => HallRate::factory()->create()->id,
-            'meter_reading_id' => MeterReading::factory()->create()->id,
             'key_handover_date' => Carbon::now()->subDays(3),
             'key_return_date' => Carbon::now()->subDay(),
             'start_date' => Carbon::now()->subDays(3),
