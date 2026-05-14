@@ -27,13 +27,13 @@ Route::livewire(LaravelLocalization::transRoute('routes.bookings'), 'pages::book
     ->middleware('can:bookings.index')
     ->name('bookings.index');
 
-Route::livewire(LaravelLocalization::transRoute('routes.create-bookings'), 'pages::bookings.create')
+Route::livewire(LaravelLocalization::transRoute('routes.bookings-create'), 'pages::bookings.create')
     ->middleware('can:bookings.create')
     ->name('bookings.create');
 
-Route::livewire(LaravelLocalization::transRoute('routes.update-bookings'), 'pages::bookings.update')
+Route::livewire(LaravelLocalization::transRoute('routes.bookings-edit'), 'pages::bookings.edit')
     ->middleware('can:bookings.update')
-    ->name('bookings.update');
+    ->name('bookings.edit');
 
 
 
