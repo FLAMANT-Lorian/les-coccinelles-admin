@@ -27,7 +27,7 @@ class HallRatePolicy
 
     public function update(User $user): bool
     {
-        return $user->can('hallRates.update');
+        return $user->can('hallRates.edit');
     }
 
     public function delete(User $user): bool

@@ -36,7 +36,7 @@ class MessagePolicy
      */
     public function update(User $user): bool
     {
-        return $user->can('messages.update');
+        return $user->can('messages.edit');
     }
 
     /**

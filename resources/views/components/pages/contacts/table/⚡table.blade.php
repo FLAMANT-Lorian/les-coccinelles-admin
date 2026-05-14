@@ -86,7 +86,7 @@ new class extends Component {
             :translation="true"
         />
 
-        @can('contacts.create')
+        @can('create', Contact::class)
             <button type="button"
                     wire:click="$dispatch('open-modal', 'openCreateModal')"
                     title="{{ __('pages/hall.contacts.add-contact') }}"
@@ -101,7 +101,7 @@ new class extends Component {
         :options="[
             'delete' => true,
             ]"
-        delete-permission="contacts.delete"
+        :model="Contact::class"
     />
 
     @if($this->getContacts->isNotEmpty())
