@@ -115,6 +115,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Booking::class);
+
         $this->form->validate();
 
         $this->form->update();

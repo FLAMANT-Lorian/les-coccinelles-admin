@@ -26,12 +26,16 @@
     <td>
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
-            <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
-               class="underline-link after:bg-brown"
-               title="{{ __('pages/hall.bookings-update.update-booking') }}"
-               aria-label="{{ $booking->contact->full_name }}">
+            @can('update', Booking::class)
+                <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                   class="underline-link after:bg-brown"
+                   title="{{ __('pages/hall.bookings-update.update-booking') }}"
+                   aria-label="{{ $booking->contact->full_name }}">
+                    {{ $booking->contact->full_name }}
+                </a>
+            @else
                 {{ $booking->contact->full_name }}
-            </a>
+            @endcanany
         </div>
     </td>
     <td>
@@ -75,25 +79,37 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            {{--@canany()--}}
-            <div x-show="open" x-transition class="actions-table">
-                <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
-                   aria-label="{{ __('tables.update') }}"
-                   title="{{ __('pages/hall.bookings-update.update-booking') }}">
-                    {{ __('tables.update') }}
-                </a>
-                <button type="button"
-                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $booking->id }} })"
-                        title="{{ __('pages/hall.bookings-update.delete-booking') }}"
-                        aria-label="{{ __('tables.delete') }}">
-                    {{ __('tables.delete') }}
-                </button>
-            </div>
-            {{--@endcan--}}
+            @canany(['update', 'delete'], Booking::class)
+                <div x-show="open" x-transition class="actions-table">
+                    @can('update', Booking::class)
+                        <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                           aria-label="{{ __('tables.update') }}"
+                           title="{{ __('pages/hall.bookings-update.update-booking') }}">
+                            {{ __('tables.update') }}
+                        </a>
+                    @endcan
+                    @can('delete', Booking::class)
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $booking->id }} })"
+                                title="{{ __('pages/hall.bookings-update.delete-booking') }}"
+                                aria-label="{{ __('tables.delete') }}">
+                            {{ __('tables.delete') }}
+                        </button>
+                    @endcan
+                </div>
+            @endcan
 
             {{-- ACTION MOBILES --}}
-            <div class="actions-mobile">
-            </div>
+            @can('update', Booking::class)
+                <div class="actions-mobile">
+                    <a class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                        href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                        aria-label="{{ __('tables.update') }}"
+                        title="{{ __('pages/hall.bookings-update.update-booking') }}">
+                        <span class="text-left">{{ __('tables.update') }}</span>
+                    </a>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

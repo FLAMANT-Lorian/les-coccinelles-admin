@@ -23,7 +23,7 @@ new class extends Component {
     #[Computed]
     public function getBookings()
     {
-        $query = Booking::query();
+        $query = Booking::with(['contact', 'hall_rate']);
 
         if (!empty($this->term)) {
             $term = $this->term;
@@ -113,11 +113,13 @@ new class extends Component {
             :translation="true"
         />
 
-        <x-general.add-button
-            class="justify-center md:col-start-4 md:justify-self-end"
-            :location="route('bookings.create')"
-            :label="__('pages/hall.bookings.add-booking')"
-        />
+        @can('create', Booking::class)
+            <x-general.add-button
+                class="justify-center md:col-start-4 md:justify-self-end"
+                :location="route('bookings.create')"
+                :label="__('pages/hall.bookings.add-booking')"
+            />
+        @endcan
     </div>
 
     <x-general.selected-column
@@ -125,7 +127,7 @@ new class extends Component {
         :options="[
             'delete' => true
             ]"
-        :delete-permission="null"
+        delete-permission="bookings.delete"
     />
 
     @if($this->getBookings->isNotEmpty())

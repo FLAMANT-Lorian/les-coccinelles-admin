@@ -10,6 +10,8 @@ trait DeleteBooking
     #[On('delete-booking')]
     public function deleteBooking(int $id): void
     {
+        $this->authorize('delete', Booking::class);
+
         $booking = Booking::findOrFail($id);
 
         $booking->delete();

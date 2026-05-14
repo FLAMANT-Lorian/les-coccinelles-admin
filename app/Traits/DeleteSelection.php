@@ -174,6 +174,8 @@ trait DeleteSelection
     #[On('deleteBookings')]
     public function deleteBookings(): void
     {
+        $this->authorize('delete', Booking::class);
+        
         $bookings = Booking::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($bookings as $booking) {

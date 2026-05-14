@@ -23,15 +23,15 @@
         ],
         'bookings' => [
             'route' => 'bookings.index',
-            'permission' => null
+            'permission' => 'bookings.index'
         ],
         'bookings-create' => [
             'route' => 'bookings.create',
-            'permission' => null
+            'permission' => 'bookings.create'
         ],
         'bookings-update' => [
             'route' => 'bookings.update',
-            'permission' => null
+            'permission' => 'bookings.update'
         ],
     ];
 
@@ -60,7 +60,7 @@
             'route' => getCorrectRoute($hallRoutes),
             'icon' => 'hall',
             'active' => request()->routeIs(array_column($hallRoutes, 'route')),
-            'permissions' => ['availabilities.index', 'hallRates.index']
+            'permissions' => ['availabilities.index', 'hallRates.index', 'bookings.index', 'utilityCosts.index', 'interventions.index', 'contacts.index']
         ],
         [
             'label' => __('navigation/navigation.members'),
