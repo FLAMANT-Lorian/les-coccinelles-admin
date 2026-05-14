@@ -14,7 +14,7 @@ use function Pest\Laravel\assertDatabaseHas;
 describe('BOOKINGS WITH PERMISSIONS', function () {
     beforeEach(function () {
         $permission = Permission::create([
-            'name' => 'bookings.update',
+            'name' => 'bookings.edit',
             'guard_name' => 'web',
         ]);
 

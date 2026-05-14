@@ -2,10 +2,10 @@
 
 namespace App\Rules;
 
+use App\Models\Role;
 use App\Models\User;
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
-use Spatie\Permission\Models\Role;
 
 readonly class UniqueRole implements ValidationRule
 {

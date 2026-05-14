@@ -8,10 +8,9 @@ use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\Intervention;
 use App\Models\Message;
+use App\Models\Role;
 use App\Models\User;
-use App\Models\UtilityCost;
 use Livewire\Attributes\On;
-use Spatie\Permission\Models\Role;
 
 trait DeleteSelection
 {
@@ -175,7 +174,7 @@ trait DeleteSelection
     public function deleteBookings(): void
     {
         $this->authorize('delete', Booking::class);
-        
+
         $bookings = Booking::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($bookings as $booking) {

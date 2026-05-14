@@ -1,16 +1,15 @@
 <?php
 
-use App\Enums\YesOrNo;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
 describe('UPDATE ROLE WITH PERMISSION', function () {
     beforeEach(function () {
         $permission = Permission::create([
-            'name' => 'roles.update',
+            'name' => 'roles.edit',
             'guard_name' => 'web',
         ]);
 

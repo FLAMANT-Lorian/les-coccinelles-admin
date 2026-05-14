@@ -2,13 +2,13 @@
 
 use App\Enums\MessageStatus;
 use App\Models\AvailabilityRequest;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -59,7 +59,7 @@ describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
 
     it('verifies if a user with the permission can update availability requests model', function () {
         $permission = Permission::create([
-            'name' => 'availabilities.update',
+            'name' => 'availabilities.edit',
             'guard_name' => 'web',
         ]);
         $this->role->givePermissionTo($permission);

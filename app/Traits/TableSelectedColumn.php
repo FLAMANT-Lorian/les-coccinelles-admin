@@ -5,9 +5,7 @@ namespace App\Traits;
 use App\Enums\MessageStatus;
 use App\Models\AvailabilityRequest;
 use App\Models\Message;
-use App\Models\User;
 use Livewire\Attributes\On;
-use Spatie\Permission\Models\Role;
 
 trait TableSelectedColumn
 {

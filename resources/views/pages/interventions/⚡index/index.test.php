@@ -2,15 +2,14 @@
 
 use App\Enums\InterventionStatus;
 use App\Models\Intervention;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Carbon\Carbon;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -63,7 +62,7 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
 
     it('verifies if a user with the permission can update an intervention', function () {
         $permission = Permission::create([
-            'name' => 'interventions.update',
+            'name' => 'interventions.edit',
             'guard_name' => 'web',
         ]);
         $this->role->givePermissionTo($permission);

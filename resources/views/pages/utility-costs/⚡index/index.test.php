@@ -1,16 +1,14 @@
 <?php
 
 use App\Enums\UtilityCostsStatus;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\UtilityCost;
-use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
 describe('UTILITY COST WITH PERMISSIONS', function () {
@@ -43,7 +41,7 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
 
     it('verifies if a user with the permission can update an utility cost', function () {
         $permission = Permission::create([
-            'name' => 'utilityCosts.update',
+            'name' => 'utilityCosts.edit',
             'guard_name' => 'web',
         ]);
         $this->role->givePermissionTo($permission);

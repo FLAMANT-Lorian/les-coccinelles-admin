@@ -62,7 +62,7 @@ describe('CONTACTS WITH PERMISSIONS', function () {
 
     it('verifies if a user with the permission can update a contact', function () {
         $permission = Permission::create([
-            'name' => 'contacts.update',
+            'name' => 'contacts.edit',
             'guard_name' => 'web',
         ]);
         $this->role->givePermissionTo($permission);

@@ -1,13 +1,13 @@
 <?php
 
 use App\Models\HallRate;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
@@ -62,7 +62,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
 
     it('verifies if a user with the permission can update a hall rate', function () {
         $permission = Permission::create([
-            'name' => 'hallRates.update',
+            'name' => 'hallRates.edit',
             'guard_name' => 'web',
         ]);
         $this->role->givePermissionTo($permission);

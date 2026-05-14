@@ -2,8 +2,8 @@
 
 namespace App\Traits;
 
+use App\Models\Role;
 use Livewire\Attributes\On;
-use Spatie\Permission\Models\Role;
 
 trait DeleteRole
 {
