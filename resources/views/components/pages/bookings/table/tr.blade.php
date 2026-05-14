@@ -56,10 +56,16 @@
     </td>
     <td>
         <div>
+            @php
+                $today = Carbon::now()->format('Y-m-d');
+                $start = Carbon::parse($booking->start_date)->format('Y-m-d');
+                $end = Carbon::parse($booking->end_date)->format('Y-m-d');
+            @endphp
+
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            @if(Carbon::parse($booking->start_date)->format('Y-m-d') > Carbon::now()->format('Y-m-d'))
+            @if($start > $today)
                 <x-general.status :status="BookingStatus::SOON->value"/>
-            @elseif(Carbon::parse($booking->start_date)->format('Y-m-d') < Carbon::now()->format('Y-m-d'))
+            @elseif($end < $today)
                 <x-general.status :status="BookingStatus::PAST->value"/>
             @else
                 <x-general.status :status="BookingStatus::NOW->value"/>
