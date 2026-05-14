@@ -1,7 +1,7 @@
 @php
     use App\Enums\MessageStatus;
     use App\Enums\YesOrNo;
-    use App\Models\Contact;
+    use App\Models\Booking;use App\Models\Contact;
     /**
      * @var Contact $contact;
      */
@@ -91,12 +91,14 @@
                             <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
-                    <a class="whitespace-nowrap"
-                       title="{{ __('tables.start_booking') }}"
-                       aria-label="{{ __('tables.start_booking') }}"
-                       href="{{ route('bookings.create', ['contact' => $contact->id]) }}">
-                        {{ __('tables.start_booking') }}
-                    </a>
+                    @can('create', Booking::class)
+                        <a class="whitespace-nowrap"
+                           title="{{ __('tables.start_booking') }}"
+                           aria-label="{{ __('tables.start_booking') }}"
+                           href="{{ route('bookings.create', ['contact' => $contact->id]) }}">
+                            {{ __('tables.start_booking') }}
+                        </a>
+                    @endcan
                 </div>
             @endcan
 

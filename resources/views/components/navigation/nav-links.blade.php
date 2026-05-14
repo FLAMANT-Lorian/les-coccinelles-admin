@@ -30,7 +30,7 @@
             'permission' => 'bookings.create'
         ],
         'bookings-update' => [
-            'route' => 'bookings.update',
+            'route' => 'bookings.edit',
             'permission' => 'bookings.edit'
         ],
     ];

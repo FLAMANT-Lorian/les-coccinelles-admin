@@ -108,7 +108,7 @@
             {{-- ACTION MOBILES --}}
             @can('update', Booking::class)
                 <div class="actions-mobile">
-                    <a class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
+                    <a class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
                         href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
                         aria-label="{{ __('tables.update') }}"
                         title="{{ __('pages/hall.bookings-update.update-booking') }}">
