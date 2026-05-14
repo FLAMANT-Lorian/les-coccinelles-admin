@@ -21,6 +21,7 @@ class MeterReading extends Model
         'after_electricity_cdj',
         'before_mazout_general',
         'after_mazout_general',
+        'booking_id',
     ];
 
     public function booking(): BelongsTo

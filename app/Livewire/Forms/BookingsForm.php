@@ -126,19 +126,6 @@ class BookingsForm extends Form
 
         $type = HallRate::findOrFail($this->type);
 
-        $meter_reading = MeterReading::create([
-            'before_water_general' => $this->before_water_general ?? null,
-            'after_water_general' => $this->after_water_general ?? null,
-            'before_water_cdj' => $this->before_water_cdj ?? null,
-            'after_water_cdj' => $this->after_water_cdj ?? null,
-            'before_electricity_general' => $this->before_electricity_general ?? null,
-            'after_electricity_general' => $this->after_electricity_general ?? null,
-            'before_electricity_cdj' => $this->before_electricity_cdj ?? null,
-            'after_electricity_cdj' => $this->after_electricity_cdj ?? null,
-            'before_mazout_general' => $this->before_mazout_general ?? null,
-            'after_mazout_general' => $this->after_mazout_general ?? null
-        ]);
-
         $start_date = '';
         $end_date = '';
 
@@ -151,17 +138,29 @@ class BookingsForm extends Form
 
         $uniqid = str_replace('-', '', $start_date) . '-' . $contact->first_name . '-' . $contact->last_name;
 
-        Booking::create([
+        $booking = Booking::create([
             'uniqid' => $uniqid,
             'contact_id' => $contact->id,
             'hall_rate_id' => $type->id,
-            'meter_reading_id' => $meter_reading->id,
             'key_handover_date' => $this->handover_date,
             'key_return_date' => $this->return_date,
             'start_date' => $start_date,
             'end_date' => $end_date,
             'message' => $this->message,
             'billing_address' => $this->billing_address
+        ]);
+
+        $booking->meterReading()->create([
+            'before_water_general' => $this->before_water_general ?? null,
+            'after_water_general' => $this->after_water_general ?? null,
+            'before_water_cdj' => $this->before_water_cdj ?? null,
+            'after_water_cdj' => $this->after_water_cdj ?? null,
+            'before_electricity_general' => $this->before_electricity_general ?? null,
+            'after_electricity_general' => $this->after_electricity_general ?? null,
+            'before_electricity_cdj' => $this->before_electricity_cdj ?? null,
+            'after_electricity_cdj' => $this->after_electricity_cdj ?? null,
+            'before_mazout_general' => $this->before_mazout_general ?? null,
+            'after_mazout_general' => $this->after_mazout_general ?? null
         ]);
     }
 
@@ -182,19 +181,6 @@ class BookingsForm extends Form
 
         $type = HallRate::findOrFail($this->type);
 
-        $this->booking->meterReading->update([
-            'before_water_general' => $this->before_water_general ?? null,
-            'after_water_general' => $this->after_water_general ?? null,
-            'before_water_cdj' => $this->before_water_cdj ?? null,
-            'after_water_cdj' => $this->after_water_cdj ?? null,
-            'before_electricity_general' => $this->before_electricity_general ?? null,
-            'after_electricity_general' => $this->after_electricity_general ?? null,
-            'before_electricity_cdj' => $this->before_electricity_cdj ?? null,
-            'after_electricity_cdj' => $this->after_electricity_cdj ?? null,
-            'before_mazout_general' => $this->before_mazout_general ?? null,
-            'after_mazout_general' => $this->after_mazout_general ?? null
-        ]);
-
         $start_date = '';
         $end_date = '';
 
@@ -211,13 +197,25 @@ class BookingsForm extends Form
             'uniqid' => $uniqid,
             'contact_id' => $contact->id,
             'hall_rate_id' => $type->id,
-            'meter_reading_id' => $this->booking->meterReading->id,
             'key_handover_date' => $this->handover_date,
             'key_return_date' => $this->return_date,
             'start_date' => $start_date,
             'end_date' => $end_date,
             'message' => $this->message,
             'billing_address' => $this->billing_address
+        ]);
+
+        $this->booking->meterReading->update([
+            'before_water_general' => $this->before_water_general ?? null,
+            'after_water_general' => $this->after_water_general ?? null,
+            'before_water_cdj' => $this->before_water_cdj ?? null,
+            'after_water_cdj' => $this->after_water_cdj ?? null,
+            'before_electricity_general' => $this->before_electricity_general ?? null,
+            'after_electricity_general' => $this->after_electricity_general ?? null,
+            'before_electricity_cdj' => $this->before_electricity_cdj ?? null,
+            'after_electricity_cdj' => $this->after_electricity_cdj ?? null,
+            'before_mazout_general' => $this->before_mazout_general ?? null,
+            'after_mazout_general' => $this->after_mazout_general ?? null
         ]);
     }
 }
