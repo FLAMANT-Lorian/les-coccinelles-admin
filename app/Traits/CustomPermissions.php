@@ -51,6 +51,12 @@ trait CustomPermissions
             'create' => false,
             'update' => false,
             'delete' => false,
+        ],
+        'bookings' => [
+            'index' => false,
+            'create' => false,
+            'update' => false,
+            'delete' => false,
         ]
     ];
 

@@ -9,7 +9,7 @@ $tabs = [
     [
         'label' => __('navigation/navigation.bookings'),
         'location' => LaravelLocalization::localizeURL(route('bookings.index')),
-        'permission' => null
+        'permission' => 'bookings.index'
     ],
     [
         'label' => __('navigation/navigation.hall-rates'),

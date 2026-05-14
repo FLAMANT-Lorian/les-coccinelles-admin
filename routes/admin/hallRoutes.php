@@ -24,12 +24,15 @@ Route::livewire(LaravelLocalization::transRoute('routes.contacts'), 'pages::cont
     ->name('contacts');
 
 Route::livewire(LaravelLocalization::transRoute('routes.bookings'), 'pages::bookings.index')
+    ->middleware('can:bookings.index')
     ->name('bookings.index');
 
 Route::livewire(LaravelLocalization::transRoute('routes.create-bookings'), 'pages::bookings.create')
+    ->middleware('can:bookings.create')
     ->name('bookings.create');
 
 Route::livewire(LaravelLocalization::transRoute('routes.update-bookings'), 'pages::bookings.update')
+    ->middleware('can:bookings.update')
     ->name('bookings.update');
 
 

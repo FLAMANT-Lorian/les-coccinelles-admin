@@ -18,7 +18,8 @@ return [
         'hallRates' => 'Tarifs de la salle',
         'utilityCosts' => 'Coûts des charges',
         'interventions' => 'Interventions',
-        'contacts' => 'Contacts'
+        'contacts' => 'Contacts',
+        'bookings' => 'Réservations',
     ],
     'all' => 'Tout',
     'see_table' => 'Voir le tableau',
