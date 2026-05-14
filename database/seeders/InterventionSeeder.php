@@ -16,24 +16,24 @@ class InterventionSeeder extends Seeder
     {
         $user1 = User::first();
 
-        $role = Role::where('unique', '', 0)->first();
+        $role = Role::where('unique', 0)->first();
         $user2 = User::factory()->create();
         $user2->assignRole($role);
 
         Intervention::factory()
             ->createdBy($user1)
             ->assignedTo($user2)
-            ->count(10)
+            ->count(5)
             ->create();
 
         Intervention::factory()
             ->createdBy($user2)
             ->assignedTo($user1)
-            ->count(10)
+            ->count(5)
             ->create();
 
         Intervention::factory()
-            ->count(10)
+            ->count(5)
             ->create();
     }
 }

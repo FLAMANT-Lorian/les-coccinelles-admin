@@ -6,12 +6,15 @@ use App\Livewire\Forms\BookingsForm;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
+use App\Traits\DeleteBooking;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
+
+    use DeleteBooking;
 
     public Booking $booking;
 

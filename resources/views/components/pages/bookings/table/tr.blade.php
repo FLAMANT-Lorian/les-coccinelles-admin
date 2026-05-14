@@ -75,13 +75,21 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['availabilities.delete', 'availabilities.update'])
-                <div x-show="open" x-transition class="actions-table">
-                    <button type="button">
-                        <span>{{ __('tables.update') }}</span>
-                    </button>
-                </div>
-            @endcan
+            {{--@canany()--}}
+            <div x-show="open" x-transition class="actions-table">
+                <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                   aria-label="{{ __('tables.update') }}"
+                   title="{{ __('pages/hall.bookings-update.update-booking') }}">
+                    {{ __('tables.update') }}
+                </a>
+                <button type="button"
+                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $booking->id }} })"
+                        title="{{ __('pages/hall.bookings-update.delete-booking') }}"
+                        aria-label="{{ __('tables.delete') }}">
+                    {{ __('tables.delete') }}
+                </button>
+            </div>
+            {{--@endcan--}}
 
             {{-- ACTION MOBILES --}}
             <div class="actions-mobile">

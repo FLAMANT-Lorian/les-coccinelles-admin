@@ -2,6 +2,7 @@
 
 use App\Enums\BookingStatus;
 use App\Models\Booking;
+use App\Traits\DeleteBooking;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,6 +18,7 @@ new class extends Component {
     use WithPagination;
     use TableFilter;
     use TableSelectedColumn;
+    use DeleteBooking;
 
     #[Computed]
     public function getBookings()
@@ -92,38 +94,38 @@ new class extends Component {
 <div class="flex flex-col relative">
     {{-- FILTER --}}
     <div
-            class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
+        class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
         <x-forms.input.input-search
-                wire="term"
-                name="availability_search"
-                id="availability_search"
-                :label="__('forms.search')"
-                :placeholder="__('forms.search')"
+            wire="term"
+            name="availability_search"
+            id="availability_search"
+            :label="__('forms.search')"
+            :placeholder="__('forms.search')"
         />
 
         <x-forms.input.custom-select-filter
-                class="md:col-span-2 md:justify-self-start"
-                :collection="$this->getFilteredTerms"
-                name="filter"
-                wire="filter_term"
-                id="availability_filter"
-                :enum="true"
-                :translation="true"
+            class="md:col-span-2 md:justify-self-start"
+            :collection="$this->getFilteredTerms"
+            name="filter"
+            wire="filter_term"
+            id="availability_filter"
+            :enum="true"
+            :translation="true"
         />
 
         <x-general.add-button
-                class="justify-center md:col-start-4 md:justify-self-end"
-                :location="route('bookings.create')"
-                :label="__('pages/hall.bookings.add-booking')"
+            class="justify-center md:col-start-4 md:justify-self-end"
+            :location="route('bookings.create')"
+            :label="__('pages/hall.bookings.add-booking')"
         />
     </div>
 
     <x-general.selected-column
-            :array="$this->selectedColumn"
-            :options="[
+        :array="$this->selectedColumn"
+        :options="[
             'delete' => true
             ]"
-            :delete-permission="null"
+        :delete-permission="null"
     />
 
     @if($this->getBookings->isNotEmpty())
@@ -134,10 +136,10 @@ new class extends Component {
         </table>
 
         <x-general.pagination
-                :items="$this->getBookings"/>
+            :items="$this->getBookings"/>
     @else
         <x-general.no-results
-                :term="$this->term"/>
+            :term="$this->term"/>
     @endif
 
 </div>

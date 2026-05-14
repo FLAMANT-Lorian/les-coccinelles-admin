@@ -33,5 +33,15 @@
         {{-- FORM --}}
         <livewire:pages.bookings.forms.update.form
             :booking="$this->booking"/>
+
+        {{-- DANGER ZONE --}}
+        <x-pages.bookings.forms.update.danger-zone
+            :booking="$this->booking"/>
     </div>
+
+    {{-- MODALS --}}
+    @if($this->openDeleteModal)
+        <x-widgets.modals.bookings.delete-booking
+            :id="$this->booking->id"/>
+    @endif
 </div>

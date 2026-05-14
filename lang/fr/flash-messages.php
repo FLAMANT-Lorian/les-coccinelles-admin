@@ -51,6 +51,6 @@ return [
     /* BOOKINGS */
     'bookings-created' => 'La réservation a été créé avec succès !',
     'bookings-updated' => 'Le réservation a été modifié avec succès !',
-    'bookings-deleted' => 'Le réservation a été supprimé avec succès !',
-    'bookingss-deleted' => 'Les réservations ont été supprimés avec succès !',
+    'booking-deleted' => 'Le réservation a été supprimé avec succès !',
+    'bookings-deleted' => 'Les réservations ont été supprimés avec succès !',
 ];

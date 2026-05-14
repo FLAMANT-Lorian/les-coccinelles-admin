@@ -31,5 +31,11 @@
     </div>
 
     {{-- MODALS --}}
-
+    @if($this->openDeleteModal)
+        <x-widgets.modals.bookings.delete-booking
+            :id="$this->bookingToDelete"/>
+    @elseif($this->openDeleteSelection)
+        <x-widgets.modals.selection.delete-selection
+            action="deleteBookings"/>
+    @endif
 </div>

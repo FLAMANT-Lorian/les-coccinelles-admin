@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use App\Models\AvailabilityRequest;
+use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\Intervention;
@@ -168,5 +169,21 @@ trait DeleteSelection
         session()->flash('success', __('flash-messages.contacts-deleted'));
 
         $this->redirectRoute('contacts', navigate: true);
+    }
+
+    #[On('deleteBookings')]
+    public function deleteBookings(): void
+    {
+        $bookings = Booking::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($bookings as $booking) {
+            $booking->delete();
+        }
+
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.bookings-deleted'));
+
+        $this->redirectRoute('bookings.index', navigate: true);
     }
 }
