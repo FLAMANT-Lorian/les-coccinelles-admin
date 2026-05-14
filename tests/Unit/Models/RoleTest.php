@@ -1,9 +1,8 @@
 <?php
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
-use function Pest\Laravel\assertDatabaseCount;
 
 it('verifies if you can create a multiple role with permissions and give the role to different users', function () {
 

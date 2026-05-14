@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 
 it('verifies if you can recover the role using the relation', function () {
     $role = Role::create([
