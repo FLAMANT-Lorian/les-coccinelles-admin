@@ -93,7 +93,7 @@ new class extends Component {
 
     public function update(): void
     {
-        $this->authorize('members.update', User::class);
+        $this->authorize('update', User::class);
 
         $this->form->validate();
 

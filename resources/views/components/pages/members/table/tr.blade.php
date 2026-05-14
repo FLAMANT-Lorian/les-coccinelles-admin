@@ -1,5 +1,6 @@
 @php
     use App\Enums\MessageStatus;
+    use App\Models\Role;
     use App\Models\User;
     /**
      * @var User $member;
@@ -24,7 +25,7 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            @can('members.update')
+            @can('update', User::class)
                 <a class="underline-link after:bg-brown {{ empty(trim($member->full_name)) ? 'italic text-gray-500' : '' }}"
                    aria-label="{{ empty(trim($member->full_name)) ? '–' : $member->full_name }}"
                    title="{{ __('pages/members.update-members') }}"
@@ -32,7 +33,7 @@
                    wire:navigate>
                     {{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}
                 </a>
-            @elsecannot('members.update')
+            @else
                 <span>{{ empty(trim($member->full_name)) ? __('general.not_specified') : $member->full_name }}</span>
             @endcannot
         </div>
@@ -61,7 +62,7 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            @can('roles.update')
+            @can('update', Role::class)
                 <a href="{{ route('roles.edit', ['role' => $member->roles->first()->id]) }}"
                    wire:navigate
                    aria-label="{{ $member->roles->first()->name }}"
@@ -69,7 +70,7 @@
                    class="underline-link after:bg-brown">
                     {{ $member->roles->first()->name }}
                 </a>
-            @elsecannot('roles.update')
+            @else
                 <span>{{ $member->roles->first()->name }}</span>
             @endcannot
         </div>
@@ -93,16 +94,16 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['members.update', 'members.delete'])
+            @canany(['update', 'delete'], User::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('members.update')
+                    @can('update', User::class)
                         <a href="{{ route('members.edit', ['member' => $member]) }}"
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('pages/members.update-members') }}">
                             <span>{{ __('tables.update') }}</span>
                         </a>
                     @endcan
-                    @can('members.delete')
+                    @can('delete', User::class)
                         <button type="button"
                                 @click="modalOpen = true"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
@@ -113,7 +114,7 @@
             @endcanany
 
             {{--ACTION MOBILES --}}
-            @can('members.update')
+            @can('update', User::class)
                 <div class="actions-mobile">
                     <a href="{{ route('members.edit', ['member' => $member]) }}"
                        title="{{ __('modals.edit-member') }}"

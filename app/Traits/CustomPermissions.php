@@ -16,46 +16,46 @@ trait CustomPermissions
         'members' => [
             'index' => false,
             'create' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'roles' => [
             'index' => false,
             'create' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'availabilities' => [
             'index' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'hallRates' => [
             'index' => false,
             'create' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'utilityCosts' => [
             'index' => false,
-            'update' => false,
+            'edit' => false,
         ],
         'interventions' => [
             'index' => false,
             'create' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'contacts' => [
             'index' => false,
             'create' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'bookings' => [
             'index' => false,
             'create' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ]
     ];
