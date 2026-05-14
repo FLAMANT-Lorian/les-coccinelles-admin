@@ -27,7 +27,7 @@
                    title="{{ __('general.view-role') . $role->name }}"
                    aria-label="{{ $role->name }}"
                    wire:navigate
-                   href="{{ route('roles.update', ['role' => $role]) }}">
+                   href="{{ route('roles.edit', ['role' => $role]) }}">
                     {{ $role->name }}
                 </a>
             @elsecannot('roles.delete')
@@ -49,7 +49,7 @@
                     @php
                         $user = $role->users->first();
                     @endphp
-                    <a href="{{ route('members.update', ['member' => $user]) }}"
+                    <a href="{{ route('members.edit', ['member' => $user]) }}"
                        class="underline-link after:bg-brown {{ empty(trim($user->full_name)) ? 'italic text-gray-500' : '' }}"
                        title="{{ __('general.view-profil-of') . $user->full_name }}"
                        wire:navigate
@@ -105,7 +105,7 @@
             @canany(['roles.update', 'roles.delete'])
                 <div x-show="open" x-transition class="actions-table">
                     @can('roles.update')
-                        <a href="{{ route('roles.update', ['role' => $role]) }}"
+                        <a href="{{ route('roles.edit', ['role' => $role]) }}"
                            wire:navigate
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('modals.edit-role') }}">
@@ -127,7 +127,7 @@
             {{-- ACTION MOBILES --}}
             @can('roles.update')
                 <div class="actions-mobile">
-                    <a href="{{ route('roles.update', ['role' => $role]) }}"
+                    <a href="{{ route('roles.edit', ['role' => $role]) }}"
                        title="{{ __('modals.edit-role') }}"
                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
                         <span class="whitespace-nowrap">{{ __('modals.edit-role') }}</span>

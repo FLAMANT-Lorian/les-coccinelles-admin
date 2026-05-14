@@ -45,7 +45,7 @@
             <span>{{ __('tables.creator') }}&nbsp;:</span>
             @if($intervention->creator)
                 @can('members.update')
-                    <a href="{{ route('members.update', ['member' => $intervention->creator->id]) }}"
+                    <a href="{{ route('members.edit', ['member' => $intervention->creator->id]) }}"
                        class="underline-link after:bg-brown"
                        wire:navigate
                        title="{{ __('pages/members.update-members') }}"
@@ -65,7 +65,7 @@
             <span>{{ __('tables.assignee') }}&nbsp;:</span>
             @if($intervention->assignee)
                 @can('members.update')
-                    <a href="{{ route('members.update', ['member' => $intervention->assignee->id]) }}"
+                    <a href="{{ route('members.edit', ['member' => $intervention->assignee->id]) }}"
                        class="underline-link after:bg-brown"
                        wire:navigate
                        title="{{ __('pages/members.update-members') }}"

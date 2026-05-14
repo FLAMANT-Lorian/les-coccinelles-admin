@@ -11,6 +11,6 @@ Route::livewire(LaravelLocalization::transRoute('routes.members-create'), 'pages
     ->middleware('can:members.create')
     ->name('members.create');
 
-Route::livewire(LaravelLocalization::transRoute('routes.members-edit'), 'pages::members.update')
+Route::livewire(LaravelLocalization::transRoute('routes.members-edit'), 'pages::members.edit')
     ->middleware('can:members.update')
-    ->name('members.update');
+    ->name('members.edit');

@@ -27,7 +27,7 @@
         <div>
             <span>{{ __('tables.email') }}&nbsp;:</span>
             @can('update', Booking::class)
-                <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                <a href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
                    class="underline-link after:bg-brown"
                    title="{{ __('pages/hall.bookings-update.update-booking') }}"
                    aria-label="{{ $booking->contact->full_name }}">
@@ -56,10 +56,16 @@
     </td>
     <td>
         <div>
+            @php
+                $today = Carbon::now()->format('Y-m-d');
+                $start = Carbon::parse($booking->start_date)->format('Y-m-d');
+                $end = Carbon::parse($booking->end_date)->format('Y-m-d');
+            @endphp
+
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            @if(Carbon::parse($booking->start_date)->format('Y-m-d') > Carbon::now()->format('Y-m-d'))
+            @if($start > $today)
                 <x-general.status :status="BookingStatus::SOON->value"/>
-            @elseif(Carbon::parse($booking->start_date)->format('Y-m-d') < Carbon::now()->format('Y-m-d'))
+            @elseif($end < $today)
                 <x-general.status :status="BookingStatus::PAST->value"/>
             @else
                 <x-general.status :status="BookingStatus::NOW->value"/>
@@ -82,7 +88,7 @@
             @canany(['update', 'delete'], Booking::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', Booking::class)
-                        <a href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                        <a href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
                            aria-label="{{ __('tables.update') }}"
                            title="{{ __('pages/hall.bookings-update.update-booking') }}">
                             {{ __('tables.update') }}
@@ -103,7 +109,7 @@
             @can('update', Booking::class)
                 <div class="actions-mobile">
                     <a class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
-                        href="{{ route('bookings.update', ['booking' => $booking->id]) }}"
+                        href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
                         aria-label="{{ __('tables.update') }}"
                         title="{{ __('pages/hall.bookings-update.update-booking') }}">
                         <span class="text-left">{{ __('tables.update') }}</span>
