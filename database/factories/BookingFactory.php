@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,8 +24,6 @@ class BookingFactory extends Factory
 
         return [
             'uniqid' => $uniqid,
-            'contact_id' => $contact->id,
-            'hall_rate_id' => HallRate::factory()->create()->id,
             'key_handover_date' => Carbon::now()->subDays(3),
             'key_return_date' => Carbon::now()->subDay(),
             'start_date' => Carbon::now()->subDays(3),
@@ -32,5 +31,19 @@ class BookingFactory extends Factory
             'message' => $faker->realText(100),
             'billing_address' => $faker->address
         ];
+    }
+
+    public function contact(Contact $contact): BookingFactory
+    {
+        return $this->state(fn() => [
+            'contact_id' => $contact->id,
+        ]);
+    }
+
+    public function type(HallRate $hallRate): BookingFactory
+    {
+        return $this->state(fn() => [
+            'hall_rate_id' => $hallRate->id
+        ]);
     }
 }
