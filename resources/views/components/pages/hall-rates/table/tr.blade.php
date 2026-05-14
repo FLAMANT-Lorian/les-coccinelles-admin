@@ -1,4 +1,4 @@
-@php use App\ValueObjects\Money; @endphp
+@php use App\Models\HallRate;use App\ValueObjects\Money; @endphp
 @props([
     'hallRate' => HallRate::class,
 ])
@@ -18,7 +18,7 @@
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
-            @can('hallRates.update')
+            @can('update', HallRate::class)
                 <button type="button"
                         wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})"
                         class="underline-link after:bg-brown">
@@ -54,16 +54,16 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['hallRates.update', 'hallRates.delete'])
+            @canany(['update', 'delete'], HallRate::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('hallRates.update')
-                    <button type="button"
-                            title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
-                            wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
-                        <span>{{ __('tables.update') }}</span>
-                    </button>
+                    @can('update', HallRate::class)
+                        <button type="button"
+                                title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
+                                wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
+                            <span>{{ __('tables.update') }}</span>
+                        </button>
                     @endcan
-                    @can('hallRates.delete')
+                    @can('delete', HallRate::class)
                         <button type="button"
                                 title="{{ __('pages/hall.hall-rates.delete-hall-rate') }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteHallRateModal', id: {{ $hallRate->id }}})">
@@ -74,7 +74,7 @@
             @endcan
 
             {{-- ACTION MOBILES --}}
-            @can('hallRates.update')
+            @can('update', HallRate::class)
                 <div class="actions-mobile">
                     <button type="button"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
