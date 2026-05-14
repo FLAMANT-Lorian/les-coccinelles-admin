@@ -51,5 +51,7 @@ return [
         'heading' => 'Réservation de ',
         'subtitle' => 'Toutes les informations sur la réservation',
         'update-booking' => 'Modifier la réservation',
+        'delete-booking' => 'Supprimer la réservation',
+        'delete-booking-description' => 'Après suppression, cette résevration ne pourra plus être récupérée !',
     ],
 ];

@@ -43,4 +43,8 @@ return [
     'updateContact' => 'Modifier le contact',
     'deleteContact' => 'Supprimer le contact',
     'deleteContactMessage' => 'Êtes-vous sûr de vouloir supprimer ce contact ?',
+
+    // BOOKING
+    'deleteBooking' => 'Supprimer la réservation',
+    'deleteBookingMessage' => 'Êtes-vous sûr de vouloir supprimer cette réservation ?',
 ];
