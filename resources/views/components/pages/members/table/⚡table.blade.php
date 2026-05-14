@@ -85,7 +85,7 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
-        @can('members.create')
+        @can('create', User::class)
             <x-general.add-button
                 class="justify-center md:col-start-4 md:justify-self-end"
                 :location="route('members.create')"
@@ -99,7 +99,7 @@ new class extends Component {
         :options="[
             'delete' => true
         ]"
-        deletePermission="members.delete"
+        :model="User::class"
     />
 
     @if($this->getMembers->isNotEmpty())

@@ -3,8 +3,6 @@
 namespace App\Traits;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Storage;
-use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 
 trait DeleteMember

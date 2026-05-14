@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('users.index');
+        return $user->can('members.index');
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(User $user): bool
     {
-        return $user->can('members.update');
+        return $user->can('members.edit');
     }
 
     /**

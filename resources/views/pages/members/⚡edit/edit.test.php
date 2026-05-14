@@ -1,14 +1,14 @@
 <?php
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
 
 describe('UPDATE MEMBERS WITH PERMISSIONS', function () {
     beforeEach(function () {
         $permissions = Permission::create([
-            'name' => 'members.update',
+            'name' => 'members.edit',
             'guard_name' => 'web'
         ]);
 

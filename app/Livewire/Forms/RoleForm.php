@@ -3,10 +3,10 @@
 namespace App\Livewire\Forms;
 
 use App\Enums\YesOrNo;
+use App\Models\Role;
 use App\Traits\CustomPermissions;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
-use Spatie\Permission\Models\Role;
 
 class RoleForm extends Form
 {

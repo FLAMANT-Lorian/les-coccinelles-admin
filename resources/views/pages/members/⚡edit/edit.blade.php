@@ -1,5 +1,7 @@
 @php
 
+    use App\Models\User;
+
     $segments = [
         [
             'label' => __('navigation/navigation.members'),
@@ -34,7 +36,7 @@
             :member="$member"/>
 
         {{-- DANGER ZONE --}}
-        @can('members.delete')
+        @can('delete', User::class)
             <x-pages.members.forms.update.danger-zone/>
         @endcan
     </div>

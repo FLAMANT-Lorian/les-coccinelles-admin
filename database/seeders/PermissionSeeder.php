@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 
@@ -16,52 +15,52 @@ class PermissionSeeder extends Seeder
         $permissions = [
             'messages' => [
                 'index',
-                'update',
+                'edit',
                 'delete',
             ],
             'members' => [
                 'index',
                 'create',
-                'update',
+                'edit',
                 'delete',
             ],
             'roles' => [
                 'index',
                 'create',
-                'update',
+                'edit',
                 'delete',
             ],
             'availabilities' => [
                 'index',
-                'update',
+                'edit',
                 'delete',
             ],
             'hallRates' => [
                 'index',
                 'create',
-                'update',
+                'edit',
                 'delete',
             ],
             'utilityCosts' => [
                 'index',
-                'update',
+                'edit',
             ],
             'interventions' => [
                 'index',
                 'create',
-                'update',
+                'edit',
                 'delete',
             ],
             'contacts' => [
                 'index',
                 'create',
-                'update',
+                'edit',
                 'delete',
             ],
             'bookings' => [
                 'index',
                 'create',
-                'update',
+                'edit',
                 'delete',
             ],
         ];

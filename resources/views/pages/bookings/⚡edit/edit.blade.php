@@ -1,5 +1,5 @@
 @php
-    use App\Enums\MessageTypes;
+    use App\Models\Booking;
 
     $segments = [
         [
@@ -35,8 +35,10 @@
             :booking="$this->booking"/>
 
         {{-- DANGER ZONE --}}
-        <x-pages.bookings.forms.update.danger-zone
-            :booking="$this->booking"/>
+        @can('delete', Booking::class)
+            <x-pages.bookings.forms.update.danger-zone
+                :booking="$this->booking"/>
+        @endcan
     </div>
 
     {{-- MODALS --}}

@@ -2,9 +2,9 @@
 
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\RoleForm;
+use App\Models\Role;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
 
 new class extends Component {
 

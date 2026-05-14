@@ -27,7 +27,7 @@ class BookingPolicy
 
     public function update(User $user): bool
     {
-        return $user->can('bookings.update');
+        return $user->can('bookings.edit');
     }
 
     public function delete(User $user): bool

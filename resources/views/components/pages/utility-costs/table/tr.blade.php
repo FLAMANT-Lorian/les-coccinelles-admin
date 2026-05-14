@@ -15,7 +15,7 @@
     <td>
         <div>
             <span>{{ __('tables.type') }}&nbsp;:</span>
-            @can('utilityCosts.update')
+            @can('update', UtilityCost::class)
                 <button type="button"
                         class="underline-link after:bg-brown"
                         wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})">
@@ -51,9 +51,9 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['utilityCosts.update'])
+            @canany(['update'], UtilityCost::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('utilityCosts.update')
+                    @can('update', UtilityCost::class)
                         <button type="button"
                                 wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"
                                 title="{{ __('pages/hall.utility-costs.update-utility-cost') }}">
@@ -64,7 +64,7 @@
             @endcanany
 
             {{-- ACTION MOBILES --}}
-            @can('utilityCosts.update')
+            @can('update', UtilityCost::class)
                 <div class="actions-mobile">
                     <button type="button"
                             wire:click="$dispatch('open-modal', {modal: 'updateUtilityCost', id: {{ $utilityCost->id }}})"

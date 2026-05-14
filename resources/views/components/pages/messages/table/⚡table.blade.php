@@ -108,7 +108,7 @@ new class extends Component {
             'markAsRead' => true,
             'markAsNotRead' => true
             ]"
-        delete-permission="messages.delete"
+        :model="Message::class"
     />
 
     @if($this->getContactMessages->isNotEmpty())

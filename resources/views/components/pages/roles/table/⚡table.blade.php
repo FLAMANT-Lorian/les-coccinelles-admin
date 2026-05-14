@@ -4,6 +4,7 @@ use App\Enums\MessageTypes;
 use App\Enums\RoleMode;
 use App\Models\Message;
 use App\Enums\MessageStatus;
+use App\Models\Role;
 use App\Traits\DeleteRole;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
@@ -13,7 +14,6 @@ use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\Url;
-use Spatie\Permission\Models\Role;
 
 new class extends Component {
 
@@ -89,7 +89,7 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
-        @can('roles.create')
+        @can('create', Role::class)
             <x-general.add-button
                 class="justify-center md:col-start-4 md:justify-self-end"
                 :location="route('roles.create')"
@@ -103,7 +103,7 @@ new class extends Component {
         :options="[
             'delete' => true
         ]"
-        deletePermission="roles.delete"
+        :model="Role::class"
     />
 
     @if($this->getRoles->isNotEmpty())

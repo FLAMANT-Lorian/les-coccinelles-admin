@@ -1,4 +1,4 @@
-@php use App\Enums\MessageStatus; @endphp
+@php use App\Enums\MessageStatus;use App\Models\AvailabilityRequest; @endphp
 @props([
     'availabilityRequest' => Message::class,
 ])
@@ -60,16 +60,16 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['availabilities.delete', 'availabilities.update'])
+            @canany(['delete', 'update'], AvailabilityRequest::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('availabilities.delete')
+                    @can('delete', AvailabilityRequest::class)
                         <button type="button"
                                 @click="modalOpen = true"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
                             <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
-                    @can('availabilities.update')
+                    @can('update', AvailabilityRequest::class)
                         @if($availabilityRequest->status === MessageStatus::Unread->value)
                             <button type="button"
                                     wire:click="markAvailabilityRequestAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">

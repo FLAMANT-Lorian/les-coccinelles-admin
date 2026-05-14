@@ -1,4 +1,4 @@
-@php use App\Enums\MessageStatus; @endphp
+@php use App\Enums\MessageStatus;use App\Models\Role; @endphp
 @props([
     'role' => MembersRole::class,
 ])
@@ -22,7 +22,7 @@
     <td>
         <div>
             <span>{{ __('tables.role') }}&nbsp;:</span>
-            @can('roles.update')
+            @can('update', Role::class)
                 <a class="underline-link after:bg-brown"
                    title="{{ __('general.view-role') . $role->name }}"
                    aria-label="{{ $role->name }}"
@@ -30,7 +30,7 @@
                    href="{{ route('roles.edit', ['role' => $role]) }}">
                     {{ $role->name }}
                 </a>
-            @elsecannot('roles.delete')
+            @else
                 <span>{{ $role->name }}</span>
             @endcannot
         </div>
@@ -44,7 +44,7 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            @can('members.update')
+            @can('update', User::class)
                 @if($role->unique && $role->users->first())
                     @php
                         $user = $role->users->first();
@@ -59,7 +59,7 @@
                 @else
                     <span>–</span>
                 @endif
-            @elsecannot('members.update')
+            @else
                 @if($role->unique && $role->users->first())
                     @php
                         $user = $role->users->first();
@@ -102,9 +102,9 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['roles.update', 'roles.delete'])
+            @canany(['update', 'delete'], Role::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('roles.update')
+                    @can('update', Role::class)
                         <a href="{{ route('roles.edit', ['role' => $role]) }}"
                            wire:navigate
                            aria-label="{{ __('tables.update') }}"
@@ -112,7 +112,7 @@
                             <span>{{ __('tables.update') }}</span>
                         </a>
                     @endcan
-                    @can('roles.delete')
+                    @can('delete', Role::class)
                         <button type="button"
                                 @click="modalOpen = true"
                                 @click.away="open = false"
@@ -125,7 +125,7 @@
             @endcanany
 
             {{-- ACTION MOBILES --}}
-            @can('roles.update')
+            @can('update', Role::class)
                 <div class="actions-mobile">
                     <a href="{{ route('roles.edit', ['role' => $role]) }}"
                        title="{{ __('modals.edit-role') }}"

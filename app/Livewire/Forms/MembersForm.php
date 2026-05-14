@@ -4,6 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
+use App\Models\Role;
 use App\Models\User;
 use App\Rules\UniqueRole;
 use App\Traits\CleanLivewireTMPFolder;
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Livewire\Form;
-use Spatie\Permission\Models\Role;
 
 class MembersForm extends Form
 {

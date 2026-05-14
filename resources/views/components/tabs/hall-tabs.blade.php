@@ -1,35 +1,42 @@
 <?php
 
+use App\Models\AvailabilityRequest;
+use App\Models\Booking;
+use App\Models\Contact;
+use App\Models\HallRate;
+use App\Models\Intervention;
+use App\Models\UtilityCost;
+
 $tabs = [
     [
         'label' => __('navigation/navigation.availabilities'),
         'location' => LaravelLocalization::localizeURL(route('availabilities')),
-        'permission' => 'availabilities.index'
+        'model' => AvailabilityRequest::class
     ],
     [
         'label' => __('navigation/navigation.bookings'),
         'location' => LaravelLocalization::localizeURL(route('bookings.index')),
-        'permission' => 'bookings.index'
+        'model' => Booking::class
     ],
     [
         'label' => __('navigation/navigation.hall-rates'),
         'location' => LaravelLocalization::localizeURL(route('hall-rates')),
-        'permission' => 'hallRates.index'
+        'model' => HallRate::class
     ],
     [
         'label' => __('navigation/navigation.utility-costs'),
         'location' => LaravelLocalization::localizeURL(route('utility-costs')),
-        'permission' => 'utilityCosts.index'
+        'model' => UtilityCost::class
     ],
     [
         'label' => __('navigation/navigation.interventions'),
         'location' => LaravelLocalization::localizeURL(route('interventions')),
-        'permission' => 'interventions.index'
+        'model' => Intervention::class
     ],
     [
         'label' => __('navigation/navigation.contacts'),
         'location' => LaravelLocalization::localizeURL(route('contacts')),
-        'permission' => 'contacts.index'
+        'model' => Contact::class
     ],
 ];
 

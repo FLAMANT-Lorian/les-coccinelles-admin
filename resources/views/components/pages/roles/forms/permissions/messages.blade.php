@@ -34,12 +34,12 @@
             <label for="message_index">{{ __('general.see_table') }}</label>
         </div>
         <div class="permission">
-            <input id="message_update"
-                   value="update"
+            <input id="message_edit"
+                   value="edit"
                    type="checkbox"
-                   name="update"
-                   wire:model.live="form.permissions.messages.update">
-            <label for="message_update">{{ __('general.update') }}</label>
+                   name="edit"
+                   wire:model.live="form.permissions.messages.edit">
+            <label for="message_edit">{{ __('general.update') }}</label>
         </div>
         <div class="permission">
             <input id="message_delete"

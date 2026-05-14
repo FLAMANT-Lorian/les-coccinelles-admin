@@ -3,13 +3,13 @@
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Livewire\Forms\MembersForm;
+use App\Models\Role;
 use App\Models\User;
 use App\Traits\DeleteMember;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Spatie\Permission\Models\Role;
 
 new class extends Component {
     use DeleteMember;
@@ -93,7 +93,7 @@ new class extends Component {
 
     public function update(): void
     {
-        $this->authorize('members.update', User::class);
+        $this->authorize('update', User::class);
 
         $this->form->validate();
 
@@ -125,10 +125,10 @@ new class extends Component {
 
     {{-- DOCUMENTS --}}
     <x-pages.members.forms.fieldset3
-            class="border-none"/>
+        class="border-none"/>
 
     {{-- BOUTON --}}
     <x-forms.buttons.submit-filled
-            :label="__('forms.save-changes')"
+        :label="__('forms.save-changes')"
     />
 </form>

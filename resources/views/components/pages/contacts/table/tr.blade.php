@@ -1,6 +1,7 @@
 @php
     use App\Enums\MessageStatus;
-    use App\Enums\YesOrNo;use App\Models\Contact;
+    use App\Enums\YesOrNo;
+    use App\Models\Contact;
     /**
      * @var Contact $contact;
      */
@@ -24,7 +25,7 @@
     <td>
         <div>
             <span>{{ __('tables.full_name') }}&nbsp;:</span>
-            @can('contacts.update')
+            @can('update', Contact::class)
                 <button type="button"
                         wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}})"
                         class="underline-link after:bg-brown">
@@ -74,16 +75,16 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['contacts.update', 'contacts.delete'])
+            @canany(['update', 'delete'], Contact::class)
                 <div x-show="open" x-transition class="actions-table">
-                    @can('contacts.update')
+                    @can('update', Contact::class)
                         <button type="button"
                                 title="{{ __('pages/hall.contacts.update-contact') }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
                             <span>{{ __('tables.update') }}</span>
                         </button>
                     @endcan
-                    @can('contacts.delete')
+                    @can('delete', Contact::class)
                         <button type="button"
                                 title="{{ __('pages/hall.contacts.delete-contact') }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
@@ -100,7 +101,7 @@
             @endcan
 
             {{-- ACTION MOBILES --}}
-            @can('contacts.update')
+            @can('update', Contact::class)
                 <div class="actions-mobile">
                     <button type="button"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"

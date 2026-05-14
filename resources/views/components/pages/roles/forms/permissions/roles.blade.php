@@ -42,12 +42,12 @@
             <label for="roles_create">{{ __('general.create') }}</label>
         </div>
         <div class="permission">
-            <input id="roles_update"
-                   value="update"
+            <input id="roles_edit"
+                   value="edit"
                    type="checkbox"
-                   name="update"
-                   wire:model.live="form.permissions.roles.update">
-            <label for="roles_update">{{ __('general.update') }}</label>
+                   name="edit"
+                   wire:model.live="form.permissions.roles.edit">
+            <label for="roles_edit">{{ __('general.update') }}</label>
         </div>
         <div class="permission">
             <input id="roles_delete"

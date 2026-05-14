@@ -27,7 +27,7 @@ class InterventionPolicy
 
     public function update(User $user): bool
     {
-        return $user->can('interventions.update');
+        return $user->can('interventions.edit');
     }
 
     public function delete(User $user): bool

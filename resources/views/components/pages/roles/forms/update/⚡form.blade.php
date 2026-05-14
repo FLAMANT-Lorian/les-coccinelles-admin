@@ -2,11 +2,11 @@
 
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\RoleForm;
+use App\Models\Role;
 use App\Traits\DeleteRole;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
-use Spatie\Permission\Models\Role;
 
 new class extends Component {
 

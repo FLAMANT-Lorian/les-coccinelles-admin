@@ -36,7 +36,7 @@ class RolePolicy
      */
     public function update(User $user): bool
     {
-        return $user->can('roles.update');
+        return $user->can('roles.edit');
     }
 
     /**

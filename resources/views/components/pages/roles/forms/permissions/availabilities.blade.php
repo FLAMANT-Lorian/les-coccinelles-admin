@@ -34,12 +34,12 @@
             <label for="availabilities_index">{{ __('general.see_table') }}</label>
         </div>
         <div class="permission">
-            <input id="availabilities_update"
-                   value="update"
+            <input id="availabilities_edit"
+                   value="edit"
                    type="checkbox"
-                   name="update"
-                   wire:model.live="form.permissions.availabilities.update">
-            <label for="availabilities_update">{{ __('general.update') }}</label>
+                   name="edit"
+                   wire:model.live="form.permissions.availabilities.edit">
+            <label for="availabilities_edit">{{ __('general.update') }}</label>
         </div>
         <div class="permission">
             <input id="availabilities_delete"
