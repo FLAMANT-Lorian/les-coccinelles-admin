@@ -12,7 +12,7 @@ class BookingPolicy
 
     public function viewAny(User $user): bool
     {
-        return false;
+        return $user->can('bookings.index');
     }
 
     public function view(User $user, Booking $booking): bool
@@ -22,17 +22,17 @@ class BookingPolicy
 
     public function create(User $user): bool
     {
-        return false;
+        return $user->can('bookings.create');
     }
 
-    public function update(User $user, Booking $booking): bool
+    public function update(User $user): bool
     {
-        return false;
+        return $user->can('bookings.update');
     }
 
-    public function delete(User $user, Booking $booking): bool
+    public function delete(User $user): bool
     {
-        return false;
+        return $user->can('bookings.delete');
     }
 
     public function restore(User $user, Booking $booking): bool
