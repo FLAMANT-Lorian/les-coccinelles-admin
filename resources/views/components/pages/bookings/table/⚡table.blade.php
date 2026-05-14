@@ -127,7 +127,7 @@ new class extends Component {
         :options="[
             'delete' => true
             ]"
-        delete-permission="bookings.delete"
+        :model="Booking::class"
     />
 
     @if($this->getBookings->isNotEmpty())

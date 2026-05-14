@@ -15,10 +15,12 @@ class BookingSeeder extends Seeder
      */
     public function run(): void
     {
-        Booking::factory(10)
-            ->contact(Contact::factory()->create())
-            ->type(HallRate::factory()->create())
-            ->has(MeterReading::factory())
-            ->create();
+        for ($i = 0; $i < 10; $i++) {
+            Booking::factory()
+                ->contact(Contact::factory()->create())
+                ->type(HallRate::factory()->create())
+                ->has(MeterReading::factory())
+                ->create();
+        }
     }
 }

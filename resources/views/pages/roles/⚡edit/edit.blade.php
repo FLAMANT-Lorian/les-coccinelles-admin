@@ -1,5 +1,7 @@
 @php
 
+    use App\Models\Role;
+
     $segments = [
         [
             'label' => __('navigation/navigation.members'),
@@ -38,7 +40,7 @@
             :role="$this->role"/>
 
         {{-- DANGER ZONE --}}
-        @can('roles.delete')
+        @can('delete', Role::class)
             <x-pages.roles.forms.update.danger-zone
                 :role="$this->role"/>
         @endcan
