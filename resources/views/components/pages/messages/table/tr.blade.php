@@ -1,4 +1,6 @@
-@php use App\Enums\MessageStatus; @endphp
+@php use App\Enums\MessageStatus;
+ use App\Models\Message;@endphp
+
 @props([
     'contactMessage' => Message::class,
 ])
@@ -60,7 +62,7 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            @canany(['messages.delete', 'messages.update'])
+            @canany(['delete', 'update'], Message::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('messages.delete')
                         <button type="button"
@@ -69,7 +71,7 @@
                             <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
-                    @can('messages.update')
+                    @can('update', Message::class)
                         @if($contactMessage->status === MessageStatus::Unread->value)
                             <button type="button"
                                     wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">

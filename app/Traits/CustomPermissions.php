@@ -10,7 +10,7 @@ trait CustomPermissions
     public array $permissions = [
         'messages' => [
             'index' => false,
-            'update' => false,
+            'edit' => false,
             'delete' => false,
         ],
         'members' => [

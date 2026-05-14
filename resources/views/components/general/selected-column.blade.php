@@ -1,19 +1,20 @@
 @php
     use App\Enums\MessageStatus;
+    use App\Models\AvailabilityRequest;use App\Models\Message;
 @endphp
 
 @props([
     'selectedColumn',
     'options',
-    'deletePermission',
+    'model'
 ])
 
 <div
     class="{{ $this->selectedColumn ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none' }} trans-all absolute top-6 px-4 py-2 rounded-sm flex items-center gap-3 bg-beige-medium w-fit">
             <span
                 class="pr-3 border-r border-r-brown">{{ count($this->selectedColumn) . ' ' . __('tables.multiple-selected') }}</span>
-    @can($deletePermission)
-        @if($options['delete'] ?? false)
+    @if($options['delete'] ?? false)
+        @can('delete', $model)
             <button title="{{ __('tables.multiple-delete') }}"
                     {{ $this->selectedColumn ? '' : 'disabled' }}
                     type="button"
@@ -26,11 +27,11 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.multiple-delete') }}</span>
             </button>
-        @endif
-    @endcan
+        @endcan
+    @endif
 
-    @can('messages.update')
-        @if($options['markAsRead'] ?? false)
+    @if($options['markAsRead'] ?? false)
+        @can('update', Message::class)
             <button title="{{ __('tables.mark-as-read') }}"
                     type="button"
                     {{ $this->selectedColumn ? '' : 'disabled' }}
@@ -42,11 +43,11 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.mark-as-read') }}</span>
             </button>
-        @endif
-    @endcan
+        @endcan
+    @endif
 
-    @can('messages.update')
-        @if($options['markAsNotRead'] ?? false)
+    @if($options['markAsNotRead'] ?? false)
+        @can('update', Message::class)
             <button title="{{ __('tables.mark-as-not-read') }}"
                     type="button"
                     {{ $this->selectedColumn ? '' : 'disabled' }}
@@ -58,11 +59,11 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.mark-as-not-read') }}</span>
             </button>
-        @endif
-    @endcan
+        @endcan
+    @endif
 
-    @can('availabilities.update')
-        @if($options['markAvailabilityRequestAsRead'] ?? false)
+    @if($options['markAvailabilityRequestAsRead'] ?? false)
+        @can('update', AvailabilityRequest::class)
             <button title="{{ __('tables.mark-as-read') }}"
                     type="button"
                     {{ $this->selectedColumn ? '' : 'disabled' }}
@@ -74,11 +75,11 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.mark-as-read') }}</span>
             </button>
-        @endif
-    @endcan
+        @endcan
+    @endif
 
-    @can('availabilities.update')
-        @if($options['markAvailabilityRequestAsNotRead'] ?? false)
+    @if($options['markAvailabilityRequestAsNotRead'] ?? false)
+        @can('update', AvailabilityRequest::class)
             <button title="{{ __('tables.mark-as-not-read') }}"
                     type="button"
                     {{ $this->selectedColumn ? '' : 'disabled' }}
@@ -90,6 +91,6 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.mark-as-not-read') }}</span>
             </button>
-        @endif
-    @endcan
+        @endcan
+    @endif
 </div>
