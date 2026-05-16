@@ -25,4 +25,7 @@ Route::group([
 
         /* HALL */
         require __DIR__ . '/admin/hallRoutes.php';
+
+        /* CALENDAR */
+        require __DIR__ . '/admin/calendar.php';
     });

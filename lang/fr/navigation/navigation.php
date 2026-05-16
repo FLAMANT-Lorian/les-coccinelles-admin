@@ -15,6 +15,7 @@ return [
     'contacts' => 'Contacts',
     'messages' => 'Messages',
     'members' => 'Membres',
+    'calendar' => 'Calendrier',
     'roles' => 'Rôles',
 
     'open_menu_mobile' => 'Ouvrir le menu',
