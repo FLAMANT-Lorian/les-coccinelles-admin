@@ -1,4 +1,4 @@
-table {
+.custom-table {
     @apply w-full border-separate border-spacing-0;
 
     thead {

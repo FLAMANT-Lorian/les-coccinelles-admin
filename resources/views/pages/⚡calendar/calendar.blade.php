@@ -28,5 +28,5 @@
     </div>
 
     {{-- MODAL --}}
-
+    <livewire:pages.calendar.calendar/>
 </div>
