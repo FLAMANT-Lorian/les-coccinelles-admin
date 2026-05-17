@@ -1,0 +1,37 @@
+.fc-event {
+    @apply border-none px-3 py-2 rounded-sm trans-all;
+
+    &:hover {
+        @apply font-semibold;
+    }
+}
+
+.fc-toolbar {
+    .fc-toolbar-title {
+        @apply first-letter:uppercase text-brown font-medium text-lg md:text-xl rg:text-2xl lg:text-3xl;
+    }
+
+    .fc-today-button {
+        @apply bg-brown text-white hover:bg-transparent hover:text-brown trans-all border-brown;
+
+        &:disabled {
+            @apply bg-brown text-white border-brown;
+        }
+    }
+}
+
+.fc-button-group {
+    @apply flex flex-row gap-2 ml-4;
+
+    button {
+        @apply trans-all h-10 w-10 rounded-sm! flex! justify-center items-center p-0! bg-transparent! text-brown! border-brown;
+
+        &:hover, &:focus {
+            @apply bg-brown! text-white! outline-0 shadow-none!;
+        }
+    }
+}
+
+.fc-sticky {
+ @apply overflow-x-auto!;
+}

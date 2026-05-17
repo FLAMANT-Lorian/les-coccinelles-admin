@@ -1,11 +1,13 @@
 import flatpickr from "flatpickr";
-import {French} from "flatpickr/dist/l10n/fr.js";
-import {English} from "flatpickr/dist/l10n/default.js";
+import { French } from "flatpickr/dist/l10n/fr.js";
+import { english as English } from "flatpickr/dist/l10n/default.js";
 
 function initDateRangePicker() {
     const el = document.querySelector('.date-range-picker');
+    const locale = document.documentElement.lang;
+
     flatpickr(el, {
-        locale: navigator.language === 'fr-FR' ? French : English,
+        locale: locale === 'fr' ? French : English,
         mode: "range",
         dateFormat: "Y-m-d",
         disable: JSON.parse(el.dataset.dates),
@@ -16,9 +18,11 @@ function initDateRangePicker() {
 }
 
 function initDatePicker() {
+
     document.querySelectorAll('.date-picker').forEach((el) => {
+        const locale = document.documentElement.lang;
         flatpickr(el, {
-            locale: navigator.language === 'fr-FR' ? French : English,
+            locale: locale === 'fr' ? French : English,
             altInput: true,
             altFormat: "d F Y",
             allowInput: false,

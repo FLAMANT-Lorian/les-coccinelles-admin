@@ -9,7 +9,7 @@ Route::get('/', function () {
 
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
+    'middleware' => ['localize', 'auth']
 ],
     function () {
         Route::livewire('/', 'pages::dashboard')->name('dashboard');
@@ -25,4 +25,7 @@ Route::group([
 
         /* HALL */
         require __DIR__ . '/admin/hallRoutes.php';
+
+        /* CALENDAR */
+        require __DIR__ . '/admin/calendar.php';
     });

@@ -55,6 +55,13 @@
             'wire-current' => true,
             'permissions' => null
         ],
+         [
+            'label' => __('navigation/navigation.calendar'),
+            'route' => route('calendar'),
+            'icon' => 'calendar',
+            'wire-current' => true,
+            'permissions' => null
+        ],
         [
             'label' => __('navigation/navigation.hall'),
             'route' => getCorrectRoute($hallRoutes),

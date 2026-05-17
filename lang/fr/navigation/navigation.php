@@ -11,10 +11,13 @@ return [
     'hall-rates' => 'Tarifs de la salle',
     'utility-costs' => 'Coûts des charges',
     'interventions' => 'Interventions',
+    'meetings' => 'Réunions',
+    'events' => 'Évènements',
     'bookings' => 'Réservations',
     'contacts' => 'Contacts',
     'messages' => 'Messages',
     'members' => 'Membres',
+    'calendar' => 'Calendrier',
     'roles' => 'Rôles',
 
     'open_menu_mobile' => 'Ouvrir le menu',
