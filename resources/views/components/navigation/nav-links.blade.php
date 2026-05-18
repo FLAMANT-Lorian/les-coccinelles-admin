@@ -40,9 +40,25 @@
             'route' => 'members.index',
             'permission' => 'members.index'
         ],
-        'hallRates' => [
+        'members-create' => [
+            'route' => 'members.create',
+            'permission' => 'members.create'
+        ],
+         'members-edit' => [
+            'route' => 'members.edit',
+            'permission' => 'members.edit'
+        ],
+        'roles' => [
             'route' => 'roles.index',
             'permission' => 'roles.index'
+        ],
+        'roles-create' => [
+            'route' => 'roles.create',
+            'permission' => 'roles.create'
+        ],
+         'roles-edit' => [
+            'route' => 'roles.edit',
+            'permission' => 'roles.edit'
         ],
     ];
 
@@ -73,7 +89,7 @@
             'label' => __('navigation/navigation.members'),
             'route' => LaravelLocalization::localizeURL(getCorrectRoute($membersRoutes)),
             'icon' => 'members',
-            'wire-current' => true,
+            'active' => request()->routeIs(array_column($membersRoutes, 'route')),
             'permissions' => ['members.index', 'roles.index']
         ],
         [
