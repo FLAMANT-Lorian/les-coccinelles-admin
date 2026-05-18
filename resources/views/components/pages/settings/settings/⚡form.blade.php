@@ -69,7 +69,7 @@ new class extends Component {
 ?>
 
 <div>
-    <h3 class="text-2xl font-medium mb-1">{{ __('pages/settings.settings.your-infos') }}</h3>
+    <h2 class="text-2xl font-medium mb-1">{{ __('pages/settings.settings.your-infos') }}</h2>
     <p class="paragraph text-gray-500 mb-6">{!! __('forms.accessibility_text') !!}</p>
     <form wire:submit.prevent="update" novalidate>
         <div class="grid-default border-b border-beige-dark/60 pb-10">

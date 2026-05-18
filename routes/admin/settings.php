@@ -5,3 +5,6 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::livewire(LaravelLocalization::transRoute('routes.settings'), 'pages::settings')
     ->name('settings');
+
+Route::livewire(LaravelLocalization::transRoute('routes.preferences'), 'pages::preferences')
+    ->name('preferences');

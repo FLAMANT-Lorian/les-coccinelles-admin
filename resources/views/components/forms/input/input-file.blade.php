@@ -16,6 +16,9 @@
            @if($multiple)
                multiple
            @endif
+           @if($required)
+               required
+           @endif
            type="file"
            class="sr-only"
            x-ref="input"

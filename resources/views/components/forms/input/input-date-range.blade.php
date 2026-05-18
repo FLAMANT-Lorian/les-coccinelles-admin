@@ -16,20 +16,21 @@
             <strong> *</strong>
         @endif
     </label>
-    <div wire:ignore>
-        <input @if($wire && $wire !== '')
-                   wire:model="{{ $wire }}"
-               @endif
-               @if($date_range)
-                   data-dates="{{ json_encode($disabled) }}"
-               @endif
-               class="{{ $date_range ? 'date-range-picker' : 'date-picker' }} w-full"
-               id="{{ $field_name }}"
-               type="text"
-               name="{{ $name }}"
-               placeholder="{{ $placeholder ?? '' }}"
-               autocomplete="off">
-    </div>
+    <input @if($wire && $wire !== '')
+               wire:model="{{ $wire }}"
+           @endif
+           @if($date_range)
+               data-dates="{{ json_encode($disabled) }}"
+           @endif
+           @if($required)
+               required
+           @endif
+           class="{{ $date_range ? 'date-range-picker' : 'date-picker' }} w-full"
+           id="{{ $field_name }}"
+           type="text"
+           name="{{ $name }}"
+           placeholder="{{ $placeholder ?? '' }}"
+           autocomplete="off">
 
     @error($wire)
     <p class="absolute whitespace-nowrap -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>

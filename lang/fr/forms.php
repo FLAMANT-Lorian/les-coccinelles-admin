@@ -67,4 +67,11 @@ return [
     'water-cdj' => 'Compteur eau CDJ',
     'electricity-cdj' => 'Compteur électrcité CDJ',
     'mazout-general' => 'Compteur mazout',
+    'notifications' => [
+        'messages' => 'Nouveaux messages via le formulaire de contact',
+        'events' => 'Événement en approche',
+        'bookings' => 'Réservation en approche',
+        'meetings' => 'Réunion en approche',
+        'interventions' => 'Intervention pour la salle',
+    ]
 ];

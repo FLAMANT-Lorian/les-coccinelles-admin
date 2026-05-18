@@ -17,6 +17,9 @@
     <input @if($wire && $wire !== '')
                wire:model="{{ $wire }}"
            @endif
+           @if($required)
+               required
+           @endif
                min="0"
            step="0.01"
            id="{{ $field_name }}"

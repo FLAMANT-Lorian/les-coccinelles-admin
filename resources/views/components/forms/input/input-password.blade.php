@@ -16,6 +16,9 @@
     <input @if($wire && $wire !== '')
                wire:model="{{ $wire }}"
            @endif
+           @if($required)
+               required
+           @endif
            id="{{ $field_name }}"
            :type="showPassword ? 'text' : 'password'"
            type="password"

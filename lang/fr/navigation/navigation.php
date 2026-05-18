@@ -20,6 +20,7 @@ return [
     'calendar' => 'Calendrier',
     'roles' => 'Rôles',
     'settings' => 'Paramètres',
+    'preferences' => 'Préférences',
 
     'open_menu_mobile' => 'Ouvrir le menu',
     'logout' => 'Me deconnecter',
