@@ -19,8 +19,8 @@ new class extends Component {
         foreach ($bookings as $booking) {
             $events[] = [
                 'title' => 'Réservation salle – ' . $booking->contact->full_name,
-                'start' => Carbon::parse($booking->start_date)->format('Y-m-d'),
-                'end' => Carbon::parse($booking->end_date)->format('Y-m-d'),
+                'start' => Carbon::parse($booking->start_date)->startOfDay()->format('Y-m-d\TH:i:s'),
+                'end' => Carbon::parse($booking->end_date)->endOfDay()->format('Y-m-d\TH:i:s'),
                 'url' => route('bookings.edit', ['booking' => $booking->id]),
                 'backgroundColor' => '#DBEAFE',
                 'textColor' => '#3B82F6',
@@ -70,7 +70,7 @@ new class extends Component {
         @foreach($legend as $item)
             <div class="flex flex-row gap-2.5 justify-center">
                 <div class="h-6 w-12 rounded-sm"
-                    style="background-color: {{ $item['color'] }}"></div>
+                     style="background-color: {{ $item['color'] }}"></div>
                 <span class="paragraph text-brown">{{$item['text']}}</span>
             </div>
         @endforeach
