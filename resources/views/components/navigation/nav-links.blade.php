@@ -49,7 +49,7 @@
     $links = [
         [
             'label' => __('navigation/navigation.dashboard'),
-            'route' => route('dashboard'),
+            'route' => LaravelLocalization::localizeURL(route('dashboard')),
             'icon' => 'dashboard',
             'wire-current-exact' => true,
             'wire-current' => true,
@@ -57,28 +57,28 @@
         ],
          [
             'label' => __('navigation/navigation.calendar'),
-            'route' => route('calendar'),
+            'route' => LaravelLocalization::localizeURL(route('calendar')),
             'icon' => 'calendar',
             'wire-current' => true,
             'permissions' => null
         ],
         [
             'label' => __('navigation/navigation.hall'),
-            'route' => getCorrectRoute($hallRoutes),
+            'route' => LaravelLocalization::localizeURL(getCorrectRoute($hallRoutes)),
             'icon' => 'hall',
             'active' => request()->routeIs(array_column($hallRoutes, 'route')),
             'permissions' => ['availabilities.index', 'hallRates.index', 'bookings.index', 'utilityCosts.index', 'interventions.index', 'contacts.index']
         ],
         [
             'label' => __('navigation/navigation.members'),
-            'route' => getCorrectRoute($membersRoutes),
+            'route' => LaravelLocalization::localizeURL(getCorrectRoute($membersRoutes)),
             'icon' => 'members',
             'wire-current' => true,
             'permissions' => ['members.index', 'roles.index']
         ],
         [
             'label' => __('navigation/navigation.messages'),
-            'route' => route('messages'),
+            'route' => LaravelLocalization::localizeURL(route('messages')),
             'icon' => 'messages',
             'wire-current' => true,
             'permissions' => ['messages.index']

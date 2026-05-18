@@ -35,3 +35,17 @@
 .fc-sticky {
  @apply overflow-x-auto!;
 }
+
+.fc-day-today {
+    @apply bg-beige-light!;
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th,
+.fc-theme-standard .fc-scrollgrid {
+ @apply border-beige-dark/60;
+}
+
+.fc-col-header-cell-cushion, .fc-daygrid-day-number {
+  @apply text-brown!;
+}
