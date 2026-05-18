@@ -19,6 +19,9 @@
     <textarea @if($wire && $wire !== '')
                   wire:model="{{ $wire }}"
               @endif
+              @if($required)
+                  required
+              @endif
               class="{{ $textarea_class }}"
               id="{{ $field_name }}"
               type="{{ $type ?? 'text' }}"

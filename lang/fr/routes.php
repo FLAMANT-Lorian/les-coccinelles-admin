@@ -16,5 +16,7 @@ return [
     'bookings' => 'reservations',
     'bookings-create' => 'reservations/ajouter',
     'bookings-edit' => 'reservations/{booking}/modifier',
-    'calendar' => 'calendrier'
+    'calendar' => 'calendrier',
+    'settings' => 'parametres',
+    'preferences' => 'parametres/preferences',
 ];

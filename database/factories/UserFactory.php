@@ -39,6 +39,13 @@ class UserFactory extends Factory
             'status' => $faker->randomElement(enumToArray(MembersStatus::class)),
             'email' => $faker->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
+            'notifications' => [
+                'messages' => true,
+                'events' => true,
+                'bookings' => true,
+                'meetings' => true,
+                'interventions' => true,
+            ],
         ];
     }
 
@@ -47,7 +54,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

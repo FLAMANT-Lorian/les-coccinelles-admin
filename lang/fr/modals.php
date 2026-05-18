@@ -9,7 +9,7 @@ return [
     'from' => 'De : ',
     'reply-to-message' => 'Répondre au message',
     'reply-to-availability-request' => 'Répondre à la demande',
-    'create-a-contact' => 'Ajouter l’expéditeur comme membre',
+    'create-a-contact' => 'Ajouter l’expéditeur comme contact',
     'see-message' => 'Voir le message',
     'close' => 'Fermer la modale',
     'deleteMember' => 'Supprimer le membre',

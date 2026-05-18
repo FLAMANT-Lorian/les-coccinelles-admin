@@ -15,6 +15,7 @@ function displayCalendar() {
         initialView: window.innerWidth < 768 ? 'dayGridWeek' : 'dayGridMonth',
         height: 'auto',
         events: events,
+        displayEventTime: false,
         windowResize: () => displayCalendar()
     });
     calendar.render();

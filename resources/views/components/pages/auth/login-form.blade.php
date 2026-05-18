@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('login.store', ['locale' => app()->getLocale()]) }}" {{ $attributes->merge(['class' => '']) }}>
+<form method="POST" novalidate action="{{ route('login.store', ['locale' => app()->getLocale()]) }}" {{ $attributes->merge(['class' => '']) }}>
     @csrf
     <fieldset class="flex flex-col gap-6 mb-6">
         <legend class="sr-only">{{ __('auth/login.legend') }}</legend>
@@ -10,6 +10,7 @@
             type="email"
             field_name="email"
             name="email"
+            :value="old('email')"
             placeholder="john.doe@example.com"
         />
 

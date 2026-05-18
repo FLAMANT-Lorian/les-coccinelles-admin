@@ -144,8 +144,8 @@ class BookingsForm extends Form
             'hall_rate_id' => $type->id,
             'key_handover_date' => $this->handover_date,
             'key_return_date' => $this->return_date,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
+            'start_date' => Carbon::parse($start_date)->startOfDay(),
+            'end_date' => Carbon::parse($end_date)->endOfDay(),
             'message' => $this->message,
             'billing_address' => $this->billing_address
         ]);
@@ -199,8 +199,8 @@ class BookingsForm extends Form
             'hall_rate_id' => $type->id,
             'key_handover_date' => $this->handover_date,
             'key_return_date' => $this->return_date,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
+            'start_date' => Carbon::parse($start_date)->startOfDay(),
+            'end_date' => Carbon::parse($end_date)->endOfDay(),
             'message' => $this->message,
             'billing_address' => $this->billing_address
         ]);

@@ -7,6 +7,7 @@ return [
     'no_result' => 'Aucun résultat',
     'role-is-already-use' => 'Le rôle est déjà utilisé',
     'save-changes' => 'Enregistrer les modifications',
+    'change-password' => 'Modifier mon mot de passe',
 
     /* LABEL – PLACEHOLDER */
     'role-name' => 'Nom du rôle',
@@ -32,6 +33,8 @@ return [
     'birth-date' => 'Date de naissance',
     'identity-documents' => 'Documents d’identité',
     'password' => 'Mot de passe',
+    'old_password' => 'Ancien mot de passe',
+    'new_password' => 'Nouveau mot de passe',
     'choose-files' => 'Cliquer pour ajouter',
     'available-file-types' => 'JPG, PNG, WEBP',
     'type' => 'Type',
@@ -64,4 +67,11 @@ return [
     'water-cdj' => 'Compteur eau CDJ',
     'electricity-cdj' => 'Compteur électrcité CDJ',
     'mazout-general' => 'Compteur mazout',
+    'notifications' => [
+        'messages' => 'Nouveaux messages via le formulaire de contact',
+        'events' => 'Événement en approche',
+        'bookings' => 'Réservation en approche',
+        'meetings' => 'Réunion en approche',
+        'interventions' => 'Intervention pour la salle',
+    ]
 ];

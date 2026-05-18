@@ -25,6 +25,9 @@
            @if($max)
                max="{{ $max }}"
            @endif
+           @if($required)
+               required
+           @endif
            id="{{ $field_name }}"
            type="number"
            name="{{ $name }}"

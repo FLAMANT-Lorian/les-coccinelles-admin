@@ -16,13 +16,16 @@
     <input @if($wire && $wire !== '')
                wire:model="{{ $wire }}"
            @endif
+           @if($required)
+               required
+           @endif
            id="{{ $field_name }}"
            :type="showPassword ? 'text' : 'password'"
            type="password"
            name="{{ $name }}"
            autocomplete="off">
 
-    @error($wire)
+    @error($wire === '' ? $name : $wire)
     <p class="whitespace-nowrap absolute -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
     @enderror
 

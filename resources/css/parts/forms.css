@@ -44,6 +44,50 @@ form {
     }
 }
 
+.checkbox-field  {
+    @apply flex flex-row items-center gap-2;
+
+    &:has(input:checked) label, &:has(input:hover) label, &:has(input:focus) label {
+        @apply text-brown;
+    }
+
+    label {
+        @apply paragraph hover:text-brown text-gray-600;
+    }
+
+    input {
+        @apply appearance-none min-w-4 min-h-4 max-w-4 max-h-4 border border-red outline-none rounded-sm hover:bg-red/50 focus:bg-red/50 trans-all p-0;
+
+        &:checked {
+            @apply bg-red;
+        }
+    }
+}
+
+.radio-field {
+    @apply flex flex-row items-center gap-2;
+
+    &:has(input:checked) label, &:has(input:hover) label, &:has(input:focus) label {
+        @apply text-brown;
+    }
+
+    label {
+        @apply paragraph hover:text-brown text-gray-600;
+    }
+
+    input {
+        @apply relative appearance-none min-w-4 min-h-4 max-w-4 max-h-4 border border-red outline-none rounded-full trans-all p-0;
+
+        &:after {
+            @apply content-[""] w-0 h-0 trans-all bg-red absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-full;
+        }
+
+        &:checked:after {
+            @apply w-2.5 h-2.5;
+        }
+    }
+}
+
 .filter-container {
     @apply mb-8 grid grid-cols-1  md:grid-cols-4 gap-x-6 gap-6 grow;
 }

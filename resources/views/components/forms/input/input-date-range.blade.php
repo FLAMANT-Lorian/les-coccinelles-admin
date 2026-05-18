@@ -23,6 +23,9 @@
                @if($date_range)
                    data-dates="{{ json_encode($disabled) }}"
                @endif
+               @if($required)
+                   required
+               @endif
                class="{{ $date_range ? 'date-range-picker' : 'date-picker' }} w-full"
                id="{{ $field_name }}"
                type="text"

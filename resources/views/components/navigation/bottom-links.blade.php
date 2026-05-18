@@ -13,7 +13,9 @@
     />
 
     {{-- SETTINGS --}}
-    <a href="#"
+    <a href="{{ route('settings') }}"
+       wire:current="px-4 bg-beige-medium"
+       wire:navigate
        title="{{ __('navigation/navigation.settings') }}"
        aria-label="{{ __('navigation/navigation.settings') }}"
        class="relative after:content-[''] after:absolute after:left-0 after:right-0 after:h-px after:bg-beige-dark/60 after:-top-4 mt-4 text-brown rounded-sm flex flex-row items-center gap-4 py-3 hover:px-4 focus:px-4 trans-all hover:bg-beige-medium">

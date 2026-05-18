@@ -53,4 +53,7 @@ return [
     'bookings-updated' => 'Le réservation a été modifié avec succès !',
     'booking-deleted' => 'Le réservation a été supprimé avec succès !',
     'bookings-deleted' => 'Les réservations ont été supprimés avec succès !',
+
+    /* SETTINGS */
+    'settings-updated' => 'Vos paramètres ont bien été enregistrés !'
 ];
