@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status')->after('address');
             $table->json('documents')->after('status')->nullable();
             $table->string('avatar_path')->after('documents')->nullable();
+            $table->json('notifications')->after('avatar_path');
         });
     }
 

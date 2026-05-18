@@ -9,7 +9,7 @@
 
 <div {{ $attributes->merge(['class' => 'relative checkbox-field']) }}>
     <input @if($wire && $wire !== '')
-               wire:model="{{ $wire }}"
+               wire:model.live="{{ $wire }}"
            @endif
            class="w-full"
            id="{{ $field_name }}"

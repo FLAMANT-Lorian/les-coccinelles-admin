@@ -2,16 +2,21 @@
 
 use Livewire\Component;
 
-new class extends Component
-{
+new class extends Component {
 
-    public array $notifications = [
-        'messages' => true,
-        'events' => false,
-        'bookings' => true,
-        'meetings' => false,
-        'interventions' => true,
-    ];
+    public array $notifications;
+
+    public function mount(): void
+    {
+        $this->notifications = auth()->user()->notifications;
+    }
+
+    public function updatedNotifications(): void
+    {
+        auth()->user()->update([
+            'notifications' => $this->notifications,
+        ]);
+    }
 
 };
 ?>

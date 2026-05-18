@@ -8,14 +8,14 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->locale = app()->getLocale();
+        $this->locale = LaravelLocalization::getCurrentLocale();
     }
 
     public function updatedLocale(string $locale): void
     {
         LaravelLocalization::setLocale($locale);
 
-        $this->redirectRoute('preferences', navigate: true);
+        $this->redirect(LaravelLocalization::getLocalizedURL($locale, route('preferences')), navigate: true);
     }
 
 };
