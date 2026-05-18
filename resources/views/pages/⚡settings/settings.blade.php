@@ -27,6 +27,9 @@
         <x-tabs.settings-tabs/>
 
         {{-- FORM --}}
+        <livewire:pages.settings.settings.form/>
 
+        {{-- CHANGE PASSWORD --}}
+        <livewire:pages.settings.settings.change-password-form/>
     </div>
 </div>
