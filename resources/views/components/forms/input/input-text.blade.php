@@ -7,7 +7,8 @@
     'field_name',
     'wire' => '',
     'date_range' => false,
-    'ignore' => false
+    'ignore' => false,
+    'value' => ''
 ])
 
 <div {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -21,6 +22,9 @@
         <input @if($wire && $wire !== '')
                    wire:model="{{ $wire }}"
                @endif
+               @if($value !== '')
+                   value="{{ $value }}"
+               @endif
                class="{{ $date_range ? 'date-range' : '' }} w-full"
                id="{{ $field_name }}"
                type="{{ $type ?? 'text' }}"
@@ -29,7 +33,7 @@
                autocomplete="off">
     </div>
 
-    @error($wire)
+    @error($wire === '' ? $name : $wire)
     <p class="absolute whitespace-nowrap -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
     @enderror
 </div>

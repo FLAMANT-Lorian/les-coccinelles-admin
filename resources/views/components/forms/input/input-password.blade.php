@@ -22,7 +22,7 @@
            name="{{ $name }}"
            autocomplete="off">
 
-    @error($wire)
+    @error($wire === '' ? $name : $wire)
     <p class="whitespace-nowrap absolute -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
     @enderror
 
