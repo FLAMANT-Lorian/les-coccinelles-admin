@@ -65,7 +65,7 @@ new class extends Component {
 
 
 <div wire:ignore>
-    <div id="coccinelles-calendar" class="max-h-220" data-events="{{ json_encode($this->getEvents()) }}"></div>
+    <div id="coccinelles-calendar" data-events="{{ json_encode($this->getEvents()) }}"></div>
     <div class="flex flex-row flex-wrap gap-8 mt-8 lg:mt-12 justify-center">
         @foreach($legend as $item)
             <div class="flex flex-row gap-2.5 justify-center">

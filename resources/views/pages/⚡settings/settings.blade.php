@@ -3,7 +3,7 @@
 
     $segments = [
         [
-            'label' => __('navigation/navigation.messages')
+            'label' => __('navigation/navigation.settings')
         ],
     ];
 
