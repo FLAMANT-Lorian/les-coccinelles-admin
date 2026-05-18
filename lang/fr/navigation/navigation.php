@@ -19,10 +19,10 @@ return [
     'members' => 'Membres',
     'calendar' => 'Calendrier',
     'roles' => 'Rôles',
+    'settings' => 'Paramètres',
 
     'open_menu_mobile' => 'Ouvrir le menu',
     'logout' => 'Me deconnecter',
-    'settings' => 'Voir les paramètres de mon compte',
     'help' => 'Demander de l’aide',
     'main-navigation' => 'Navigation principale',
     'create' => 'Créer',

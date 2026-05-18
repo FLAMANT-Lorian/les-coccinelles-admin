@@ -3,13 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
-Route::get('/', function () {
-    return redirect('/' . app()->getLocale());
-});
-
 Route::group([
     'prefix' => LaravelLocalization::setLocale(),
-    'middleware' => ['localize', 'auth']
+    'middleware' => ['localize', 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth']
 ],
     function () {
         Route::livewire('/', 'pages::dashboard')->name('dashboard');
@@ -28,4 +24,7 @@ Route::group([
 
         /* CALENDAR */
         require __DIR__ . '/admin/calendar.php';
+
+        /* SETTINGS */
+        require __DIR__ . '/admin/settings.php';
     });
