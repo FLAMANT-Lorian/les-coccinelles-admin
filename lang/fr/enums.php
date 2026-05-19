@@ -3,6 +3,7 @@
 
 use App\Enums\BookingStatus;
 use App\Enums\InterventionStatus;
+use App\Enums\MeetingsStatus;
 use App\Enums\MemberCardStatus;
 use App\Enums\MembersStatus;
 use App\Enums\MessageStatus;
@@ -46,7 +47,12 @@ return [
     MemberCardStatus::WITH_MEMBER_CARD->value => 'Avec carte',
     MemberCardStatus::WITHOUT_MEMBER_CARD->value => 'Sans carte',
 
+    // BOOKING
     BookingStatus::NOW->value => 'En cours',
     BookingStatus::PAST->value => 'Passée',
     BookingStatus::SOON->value => 'Bientôt',
+
+    //MEETING
+    MeetingsStatus::PAST->value => 'Passée',
+    MeetingsStatus::SOON->value => 'Bientôt',
 ];

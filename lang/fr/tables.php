@@ -34,6 +34,7 @@ return [
     'dates' => 'Date de la réservation',
     'status' => 'Statut',
     'deadline' => 'Échéance',
+    'address' => 'Adresse',
     'actions' => 'Actions',
     'role' => 'Rôle',
     'unique_role' => 'Rôle unique',
@@ -43,5 +44,8 @@ return [
     'creator' => 'Créateur',
     'assignee' => 'Assigné',
     'intervention-name' => 'Nom de l’intervention',
-    'member_card' => 'Carte de membre'
+    'number' => 'ID',
+    'member_card' => 'Carte de membre',
+    'date' => 'Date',
+    'hour' => 'Heure',
 ];

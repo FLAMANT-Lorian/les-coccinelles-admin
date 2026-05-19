@@ -24,7 +24,7 @@
             :heading="$heading"/>
 
         {{-- TABLE --}}
-
+        <livewire:pages.meetings.table.table/>
     </div>
 
     {{-- MODAL --}}

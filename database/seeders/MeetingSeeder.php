@@ -10,10 +10,9 @@ class MeetingSeeder extends Seeder
 {
     public function run(): void
     {
-        $users = User::all()->pluck('id');
-
-        $meeting = Meeting::factory()->create();
-
-        $meeting->participants()->attach($users);
+        Meeting::factory()
+            ->count(10)
+            ->hasParticipants(2)
+            ->create();
     }
 }

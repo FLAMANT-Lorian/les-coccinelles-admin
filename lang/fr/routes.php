@@ -19,5 +19,5 @@ return [
     'calendar' => 'calendrier',
     'settings' => 'parametres',
     'preferences' => 'parametres/preferences',
-    'meetings' => 'réunions',
+    'meetings' => 'reunions',
 ];

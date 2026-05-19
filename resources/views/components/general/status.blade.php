@@ -1,5 +1,8 @@
 @php
-    use App\Enums\BookingStatus;use App\Enums\InterventionStatus;use App\Enums\MembersStatus;
+    use App\Enums\BookingStatus;
+    use App\Enums\InterventionStatus;
+    use App\Enums\MeetingsStatus;
+    use App\Enums\MembersStatus;
     use App\Enums\MessageStatus;
     use App\Enums\UtilityCostsStatus;
 @endphp
@@ -30,6 +33,10 @@
         BookingStatus::NOW->value => 'bg-status-green-light before:bg-status-green',
         BookingStatus::SOON->value => 'bg-status-blue-light before:bg-status-blue',
         BookingStatus::PAST->value => 'bg-status-red-light before:bg-status-red',
+
+        // MEETINGS
+        MeetingsStatus::SOON->value => 'bg-status-blue-light before:bg-status-blue',
+        MeetingsStatus::PAST->value => 'bg-status-red-light before:bg-status-red',
     ];
 
     $classes = $states[(string)$status];
