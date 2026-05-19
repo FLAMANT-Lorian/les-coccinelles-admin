@@ -66,7 +66,7 @@
             :enum="Sex::class"
         />
 
-        <x-forms.input.input-date-range
+        <x-forms.input.input-date
             type="birth_date"
             :label="__('forms.birth-date')"
             :placeholder="__('forms.booking-dates-placeholder')"

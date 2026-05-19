@@ -1,6 +1,6 @@
 import flatpickr from "flatpickr";
-import { French } from "flatpickr/dist/l10n/fr.js";
-import { english as English } from "flatpickr/dist/l10n/default.js";
+import {French} from "flatpickr/dist/l10n/fr.js";
+import {english as English} from "flatpickr/dist/l10n/default.js";
 
 function initDateRangePicker() {
     const el = document.querySelector('.date-range-picker');
@@ -46,4 +46,8 @@ document.addEventListener('livewire:navigated', () => {
     if (document.querySelector('.date-picker')) {
         initDatePicker();
     }
+});
+
+document.addEventListener('init-date-pickers', () => {
+    initDatePicker();
 });

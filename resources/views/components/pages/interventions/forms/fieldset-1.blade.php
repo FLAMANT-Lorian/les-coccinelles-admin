@@ -41,10 +41,12 @@
     />
 
     <x-forms.input.input-date
-        wire="form.deadline"
+        :label="__('forms.deadline')"
+        :placeholder="__('forms.booking-dates-placeholder')"
         name="deadline"
+        :required="true"
         field_name="deadline"
-        :label="__('forms.deadline')"/>
+        wire="form.deadline"/>
 
     <x-forms.input.textarea
         wire="form.description"

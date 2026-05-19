@@ -20,7 +20,7 @@
             accessor="type"
         />
 
-        <x-forms.input.input-date-range
+        <x-forms.input.input-date
             class="lg:col-span-3"
             type="dates"
             :label="__('forms.booking-dates')"
@@ -33,7 +33,7 @@
             :disabled="$this->getDisabledDates()"
         />
 
-        <x-forms.input.input-date-range
+        <x-forms.input.input-date
             class="lg:col-span-3"
             type="handover_date"
             :label="__('forms.key_handover_date')"
@@ -43,7 +43,7 @@
             field_name="handover_date"
             wire="form.handover_date"/>
 
-        <x-forms.input.input-date-range
+        <x-forms.input.input-date
             class="lg:col-span-3"
             type="return_date"
             :label="__('forms.key_return_date')"
