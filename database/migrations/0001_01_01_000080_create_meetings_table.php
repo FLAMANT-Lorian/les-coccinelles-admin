@@ -11,6 +11,7 @@ return new class extends Migration {
             $table->id();
             $table->string('address');
             $table->timestamp('date');
+            $table->time('hour');
             $table->text('description');
             $table->string('file')->nullable();
             $table->timestamps();

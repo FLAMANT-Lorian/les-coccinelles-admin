@@ -12,7 +12,7 @@ class MeetingPolicy
 
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     public function view(User $user, Meeting $meeting): bool
@@ -22,17 +22,17 @@ class MeetingPolicy
 
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
-    public function update(User $user, Meeting $meeting): bool
+    public function update(User $user): bool
     {
-        return false;
+        return true;
     }
 
-    public function delete(User $user, Meeting $meeting): bool
+    public function delete(User $user): bool
     {
-        return false;
+        return true;
     }
 
     public function restore(User $user, Meeting $meeting): bool

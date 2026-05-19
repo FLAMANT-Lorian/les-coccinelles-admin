@@ -86,6 +86,13 @@
             'permissions' => ['availabilities.index', 'hallRates.index', 'bookings.index', 'utilityCosts.index', 'interventions.index', 'contacts.index']
         ],
         [
+            'label' => __('navigation/navigation.meetings'),
+            'route' => LaravelLocalization::localizeURL(route('meetings')),
+            'icon' => 'meetings',
+            'wire-current' => true,
+            'permissions' => null
+        ],
+        [
             'label' => __('navigation/navigation.members'),
             'route' => LaravelLocalization::localizeURL(getCorrectRoute($membersRoutes)),
             'icon' => 'members',

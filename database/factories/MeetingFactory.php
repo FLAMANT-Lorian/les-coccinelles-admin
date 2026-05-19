@@ -15,7 +15,8 @@ class MeetingFactory extends Factory
         $faker = $this->faker;
         return [
             'address' => $faker->address(),
-            'date' => Carbon::now(),
+            'date' => Carbon::now()->addDays(rand(-5, 5)),
+            'hour' => $faker->time(),
             'description' => $faker->text()
         ];
     }
