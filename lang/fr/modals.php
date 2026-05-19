@@ -47,4 +47,11 @@ return [
     // BOOKING
     'deleteBooking' => 'Supprimer la réservation',
     'deleteBookingMessage' => 'Êtes-vous sûr de vouloir supprimer cette réservation ?',
+
+    // MEETINGS
+    'addMeeting' => 'Planifier une réunion',
+    'createMeeting' => 'Planifier la réunion',
+    'updateMeeting' => 'Modifier la réunion',
+    'deleteMeeting' => 'Supprimer la réunion',
+    'deleteMeetingMessage' => 'Êtes-vous sûr de vouloir supprimer cette réunion ?',
 ];

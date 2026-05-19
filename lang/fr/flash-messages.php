@@ -55,5 +55,11 @@ return [
     'bookings-deleted' => 'Les réservations ont été supprimés avec succès !',
 
     /* SETTINGS */
-    'settings-updated' => 'Vos paramètres ont bien été enregistrés !'
+    'settings-updated' => 'Vos paramètres ont bien été enregistrés !',
+
+    // MEETINGS
+    'meeting-created' => 'La réunion a été créé avec succès !',
+    'meeting-updated' => 'Le réunion a été modifié avec succès !',
+    'meeting-deleted' => 'Le réunion a été supprimé avec succès !',
+    'meetings-deleted' => 'Les réunions ont été supprimés avec succès !',
 ];

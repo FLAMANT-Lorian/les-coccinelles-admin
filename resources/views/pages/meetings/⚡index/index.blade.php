@@ -28,5 +28,7 @@
     </div>
 
     {{-- MODAL --}}
-
+    @if($this->openCreateModal)
+        <x-widgets.modals.meetings.create-meeting/>
+    @endif
 </div>

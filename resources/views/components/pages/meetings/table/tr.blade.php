@@ -25,7 +25,10 @@
     <td>
         <div>
             <span>{{ __('tables.number') }}&nbsp;:</span>
-            <span>{{ $meeting->id }}</span>
+            <button type="button"
+                    title="{{ __('pages/meetings.see-meeting') }}">
+                <span>{{ $meeting->id }}</span>
+            </button>
         </div>
     </td>
     <td>

@@ -89,6 +89,13 @@ new class extends Component {
             :translation="true"
             :enum="true"
         />
+
+        <button type="button"
+                title="{{ __('pages/meetings.add-meeting') }}"
+                wire:click="$dispatch('open-modal', 'openCreateModal')"
+                class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
+            {{ __('pages/meetings.add-meeting') }}
+        </button>
     </div>
 
     <x-general.selected-column
