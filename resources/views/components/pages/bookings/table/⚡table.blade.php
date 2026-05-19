@@ -97,8 +97,8 @@ new class extends Component {
         class="filter-container trans-all {{ $this->selectedColumn ? 'opacity-0 pointer-events-none' : 'opacity-100 pointer-events-auto' }}">
         <x-forms.input.input-search
             wire="term"
-            name="availability_search"
-            id="availability_search"
+            name="bookings_search"
+            id="bookings_search"
             :label="__('forms.search')"
             :placeholder="__('forms.search')"
         />
@@ -108,7 +108,7 @@ new class extends Component {
             :collection="$this->getFilteredTerms"
             name="filter"
             wire="filter_term"
-            id="availability_filter"
+            id="bookings_filter"
             :enum="true"
             :translation="true"
         />
