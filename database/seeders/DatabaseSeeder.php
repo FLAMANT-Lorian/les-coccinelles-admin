@@ -23,7 +23,8 @@ class DatabaseSeeder extends Seeder
             UtilityCostSeeder::class,
             InterventionSeeder::class,
             ContactSeeder::class,
-            BookingSeeder::class
+            BookingSeeder::class,
+            MeetingSeeder::class
         ]);
     }
 }
