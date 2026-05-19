@@ -13,8 +13,8 @@ new class extends Component {
     {
         $events = [];
 
-        $bookings = Booking::with(['contact', 'hall_rate'])->get();
-        $interventions = Intervention::with(['assignee'])->get();
+        $bookings = Booking::with(['contact'])->get();
+        $interventions = Intervention::all();
 
         foreach ($bookings as $booking) {
             $events[] = [
