@@ -76,7 +76,7 @@
             'route' => LaravelLocalization::localizeURL(route('calendar')),
             'icon' => 'calendar',
             'wire-current' => true,
-            'permissions' => null
+            'permissions' => 'calendar.index'
         ],
         [
             'label' => __('navigation/navigation.hall'),

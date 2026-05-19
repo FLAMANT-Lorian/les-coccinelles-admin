@@ -37,7 +37,7 @@
 }
 
 .fc-day-today {
-    @apply bg-beige-light!;
+    @apply bg-beige-medium!;
 }
 
 .fc-theme-standard td,

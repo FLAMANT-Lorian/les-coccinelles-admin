@@ -17,24 +17,34 @@ new class extends Component {
         $interventions = Intervention::all();
 
         foreach ($bookings as $booking) {
-            $events[] = [
+            $event = [
                 'title' => 'Réservation salle – ' . $booking->contact->full_name,
                 'start' => Carbon::parse($booking->start_date)->startOfDay()->format('Y-m-d\TH:i:s'),
                 'end' => Carbon::parse($booking->end_date)->endOfDay()->format('Y-m-d\TH:i:s'),
-                'url' => route('bookings.edit', ['booking' => $booking->id]),
                 'backgroundColor' => '#DBEAFE',
                 'textColor' => '#3B82F6',
             ];
+
+            if (auth()->user()->can('update', Booking::class)) {
+                $event['url'] = route('bookings.edit', ['booking' => $booking->id]);
+            }
+
+            $events[] = $event;
         }
 
         foreach ($interventions as $intervention) {
-            $events[] = [
+            $event = [
                 'title' => $intervention->name,
                 'start' => Carbon::parse($intervention->deadline)->format('Y-m-d'),
                 'backgroundColor' => '#F8D2C9',
                 'textColor' => '#C6390E',
-                'url' => route('interventions')
             ];
+
+            if (auth()->user()->can('view-any', Intervention::class)) {
+                $event['url'] = route('interventions');
+            }
+
+            $events[] = $event;
         }
 
         return $events;
