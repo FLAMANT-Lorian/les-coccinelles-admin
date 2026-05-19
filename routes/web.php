@@ -27,4 +27,7 @@ Route::group([
 
         /* SETTINGS */
         require __DIR__ . '/admin/settings.php';
+
+        /* MEETINGS */
+        require __DIR__ . '/admin/meetings.php';
     });
