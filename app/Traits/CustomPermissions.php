@@ -57,6 +57,9 @@ trait CustomPermissions
             'create' => false,
             'edit' => false,
             'delete' => false,
+        ],
+        'calendar' => [
+            'index' => false
         ]
     ];
 
