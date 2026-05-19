@@ -4,6 +4,7 @@ namespace App\Models;
 
 use  Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -53,6 +54,11 @@ class User extends Authenticatable
     public function assignedInterventions(): HasMany
     {
         return $this->hasMany(Intervention::class, 'assigned_to');
+    }
+
+    public function meetings(): BelongsToMany
+    {
+        return $this->belongsToMany(Meeting::class, 'attendances');
     }
 
     /**
