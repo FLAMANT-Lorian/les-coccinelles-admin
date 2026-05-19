@@ -50,8 +50,8 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
 
         assertDatabaseCount('bookings', 1);
         assertDatabaseHas('bookings', [
-            'start_date' => Carbon::parse('2026-10-12'),
-            'end_date' => Carbon::parse('2026-10-14'),
+            'start_date' => Carbon::parse('2026-10-12')->startOfDay(),
+            'end_date' => Carbon::parse('2026-10-14')->endOfDay(),
         ]);
     });
 

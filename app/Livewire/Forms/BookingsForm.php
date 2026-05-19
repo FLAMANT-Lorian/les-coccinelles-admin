@@ -2,12 +2,10 @@
 
 namespace App\Livewire\Forms;
 
-use App\Enums\BookingStatus;
 use App\Enums\YesOrNo;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
-use App\Models\MeterReading;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
