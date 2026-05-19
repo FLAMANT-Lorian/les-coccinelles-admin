@@ -25,9 +25,4 @@ class Meeting extends Model
             'hour' => 'datetime'
         ];
     }
-
-    public function participants(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'attendances');
-    }
 }

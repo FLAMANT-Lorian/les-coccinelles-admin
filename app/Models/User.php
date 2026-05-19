@@ -56,11 +56,6 @@ class User extends Authenticatable
         return $this->hasMany(Intervention::class, 'assigned_to');
     }
 
-    public function meetings(): BelongsToMany
-    {
-        return $this->belongsToMany(Meeting::class, 'attendances');
-    }
-
     /**
      * Get the user's full name.
      */
