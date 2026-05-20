@@ -28,7 +28,7 @@ class BookingFactory extends Factory
             'message' => $faker->realText(100),
             'billing_address' => $faker->address,
             'company_name' => $faker->company,
-            'deposit_status' => $faker->randomNumber(enumToArray(DepositStatus::cases())),
+            'deposit_status' => $faker->randomElement(DepositStatus::class),
             'prepayment' => $faker->randomNumber(),
             'cleaning' => $faker->randomNumber(),
             'breaking' => $faker->randomNumber(),

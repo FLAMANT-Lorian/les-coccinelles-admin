@@ -23,17 +23,6 @@ class InterventionSeeder extends Seeder
         Intervention::factory()
             ->createdBy($user1)
             ->assignedTo($user2)
-            ->count(5)
-            ->create();
-
-        Intervention::factory()
-            ->createdBy($user2)
-            ->assignedTo($user1)
-            ->count(5)
-            ->create();
-
-        Intervention::factory()
-            ->count(5)
             ->create();
     }
 }

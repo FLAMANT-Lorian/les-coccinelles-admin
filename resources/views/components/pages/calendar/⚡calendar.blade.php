@@ -21,8 +21,8 @@ new class extends Component {
         foreach ($bookings as $booking) {
             $event = [
                 'title' => 'Réservation salle – ' . $booking->contact->full_name,
-                'start' => Carbon::parse($booking->start_date)->startOfDay()->format('Y-m-d\TH:i:s'),
-                'end' => Carbon::parse($booking->end_date)->endOfDay()->format('Y-m-d\TH:i:s'),
+                'start' => Carbon::parse($booking->bookingDate->start_date)->startOfDay()->format('Y-m-d\TH:i:s'),
+                'end' => Carbon::parse($booking->bookingDate->end_date)->endOfDay()->format('Y-m-d\TH:i:s'),
                 'backgroundColor' => '#DBEAFE',
                 'textColor' => '#3B82F6',
             ];
@@ -53,8 +53,8 @@ new class extends Component {
             $event = [
                 'title' => __('pages/meetings.meeting') . ' #' . $meeting->id . ' – ' . Carbon::parse($meeting->hour)->format('H:i'),
                 'start' => Carbon::parse($meeting->date)->format('Y-m-d'),
-                'backgroundColor' => '#E4DCF4',
-                'textColor' => '#6554B6',
+                'backgroundColor' => '#E3F0E7',
+                'textColor' => '#57A770',
             ];
 
             if (auth()->user()->can('view-any', Meeting::class)) {

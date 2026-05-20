@@ -11,7 +11,7 @@ class MeetingSeeder extends Seeder
     public function run(): void
     {
         Meeting::factory()
-            ->count(10)
+            ->count(2)
             ->create();
     }
 }
