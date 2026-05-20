@@ -4,6 +4,7 @@
 ])
 
 <div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/60 px-6"
+     x-init="modalOpen = true"
      x-trap="modalOpen"
      @keydown.window.escape="$dispatch('close-modal'); modalOpen = false">
     <div class="flex flex-col gap-4 w-full max-w-200 bg-beige-medium rounded-sm p-6 m-6 overflow-y-auto">

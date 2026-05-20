@@ -2,6 +2,7 @@
 
 use App\Livewire\Forms\MeetingsForm;
 use App\Models\Meeting;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -12,6 +13,8 @@ new class extends Component {
 
     public bool $openCreateModal = false;
     public bool $openEditModal = false;
+    public bool $openDeleteModal = false;
+    public bool $deleteSelection = false;
 
     public MeetingsForm $form;
 
@@ -28,10 +31,14 @@ new class extends Component {
 
         if ($modal === 'openCreateModal') {
             $this->openCreateModal = true;
-        } else if ($modal === 'openEditModal') {
+        } elseif ($modal === 'openEditModal') {
             $this->form->setMeeting($this->meeting);
             $this->dispatch('init-fancybox');
             $this->openEditModal = true;
+        } elseif ($modal === 'openDeleteModal') {
+            $this->openDeleteModal = true;
+        } elseif ($modal === 'deleteSelection') {
+            $this->deleteSelection = true;
         }
     }
 
@@ -43,6 +50,8 @@ new class extends Component {
 
         $this->openCreateModal = false;
         $this->openEditModal = false;
+        $this->openDeleteModal = false;
+        $this->deleteSelection = false;
     }
 
     #[On('remove-file')]
@@ -84,6 +93,25 @@ new class extends Component {
         $this->form->update();
 
         session()->flash('success', __('flash-messages.meeting-updated'));
+
+        $this->redirectRoute('meetings', navigate: true);
+    }
+
+    #[On('delete-meeting')]
+    public function deleteMeeting(): void
+    {
+        if ($this->meeting->file) {
+            $disk = config('filesystems.default');
+            $path = config('meetings.original_path') . '/' . $this->meeting->file;
+
+            if ($this->meeting->file && Storage::disk($disk)->exists($path)) {
+                Storage::disk($disk)->delete($path);
+            }
+        }
+
+        $this->meeting->delete();
+
+        session()->flash('success', __('flash-messages.meeting-deleted'));
 
         $this->redirectRoute('meetings', navigate: true);
     }

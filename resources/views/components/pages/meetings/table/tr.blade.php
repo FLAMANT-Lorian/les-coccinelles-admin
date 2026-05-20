@@ -76,7 +76,14 @@
             </button>
             {{--@canany()--}}
             <div x-show="open" x-transition class="actions-table">
-                <button type="button">
+                <button type="button"
+                        title="{{ __('modals.updateMeeting') }}"
+                        wire:click="$dispatch('open-modal', { modal: 'openEditModal', id: {{ $meeting->id }} })">
+                    <span>{{ __('tables.update') }}</span>
+                </button>
+                <button type="button"
+                        title="{{ __('modals.deleteMeeting') }}"
+                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $meeting->id }} })">
                     <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
@@ -84,7 +91,12 @@
 
             {{--ACTION MOBILES --}}
             <div class="actions-mobile">
-
+                <button type="button"
+                        wire:click="$dispatch('open-modal', { modal: 'openEditModal', id: {{ $meeting->id }} })"
+                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                        title="{{ __('modals.updateMeeting') }}">
+                    <span>{{ __('modals.updateMeeting') }}</span>
+                </button>
             </div>
         </div>
     </td>

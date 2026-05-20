@@ -51,7 +51,7 @@ new class extends Component {
 
         $this->openCreateModal = false;
         $this->openUpdateModal = false;
-        $this->openDeleteModal = true;
+        $this->openDeleteModal = false;
         $this->deleteSelectionModal = false;
     }
 

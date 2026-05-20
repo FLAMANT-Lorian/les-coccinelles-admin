@@ -36,6 +36,7 @@ new class extends Component {
     public function closeModal(): void
     {
         $this->form->reset();
+        $this->form->resetErrorBag();
 
         $this->createHallRateModalOpen = false;
         $this->updateHallRateModalOpen = false;

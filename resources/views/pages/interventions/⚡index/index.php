@@ -53,11 +53,12 @@ new class extends Component {
     public function closeModal(): void
     {
         $this->form->reset();
-
         $this->form->resetErrorBag();
 
         $this->openCreateModal = false;
         $this->openUpdateModal = false;
+        $this->openDeleteModal = false;
+        $this->openDeleteSelectionModal = false;
     }
 
     #[Computed]

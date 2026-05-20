@@ -7,9 +7,11 @@ use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\Intervention;
+use App\Models\Meeting;
 use App\Models\Message;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 
 trait DeleteSelection
@@ -186,5 +188,28 @@ trait DeleteSelection
         session()->flash('success', __('flash-messages.bookings-deleted'));
 
         $this->redirectRoute('bookings.index', navigate: true);
+    }
+
+    #[On('deleteMeetings')]
+    public function deleteMeetings(): void
+    {
+        $meetings = Meeting::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($meetings as $meeting) {
+            $disk = config('filesystems.default');
+            $path = config('meetings.original_path') . '/' . $meeting->file;
+
+            if ($meeting->file && Storage::disk($disk)->exists($path)) {
+                Storage::disk($disk)->delete($path);
+            }
+
+            $meeting->delete();
+        }
+
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.meetings-deleted'));
+
+        $this->redirectRoute('meetings', navigate: true);
     }
 }
