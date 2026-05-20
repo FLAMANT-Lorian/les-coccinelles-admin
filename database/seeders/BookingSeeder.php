@@ -16,13 +16,14 @@ class BookingSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 10; $i++) {
+        $contact = Contact::first();
+        $type = HallRate::first();
+
             Booking::factory()
-                ->contact(Contact::factory()->create())
-                ->type(HallRate::factory()->create())
-                ->date(BookingDate::factory()->create())
+                ->contact($contact)
+                ->type($type)
+                ->has(BookingDate::factory())
                 ->has(MeterReading::factory())
                 ->create();
-        }
     }
 }

@@ -12,7 +12,6 @@ return new class extends Migration {
             $table->string('uniqid');
             $table->foreignId('contact_id')->constrained('contacts')->cascadeOnDelete();
             $table->foreignId('hall_rate_id')->nullable()->constrained('hall_rates')->nullOnDelete();
-            $table->foreignId('booking_date_id')->nullable()->constrained('booking_dates')->nullOnDelete();
             $table->string('company_name')->nullable();
             $table->string('deposit_status');
             $table->bigInteger('prepayment')->nullable();

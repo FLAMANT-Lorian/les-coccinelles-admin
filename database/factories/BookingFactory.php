@@ -48,11 +48,4 @@ class BookingFactory extends Factory
             'hall_rate_id' => $hallRate->id
         ]);
     }
-
-    public function date(BookingDate $date): BookingFactory
-    {
-        return $this->state(fn() => [
-            'booking_date_id' => $date->id
-        ]);
-    }
 }

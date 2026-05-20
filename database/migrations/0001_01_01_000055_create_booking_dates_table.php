@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('booking_dates', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
             $table->string('key_handover_date');
             $table->string('key_handover_hour');
             $table->string('key_return_date');
