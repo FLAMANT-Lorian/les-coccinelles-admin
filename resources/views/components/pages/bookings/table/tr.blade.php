@@ -58,8 +58,8 @@
         <div>
             @php
                 $today = Carbon::now()->format('Y-m-d');
-                $start = Carbon::parse($booking->start_date)->format('Y-m-d');
-                $end = Carbon::parse($booking->end_date)->format('Y-m-d');
+                $start = Carbon::parse($booking->bookingDate->start_date)->format('Y-m-d');
+                $end = Carbon::parse($booking->bookingDate->end_date)->format('Y-m-d');
             @endphp
 
             <span>{{ __('tables.status') }}&nbsp;:</span>

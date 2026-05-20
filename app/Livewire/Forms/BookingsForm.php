@@ -7,6 +7,7 @@ use App\Enums\YesOrNo;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
+use App\ValueObjects\Money;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
 use Livewire\Form;
@@ -107,18 +108,26 @@ class BookingsForm extends Form
 
         $this->tenant = $booking->contact->id;
         $this->type = $booking->hall_rate->id;
-        if (Carbon::parse($booking->start_date)->format('Y-m-d') === Carbon::parse($booking->end_date)->format('Y-m-d')) {
-            $this->dates = $booking->start_date->format('Y-m-d');
+
+        if (Carbon::parse($booking->bookingDate->start_date)->format('Y-m-d') === Carbon::parse($booking->bookingDate->end_date)->format('Y-m-d')) {
+            $this->dates = $booking->bookingDate->start_date->format('Y-m-d');
         } else {
-            $this->dates = $booking->start_date->format('Y-m-d') . __('general.date-picker-format') . $booking->end_date->format('Y-m-d');
+            $this->dates = $booking->bookingDate->start_date->format('Y-m-d') . __('general.date-picker-format') . $booking->bookingDate->end_date->format('Y-m-d');
         }
-        $this->handover_date = $booking->key_handover_date;
-        $this->return_date = $booking->key_return_date;
+        $this->handover_date = $booking->bookingDate->key_handover_date;
+        $this->handover_hour = Carbon::parse($booking->bookingDate->key_handover_hour)->format('H:i');
+        $this->return_date = $booking->bookingDate->key_return_date;
+        $this->return_hour = Carbon::parse($booking->bookingDate->key_return_hour)->format('H:i');
+
+        $this->company_name = $booking->company_name;
         $this->message = $booking->message;
         $this->billing_address = $booking->billing_address;
+        $this->deposit_status = $booking->deposit_status;
+        $this->prepayment = $booking->prepayment ? Money::fromCents($booking->prepayment)->euros() : null;
+        $this->cleaning = $booking->cleaning ? Money::fromCents($booking->cleaning)->euros() : null;
+        $this->breaking = $booking->breaking ? Money::fromCents($booking->breaking)->euros() : null;
 
         $meter_reading = $booking->meterReading;
-
         $this->before_water_general = $meter_reading->before_water_general;
         $this->after_water_general = $meter_reading->after_water_general;
         $this->before_water_cdj = $meter_reading->before_water_cdj;
@@ -164,12 +173,22 @@ class BookingsForm extends Form
             'uniqid' => $uniqid,
             'contact_id' => $contact->id,
             'hall_rate_id' => $type->id,
+            'message' => $this->message,
+            'billing_address' => $this->billing_address,
+            'company_name' => $this->company_name ?? null,
+            'deposit_status' => $this->deposit_status,
+            'prepayment' => $this->prepayment ? Money::fromEuros($this->prepayment)->cents() : null,
+            'cleaning' => $this->cleaning ? Money::fromEuros($this->cleaning)->cents() : null,
+            'breaking' => $this->breaking ? Money::fromEuros($this->breaking)->cents() : null,
+        ]);
+
+        $booking->bookingDate()->create([
             'key_handover_date' => $this->handover_date,
+            'key_handover_hour' => $this->handover_hour,
             'key_return_date' => $this->return_date,
+            'key_return_hour' => $this->return_hour,
             'start_date' => Carbon::parse($start_date)->startOfDay(),
             'end_date' => Carbon::parse($end_date)->endOfDay(),
-            'message' => $this->message,
-            'billing_address' => $this->billing_address
         ]);
 
         $booking->meterReading()->create([
@@ -219,15 +238,25 @@ class BookingsForm extends Form
             'uniqid' => $uniqid,
             'contact_id' => $contact->id,
             'hall_rate_id' => $type->id,
-            'key_handover_date' => $this->handover_date,
-            'key_return_date' => $this->return_date,
-            'start_date' => Carbon::parse($start_date)->startOfDay(),
-            'end_date' => Carbon::parse($end_date)->endOfDay(),
             'message' => $this->message,
-            'billing_address' => $this->billing_address
+            'billing_address' => $this->billing_address,
+            'company_name' => $this->company_name ?? null,
+            'deposit_status' => $this->deposit_status,
+            'prepayment' => $this->prepayment ? Money::fromEuros($this->prepayment)->cents() : null,
+            'cleaning' => $this->cleaning ? Money::fromEuros($this->cleaning)->cents() : null,
+            'breaking' => $this->breaking ? Money::fromEuros($this->breaking)->cents() : null,
         ]);
 
-        $this->booking->meterReading->update([
+        $this->booking->bookingDate()->update([
+            'key_handover_date' => $this->handover_date,
+            'key_handover_hour' => $this->handover_hour,
+            'key_return_date' => $this->return_date,
+            'key_return_hour' => $this->return_hour,
+            'start_date' => Carbon::parse($start_date)->startOfDay(),
+            'end_date' => Carbon::parse($end_date)->endOfDay(),
+        ]);
+
+        $this->booking->meterReading()->update([
             'before_water_general' => $this->before_water_general ?? null,
             'after_water_general' => $this->after_water_general ?? null,
             'before_water_cdj' => $this->before_water_cdj ?? null,

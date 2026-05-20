@@ -105,8 +105,8 @@ new class extends Component {
         $bookings = Booking::all();
 
         foreach ($bookings as $key => $booking) {
-            $disabled_dates[$key]['from'] = $booking->start_date->format('Y-m-d');
-            $disabled_dates[$key]['to'] = $booking->end_date->format('Y-m-d');
+            $disabled_dates[$key]['from'] = $booking->bookingDate->start_date->format('Y-m-d');
+            $disabled_dates[$key]['to'] = $booking->bookingDate->end_date->format('Y-m-d');
         }
 
         return $disabled_dates;

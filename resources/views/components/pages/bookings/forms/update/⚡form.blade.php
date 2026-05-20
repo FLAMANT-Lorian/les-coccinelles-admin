@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\BookingStatus;
+use App\Enums\DepositStatus;
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\BookingsForm;
 use App\Models\Booking;
@@ -21,7 +21,7 @@ new class extends Component {
     public bool $tenantSelectState = false;
     public bool $memberCardSelectState = false;
     public bool $typeSelectState = false;
-    public bool $statusSelectState = false;
+    public bool $depositStatusSelectState = false;
 
     public BookingsForm $form;
 
@@ -29,7 +29,7 @@ new class extends Component {
         'tenant' => '',
         'member_card' => '',
         'type' => '',
-        'status' => ''
+        'deposit_status' => ''
     ];
 
     public function mount(Booking $booking): void
@@ -85,15 +85,15 @@ new class extends Component {
     }
 
     #[Computed]
-    public function getStatus()
+    public function getDepositStatus()
     {
-        $cases = BookingStatus::cases();
+        $cases = DepositStatus::cases();
 
-        if (!empty($this->terms['status'])) {
+        if (!empty($this->terms['deposit_status'])) {
             return array_filter($cases, function ($case) {
                 return str_contains(
                     strtolower(__('enums.' . $case->value)),
-                    strtolower($this->terms['status'])
+                    strtolower($this->terms['deposit_status'])
                 );
             });
         }
@@ -106,8 +106,8 @@ new class extends Component {
         $bookings = Booking::all()->except([$this->booking->id]);
 
         foreach ($bookings as $key => $booking) {
-            $disabled_dates[$key]['from'] = $booking->start_date->format('Y-m-d');
-            $disabled_dates[$key]['to'] = $booking->end_date->format('Y-m-d');
+            $disabled_dates[$key]['from'] = $booking->bookingDate->start_date->format('Y-m-d');
+            $disabled_dates[$key]['to'] = $booking->bookingDate->end_date->format('Y-m-d');
         }
 
         return $disabled_dates;
@@ -133,6 +133,8 @@ new class extends Component {
     <x-pages.bookings.forms.fieldset1/>
     <x-pages.bookings.forms.fieldset2/>
     <x-pages.bookings.forms.fieldset3/>
+    <x-pages.bookings.forms.fieldset4/>
+    <x-pages.bookings.forms.fieldset5/>
 
     {{-- BOUTON --}}
     <x-forms.buttons.submit-filled
