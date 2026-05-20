@@ -144,7 +144,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user with the permission can’t create an intervention', function () {
+    it('verifies if a user without the permission can’t create an intervention', function () {
         Livewire::test('pages::interventions.index')
             ->set('form.name', 'test2')
             ->set('form.description', 'test2')
@@ -179,7 +179,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
             'name' => 'test1',
             'description' => 'test1',
             'status' => InterventionStatus::todo->value,
-            'deadline' => Carbon::now()->addDays(10),
+            'deadline' => Carbon::now()->addDays(10)->format('Y-m-d H:i:s'),
         ]);
     });
 
