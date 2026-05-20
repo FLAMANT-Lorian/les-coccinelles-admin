@@ -32,5 +32,10 @@
         <x-widgets.modals.meetings.create-meeting/>
     @elseif($this->openEditModal)
         <x-widgets.modals.meetings.update-meeting/>
+    @elseif($this->openDeleteModal)
+        <x-widgets.modals.meetings.delete-meeting/>
+    @elseif($this->deleteSelection)
+        <x-widgets.modals.selection.delete-selection
+            action="deleteMeetings"/>
     @endif
 </div>

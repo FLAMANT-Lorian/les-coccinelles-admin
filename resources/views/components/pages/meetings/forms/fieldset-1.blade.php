@@ -1,12 +1,12 @@
 <fieldset class="grid! rg:grid-cols-2 gap-6! border-b-0!">
-    <x-forms.input.input-text
-        class="col-span-full"
-        :label="__('forms.address')"
-        name="address"
-        :required="true"
-        :placeholder="__('forms.address_placeholder')"
-        field_name="address"
+    <x-forms.input.textarea
         wire="form.address"
+        class="col-span-full"
+        textarea_class="min-h-40!"
+        name="address"
+        field_name="address"
+        :label="__('forms.address')"
+        :placeholder="__('forms.address_placeholder')"
     />
 
     <x-forms.input.input-date
