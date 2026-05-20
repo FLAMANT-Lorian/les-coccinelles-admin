@@ -2,6 +2,7 @@
 
 use App\Models\Booking;
 use App\Models\Intervention;
+use App\Models\Meeting;
 use Carbon\Carbon;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -15,6 +16,7 @@ new class extends Component {
 
         $bookings = Booking::with(['contact'])->get();
         $interventions = Intervention::all();
+        $meetings = Meeting::all();
 
         foreach ($bookings as $booking) {
             $event = [
@@ -41,7 +43,22 @@ new class extends Component {
             ];
 
             if (auth()->user()->can('view-any', Intervention::class)) {
-                $event['url'] = route('interventions');
+                $event['url'] = route('interventions', ['term' => $intervention->name]);
+            }
+
+            $events[] = $event;
+        }
+
+        foreach ($meetings as $meeting) {
+            $event = [
+                'title' => __('pages/meetings.meeting') . ' #' . $meeting->id . ' – ' . Carbon::parse($meeting->hour)->format('H:i'),
+                'start' => Carbon::parse($meeting->date)->format('Y-m-d'),
+                'backgroundColor' => '#E4DCF4',
+                'textColor' => '#6554B6',
+            ];
+
+            if (auth()->user()->can('view-any', Meeting::class)) {
+                $event['url'] = route('meetings', ['term' => $meeting->id]);
             }
 
             $events[] = $event;

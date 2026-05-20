@@ -90,7 +90,7 @@
             'route' => LaravelLocalization::localizeURL(route('meetings')),
             'icon' => 'meetings',
             'wire-current' => true,
-            'permissions' => null
+            'permissions' => ['meetings.index']
         ],
         [
             'label' => __('navigation/navigation.members'),
