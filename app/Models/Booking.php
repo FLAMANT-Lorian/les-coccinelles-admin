@@ -15,7 +15,6 @@ class Booking extends Model
         'contact_id',
         'hall_rate_id',
         'meter_reading_id',
-        'booking_date_id',
         'company_name',
         'deposit_status',
         'prepayment',

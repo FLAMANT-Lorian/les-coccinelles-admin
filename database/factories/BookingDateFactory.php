@@ -17,8 +17,8 @@ class BookingDateFactory extends Factory
             'key_handover_hour' => Carbon::now()->format('H:i:s'),
             'key_return_date' => Carbon::now()->subDay(),
             'key_return_hour' => Carbon::now()->format('H:i:s'),
-            'start_date' => Carbon::now()->subDays(3),
-            'end_date' => Carbon::now()->subDay(),
+            'start_date' => Carbon::now()->subDays(3)->startOfDay(),
+            'end_date' => Carbon::now()->subDay()->endOfDay(),
         ];
     }
 }

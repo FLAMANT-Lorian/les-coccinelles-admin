@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\DepositStatus;
 use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\Permission;
@@ -48,9 +49,12 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
         Livewire::test('pages.bookings.forms.create.form')
             ->set('form.tenant', $contact->id)
             ->set('form.type', $hallRate->id)
+            ->set('form.deposit_status', DepositStatus::PAID->value)
             ->set('form.dates', '2026-10-12 au 2026-10-14')
             ->set('form.handover_date', '2026-10-12')
+            ->set('form.handover_hour', '19:00')
             ->set('form.return_date', '2026-10-14')
+            ->set('form.return_hour', '19:00')
             ->set('form.billing_address', 'Liège')
             ->call('save')
             ->assertOk();
@@ -63,6 +67,7 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
             ->set('form.tenant', null)
             ->set('form.type', null)
             ->set('form.dates', '')
+           ->set('form.prepayment', 10.987)
             ->set('form.handover_date', null)
             ->set('form.return_date', null)
             ->set('form.billing_address', '')
@@ -75,6 +80,7 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
                 'form.handover_date',
                 'form.return_date',
                 'form.billing_address',
+                'form.prepayment'
             ]);
 
         assertDatabaseCount('bookings', 0);

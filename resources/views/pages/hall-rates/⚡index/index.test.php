@@ -48,6 +48,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
 
         Livewire::test('pages::hall-rates.index')
             ->set('form.type', 'test')
+            ->set('form.deposit', 25)
             ->set('form.base_price', 10.5)
             ->set('form.member_price', 10)
             ->call('save')
@@ -55,6 +56,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
 
         assertDatabaseHas('hall_rates', [
             'type' => 'test',
+            'deposit' => 2500,
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -69,6 +71,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
 
         $hallRate = HallRate::create([
             'type' => 'test',
+            'deposit' => 25000,
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -76,6 +79,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
         Livewire::test('pages::hall-rates.index')
             ->set('form.hallRate', $hallRate)
             ->set('form.type', 'New')
+            ->set('form.deposit', 30)
             ->set('form.base_price', 10.8)
             ->set('form.member_price', 9.6)
             ->call('update')
@@ -83,6 +87,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
 
         assertDatabaseHas('hall_rates', [
             'type' => 'New',
+            'deposit' => 3000,
             'base_price' => 1080,
             'member_price' => 960,
         ]);
@@ -97,6 +102,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
 
         $hallRate = HallRate::create([
             'type' => 'test',
+            'deposit' => 2500,
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -145,6 +151,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
     it('verifies if a user with the permission can’t update a hall rate', function () {
         $hallRate = HallRate::create([
             'type' => 'test',
+            'deposit' => 2500,
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -152,6 +159,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
         Livewire::test('pages::hall-rates.index')
             ->set('form.hallRate', $hallRate)
             ->set('form.type', 'New')
+            ->set('form.deposit', 30)
             ->set('form.base_price', 10.8)
             ->set('form.member_price', 9.6)
             ->call('update')
@@ -159,6 +167,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
 
         assertDatabaseHas('hall_rates', [
             'type' => 'test',
+            'deposit' => 2500,
             'base_price' => 1050,
             'member_price' => 1000,
         ]);
@@ -167,6 +176,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
     it('verifies if a user with the permission can’t delete a hall rate', function () {
         $hallRate = HallRate::create([
             'type' => 'test',
+            'deposit' => 2500,
             'base_price' => 1050,
             'member_price' => 1000,
         ]);

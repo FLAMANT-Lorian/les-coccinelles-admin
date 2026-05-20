@@ -161,7 +161,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
         $intervention = Intervention::create([
             'name' => 'test1',
             'description' => 'test1',
-            'deadline' => Carbon::now()->addDays(10),
+            'deadline' => Carbon::now()->addDays(10)->format('Y-m-d'),
             'status' => InterventionStatus::todo->value,
         ]);
 
@@ -171,7 +171,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
             ->set('form.description', 'test2')
             ->set('form.status', InterventionStatus::done->value)
             ->set('form.assignee', auth()->user()->id)
-            ->set('form.deadline', Carbon::now()->addDays(5))
+            ->set('form.deadline', Carbon::now()->addDays(5)->format('Y-m-d'))
             ->call('update')
             ->assertForbidden();
 
@@ -179,7 +179,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
             'name' => 'test1',
             'description' => 'test1',
             'status' => InterventionStatus::todo->value,
-            'deadline' => Carbon::now()->addDays(10)->format('Y-m-d H:i:s'),
+            'deadline' => Carbon::parse($intervention->deadline)->format('Y-m-d H:i:s'),
         ]);
     });
 

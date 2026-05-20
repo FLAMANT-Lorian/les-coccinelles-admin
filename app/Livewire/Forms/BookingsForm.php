@@ -183,9 +183,9 @@ class BookingsForm extends Form
         ]);
 
         $booking->bookingDate()->create([
-            'key_handover_date' => $this->handover_date,
+            'key_handover_date' => Carbon::parse($this->handover_date)->format('Y-m-d'),
             'key_handover_hour' => $this->handover_hour,
-            'key_return_date' => $this->return_date,
+            'key_return_date' => Carbon::parse($this->return_date)->format('Y-m-d'),
             'key_return_hour' => $this->return_hour,
             'start_date' => Carbon::parse($start_date)->startOfDay(),
             'end_date' => Carbon::parse($end_date)->endOfDay(),
@@ -248,9 +248,9 @@ class BookingsForm extends Form
         ]);
 
         $this->booking->bookingDate()->update([
-            'key_handover_date' => $this->handover_date,
+            'key_handover_date' => Carbon::parse($this->handover_date)->format('Y-m-d'),
             'key_handover_hour' => $this->handover_hour,
-            'key_return_date' => $this->return_date,
+            'key_return_date' => Carbon::parse($this->return_date)->format('Y-m-d'),
             'key_return_hour' => $this->return_hour,
             'start_date' => Carbon::parse($start_date)->startOfDay(),
             'end_date' => Carbon::parse($end_date)->endOfDay(),
