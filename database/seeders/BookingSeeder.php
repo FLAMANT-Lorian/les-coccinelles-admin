@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Booking;
+use App\Models\BookingDate;
 use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\MeterReading;
@@ -19,6 +20,7 @@ class BookingSeeder extends Seeder
             Booking::factory()
                 ->contact(Contact::factory()->create())
                 ->type(HallRate::factory()->create())
+                ->date(BookingDate::factory()->create())
                 ->has(MeterReading::factory())
                 ->create();
         }
