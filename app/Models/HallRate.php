@@ -14,6 +14,7 @@ class HallRate extends Model
         'type',
         'base_price',
         'member_price',
+        'deposit',
     ];
 
     public function bookings(): HasMany

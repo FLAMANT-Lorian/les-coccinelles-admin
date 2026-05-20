@@ -41,6 +41,7 @@ return [
     'type' => 'Type',
     'base_price' => 'Prix de base',
     'member_price' => 'Prix carte de membre',
+    'deposit' => 'Caution',
     'creator' => 'Créateur',
     'assignee' => 'Assigné',
     'intervention-name' => 'Nom de l’intervention',

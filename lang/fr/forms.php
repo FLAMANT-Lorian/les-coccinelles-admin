@@ -46,6 +46,7 @@ return [
     'type_placeholder' => 'Type pour ...',
     'base_price' => 'Prix de base (€ / jour)',
     'member_price' => 'Prix avec carte de membre (€ / jour)',
+    'deposit' => 'Prix de la caution',
     'utility_cost' => 'Prix de base (€)',
     'unit' => 'Unité',
     'intervention' => 'Nom de l’intevrention',

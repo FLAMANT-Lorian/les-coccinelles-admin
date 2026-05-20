@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->string('type');
             $table->bigInteger('base_price');
             $table->bigInteger('member_price');
+            $table->bigInteger('deposit')->nullable();
             $table->timestamps();
         });
     }
