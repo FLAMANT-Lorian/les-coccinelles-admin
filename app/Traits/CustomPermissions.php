@@ -60,7 +60,13 @@ trait CustomPermissions
         ],
         'calendar' => [
             'index' => false
-        ]
+        ],
+        'meetings' => [
+            'index' => false,
+            'create' => false,
+            'edit' => false,
+            'delete' => false,
+        ],
     ];
 
     public function setPermissions(): void

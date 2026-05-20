@@ -65,7 +65,13 @@ class PermissionSeeder extends Seeder
             ],
             'calendar' => [
                 'index'
-            ]
+            ],
+            'meetings' => [
+                'index',
+                'create',
+                'edit',
+                'delete',
+            ],
         ];
 
         foreach ($permissions as $key => $permission) {
