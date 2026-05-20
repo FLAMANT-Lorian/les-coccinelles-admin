@@ -1,113 +1,65 @@
 @php
-    $tabs = [
-        [
-            'label' => __('pages/hall.bookings-create.tab-1'),
-            'tab' => 'before-booking'
-        ],
-        [
-            'label' => __('pages/hall.bookings-create.tab-2'),
-            'tab' => 'after-booking'
-        ],
-    ];
+    use App\Enums\BookingStatus;
+    use App\Models\HallRate;
 @endphp
 
-<fieldset class="col-span-full border-b-0!">
+<fieldset class="col-span-full">
     <legend>{{ __('pages/hall.bookings-create.fieldset-3') }}</legend>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-6"
-         x-data="{
-            activeTab: 'before-booking',
-            setActiveTab(tab) {
-                this.activeTab = tab;
-            }
-        }">
-        <div class="col-span-full flex flex-row gap-8 border-b border-b-beige-dark/60 pb-2 overflow-x-auto">
-            @foreach ($tabs as $tab)
-                <button type="button"
-                        @click="setActiveTab('{{ $tab['tab'] }}')"
-                        :class="activeTab === '{{ $tab['tab']  }}' ? 'current-tab' : ''"
-                        class="tab">
-                    {{ $tab['label'] }}
-                </button>
-            @endforeach
-        </div>
-        <div
-            :class="activeTab === 'before-booking' ? 'block' : 'hidden'"
-            class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 trans-all">
-            <x-forms.input.input-number
-                :label="__('forms.water-general')"
-                name="before_water_general"
-                min="0"
-                field_name="before_water_general"
-                wire="form.before_water_general"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.electricity-general')"
-                name="before_electricity_general"
-                min="0"
-                field_name="before_electricity_general"
-                wire="form.before_electricity_general"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.mazout-general')"
-                name="before_mazout_general"
-                min="0"
-                field_name="before_mazout_general"
-                wire="form.before_mazout_general"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.water-cdj')"
-                name="before_water_cdj"
-                min="0"
-                field_name="before_water_cdj"
-                wire="form.before_water_cdj"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.electricity-cdj')"
-                name="before_electricity_cdj"
-                min="0"
-                field_name="before_electricity_cdj"
-                wire="form.before_electricity_cdj"
-            />
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-6">
+        <x-forms.input.input-date
+            class="col-span-full"
+            type="dates"
+            :label="__('forms.booking-dates')"
+            :placeholder="__('forms.booking-dates-placeholder')"
+            name="dates"
+            :date_range="true"
+            :required="true"
+            field_name="dates"
+            wire="form.dates"
+            :disabled="$this->getDisabledDates()"
+        />
 
-        <div
-            :class="activeTab === 'after-booking' ? 'block' : 'hidden'"
-            class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 trans-all">
-            <x-forms.input.input-number
-                :label="__('forms.water-general')"
-                name="after_water_general"
-                min="0"
-                field_name="after_water_general"
-                wire="form.after_water_general"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.electricity-general')"
-                name="after_electricity_general"
-                min="0"
-                field_name="after_electricity_general"
-                wire="form.after_electricity_general"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.mazout-general')"
-                name="after_mazout_general"
-                min="0"
-                field_name="after_mazout_general"
-                wire="form.after_mazout_general"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.water-cdj')"
-                name="after_water_cdj"
-                min="0"
-                field_name="after_water_cdj"
-                wire="form.after_water_cdj"
-            />
-            <x-forms.input.input-number
-                :label="__('forms.electricity-cdj')"
-                name="after_electricity_cdj"
-                min="0"
-                field_name="after_electricity_cdj"
-                wire="form.after_electricity_cdj"
-            />
-        </div>
+        <x-forms.input.input-date
+            class="lg:col-span-3"
+            type="handover_date"
+            :label="__('forms.key_handover_date')"
+            :placeholder="__('forms.booking-dates-placeholder')"
+            name="handover_date"
+            :required="true"
+            field_name="handover_date"
+            wire="form.handover_date"/>
+
+        <x-forms.input.input-text
+            class="lg:col-span-3"
+            type="time"
+            :label="__('forms.key_handover_hour')"
+            name="handover_hour"
+            :required="true"
+            :placeholder="__('forms.booking-hour-placeholder')"
+            field_name="handover_hour"
+            wire="form.handover_hour"
+        />
+
+        <x-forms.input.input-date
+            class="lg:col-span-3"
+            type="return_date"
+            :label="__('forms.key_return_date')"
+            :placeholder="__('forms.booking-dates-placeholder')"
+            name="return_date"
+            :required="true"
+            field_name="return_date"
+            wire="form.return_date"/>
+
+        <x-forms.input.input-text
+            class="lg:col-span-3"
+            type="time"
+            :label="__('forms.key_return_hour')"
+            name="return_hour"
+            :required="true"
+            :placeholder="__('forms.booking-hour-placeholder')"
+            field_name="return_hour"
+            wire="form.return_hour"
+        />
     </div>
+
 </fieldset>

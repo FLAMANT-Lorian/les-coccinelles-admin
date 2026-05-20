@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Enums\DepositStatus;
 use App\Models\Booking;
+use App\Models\BookingDate;
 use App\Models\Contact;
 use App\Models\HallRate;
-use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,12 +25,13 @@ class BookingFactory extends Factory
 
         return [
             'uniqid' => $uniqid,
-            'key_handover_date' => Carbon::now()->subDays(3),
-            'key_return_date' => Carbon::now()->subDay(),
-            'start_date' => Carbon::now()->subDays(3),
-            'end_date' => Carbon::now()->subDay(),
             'message' => $faker->realText(100),
-            'billing_address' => $faker->address
+            'billing_address' => $faker->address,
+            'company_name' => $faker->company,
+            'deposit_status' => $faker->randomElement(DepositStatus::class),
+            'prepayment' => $faker->randomNumber(),
+            'cleaning' => $faker->randomNumber(),
+            'breaking' => $faker->randomNumber(),
         ];
     }
 

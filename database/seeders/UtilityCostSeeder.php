@@ -37,7 +37,7 @@ class UtilityCostSeeder extends Seeder
                 'type' => 'Mazout',
                 'price' => 0,
                 'status' => UtilityCostsStatus::outOfDate->value,
-                'unit' => 'litre'
+                'unit' => 'unité'
             ]);
     }
 }

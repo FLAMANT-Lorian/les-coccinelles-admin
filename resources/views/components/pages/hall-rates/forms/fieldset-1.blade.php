@@ -24,4 +24,13 @@
         field_name="member_price"
         wire="form.member_price"
     />
+    <x-forms.input.input-price
+        class="col-span-full"
+        :label="__('forms.deposit')"
+        name="deposit"
+        :required="true"
+        placeholder="Ex : 120,5"
+        field_name="deposit"
+        wire="form.deposit"
+    />
 </fieldset>

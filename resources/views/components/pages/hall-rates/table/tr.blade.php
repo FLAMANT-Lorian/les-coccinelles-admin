@@ -32,13 +32,19 @@
     <td>
         <div>
             <span>{{ __('tables.base_price') }}&nbsp;:</span>
-            <span>{{ Money::fromCents($hallRate->base_price)->format() }} / {{ __('general.day') }}</span>
+            <span>{{ Money::fromCents($hallRate->base_price)->format() }}</span>
         </div>
     </td>
     <td>
         <div>
             <span>{{ __('tables.member_price') }}&nbsp;:</span>
-            <span>{{ Money::fromCents($hallRate->member_price)->format() }} / {{ __('general.day') }}</span>
+            <span>{{ Money::fromCents($hallRate->member_price)->format() }}</span>
+        </div>
+    </td>
+    <td>
+        <div>
+            <span>{{ __('tables.deposit') }}&nbsp;:</span>
+            <span>{{ Money::fromCents($hallRate->deposit)->format() }}</span>
         </div>
     </td>
     <td data-action>

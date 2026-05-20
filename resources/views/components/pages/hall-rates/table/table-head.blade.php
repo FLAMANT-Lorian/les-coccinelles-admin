@@ -1,5 +1,5 @@
 <thead>
-    <tr x-data="{ name: 'middle', base_price: 'middle', member_price: 'middle' }">
+    <tr x-data="{ name: 'middle', base_price: 'middle', member_price: 'middle', deposit: 'middle' }">
         <th>
             <div class="flex items-center justify-center">
                 <input :checked="$wire.selectedColumn.length > 0"
@@ -29,14 +29,17 @@
             if (name === 'middle') {
                     base_price = 'middle';
                     member_price = 'middle';
+                    deposit = 'middle';
                     name = 'desc'
                 } else if (name === 'desc') {
                     base_price = 'middle';
                     member_price = 'middle';
+                    deposit = 'middle';
                     name = 'asc'
                 } else if (name === 'asc') {
                     base_price = 'middle';
                     member_price = 'middle';
+                    deposit = 'middle';
                     name = 'middle'
                 }
                 $wire.sortBy('type', name)">
@@ -57,14 +60,17 @@
             if (base_price === 'middle') {
                     name = 'middle';
                     member_price = 'middle';
+                    deposit = 'middle';
                     base_price = 'desc'
                 } else if (base_price === 'desc') {
                      name = 'middle';
                     member_price = 'middle';
+                    deposit = 'middle';
                     base_price = 'asc'
                 } else if (base_price === 'asc') {
                      name = 'middle';
                     member_price = 'middle';
+                    deposit = 'middle';
                     base_price = 'middle'
                 }
                 $wire.sortBy('base_price', base_price)">
@@ -84,14 +90,17 @@
             if (member_price === 'middle') {
                     base_price = 'middle';
                     name = 'middle';
+                    deposit = 'middle';
                     member_price = 'desc'
                 } else if (member_price === 'desc') {
                      base_price = 'middle';
                     name = 'middle';
+                    deposit = 'middle';
                     member_price = 'asc'
                 } else if (member_price === 'asc') {
                      base_price = 'middle';
                     name = 'middle';
+                    deposit = 'middle';
                     member_price = 'middle'
                 }
                 $wire.sortBy('member_price', member_price)">
@@ -100,6 +109,36 @@
                             'rotate-0': member_price === 'desc',
                             '-rotate-180': member_price === 'asc',
                             '-rotate-90': member_price === 'middle'
+                         }"
+                     class="trans-all" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#th-filter-arrow"></use>
+                </svg>
+            </button>
+        </th>
+        <th>
+            <button type="button" class="flex items-center gap-2"  @click="
+            if (deposit === 'middle') {
+                    base_price = 'middle';
+                    name = 'middle';
+                    member_price = 'middle'
+                    deposit = 'desc';
+                } else if (deposit === 'desc') {
+                     base_price = 'middle';
+                    name = 'middle';
+                    member_price = 'middle'
+                    deposit = 'asc';
+                } else if (deposit === 'asc') {
+                     base_price = 'middle';
+                    name = 'middle';
+                    member_price = 'middle'
+                    deposit = 'middle';
+                }
+                $wire.sortBy('deposit', deposit)">
+                <span>{{ __('tables.deposit') }}</span>
+                <svg :class="{
+                            'rotate-0': deposit === 'desc',
+                            '-rotate-180': deposit === 'asc',
+                            '-rotate-90': deposit === 'middle'
                          }"
                      class="trans-all" width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#th-filter-arrow"></use>

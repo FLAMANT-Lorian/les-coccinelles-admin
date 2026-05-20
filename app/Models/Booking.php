@@ -15,23 +15,16 @@ class Booking extends Model
         'contact_id',
         'hall_rate_id',
         'meter_reading_id',
-        'status',
-        'key_handover_date',
-        'key_return_date',
-        'start_date',
-        'end_date',
+        'booking_date_id',
+        'company_name',
+        'deposit_status',
+        'prepayment',
         'message',
         'billing_address',
-        'uniqid'
+        'uniqid',
+        'cleaning',
+        'breaking'
     ];
-
-    protected function casts(): array
-    {
-        return [
-            'start_date' => 'date',
-            'end_date' => 'date'
-        ];
-    }
 
     public function contact(): BelongsTo
     {
@@ -46,5 +39,10 @@ class Booking extends Model
     public function meterReading(): HasOne
     {
         return $this->hasOne(MeterReading::class);
+    }
+
+    public function bookingDate(): HasOne
+    {
+        return $this->hasOne(BookingDate::class);
     }
 }

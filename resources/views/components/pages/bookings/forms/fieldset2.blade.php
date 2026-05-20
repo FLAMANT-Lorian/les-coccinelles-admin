@@ -1,13 +1,22 @@
 @php
-    use App\Enums\BookingStatus;
+    use App\Enums\DepositStatus;
     use App\Models\HallRate;
 @endphp
 
 <fieldset class="col-span-full">
     <legend>{{ __('pages/hall.bookings-create.fieldset-2') }}</legend>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-6">
+        <x-forms.input.input-text
+            class="col-span-full"
+            :label="__('forms.company-name')"
+            name="company_name"
+            :placeholder="__('forms.company-name-placeholder')"
+            field_name="company_name"
+            wire="form.company_name"
+        />
+
         <x-forms.input.custom-select-simple-db
-            class="lg:col-span-3"
+            class="col-span-full"
             :collection="$this->getTypes"
             :label="__('forms.booking-type')"
             name="type"
@@ -20,38 +29,27 @@
             accessor="type"
         />
 
-        <x-forms.input.input-date
+        <x-forms.input.custom-select-simple-enum
             class="lg:col-span-3"
-            type="dates"
-            :label="__('forms.booking-dates')"
-            :placeholder="__('forms.booking-dates-placeholder')"
-            name="dates"
-            :date_range="true"
-            :required="true"
-            field_name="dates"
-            wire="form.dates"
-            :disabled="$this->getDisabledDates()"
+            :collection="$this->getDepositStatus"
+            :label="__('forms.deposit_status')"
+            name="deposit_status"
+            search_wire="terms.deposit_status"
+            select_wire="form.deposit_status"
+            :form_property="$this->form->deposit_status"
+            state="depositStatusSelectState"
+            field_name="deposit_status"
+            :enum="DepositStatus::class"
         />
 
-        <x-forms.input.input-date
+        <x-forms.input.input-price
             class="lg:col-span-3"
-            type="handover_date"
-            :label="__('forms.key_handover_date')"
-            :placeholder="__('forms.booking-dates-placeholder')"
-            name="handover_date"
-            :required="true"
-            field_name="handover_date"
-            wire="form.handover_date"/>
-
-        <x-forms.input.input-date
-            class="lg:col-span-3"
-            type="return_date"
-            :label="__('forms.key_return_date')"
-            :placeholder="__('forms.booking-dates-placeholder')"
-            name="return_date"
-            :required="true"
-            field_name="return_date"
-            wire="form.return_date"/>
+            :label="__('forms.prepayment')"
+            name="prepayment"
+            placeholder="Ex : 120,5"
+            field_name="prepayment"
+            wire="form.prepayment"
+        />
 
         <x-forms.input.textarea
             class="lg:col-span-3"
