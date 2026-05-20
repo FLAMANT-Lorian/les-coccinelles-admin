@@ -193,6 +193,8 @@ trait DeleteSelection
     #[On('deleteMeetings')]
     public function deleteMeetings(): void
     {
+        $this->authorize('delete', Meeting::class);
+
         $meetings = Meeting::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($meetings as $meeting) {

@@ -77,6 +77,8 @@ new class extends Component {
 
     public function save(): void
     {
+        $this->authorize('create', Meeting::class);
+
         $this->form->validate();
 
         $this->form->save();
@@ -88,6 +90,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Meeting::class);
+
         $this->form->validate();
 
         $this->form->update();
@@ -100,6 +104,8 @@ new class extends Component {
     #[On('delete-meeting')]
     public function deleteMeeting(): void
     {
+        $this->authorize('delete', Meeting::class);
+
         if ($this->meeting->file) {
             $disk = config('filesystems.default');
             $path = config('meetings.original_path') . '/' . $this->meeting->file;
