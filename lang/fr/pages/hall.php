@@ -42,8 +42,10 @@ return [
         'subtitle' => 'Toutes les informations sur la réservation',
         'create-booking' => 'Créer la réservation',
         'fieldset-1' => 'Informations sur le locataire',
-        'fieldset-2' => 'Informations sur la résevration',
-        'fieldset-3' => 'Relevés des compteurs',
+        'fieldset-2' => 'Informations sur la réservation',
+        'fieldset-3' => 'Dates de la réservation',
+        'fieldset-4' => 'Relevés des compteurs',
+        'fieldset-5' => 'Coûts supplémentaires',
         'tab-1' => 'Avant réservation',
         'tab-2' => 'Après réservation'
     ],

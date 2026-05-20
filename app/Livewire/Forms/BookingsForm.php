@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Enums\DepositStatus;
 use App\Enums\YesOrNo;
 use App\Models\Booking;
 use App\Models\Contact;
@@ -24,14 +25,22 @@ class BookingsForm extends Form
     public string $address;
 
     //FIELDSET 2
+    public string $company_name;
     public ?int $type = null;
-    public string $dates;
-    public string $handover_date;
-    public string $return_date;
+    public ?string $deposit_status = null;
+    public ?float $prepayment = null;
+
     public ?string $message = null;
     public string $billing_address;
 
     // FIELDSET 3
+    public string $dates;
+    public string $handover_date;
+    public string $handover_hour;
+    public string $return_date;
+    public string $return_hour;
+
+    // FIELDSET 4
     public ?int $before_water_general = null;
     public ?int $after_water_general = null;
     public ?int $before_water_cdj = null;
@@ -42,6 +51,10 @@ class BookingsForm extends Form
     public ?int $after_electricity_cdj = null;
     public ?int $before_mazout_general = null;
     public ?int $after_mazout_general = null;
+
+    // FIELDSET 5
+    public ?float $cleaning = null;
+    public ?float $breaking = null;
 
     public function rules(): array
     {
@@ -56,12 +69,19 @@ class BookingsForm extends Form
             'address' => 'required_without:tenant',
 
             // BOOKING
+            'company_name' => '',
             'type' => 'required|exists:hall_rates,id',
-            'dates' => 'required',
-            'handover_date' => 'required',
-            'return_date' => 'required',
+            'deposit_status' => ['required', Rule::enum(DepositStatus::class)],
+            'prepayment' => 'nullable|numeric|min:0|decimal:0,2',
             'message' => '',
             'billing_address' => 'required',
+
+            // DATES
+            'dates' => 'required',
+            'handover_date' => 'required',
+            'handover_hour' => 'required',
+            'return_date' => 'required',
+            'return_hour' => 'required',
 
             // METER READING
             'before_water_general' => '',
@@ -74,6 +94,10 @@ class BookingsForm extends Form
             'after_electricity_cdj' => '',
             'before_mazout_general' => '',
             'after_mazout_general' => '',
+
+            // OTHERS COSTS
+            'cleaning' => 'nullable|numeric|min:0|decimal:0,2',
+            'breaking' => 'nullable|numeric|min:0|decimal:0,2',
         ];
     }
 
