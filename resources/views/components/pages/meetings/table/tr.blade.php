@@ -25,7 +25,12 @@
     <td>
         <div>
             <span>{{ __('tables.number') }}&nbsp;:</span>
-            <span>{{ $meeting->id }}</span>
+            <button type="button"
+                    class="underline-link after:bg-brown"
+                    wire:click="$dispatch('open-modal', { modal: 'openEditModal', id: {{ $meeting->id }} })"
+                    title="{{ __('pages/meetings.see-meeting') }}">
+                <span>{{ $meeting->id }}</span>
+            </button>
         </div>
     </td>
     <td>
@@ -43,7 +48,7 @@
     <td>
         <div>
             <span>{{ __('tables.hour') }}&nbsp;:</span>
-            <span>{{ $meeting->hour->format('H:i') }}</span>
+            <span>{{ Carbon::parse($meeting->hour)->format('H:i') }}</span>
         </div>
     </td>
     <td>

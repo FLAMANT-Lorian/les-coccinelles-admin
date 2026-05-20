@@ -22,12 +22,6 @@ class Meeting extends Model
     {
         return [
             'date' => 'date',
-            'hour' => 'datetime'
         ];
-    }
-
-    public function participants(): BelongsToMany
-    {
-        return $this->belongsToMany(User::class, 'attendances');
     }
 }
