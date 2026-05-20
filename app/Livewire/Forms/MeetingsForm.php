@@ -17,6 +17,8 @@ class MeetingsForm extends Form
 {
     use CleanLivewireTMPFolder;
 
+    public ?Meeting $meeting = null;
+
     public ?string $address = null;
     public ?string $date = null;
     public ?string $hour = null;
@@ -35,12 +37,48 @@ class MeetingsForm extends Form
 
     public function setMeeting(Meeting $meeting): void
     {
-        //
+        $this->meeting = $meeting;
+
+        $this->address = $meeting->address;
+        $this->date = $meeting->date;
+        $this->hour = Carbon::parse($meeting->hour)->format('H:i');
+        $this->description = $meeting->description;
     }
 
     public function update(): void
     {
-        //
+        $this->meeting->update([
+            'address' => $this->address,
+            'date' => $this->date,
+            'hour' => $this->hour,
+            'description' => $this->description
+        ]);
+
+        if ($this->file) {
+            $disk = config('filesystems.default');
+            $original_path = config('meetings.original_path');
+
+            if ($this->meeting->file) {
+                $old_path = $original_path . '/' . $this->meeting->file;
+
+                if (Storage::disk($disk)->exists($old_path)) {
+                    Storage::disk($disk)->delete($old_path);
+                }
+            }
+
+            $file_name = 'rapport-reunion-' . $this->meeting->id . '.' . config('meetings.file-type');
+
+            Storage::disk(config('filesystems.default'))
+                ->putFileAs(
+                    config('meetings.original_path'),
+                    $this->file,
+                    $file_name
+                );
+
+            $this->meeting->update([
+                'file' => $file_name,
+            ]);
+        }
     }
 
     public function save(): void

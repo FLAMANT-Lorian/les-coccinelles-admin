@@ -5,8 +5,9 @@ return [
     'view-profil-of' => 'Voir le profil de ',
     'not_specified' => 'Non renseigné',
     'view-role' => 'Voir le rôle ',
-    'remove-image' => 'Supprimer l\'image',
-    'download-image' => 'Télécharger l\'image',
+    'remove-image' => 'Supprimer l’image',
+    'download-image' => 'Télécharger l’image',
+    'view-file' => 'Voir le fichier',
     'day' => 'Jour',
 
     /* PERMISSIONS */

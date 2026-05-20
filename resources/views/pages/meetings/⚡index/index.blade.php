@@ -30,5 +30,7 @@
     {{-- MODAL --}}
     @if($this->openCreateModal)
         <x-widgets.modals.meetings.create-meeting/>
+    @elseif($this->openEditModal)
+        <x-widgets.modals.meetings.update-meeting/>
     @endif
 </div>

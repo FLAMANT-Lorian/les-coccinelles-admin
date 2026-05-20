@@ -54,6 +54,30 @@
                     <span class="text-brown text-base sr-only">{{ __('forms.remove-meeting-file') }}</span>
                 </button>
             </div>
+        @elseif($this->meeting && $this->meeting->file && Storage::disk(config('filesystems.default'))->exists(config('meetings.original_path') . '/' . $this->meeting->file))
+            <div class="flex flex-row gap-4 items-center px-4 py-2 rounded-sm bg-beige-light">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#file"></use>
+                </svg>
+                <a href="{{ Storage::disk(config('filesystems.default'))->url(config('meetings.original_path') . '/' . $this->meeting->file) }}"
+                   title="{{ __('general.view-file') }}"
+                   aria-label="{{ $this->meeting->file }}"
+                   class="underline-link after:bg-brown"
+                   data-fancybox>
+                    {{ $this->meeting->file }}
+                </a>
+                <button type="button"
+                        wire:click="$dispatch('delete-file')">
+                    <svg class=" hover:bg-brown rounded-sm text-brown hover:text-white trans-all"
+                         width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12.7071 11.9892L18.0159 17.298L17.3088 18.0051L12 12.6963L6.69117 18.0051L5.98407 17.298L11.2929 11.9892L5.99512 6.69141L6.70222 5.9843L12 11.2821L17.2978 5.9843L18.0049 6.69141L12.7071 11.9892Z"
+                            fill="currentColor"/>
+                    </svg>
+
+                    <span class="text-brown text-base sr-only">{{ __('forms.remove-meeting-file') }}</span>
+                </button>
+            </div>
         @endif
         <input class="sr-only"
                id="meeting_file"
@@ -62,7 +86,7 @@
                type="file">
         <label for="meeting_file"
                class="cursor-pointer text-blue-600 underline-link after:bg-blue-600">
-            @if($this->form->file)
+            @if($this->form->file || ($this->meeting && $this->meeting->file))
                 {{ __('forms.change-meeting-file') }}
             @else
                 {{ __('forms.add-meeting-file') }}

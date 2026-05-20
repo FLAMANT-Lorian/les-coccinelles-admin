@@ -22,7 +22,6 @@ class Meeting extends Model
     {
         return [
             'date' => 'date',
-            'hour' => 'datetime'
         ];
     }
 }
