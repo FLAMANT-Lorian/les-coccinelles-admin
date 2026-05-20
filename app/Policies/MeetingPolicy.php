@@ -12,7 +12,7 @@ class MeetingPolicy
 
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->can('meetings.index');
     }
 
     public function view(User $user, Meeting $meeting): bool
@@ -22,17 +22,17 @@ class MeetingPolicy
 
     public function create(User $user): bool
     {
-        return true;
+        return $user->can('meetings.create');
     }
 
     public function update(User $user): bool
     {
-        return true;
+        return $user->can('meetings.edit');
     }
 
     public function delete(User $user): bool
     {
-        return true;
+        return $user->can('meetings.delete');
     }
 
     public function restore(User $user, Meeting $meeting): bool

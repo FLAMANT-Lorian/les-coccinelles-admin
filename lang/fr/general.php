@@ -22,6 +22,7 @@ return [
         'contacts' => 'Contacts',
         'bookings' => 'Réservations',
         'calendar' => 'Calendrier',
+        'meetings' => 'Réunions',
     ],
     'all' => 'Tout',
     'see_table' => 'Voir le tableau',
