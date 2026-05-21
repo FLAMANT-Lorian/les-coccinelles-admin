@@ -3,7 +3,15 @@ import {French} from "flatpickr/dist/l10n/fr.js";
 import {english as English} from "flatpickr/dist/l10n/default.js";
 
 function initDateRangePicker() {
-    const el = document.querySelector('.date-range-picker');
+    const el = document.querySelector('[data-range]');
+
+    document.querySelectorAll('.range input:not([data-range])').forEach(el => el.remove());
+    document.querySelectorAll('.flatpickr-calendar.rangeMode').forEach(el => el.remove());
+
+    if (el._flatpickr) {
+        el._flatpickr.destroy();
+    }
+
     const locale = document.documentElement.lang;
 
     flatpickr(el, {
@@ -18,8 +26,14 @@ function initDateRangePicker() {
 }
 
 function initDatePicker() {
+    document.querySelectorAll('.simple input:not([data-simple])').forEach(el => el.remove());
+    document.querySelectorAll('.flatpickr-calendar:not(.rangeMode)').forEach(el => el.remove());
 
-    document.querySelectorAll('.date-picker').forEach((el) => {
+    document.querySelectorAll('[data-simple]').forEach((el) => {
+        if (el._flatpickr) {
+            el._flatpickr.destroy();
+        }
+
         const locale = document.documentElement.lang;
         flatpickr(el, {
             locale: locale === 'fr' ? French : English,

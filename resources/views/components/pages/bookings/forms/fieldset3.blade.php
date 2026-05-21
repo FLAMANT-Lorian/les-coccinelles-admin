@@ -8,7 +8,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-x-8 gap-y-6">
         <x-forms.input.input-date
             class="col-span-full"
-            type="dates"
             :label="__('forms.booking-dates')"
             :placeholder="__('forms.booking-dates-placeholder')"
             name="dates"
@@ -21,7 +20,6 @@
 
         <x-forms.input.input-date
             class="lg:col-span-3"
-            type="handover_date"
             :label="__('forms.key_handover_date')"
             :placeholder="__('forms.booking-dates-placeholder')"
             name="handover_date"
@@ -42,7 +40,6 @@
 
         <x-forms.input.input-date
             class="lg:col-span-3"
-            type="return_date"
             :label="__('forms.key_return_date')"
             :placeholder="__('forms.booking-dates-placeholder')"
             name="return_date"

@@ -6,7 +6,8 @@
     'field_name',
     'wire' => '',
     'disabled' => [],
-    'date_range' => false
+    'date_range' => null,
+    'type' => null
 ])
 
 <div {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -16,7 +17,7 @@
             <strong> *</strong>
         @endif
     </label>
-    <div wire:ignore>
+    <div wire:ignore class="{{ $date_range ? 'range' : 'simple' }}">
         <input @if($wire && $wire !== '')
                    wire:model="{{ $wire }}"
                @endif
@@ -26,9 +27,14 @@
                @if($required)
                    required
                @endif
+               @if($date_range)
+                   data-range
+               @else
+                   data-simple
+               @endif
                class="{{ $date_range ? 'date-range-picker' : 'date-picker' }} w-full"
                id="{{ $field_name }}"
-               type="text"
+               type="{{ $type ?? 'text' }}"
                name="{{ $name }}"
                placeholder="{{ $placeholder ?? '' }}"
                autocomplete="off">
