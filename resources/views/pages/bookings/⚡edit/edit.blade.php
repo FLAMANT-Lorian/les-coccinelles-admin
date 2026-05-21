@@ -27,8 +27,9 @@
 
     <div class="content">
         {{-- HEADING --}}
-        <x-general.heading
-            :heading="$heading"/>
+        <x-general.heading-booking
+            :heading="$heading"
+            :booking="$this->booking"/>
 
         {{-- FORM --}}
         <livewire:pages.bookings.forms.update.form

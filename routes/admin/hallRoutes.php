@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use App\Models\AvailabilityRequest;
 use App\Models\Booking;
 use App\Models\Contact;
@@ -41,5 +42,5 @@ Route::livewire(LaravelLocalization::transRoute('routes.bookings-edit'), 'pages:
     ->can('update', Booking::class)
     ->name('bookings.edit');
 
-
-
+Route::get('/pdf/generate/contract/{bookingId}', [PdfController::class, 'generate'])
+    ->name('pdf.generate');

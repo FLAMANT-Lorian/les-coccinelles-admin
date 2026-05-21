@@ -24,7 +24,9 @@ class BookingDate extends Model
     {
         return [
             'start_date' => 'date',
-            'end_date' => 'date'
+            'end_date' => 'date',
+            'key_handover_date' => 'date',
+            'key_return_date' => 'date',
         ];
     }
 
