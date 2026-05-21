@@ -26,7 +26,7 @@ class BookingsForm extends Form
     public string $address;
 
     //FIELDSET 2
-    public string $company_name;
+    public ?string $company_name = null;
     public ?int $type = null;
     public ?string $deposit_status = null;
     public ?float $prepayment = null;
@@ -120,7 +120,7 @@ class BookingsForm extends Form
         $this->return_hour = Carbon::parse($booking->bookingDate->key_return_hour)->format('H:i');
 
         $this->company_name = $booking->company_name;
-        $this->message = $booking->message;
+        $this->message = $booking->message ?? null;
         $this->billing_address = $booking->billing_address;
         $this->deposit_status = $booking->deposit_status;
         $this->prepayment = $booking->prepayment ? Money::fromCents($booking->prepayment)->euros() : null;
