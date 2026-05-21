@@ -42,5 +42,5 @@ Route::livewire(LaravelLocalization::transRoute('routes.bookings-edit'), 'pages:
     ->can('update', Booking::class)
     ->name('bookings.edit');
 
-Route::get('/pdf/generate/{bookingId}', [PdfController::class, 'generate'])
+Route::get('/pdf/generate/contract/{bookingId}', [PdfController::class, 'generate'])
     ->name('pdf.generate');
