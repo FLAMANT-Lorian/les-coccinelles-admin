@@ -17,7 +17,7 @@ class UtilityCostSeeder extends Seeder
         UtilityCost::factory()
             ->create([
                 'type' => 'Eau',
-                'price' => 0,
+                'price' => 600,
                 'status' => UtilityCostsStatus::outOfDate->value,
                 'unit' => 'm3'
             ]);
@@ -26,7 +26,7 @@ class UtilityCostSeeder extends Seeder
         UtilityCost::factory()
             ->create([
                 'type' => 'Électricité',
-                'price' => 0,
+                'price' => 40,
                 'status' => UtilityCostsStatus::outOfDate->value,
                 'unit' => 'kWh'
             ]);
@@ -35,7 +35,7 @@ class UtilityCostSeeder extends Seeder
         UtilityCost::factory()
             ->create([
                 'type' => 'Mazout',
-                'price' => 0,
+                'price' => 800,
                 'status' => UtilityCostsStatus::outOfDate->value,
                 'unit' => 'unité'
             ]);

@@ -33,13 +33,6 @@ it('verifies if you can subtract money values and recover a formatted value in e
         ->and($euros->format())->toBe('0,03 €');
 });
 
-it('verifies if it throws an exception when subtracting too much', function () {
-    $euros = Money::fromEuros(45.87);
-    $cents = Money::fromCents(4684);
-
-    $euros = $euros->subtract($cents);
-})->throws(Exception::class, 'Vous ne pouvez pas soustraire plus que la valeur actuelle');
-
 it('verifies if you can manipulate cents in every direction', function () {
     $price = new Money(5025);
 

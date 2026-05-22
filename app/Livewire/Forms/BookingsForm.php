@@ -42,10 +42,10 @@ class BookingsForm extends Form
     public string $return_hour;
 
     // FIELDSET 4
-    public ?int $before_water_general = null;
-    public ?int $after_water_general = null;
-    public ?int $before_water_cdj = null;
-    public ?int $after_water_cdj = null;
+    public ?float $before_water_general = null;
+    public ?float $after_water_general = null;
+    public ?float $before_water_cdj = null;
+    public ?float $after_water_cdj = null;
     public ?int $before_electricity_general = null;
     public ?int $after_electricity_general = null;
     public ?int $before_electricity_cdj = null;
@@ -85,16 +85,16 @@ class BookingsForm extends Form
             'return_hour' => 'required',
 
             // METER READING
-            'before_water_general' => '',
-            'after_water_general' => '',
-            'before_water_cdj' => '',
-            'after_water_cdj' => '',
-            'before_electricity_general' => '',
-            'after_electricity_general' => '',
-            'before_electricity_cdj' => '',
-            'after_electricity_cdj' => '',
-            'before_mazout_general' => '',
-            'after_mazout_general' => '',
+            'before_water_general' => 'nullable|numeric|decimal:0,2',
+            'after_water_general' => 'nullable|numeric|decimal:0,2',
+            'before_water_cdj' => 'nullable|numeric|decimal:0,2',
+            'after_water_cdj' => 'nullable|numeric|decimal:0,2',
+            'before_electricity_general' => 'nullable|numeric|integer',
+            'after_electricity_general' => 'nullable|numeric|integer',
+            'before_electricity_cdj' => 'nullable|numeric|integer',
+            'after_electricity_cdj' => 'nullable|numeric|integer',
+            'before_mazout_general' => 'nullable|numeric|integer',
+            'after_mazout_general' => 'nullable|numeric|integer',
 
             // OTHERS COSTS
             'cleaning' => 'nullable|numeric|min:0|decimal:0,2',

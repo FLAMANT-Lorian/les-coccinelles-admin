@@ -19,10 +19,11 @@ new class extends Component {
         $meetings = Meeting::all();
 
         foreach ($bookings as $booking) {
+            $is_one_day = Carbon::parse($booking->bookingDate->start_date)->format('Y-m-d') === Carbon::parse($booking->bookingDate->end_date)->format('Y-m-d');
             $event = [
                 'title' => 'Réservation salle – ' . $booking->contact->full_name,
-                'start' => Carbon::parse($booking->bookingDate->start_date)->startOfDay()->format('Y-m-d\TH:i:s'),
-                'end' => Carbon::parse($booking->bookingDate->end_date)->endOfDay()->format('Y-m-d\TH:i:s'),
+                'start' => Carbon::parse($booking->bookingDate->start_date)->startOfDay()->format($is_one_day ? 'Y-m-d' : 'Y-m-d\TH:i:s'),
+                'end' => Carbon::parse($booking->bookingDate->end_date)->endOfDay()->format($is_one_day ? 'Y-m-d' : 'Y-m-d\TH:i:s'),
                 'backgroundColor' => '#DBEAFE',
                 'textColor' => '#3B82F6',
             ];
