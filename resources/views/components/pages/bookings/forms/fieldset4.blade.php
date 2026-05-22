@@ -37,6 +37,7 @@
                 :label="__('forms.water-general')"
                 name="before_water_general"
                 min="0"
+                step="0.01"
                 field_name="before_water_general"
                 wire="form.before_water_general"
             />
@@ -58,6 +59,7 @@
                 :label="__('forms.water-cdj')"
                 name="before_water_cdj"
                 min="0"
+                step="0.01"
                 field_name="before_water_cdj"
                 wire="form.before_water_cdj"
             />
@@ -77,6 +79,7 @@
                 :label="__('forms.water-general')"
                 name="after_water_general"
                 min="0"
+                step="0.01"
                 field_name="after_water_general"
                 wire="form.after_water_general"
             />
@@ -98,6 +101,7 @@
                 :label="__('forms.water-cdj')"
                 name="after_water_cdj"
                 min="0"
+                step="0.01"
                 field_name="after_water_cdj"
                 wire="form.after_water_cdj"
             />

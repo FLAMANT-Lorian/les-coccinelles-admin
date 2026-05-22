@@ -7,6 +7,7 @@
     'wire' => '',
     'min' => false,
     'max' => false,
+    'step' => false
 ])
 
 <div {{ $attributes->merge(['class' => 'relative field']) }}>
@@ -27,6 +28,9 @@
            @endif
            @if($required)
                required
+           @endif
+           @if($step)
+               step="{{ $step }}"
            @endif
            id="{{ $field_name }}"
            type="number"

@@ -28,4 +28,23 @@ class MeterReading extends Model
     {
         return $this->belongsTo(Booking::class);
     }
+
+    public function canGenerateInvoice(): bool
+    {
+        if ($this->before_mazout_general &&
+            $this->after_water_general &&
+            $this->before_water_cdj &&
+            $this->after_water_cdj &&
+            $this->before_electricity_general &&
+            $this->after_electricity_general &&
+            $this->before_electricity_cdj &&
+            $this->after_electricity_cdj &&
+            $this->before_mazout_general &&
+            $this->after_mazout_general
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

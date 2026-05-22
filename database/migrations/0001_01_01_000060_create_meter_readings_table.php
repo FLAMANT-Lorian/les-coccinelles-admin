@@ -10,10 +10,10 @@ return new class extends Migration {
         Schema::create('meter_readings', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-            $table->bigInteger('before_water_general')->nullable();
-            $table->bigInteger('after_water_general')->nullable();
-            $table->bigInteger('before_water_cdj')->nullable();
-            $table->bigInteger('after_water_cdj')->nullable();
+            $table->decimal('before_water_general', 20)->nullable();
+            $table->decimal('after_water_general', 20)->nullable();
+            $table->decimal('before_water_cdj', 20)->nullable();
+            $table->decimal('after_water_cdj', 20)->nullable();
             $table->bigInteger('before_electricity_general')->nullable();
             $table->bigInteger('after_electricity_general')->nullable();
             $table->bigInteger('before_electricity_cdj')->nullable();

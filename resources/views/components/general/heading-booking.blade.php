@@ -21,14 +21,16 @@
         <a class="text-white py-3 px-4 text-base font-normal rounded-sm border border-brown hover:text-brown hover:bg-transparent bg-brown trans-all"
            aria-label="{{ __('pages/hall.bookings-update.generate-contract') }}"
            title="{{ __('pages/hall.bookings-update.generate-contract') }}"
-           href="{{ route('pdf.generate', ['bookingId' => $booking->id]) }}">
+           href="{{ route('pdf.generate.contract', ['bookingId' => $booking->id]) }}">
             {{ __('pages/hall.bookings-update.generate-contract') }}
         </a>
-        {{--<a class="text-white py-3 px-4 text-base font-normal rounded-sm border border-brown hover:text-brown hover:bg-transparent bg-brown trans-all"
-           aria-label="{{ __('pages/hall.bookings-update.generate-invoice') }}"
-           title="{{ __('pages/hall.bookings-update.generate-invoice') }}"
-           href="{{ route('pdf.generate') }}">
-            {{ __('pages/hall.bookings-update.generate-invoice') }}
-        </a>--}}
+        @if($booking->meterReading->canGenerateInvoice())
+            <a class="text-white py-3 px-4 text-base font-normal rounded-sm border border-brown hover:text-brown hover:bg-transparent bg-brown trans-all"
+               aria-label="{{ __('pages/hall.bookings-update.generate-invoice') }}"
+               title="{{ __('pages/hall.bookings-update.generate-invoice') }}"
+               href="{{ route('pdf.generate.invoice', ['bookingId' => $booking->id]) }}">
+                {{ __('pages/hall.bookings-update.generate-invoice') }}
+            </a>
+        @endif
     </div>
 </div>
