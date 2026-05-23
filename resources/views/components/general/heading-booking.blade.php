@@ -28,7 +28,7 @@
             <a class="text-white py-3 px-4 text-base font-normal rounded-sm border border-brown hover:text-brown hover:bg-transparent bg-brown trans-all"
                aria-label="{{ __('pages/hall.bookings-update.generate-invoice') }}"
                title="{{ __('pages/hall.bookings-update.generate-invoice') }}"
-               href="{{ route('pdf.generate.invoice', ['bookingId' => $booking->id]) }}">
+               href="{{ route('pdf.generate.count', ['bookingId' => $booking->id]) }}">
                 {{ __('pages/hall.bookings-update.generate-invoice') }}
             </a>
         @endif

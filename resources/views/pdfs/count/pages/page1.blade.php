@@ -2,7 +2,7 @@
     <table class="header-table">
         <tr>
             <td class="company">
-                <h1>Facture</h1>
+                <h1>Décompte</h1>
 
                 <div style="margin-top: 20px;">
                     <strong>ASBL Les Coccinelles</strong><br/>
@@ -76,7 +76,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($invoice as $data)
+                @foreach($count as $data)
                     <tr>
                         <td>{{ $data['label'] }}</td>
                         <td class="text-right">{{ $data['cost'] }} €</td>

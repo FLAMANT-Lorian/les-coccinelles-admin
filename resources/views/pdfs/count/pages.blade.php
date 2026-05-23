@@ -81,10 +81,10 @@
     </style>
 </head>
 <body>
-    @include('pdfs.invoice.pages.page1')
+    @include('pdfs.count.pages.page1')
 
     <div class="footer">
-        Facture générée automatiquement — {{ now()->format('d/m/Y H:i') }}
+        Décompte générée automatiquement — {{ now()->format('d/m/Y H:i') }}
     </div>
 
 </body>

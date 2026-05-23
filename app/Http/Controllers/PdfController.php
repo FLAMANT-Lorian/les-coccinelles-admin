@@ -23,22 +23,22 @@ class PdfController extends Controller
             ->download();
     }
 
-    public function generateInvoice(int $bookingId): PdfBuilder
+    public function generateCount(int $bookingId): PdfBuilder
     {
         $booking = Booking::with(['hall_rate'])
             ->findOrFail($bookingId);
 
         $utilityCosts = $this->handleUtilityCosts($booking);
 
-        $invoice = $this->handleSummary($utilityCosts, $booking);
+        $count = $this->handleSummary($utilityCosts, $booking);
 
-        $file_name = 'facture-' . $booking->uniqid;
+        $file_name = 'decompte-' . $booking->uniqid;
 
         return pdf()
-            ->view('pdfs.invoice.pages', [
+            ->view('pdfs.count.pages', [
                 'booking' => $booking,
                 'utility_costs' => $utilityCosts,
-                'invoice' => $invoice
+                'count' => $count
             ])->name($file_name)
             ->download();
     }
