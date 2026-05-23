@@ -47,3 +47,6 @@ Route::get('/pdf/generate/contract/{bookingId}', [PdfController::class, 'generat
 
 Route::get('/pdf/generate/count/{bookingId}', [PdfController::class, 'generateCount'])
     ->name('pdf.generate.count');
+
+Route::get('/pdf/generate/invoice/{bookingId}', [PdfController::class, 'generateInvoice'])
+    ->name('pdf.generate.invoice');

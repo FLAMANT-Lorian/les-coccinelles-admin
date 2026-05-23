@@ -56,6 +56,7 @@ return [
         'delete-booking' => 'Supprimer la réservation',
         'delete-booking-description' => 'Après suppression, cette résevration ne pourra plus être récupérée !',
         'generate-contract' => 'Générer le contrat de location',
+        'generate-count' => 'Générer le décompte',
         'generate-invoice' => 'Générer la facture',
     ],
 ];
