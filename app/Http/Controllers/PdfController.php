@@ -23,27 +23,45 @@ class PdfController extends Controller
             ->download();
     }
 
-    public function generateInvoice(int $bookingId): PdfBuilder
+    public function generateCount(int $bookingId): PdfBuilder
     {
         $booking = Booking::with(['hall_rate'])
             ->findOrFail($bookingId);
 
         $utilityCosts = $this->handleUtilityCosts($booking);
 
-        $invoice = $this->handleSummary($utilityCosts, $booking);
+        $count = $this->handleSummary($utilityCosts, $booking);
+
+        $file_name = 'decompte-' . $booking->uniqid;
+
+        return pdf()
+            ->view('pdfs.count.pages', [
+                'booking' => $booking,
+                'utility_costs' => $utilityCosts,
+                'count' => $count
+            ])->name($file_name)
+            ->download();
+    }
+
+    public function generateInvoice(int $bookingId): PdfBuilder
+    {
+        $booking = Booking::with(['hall_rate'])
+            ->findOrFail($bookingId);
+
+        $utilityCosts = $this->handleUtilityCosts($booking);
+        $invoice = $this->handleSummary($utilityCosts, $booking, 'invoice');
 
         $file_name = 'facture-' . $booking->uniqid;
 
         return pdf()
             ->view('pdfs.invoice.pages', [
                 'booking' => $booking,
-                'utility_costs' => $utilityCosts,
                 'invoice' => $invoice
             ])->name($file_name)
             ->download();
     }
 
-    public function handleSummary(array $utility_costs, Booking $booking): array
+    public function handleSummary(array $utility_costs, Booking $booking, string $mode = null): array
     {
         $base_price = $booking->contact->member_card ? $booking->hall_rate->member_price : $booking->hall_rate->base_price;
         $deposit = $booking->hall_rate->deposit;
@@ -51,44 +69,75 @@ class PdfController extends Controller
         $cleaning = $booking->cleaning ?? 0;
         $breaking = $booking->breaking ?? 0;
 
-        $price = Money::fromCents($base_price)
-            ->subtract(Money::fromCents($prepayment))
-            ->subtract(Money::fromCents($deposit))
-            ->add(Money::fromEuros($utility_costs['total']['total']))
-            ->add(Money::fromCents($cleaning))
-            ->add(Money::fromCents($breaking))
-            ->euros();
+        if ($mode === 'invoice') {
+            $price = Money::fromCents($base_price)
+                ->add(Money::fromEuros($utility_costs['total']['total']))
+                ->add(Money::fromCents($cleaning))
+                ->add(Money::fromCents($breaking))
+                ->euros();
 
-        return [
-            'base_price' => [
-                'label' => $booking->hall_rate->type,
-                'cost' => Money::fromCents($base_price)->euros()
-            ],
-            'prepayment' => [
-                'label' => 'Accompte',
-                'cost' => '- ' . Money::fromCents($prepayment)->euros()
-            ],
-            'deposit' => [
-                'label' => 'Caution',
-                'cost' => '- ' . Money::fromCents($deposit)->euros(),
-            ],
-            'utility_costs' => [
-                'label' => 'Charges',
-                'cost' => $utility_costs['total']['total'],
-            ],
-            'cleaning' => [
-                'label' => 'Frais de nettoyage',
-                'cost' => Money::fromCents($cleaning)->euros(),
-            ],
-            'breaking' => [
-                'label' => 'Écarts d’inventaire',
-                'cost' => Money::fromCents($breaking)->euros(),
-            ],
-            'total' => [
-                'label' => $price > 0 ? 'Montant à payer' : 'Montant à rembourser',
-                'cost' => $price > 0 ? $price : str_replace('-', '', $price)
-            ]
-        ];
+            return [
+                'base_price' => [
+                    'label' => $booking->hall_rate->type,
+                    'cost' => Money::fromCents($base_price)->euros()
+                ],
+                'utility_costs' => [
+                    'label' => 'Charges',
+                    'cost' => $utility_costs['total']['total'],
+                ],
+                'cleaning' => [
+                    'label' => 'Frais de nettoyage',
+                    'cost' => Money::fromCents($cleaning)->euros(),
+                ],
+                'breaking' => [
+                    'label' => 'Écarts d’inventaire',
+                    'cost' => Money::fromCents($breaking)->euros(),
+                ],
+                'total' => [
+                    'label' => 'Total',
+                    'cost' => $price > 0 ? $price : str_replace('-', '', $price)
+                ]
+            ];
+        } else {
+            $price = Money::fromCents($base_price)
+                ->subtract(Money::fromCents($prepayment))
+                ->subtract(Money::fromCents($deposit))
+                ->add(Money::fromEuros($utility_costs['total']['total']))
+                ->add(Money::fromCents($cleaning))
+                ->add(Money::fromCents($breaking))
+                ->euros();
+
+            return [
+                'base_price' => [
+                    'label' => $booking->hall_rate->type,
+                    'cost' => Money::fromCents($base_price)->euros()
+                ],
+                'prepayment' => [
+                    'label' => 'Accompte',
+                    'cost' => '- ' . Money::fromCents($prepayment)->euros()
+                ],
+                'deposit' => [
+                    'label' => 'Caution',
+                    'cost' => '- ' . Money::fromCents($deposit)->euros(),
+                ],
+                'utility_costs' => [
+                    'label' => 'Charges',
+                    'cost' => $utility_costs['total']['total'],
+                ],
+                'cleaning' => [
+                    'label' => 'Frais de nettoyage',
+                    'cost' => Money::fromCents($cleaning)->euros(),
+                ],
+                'breaking' => [
+                    'label' => 'Écarts d’inventaire',
+                    'cost' => Money::fromCents($breaking)->euros(),
+                ],
+                'total' => [
+                    'label' => $price > 0 ? 'Montant à payer' : 'Montant à rembourser',
+                    'cost' => $price > 0 ? $price : str_replace('-', '', $price)
+                ]
+            ];
+        }
     }
 
     public function handleUtilityCosts(Booking $booking): array

@@ -2,7 +2,7 @@
     <table class="header-table">
         <tr>
             <td class="company">
-                <h1>Facture</h1>
+                <h1>Décompte</h1>
 
                 <div style="margin-top: 20px;">
                     <strong>ASBL Les Coccinelles</strong><br/>
@@ -34,9 +34,39 @@
     </div>
 </div>
 
+<div class="section">
+    <h2 style="margin-top: 32px;">Détail des charges</h2>
+
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th class="text-left">Type</th>
+                <th class="text-center">Arrivé</th>
+                <th class="text-center">Départ</th>
+                <th class="text-center">Différence</th>
+                <th class="text-center">Prix</th>
+                <th class="text-right">Montant</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach($utility_costs as $data)
+                <tr>
+                    <td>{{ $data['label'] }}</td>
+                    <td class="text-center">{{ $data['before'] }}</td>
+                    <td class="text-center">{{ $data['after'] }}</td>
+                    <td class="text-center">{{ $data['diff'] }}</td>
+                    <td class="text-center">{{ $data['cost'] }}</td>
+                    <td class="text-right">{{ $data['total'] }} €</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
 <div class="section" style="margin-top: 32px">
     <div class="card">
-        <h2>Détail de la facture</h2>
+        <h2>Résumé</h2>
 
         <table class="invoice-table">
             <thead>
@@ -46,7 +76,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($invoice as $data)
+                @foreach($count as $data)
                     <tr>
                         <td>{{ $data['label'] }}</td>
                         <td class="text-right">{{ $data['cost'] }} €</td>
