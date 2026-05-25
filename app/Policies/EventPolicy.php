@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Policies;
+
+use App\Models\Event;
+use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class EventPolicy
+{
+    use HandlesAuthorization;
+
+    public function viewAny(User $user): bool
+    {
+        return false;
+    }
+
+    public function view(User $user, Event $event): bool
+    {
+        return false;
+    }
+
+    public function create(User $user): bool
+    {
+        return false;
+    }
+
+    public function update(User $user, Event $event): bool
+    {
+        return false;
+    }
+
+    public function delete(User $user, Event $event): bool
+    {
+        return false;
+    }
+
+    public function restore(User $user, Event $event): bool
+    {
+        return false;
+    }
+
+    public function forceDelete(User $user, Event $event): bool
+    {
+        return false;
+    }
+}
