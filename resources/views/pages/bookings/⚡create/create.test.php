@@ -32,7 +32,7 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the booking create form', function () {
+    it('can access to the booking create form', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -42,7 +42,7 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can create a booking', function () {
+    it('can create a booking', function () {
         $contact = Contact::factory()->create();
         $hallRate = HallRate::factory()->create();
 
@@ -102,7 +102,7 @@ describe('BOOKINGS WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can’t access to the booking create form', function () {
+    it('can’t access to the booking create form', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -112,7 +112,7 @@ describe('BOOKINGS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user with the permission can’t create a booking', function () {
+    it('can’t create a booking', function () {
         $contact = Contact::factory()->create();
         $hallRate = HallRate::factory()->create();
 

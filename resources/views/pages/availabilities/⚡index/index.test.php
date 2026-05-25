@@ -32,7 +32,7 @@ describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user with the permission can access to the availability requests index', function () {
+    it('can access to the availability requests index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -42,7 +42,7 @@ describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can delete availability requests model', function () {
+    it('can delete availability requests model', function () {
         $permission = Permission::create([
             'name' => 'availabilities.delete',
             'guard_name' => 'web',
@@ -57,7 +57,7 @@ describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
         assertDatabaseCount('availability_requests', 0);
     });
 
-    it('verifies if a user with the permission can update availability requests model', function () {
+    it('can update availability requests model', function () {
         $permission = Permission::create([
             'name' => 'availabilities.edit',
             'guard_name' => 'web',
@@ -90,7 +90,7 @@ describe('AVAILABILITY REQUESTS WITHOUT PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user without the permission can’t access to the availability requests index', function () {
+    it('can’t access to the availability requests index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -100,7 +100,7 @@ describe('AVAILABILITY REQUESTS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user without the permission can’t delete availability requests model', function () {
+    it('can’t delete availability requests model', function () {
 
         $availability = AvailabilityRequest::factory()->create();
 
@@ -111,7 +111,7 @@ describe('AVAILABILITY REQUESTS WITHOUT PERMISSIONS', function () {
         assertDatabaseCount('availability_requests', 1);
     });
 
-    it('verifies if a user without the permission can’t update availability requests model', function () {
+    it('can’t update availability requests model', function () {
         $availability = AvailabilityRequest::factory()->create([
             'status' => MessageStatus::Unread->value
         ]);

@@ -1,9 +1,9 @@
 <?php
 
 use App\Enums\YesOrNo;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use function Pest\Laravel\assertDatabaseCount;
 
 describe('CREATE ROLE WITH PERMISSIONS', function () {
@@ -25,7 +25,7 @@ describe('CREATE ROLE WITH PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can create a role with unique name', function () {
+    it('can create a role with unique name', function () {
         Livewire::test('pages.roles.forms.create.form')
             ->set('form.name', 'Test')
             ->set('form.unique', YesOrNo::YES->value)
@@ -57,7 +57,7 @@ describe('CREATE ROLE WITHOUT PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can’t create a role with unique name', function () {
+    it('can’t create a role with unique name', function () {
         Livewire::test('pages.roles.forms.create.form')
             ->set('form.name', 'Test')
             ->set('form.unique', YesOrNo::YES->value)

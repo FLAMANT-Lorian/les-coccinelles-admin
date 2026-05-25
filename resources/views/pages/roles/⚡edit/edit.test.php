@@ -28,7 +28,7 @@ describe('UPDATE ROLE WITH PERMISSION', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can update a role', function () {
+    it('can update a role', function () {
 
         $permissions = [];
 
@@ -63,7 +63,7 @@ describe('UPDATE ROLE WITHOUT PERMISSION', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can’t update a role', function () {
+    it('can’t update a role', function () {
 
         $permissions = [];
 
@@ -106,7 +106,7 @@ describe('DELETE ROLE WITH PERMISSION', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can’t delete a role and its permissions if the role is assigned to a user', function () {
+    it('can’t delete a role and its permissions if the role is assigned to a user', function () {
         $permission = Permission::create([
             'name' => 'test.index',
             'guard_name' => 'web',
@@ -131,7 +131,7 @@ describe('DELETE ROLE WITH PERMISSION', function () {
         assertDatabaseCount('permissions', 2);
     });
 
-    it('verifies if you can delete a role and its permissions if the role is not assigned to a user', function () {
+    it('can delete a role and its permissions if the role is not assigned to a user', function () {
         $permission = Permission::create([
             'name' => 'test.index',
             'guard_name' => 'web',
@@ -167,7 +167,7 @@ describe('DELETE ROLE WITHOUT PERMISSION', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user without the correct role can’t delete a role', function () {
+    it('can’t delete a role', function () {
         $role = Role::create([
             'name' => 'Test',
             'guard_name' => 'web',

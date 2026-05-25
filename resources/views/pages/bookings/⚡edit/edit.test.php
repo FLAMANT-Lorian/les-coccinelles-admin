@@ -28,35 +28,6 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('can create a booking', function () {
-        $permission = Permission::create([
-            'name' => 'bookings.create',
-            'guard_name' => 'web',
-        ]);
-
-        $this->role->givePermissionTo($permission);
-
-        $contact = Contact::factory()->create();
-        $hall_rate = HallRate::factory()->create();
-
-        Livewire::test('pages.bookings.forms.create.form')
-            ->set('form.tenant', $contact->id)
-            ->set('form.type', $hall_rate->id)
-            ->set('form.deposit_status', DepositStatus::PAID->value)
-            ->set('form.dates', '2026-10-12 au 2026-10-14')
-            ->set('form.handover_date', '2026-10-12')
-            ->set('form.handover_hour', '19:00')
-            ->set('form.return_date', '2026-10-14')
-            ->set('form.return_hour', '19:00')
-            ->set('form.billing_address', 'Liège')
-            ->call('save')
-            ->assertOk();
-
-        assertDatabaseCount('bookings', 1);
-        assertDatabaseCount('booking_dates', 1);
-        assertDatabaseCount('meter_readings', 1);
-    });
-
     it('can update a booking', function () {
         $permission = Permission::create([
             'name' => 'bookings.edit',
@@ -143,32 +114,6 @@ describe('BOOKINGS WITHOUT PERMISSIONS', function () {
             ->assignRole($this->role);
 
         $this->actingAs($user);
-    });
-
-    it('can’t create a booking', function () {
-        $booking = Booking::factory()
-            ->contact(Contact::factory()->create())
-            ->type(HallRate::factory()->create())
-            ->has(BookingDate::factory())
-            ->has(MeterReading::factory())
-            ->create();
-
-        Livewire::test('pages.bookings.forms.update.form', ['booking' => $booking])
-            ->set('form.tenant', $booking->contact->id)
-            ->set('form.type', $booking->hall_rate->id)
-            ->set('form.deposit_status', DepositStatus::PAID->value)
-            ->set('form.dates', '2026-10-12 au 2026-10-14')
-            ->set('form.handover_date', '2026-10-12')
-            ->set('form.handover_hour', '19:00')
-            ->set('form.return_date', '2026-10-14')
-            ->set('form.return_hour', '19:00')
-            ->set('form.billing_address', 'Liège')
-            ->call('update')
-            ->assertForbidden();
-
-        assertDatabaseHas('bookings', [
-            'billing_address' => $booking->billing_address,
-        ]);
     });
 
     it('can’t update a booking', function () {

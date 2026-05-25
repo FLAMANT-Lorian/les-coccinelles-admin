@@ -2,13 +2,13 @@
 
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 describe('CREATE MEMBER WITH PERMISSION', function () {
     beforeEach(function () {
@@ -29,7 +29,7 @@ describe('CREATE MEMBER WITH PERMISSION', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can’t create a user without give him a role', function () {
+    it('can’t create a user without give him a role', function () {
 
         Livewire::test('pages.members.forms.create.form')
             ->set('form.email', 'test@test.com')
@@ -60,7 +60,7 @@ describe('CREATE MEMBER WITHOUT PERMISSION', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can’t access to the create members form if you don’t have thepermission to', function () {
+    it('can’t access to the create members form if you don’t have thepermission to', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,

@@ -28,7 +28,7 @@ describe('BOOKINGS WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the booking index', function () {
+    it('can access to the booking index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -54,7 +54,7 @@ describe('BOOKINGS WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the booking index', function () {
+    it('can’t access to the booking index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,

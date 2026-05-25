@@ -29,7 +29,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the hall rates index', function () {
+    it('can access to the hall rates index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -39,7 +39,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can create a hall rate', function () {
+    it('can create a hall rate', function () {
         $permission = Permission::create([
             'name' => 'hallRates.create',
             'guard_name' => 'web',
@@ -62,7 +62,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user with the permission can update a hall rate', function () {
+    it('can update a hall rate', function () {
         $permission = Permission::create([
             'name' => 'hallRates.edit',
             'guard_name' => 'web',
@@ -93,7 +93,7 @@ describe('HALL RATES WITH PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user with the permission can delete a hall rate', function () {
+    it('can delete a hall rate', function () {
         $permission = Permission::create([
             'name' => 'hallRates.delete',
             'guard_name' => 'web',
@@ -127,7 +127,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can’t access to the hall rates index', function () {
+    it('can’t access to the hall rates index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -137,7 +137,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user with the permission can’t create a hall rate', function () {
+    it('can’t create a hall rate', function () {
        Livewire::test('pages::hall-rates.index')
             ->set('form.type', 'test')
             ->set('form.base_price', 10.5)
@@ -148,7 +148,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
         assertDatabaseCount('hall_rates', 0);
     });
 
-    it('verifies if a user with the permission can’t update a hall rate', function () {
+    it('can’t update a hall rate', function () {
         $hallRate = HallRate::create([
             'type' => 'test',
             'deposit' => 2500,
@@ -173,7 +173,7 @@ describe('HALL RATES WITHOUT PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user with the permission can’t delete a hall rate', function () {
+    it('can’t delete a hall rate', function () {
         $hallRate = HallRate::create([
             'type' => 'test',
             'deposit' => 2500,

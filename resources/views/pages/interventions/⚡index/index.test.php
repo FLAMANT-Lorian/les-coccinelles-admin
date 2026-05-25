@@ -25,7 +25,7 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the intervention index', function () {
+    it('can access to the intervention index', function () {
         $permission = Permission::create([
             'name' => 'interventions.index',
             'guard_name' => 'web',
@@ -41,7 +41,7 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can create an intervention', function () {
+    it('can create an intervention', function () {
         $permission = Permission::create([
             'name' => 'interventions.create',
             'guard_name' => 'web',
@@ -60,7 +60,7 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
         assertDatabaseCount('interventions', 1);
     });
 
-    it('verifies if a user with the permission can update an intervention', function () {
+    it('can update an intervention', function () {
         $permission = Permission::create([
             'name' => 'interventions.edit',
             'guard_name' => 'web',
@@ -94,7 +94,7 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user with the permission can delete an intervention', function () {
+    it('can delete an intervention', function () {
         $permission = Permission::create([
             'name' => 'interventions.delete',
             'guard_name' => 'web',
@@ -134,7 +134,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user without the permission can’t access to the intervention index', function () {
+    it('can’t access to the intervention index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -144,7 +144,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user without the permission can’t create an intervention', function () {
+    it('can’t create an intervention', function () {
         Livewire::test('pages::interventions.index')
             ->set('form.name', 'test2')
             ->set('form.description', 'test2')
@@ -157,7 +157,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
         assertDatabaseCount('interventions', 0);
     });
 
-    it('verifies if a user without the permission can’t update an intervention', function () {
+    it('can’t update an intervention', function () {
         $intervention = Intervention::create([
             'name' => 'test1',
             'description' => 'test1',
@@ -183,7 +183,7 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user without the permission can’t delete an intervention', function () {
+    it('can’t delete an intervention', function () {
         $intervention = Intervention::create([
             'name' => 'test1',
             'description' => 'test1',

@@ -1,7 +1,7 @@
 <form method="POST" action="{{ route('password.email', app()->getLocale()) }}" {{ $attributes->merge(['class' => '']) }}>
     @csrf
-    <fieldset class="flex flex-col gap-6 mb-6">
-        <legend class="sr-only">{{ __('auth/forgot-password.legend') }}</legend>
+    <fieldset class="flex flex-col gap-6 mb-6 border-none">
+        <legend class="sr-only block!">{{ __('auth/forgot-password.legend') }}</legend>
 
         {{-- EMAIL --}}
         <x-forms.input.input-text

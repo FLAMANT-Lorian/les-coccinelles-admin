@@ -23,7 +23,7 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the utility cost index', function () {
+    it('can access to the utility cost index', function () {
         $permission = Permission::create([
             'name' => 'utilityCosts.index',
             'guard_name' => 'web',
@@ -39,7 +39,7 @@ describe('UTILITY COST WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can update an utility cost', function () {
+    it('can update an utility cost', function () {
         $permission = Permission::create([
             'name' => 'utilityCosts.edit',
             'guard_name' => 'web',
@@ -84,7 +84,7 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user without the permission can’t access to the utility cost index', function () {
+    it('can’t access to the utility cost index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -94,7 +94,7 @@ describe('UTILITY COSTS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user without the permission can’t update an utility cost', function () {
+    it('can’t update an utility cost', function () {
         $utilityCost = UtilityCost::create([
             'type' => 'test',
             'price' => 1050,

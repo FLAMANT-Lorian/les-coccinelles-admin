@@ -24,7 +24,7 @@ describe('CONTACTS WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with the permission can access to the contacts index', function () {
+    it('can access to the contacts index', function () {
         $permission = Permission::create([
             'name' => 'contacts.index',
             'guard_name' => 'web',
@@ -40,7 +40,7 @@ describe('CONTACTS WITH PERMISSIONS', function () {
             ->assertOk();
     });
 
-    it('verifies if a user with the permission can create a contact', function () {
+    it('can create a contact', function () {
         $permission = Permission::create([
             'name' => 'contacts.create',
             'guard_name' => 'web',
@@ -60,7 +60,7 @@ describe('CONTACTS WITH PERMISSIONS', function () {
         assertDatabaseCount('contacts', 1);
     });
 
-    it('verifies if a user with the permission can update a contact', function () {
+    it('can update a contact', function () {
         $permission = Permission::create([
             'name' => 'contacts.edit',
             'guard_name' => 'web',
@@ -90,7 +90,7 @@ describe('CONTACTS WITH PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user with the permission can delete a contact', function () {
+    it('can delete a contact', function () {
         $permission = Permission::create([
             'name' => 'contacts.delete',
             'guard_name' => 'web',
@@ -120,7 +120,7 @@ describe('CONTACTS WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user without the permission can’t access to the contacts index', function () {
+    it('can’t access to the contacts index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -130,7 +130,7 @@ describe('CONTACTS WITHOUT PERMISSIONS', function () {
             ->assertForbidden();
     });
 
-    it('verifies if a user with the permission can’t create a contact', function () {
+    it('can’t create a contact', function () {
         Livewire::test('pages::contacts.index')
             ->set('form.last_name', 'Flamant')
             ->set('form.first_name', 'Lorian')
@@ -144,7 +144,7 @@ describe('CONTACTS WITHOUT PERMISSIONS', function () {
         assertDatabaseCount('contacts', 0);
     });
 
-    it('verifies if a user without the permission can’t update a contact', function () {
+    it('can’t update a contact', function () {
         $contact = Contact::factory()->create();
 
         Livewire::test('pages::contacts.index')
@@ -165,7 +165,7 @@ describe('CONTACTS WITHOUT PERMISSIONS', function () {
         ]);
     });
 
-    it('verifies if a user without the permission can’t delete a contact', function () {
+    it('can’t delete a contact', function () {
         $contact = Contact::factory()->create();
 
         Livewire::test('pages::contacts.index')

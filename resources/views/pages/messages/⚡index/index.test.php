@@ -1,12 +1,12 @@
 <?php
 
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\User;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 
 
 describe('VIEW MESSAGES WITH PERMISSIONS', function () {
@@ -28,7 +28,7 @@ describe('VIEW MESSAGES WITH PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user with the permission can access to the message index', function () {
+    it('can access to the message index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
@@ -54,7 +54,7 @@ describe('VIEW MESSAGES WITHOUT PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user without the permission can’t access to the message index', function () {
+    it('can’t access to the message index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,

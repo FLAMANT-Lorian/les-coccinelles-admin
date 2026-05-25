@@ -20,7 +20,7 @@ describe('CALENDAR WITH PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with permission can access to the calendar', function () {
+    it('can access to the calendar', function () {
         $permission = Permission::create([
             'name' => 'calendar.index',
             'guard_name' => 'web',
@@ -49,7 +49,7 @@ describe('CALENDAR WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('verifies if a user with permission can access to the calendar', function () {
+    it('can’t access to the calendar', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,

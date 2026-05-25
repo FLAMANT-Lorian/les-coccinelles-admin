@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'legend' => 'Mot de passe de réinitialisation',
+    'legend' => 'Adresse e-mail de réinitialisation',
     'h1' => 'Mot de passe oublié ?',
     'logo-alt' => 'Logo de l’asbl',
     'side-img-alt' => 'Image montrant la salle du village avec une vue sur le vilage',

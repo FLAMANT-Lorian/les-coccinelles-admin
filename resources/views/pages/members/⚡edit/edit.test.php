@@ -24,7 +24,7 @@ describe('UPDATE MEMBERS WITH PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can update a member because you have the right permission', function () {
+    it('can update a member', function () {
 
         Livewire::test('pages.members.forms.update.form', [
             'member' => $this->user
@@ -51,7 +51,7 @@ describe('UPDATE MEMBERS WITHOUT PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if you can’t update a member if you don’t have the permissions', function () {
+    it('can’t update a member ', function () {
 
         Livewire::test('pages.members.forms.update.form', [
             'member' => $this->user
@@ -84,7 +84,7 @@ describe('DELETE MEMBER WITH PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user can delete a member', function () {
+    it('can delete a member', function () {
         $member = User::factory()->create();
         $member->assignRole($this->role);
         Livewire::test('pages.members.forms.update.form', [
@@ -108,7 +108,7 @@ describe('DELETE MEMBER WITHOUT PERMISSIONS', function () {
         $this->actingAs($this->user);
     });
 
-    it('verifies if a user can delete a member', function () {
+    it('can’t delete a member', function () {
         $member = User::factory()->create();
         $member->assignRole($this->role);
         Livewire::test('pages.members.forms.update.form', [
