@@ -43,7 +43,8 @@ return new class extends Migration
                 'postal_code',
                 'address',
                 'status',
-                'identity_card_paths',
+                'documents',
+                'notifications',
                 'avatar_path'
             ]);
         });

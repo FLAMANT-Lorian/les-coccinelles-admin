@@ -24,7 +24,8 @@ class DatabaseSeeder extends Seeder
             InterventionSeeder::class,
             ContactSeeder::class,
             BookingSeeder::class,
-            MeetingSeeder::class
+            MeetingSeeder::class,
+            EventSeeder::class
         ]);
     }
 }

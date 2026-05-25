@@ -10,12 +10,12 @@ return new class extends Migration {
         Schema::create('booking_dates', function (Blueprint $table) {
             $table->id();
             $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
-            $table->string('key_handover_date');
-            $table->string('key_handover_hour');
-            $table->string('key_return_date');
-            $table->string('key_return_hour');
-            $table->string('start_date');
-            $table->string('end_date');
+            $table->timestamp('key_handover_date');
+            $table->time('key_handover_hour');
+            $table->timestamp('key_return_date');
+            $table->time('key_return_hour');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->timestamps();
         });
     }
