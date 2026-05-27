@@ -19,5 +19,6 @@ return [
     'calendar' => 'calendar',
     'settings' => 'settings',
     'preferences' => 'settings/preferences',
-    'events-index' => 'events'
+    'events-index' => 'events',
+    'events-show' => 'events/{event}',
 ];
