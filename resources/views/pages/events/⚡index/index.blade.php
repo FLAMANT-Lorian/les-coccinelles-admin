@@ -28,5 +28,7 @@
     </div>
 
     {{-- MODALS --}}
-
+    @if($this->openCreateModal)
+        <x-widgets.modals.events.create-event/>
+    @endif
 </div>
