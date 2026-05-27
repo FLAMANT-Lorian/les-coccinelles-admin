@@ -15,7 +15,6 @@ class EventFactory extends Factory
         $faker = $this->faker;
 
         return [
-            'uniqid' => $faker->word(),
             'name' => $faker->word(),
             'start_date' => Carbon::now()->addDays(rand(-3, 3)),
             'end_date' => Carbon::now()->addDays(rand(4, 7)),

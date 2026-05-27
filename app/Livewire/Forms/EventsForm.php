@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Event;
-use Illuminate\Validation\Rule;
 use Livewire\Form;
 
 class EventsForm extends Form
@@ -29,20 +28,28 @@ class EventsForm extends Form
 
     public function setEvent(Event $event): void
     {
-        //
+        $this->event = $event;
+        $this->name = $event->name;
+        $this->start_date = $event->start_date;
+        $this->end_date = $event->end_date;
+        $this->description = $event->description;
+        $this->address = $event->address;
     }
 
     public function update(): void
     {
-        //
+        $this->event->update([
+            'name' => $this->name,
+            'description' => $this->description,
+            'start_date' => $this->start_date,
+            'end_date' => $this->end_date,
+            'address' => $this->address
+        ]);
     }
 
     public function save(): void
     {
-        $uniq_id = slugify($this->start_date . '-' . $this->name);
-
         Event::create([
-            'uniqid' => $uniq_id,
             'name' => $this->name,
             'description' => $this->description,
             'start_date' => $this->start_date,

@@ -31,7 +31,7 @@ new class extends Component {
 
         $this->form->save();
 
-        session()->flash('success', __('flash-messages.meetings-deleted'));
+        session()->flash('success', __('flash-messages.event-created'));
 
         $this->redirectRoute('events.index', navigate: true);
     }

@@ -7,7 +7,7 @@
             'url' => route('events.index')
         ],
         [
-            'label' => $event->uniqid
+            'label' => $event->name
         ]
     ];
 @endphp
@@ -24,4 +24,7 @@
     </div>
 
     {{-- MODALS --}}
+    @if($this->openEditModal)
+        <x-widgets.modals.events.update-event/>
+    @endif
 </div>

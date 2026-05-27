@@ -27,26 +27,3 @@ if (!function_exists('getCorrectRoute')) {
         return null;
     }
 }
-
-/* SOURCE : https://www.geeksforgeeks.org/php/php-program-to-convert-title-to-url-slug/ */
-if (!function_exists('slugify')) {
-
-    function slugify(string $str): string
-    {
-        // Convert string to lowercase
-        $str = strtolower($str);
-
-        // Replace the spaces with hyphens
-        $str = str_replace(' ', '-', $str);
-
-        // Remove the special characters
-        $str = preg_replace('/[^a-z0-9\-]/', '', $str);
-
-        // Remove the consecutive hyphens
-        $str = preg_replace('/-+/', '-', $str);
-
-        // Trim hyphens from the beginning
-        // and ending of String
-        return trim($str, '-');
-    }
-}

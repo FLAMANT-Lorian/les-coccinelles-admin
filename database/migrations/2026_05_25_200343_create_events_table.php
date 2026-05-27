@@ -9,7 +9,6 @@ return new class extends Migration {
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
-            $table->string('uniqid');
             $table->string('name');
             $table->timestamp('start_date');
             $table->timestamp('end_date');
