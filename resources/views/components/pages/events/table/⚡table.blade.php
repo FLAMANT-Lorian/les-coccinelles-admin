@@ -4,6 +4,7 @@ use App\Enums\EventStatus;
 use App\Models\Event;
 use App\Traits\TableFilter;
 use App\Traits\TableSelectedColumn;
+use Carbon\Carbon;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -28,19 +29,19 @@ new class extends Component {
 
         if (!empty($this->filter)) {
             $query->where(function (Builder $q) {
-                $now = now()->format('Y-m-d H:i:s');
+                $now = now()->format('Y-m-d');
 
                 if (in_array(EventStatus::SOON->value, $this->filter)) {
-                    $q->orWhereDate('start_date', '>', $now);
+                    $q->orwhere('start_date', '>', $now);
                 }
                 if (in_array(EventStatus::PAST->value, $this->filter)) {
-                    $q->orWhereDate('end_date', '<', $now);
+                    $q->orwhere('start_date', '<', $now)
+                        ->where('end_date', '<', $now)
+                        ->where('end_date', '!=', $now);
                 }
                 if (in_array(EventStatus::NOW->value, $this->filter)) {
-                    $q->where(function (Builder $q) use ($now) {
-                        $q->where('start_date', '<=', $now)
-                            ->where('end_date', '>=', $now);
-                    });
+                    $q->orwhere('start_date', '<', $now)
+                        ->where('end_date', '>', $now);
                 }
             });
         }
@@ -93,6 +94,13 @@ new class extends Component {
             :enum="true"
             :translation="true"
         />
+
+        <button type="button"
+                wire:click="$dispatch('open-modal', 'openCreateModal')"
+                title="{{ __('pages/events.add-event') }}"
+                class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
+            {{ __('pages/events.add-event') }}
+        </button>
     </div>
 
     <x-general.selected-column

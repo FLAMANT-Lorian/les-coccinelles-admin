@@ -9,7 +9,7 @@ return new class extends Migration {
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('uniqid');
+            $table->string('uniqid')->unique();
             $table->foreignId('contact_id')->constrained('contacts')->cascadeOnDelete();
             $table->foreignId('hall_rate_id')->nullable()->constrained('hall_rates')->nullOnDelete();
             $table->string('company_name')->nullable();

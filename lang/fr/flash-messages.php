@@ -58,8 +58,14 @@ return [
     'settings-updated' => 'Vos paramètres ont bien été enregistrés !',
 
     // MEETINGS
-    'meeting-created' => 'La réunion a été créé avec succès !',
-    'meeting-updated' => 'Le réunion a été modifié avec succès !',
-    'meeting-deleted' => 'Le réunion a été supprimé avec succès !',
-    'meetings-deleted' => 'Les réunions ont été supprimés avec succès !',
+    'meeting-created' => 'La réunion a été créée avec succès !',
+    'meeting-updated' => 'La réunion a été modifiée avec succès !',
+    'meeting-deleted' => 'La réunion a été supprimée avec succès !',
+    'meetings-deleted' => 'Les réunions ont été supprimées avec succès !',
+
+    // EVENTS
+    'event-created' => 'L’événement a été créé avec succès !',
+    'event-updated' => 'L’événement a été modifié avec succès !',
+    'event-deleted' => 'L’événement a été supprimé avec succès !',
+    'events-deleted' => 'Les événements ont été supprimés avec succès !',
 ];

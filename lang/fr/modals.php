@@ -54,4 +54,11 @@ return [
     'updateMeeting' => 'Modifier la réunion',
     'deleteMeeting' => 'Supprimer la réunion',
     'deleteMeetingMessage' => 'Êtes-vous sûr de vouloir supprimer cette réunion ?',
+
+    // EVENTS
+    'addEvent' => 'Créer un nouvel événement',
+    'createEvent' => 'Créer l’événement',
+    'updateEvent' => 'Modifier l’événement',
+    'deleteEvent' => 'Supprimer l’événement',
+    'deleteEventMessage' => 'Êtes-vous sûr de vouloir supprimer cet événement ?',
 ];

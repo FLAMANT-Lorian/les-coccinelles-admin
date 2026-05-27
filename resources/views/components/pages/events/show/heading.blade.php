@@ -42,6 +42,7 @@
         </p>
     </div>
     <button type="button"
+            wire:click="$dispatch('open-modal', { modal: 'openEditModal' })"
             class="max-rl:mt-6 rl:self-start rl:justify-self-end btn bg-brown border border-brown text-white hover:bg-transparent hover:text-brown">
         {{ __('pages/events.edit-event') }}
     </button>
