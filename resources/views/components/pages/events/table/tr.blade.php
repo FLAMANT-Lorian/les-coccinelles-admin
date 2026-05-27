@@ -26,7 +26,11 @@
     <td>
         <div>
             <span>{{ __('tables.name') }}&nbsp;:</span>
-            <span> {{ $event->name }}</span>
+            <a href="{{ route('events.show', ['event' => $event->id]) }}"
+               class="underline-link after:bg-brown"
+               type="button">
+                {{ $event->name }}
+            </a>
         </div>
     </td>
     <td>
