@@ -6,6 +6,7 @@ return [
     'selected' => 'Sélectionné',
     'no_result' => 'Aucun résultat',
     'role-is-already-use' => 'Le rôle est déjà utilisé',
+    'dates-are-already-booked' => 'Ces dates sont déjà réservées.',
     'save-changes' => 'Enregistrer les modifications',
     'change-password' => 'Modifier mon mot de passe',
 

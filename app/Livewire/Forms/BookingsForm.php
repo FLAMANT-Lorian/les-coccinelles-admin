@@ -7,6 +7,7 @@ use App\Enums\YesOrNo;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
+use App\Rules\DateNotReserved;
 use App\ValueObjects\Money;
 use Carbon\Carbon;
 use Illuminate\Validation\Rule;
@@ -78,7 +79,7 @@ class BookingsForm extends Form
             'billing_address' => 'required',
 
             // DATES
-            'dates' => 'required',
+            'dates' => ['required', new DateNotReserved($this->booking)],
             'handover_date' => 'required',
             'handover_hour' => 'required',
             'return_date' => 'required',
