@@ -11,16 +11,16 @@ Route::group([
         Route::livewire('/', 'pages::dashboard')->name('dashboard');
 
         /* MESSAGES */
-        require __DIR__ . '/admin/messagesRoutes.php';
+        require __DIR__ . '/admin/messages.php';
 
         /* MEMBERS */
-        require __DIR__ . '/admin/membersRoutes.php';
+        require __DIR__ . '/admin/members.php';
 
         /* ROLES */
-        require __DIR__ . '/admin/rolesRoutes.php';
+        require __DIR__ . '/admin/roles.php';
 
         /* HALL */
-        require __DIR__ . '/admin/hallRoutes.php';
+        require __DIR__ . '/admin/hall.php';
 
         /* CALENDAR */
         require __DIR__ . '/admin/calendar.php';
@@ -30,4 +30,7 @@ Route::group([
 
         /* MEETINGS */
         require __DIR__ . '/admin/meetings.php';
+
+        /* EVENTS */
+        require __DIR__ . '/admin/events.php';
     });

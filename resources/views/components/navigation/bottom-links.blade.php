@@ -4,21 +4,13 @@
     $original_path = config('avatar.original_path') . '/' . $file_name;
 @endphp
 <div class="mt-auto flex flex-col">
-
-    <x-navigation.nav-link
-        :label="__('navigation/navigation.help')"
-        route="/help"
-        icon="help"
-        class="mb-6"
-    />
-
     {{-- SETTINGS --}}
     <a href="{{ route('settings') }}"
        wire:current="px-4 bg-beige-medium"
        wire:navigate
        title="{{ __('navigation/navigation.settings') }}"
        aria-label="{{ __('navigation/navigation.settings') }}"
-       class="relative after:content-[''] after:absolute after:left-0 after:right-0 after:h-px after:bg-beige-dark/60 after:-top-4 mt-4 text-brown rounded-sm flex flex-row items-center gap-4 py-3 hover:px-4 focus:px-4 trans-all hover:bg-beige-medium">
+       class="relative after:content-[''] after:absolute after:left-0 after:right-0 after:h-px after:bg-beige-dark/60 after:top-0 pt-4 text-brown rounded-sm flex flex-row items-center gap-4 py-3 hover:px-4 focus:px-4 trans-all hover:bg-beige-medium">
         <span class="sr-only">{{ __('navigation/navigation.settings') }}</span>
         <div class="w-12 h-12 rounded-full overflow-hidden">
             @if($file_name && Storage::disk(config('filesystems.default'))->exists($variant_path))

@@ -12,7 +12,7 @@ return [
     'utility-costs' => 'Coûts des charges',
     'interventions' => 'Interventions',
     'meetings' => 'Réunions',
-    'events' => 'Évènements',
+    'events' => 'Événements',
     'bookings' => 'Réservations',
     'contacts' => 'Contacts',
     'messages' => 'Messages',
