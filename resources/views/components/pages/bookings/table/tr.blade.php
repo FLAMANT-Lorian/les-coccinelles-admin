@@ -40,11 +40,21 @@
     </td>
     <td>
         <div>
-            <span>{{ __('tables.start_date') }}&nbsp;:</span>
+            <span>{{ __('tables.dates') }}&nbsp;:</span>
             @if(Carbon::parse($booking->bookingDate->start_date)->format('Y-m-d') === Carbon::parse($booking->bookingDate->end_date)->format('Y-m-d'))
-                <span>{{ formattedDate($booking->bookingDate->start_date) }}</span>
+                <time datetime="{{ $booking->bookingDate->start_date->format('Y-m-d') }}">
+                    {{ formattedDate($booking->bookingDate->start_date) }}
+                </time>
             @else
-                <span>{{ formattedDate($booking->bookingDate->start_date) . __('general.date-picker-format') . formattedDate($booking->bookingDate->end_date) }}</span>
+                <span>
+                    <time datetime="{{ $booking->bookingDate->start_date->format('Y-m-d') }}">
+                        {{ formattedDate($booking->bookingDate->start_date) }}
+                    </time>
+                    <span>{{ __('general.date-picker-format') }}</span>
+                    <time datetime="{{ $booking->bookingDate->end_date->format('Y-m-d') }}">
+                        {{ formattedDate($booking->bookingDate->end_date) }}
+                    </time>
+                </span>
             @endif
         </div>
     </td>
@@ -57,15 +67,14 @@
     <td>
         <div>
             @php
-                $today = Carbon::now()->format('Y-m-d');
-                $start = Carbon::parse($booking->bookingDate->start_date)->format('Y-m-d');
-                $end = Carbon::parse($booking->bookingDate->end_date)->format('Y-m-d');
+                $start = Carbon::parse($booking->bookingDate->start_date);
+                $end = Carbon::parse($booking->bookingDate->end_date);
             @endphp
 
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            @if($start > $today)
+            @if($start->isFuture())
                 <x-general.status :status="BookingStatus::SOON->value"/>
-            @elseif($end < $today)
+            @elseif($end->isPast())
                 <x-general.status :status="BookingStatus::PAST->value"/>
             @else
                 <x-general.status :status="BookingStatus::NOW->value"/>
@@ -109,9 +118,9 @@
             @can('update', Booking::class)
                 <div class="actions-mobile">
                     <a class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                        href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
-                        aria-label="{{ __('tables.update') }}"
-                        title="{{ __('pages/hall.bookings-update.update-booking') }}">
+                       href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
+                       aria-label="{{ __('tables.update') }}"
+                       title="{{ __('pages/hall.bookings-update.update-booking') }}">
                         <span class="text-left">{{ __('tables.update') }}</span>
                     </a>
                 </div>

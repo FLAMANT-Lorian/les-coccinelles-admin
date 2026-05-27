@@ -22,8 +22,7 @@ new class extends Component {
 
         if (!empty($this->term)) {
             $query->where(function (Builder $q) {
-                $q->whereLike('email', "%$this->term%")
-                    ->orWhereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ["%$this->term%"]);
+                $q->whereLike('name', "%$this->term%");
             });
         }
 

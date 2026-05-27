@@ -33,9 +33,13 @@
         <div>
             <span>{{ __('tables.events_dates') }}&nbsp;:</span>
             <span>
-                <time datetime="{{ $start_date = formattedDate($event->start_date) }}">{{ $start_date }}</time>
-                <span> au </span>
-                <time datetime="{{ $end_date = formattedDate($event->end_date) }}">{{ $end_date }}</time>
+                <time datetime="{{ $event->start_date->format('Y-m-d') }}">
+                    {{ formattedDate($event->start_date) }}
+                </time>
+                <span>{{ __('general.date-picker-format') }}</span>
+                  <time datetime="{{ $event->end_date->format('Y-m-d') }}">
+                    {{ formattedDate($event->end_date) }}
+                </time>
             </span>
         </div>
     </td>

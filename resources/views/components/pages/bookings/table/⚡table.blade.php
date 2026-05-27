@@ -35,18 +35,21 @@ new class extends Component {
         }
 
         if (!empty($this->filter)) {
-            $query->whereHas('bookingDate' ,function (Builder $q) {
+            $query->whereHas('bookingDate', function (Builder $q) {
                 $q->where(function (Builder $q) {
-                    $today = now()->format('Y-m-d');
+                    $now = now()->format('Y-m-d H:i:s');
 
                     if (in_array(BookingStatus::SOON->value, $this->filter)) {
-                        $q->orWhereDate('start_date', '>', $today);
+                        $q->orWhereDate('start_date', '>', $now);
                     }
                     if (in_array(BookingStatus::PAST->value, $this->filter)) {
-                        $q->orWhereDate('start_date', '<', $today);
+                        $q->orWhereDate('end_date', '<', $now);
                     }
                     if (in_array(BookingStatus::NOW->value, $this->filter)) {
-                        $q->orWhereDate('start_date', '=', $today);
+                        $q->where(function (Builder $q) use ($now) {
+                            $q->where('start_date', '<=', $now)
+                                ->where('end_date', '>=', $now);
+                        });
                     }
                 });
             });
@@ -63,6 +66,12 @@ new class extends Component {
                 $column = str_replace('hall_rate.', '', $this->filter_column);
 
                 $query->leftJoin('hall_rates', 'bookings.hall_rate_id', 'hall_rates.id')
+                    ->orderBy($column, $this->filter_direction)
+                    ->select('bookings.*');
+            } elseif (str_starts_with($this->filter_column, 'date')) {
+                $column = str_replace('date.', '', $this->filter_column);
+
+                $query->leftJoin('booking_dates', 'booking_dates.booking_id', 'bookings.id')
                     ->orderBy($column, $this->filter_direction)
                     ->select('bookings.*');
             } else {
