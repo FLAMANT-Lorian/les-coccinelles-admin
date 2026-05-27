@@ -46,7 +46,7 @@
     <td>
         <div>
             <span>{{ __('tables.date') }}&nbsp;:</span>
-            <span>{{ formattedDate($meeting->date) }}</span>
+            <time datetime="{{ $date = formattedDate($meeting->date) }}">{{ $date }}</time>
         </div>
     </td>
     <td>

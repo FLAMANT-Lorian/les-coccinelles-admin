@@ -12,9 +12,17 @@ class Event extends Model
     protected $fillable = [
         'uniqid',
         'name',
-        'date',
-        'hour',
+        'start_date',
+        'end_date',
         'address',
         'description',
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'start_date' => 'date',
+            'end_date' => 'date',
+        ];
+    }
 }

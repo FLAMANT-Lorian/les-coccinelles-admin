@@ -27,6 +27,7 @@ return [
 
     /* LABEL */
     'full_name' => 'Nom Complet',
+    'name' => 'Nom',
     'email' => 'Email',
     'phone' => 'Téléphone',
     'send_date' => 'Date d’envoi',
@@ -48,5 +49,6 @@ return [
     'number' => 'ID',
     'member_card' => 'Carte de membre',
     'date' => 'Date',
+    'events_dates' => 'Date de l’événement',
     'hour' => 'Heure',
 ];

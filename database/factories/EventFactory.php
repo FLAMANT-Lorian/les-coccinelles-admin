@@ -17,8 +17,8 @@ class EventFactory extends Factory
         return [
             'uniqid' => $faker->word(),
             'name' => $faker->word(),
-            'date' => Carbon::now(),
-            'hour' => Carbon::now()->format('H:i'),
+            'start_date' => Carbon::now()->addDays(rand(-3, 3)),
+            'end_date' => Carbon::now()->addDays(rand(4, 7)),
             'address' => $faker->address(),
             'description' => $faker->text('150')
         ];

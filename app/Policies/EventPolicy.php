@@ -12,27 +12,27 @@ class EventPolicy
 
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
-    public function view(User $user, Event $event): bool
+    public function view(User $user): bool
     {
-        return false;
+        return true;
     }
 
     public function create(User $user): bool
     {
-        return false;
+        return true;
     }
 
-    public function update(User $user, Event $event): bool
+    public function update(User $user): bool
     {
-        return false;
+        return true;
     }
 
-    public function delete(User $user, Event $event): bool
+    public function delete(User $user): bool
     {
-        return false;
+        return true;
     }
 
     public function restore(User $user, Event $event): bool

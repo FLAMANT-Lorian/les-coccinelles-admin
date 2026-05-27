@@ -11,8 +11,8 @@ return new class extends Migration {
             $table->id();
             $table->string('uniqid');
             $table->string('name');
-            $table->timestamp('date');
-            $table->time('hour');
+            $table->timestamp('start_date');
+            $table->timestamp('end_date');
             $table->string('address');
             $table->text('description');
             $table->timestamps();
