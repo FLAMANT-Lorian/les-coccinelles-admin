@@ -57,7 +57,7 @@
             <span>{{ __('tables.status') }}&nbsp;:</span>
             @if($start->isFuture())
                 <x-general.status :status="EventStatus::SOON->value"/>
-            @elseif($end->isPast())
+            @elseif($end->isPast() && !$end->isToday())
                 <x-general.status :status="EventStatus::PAST->value"/>
             @else
                 <x-general.status :status="EventStatus::NOW->value"/>

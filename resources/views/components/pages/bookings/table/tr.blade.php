@@ -74,7 +74,7 @@
             <span>{{ __('tables.status') }}&nbsp;:</span>
             @if($start->isFuture())
                 <x-general.status :status="BookingStatus::SOON->value"/>
-            @elseif($end->isPast())
+            @elseif($end->isPast() && !$end->isToday())
                 <x-general.status :status="BookingStatus::PAST->value"/>
             @else
                 <x-general.status :status="BookingStatus::NOW->value"/>
