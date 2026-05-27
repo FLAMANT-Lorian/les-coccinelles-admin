@@ -21,10 +21,16 @@
         {{-- HEADING --}}
         <x-pages.events.show.heading
             :event="$event"/>
+
+        {{-- DANGER ZONE --}}
+        <x-pages.events.show.danger-zone/>
     </div>
 
     {{-- MODALS --}}
     @if($this->openEditModal)
         <x-widgets.modals.events.update-event/>
+    @elseif($this->openDeleteModal)
+        <x-widgets.modals.events.delete-event
+            :id="$event->id"/>
     @endif
 </div>

@@ -15,13 +15,17 @@ new class extends Component {
     {
         $this->dispatch('init-date-pickers');
 
-        if ($modal === 'openCreateModal')
+        if ($modal === 'openCreateModal') {
             $this->openCreateModal = true;
+        }
     }
 
     #[On('close-modal')]
     public function closeModal(): void
     {
+        $this->form->reset();
+        $this->form->resetErrorBag();
+
         $this->openCreateModal = false;
     }
 
