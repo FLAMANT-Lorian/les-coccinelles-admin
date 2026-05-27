@@ -117,7 +117,7 @@
 
 @endphp
 
-<ul class="flex flex-col gap-4 mb-8">
+<ul class="flex flex-col gap-4 mb-8 overflow-y-auto">
     @foreach ($links as $link)
         @if(!isset($link['permissions']) || auth()->user()->canAny($link['permissions']))
             <li>
