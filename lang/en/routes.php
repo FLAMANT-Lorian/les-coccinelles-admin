@@ -19,4 +19,5 @@ return [
     'calendar' => 'calendar',
     'settings' => 'settings',
     'preferences' => 'settings/preferences',
+    'events-index' => 'events'
 ];

@@ -3,6 +3,7 @@
 
 use App\Enums\BookingStatus;
 use App\Enums\DepositStatus;
+use App\Enums\EventStatus;
 use App\Enums\InterventionStatus;
 use App\Enums\MeetingsStatus;
 use App\Enums\MemberCardStatus;
@@ -60,4 +61,9 @@ return [
     // DEPOSIT STATUS
     DepositStatus::PAID->value => 'Payée',
     DepositStatus::UNPAID->value => 'Non payée',
+
+    // EVENTS
+    EventStatus::NOW->value => 'En cours',
+    EventStatus::PAST->value => 'Passée',
+    EventStatus::SOON->value => 'Bientôt',
 ];

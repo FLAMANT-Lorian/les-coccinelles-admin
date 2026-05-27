@@ -20,4 +20,5 @@ return [
     'settings' => 'parametres',
     'preferences' => 'parametres/preferences',
     'meetings' => 'reunions',
+    'events-index' => 'evenements'
 ];
