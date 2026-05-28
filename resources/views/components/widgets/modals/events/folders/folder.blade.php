@@ -33,12 +33,12 @@
                                 <a href="{{ Storage::disk($disk)->url($path) }}"
                                    class="overflow-x-auto whitespace-nowrap font-medium hover:pl-2 trans-all"
                                    data-fancybox="folder-{{ $folder->id }}">
-                                    {{ $file->path }}
+                                    {{ $file->name }}
                                 </a>
                             </div>
                             <div class="flex flex-row  items-center gap-4">
                                 <a href="{{ Storage::disk($disk)->url($path) }}"
-                                   download
+                                   download="{{$file->name}}"
                                    class="hover:bg-beige-medium rounded-sm p-1 trans-all"
                                    aria-label="{{ __('pages/events.folders.download') }}">
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

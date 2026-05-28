@@ -9,6 +9,7 @@ class File extends Model
 {
     protected $fillable = [
         'path',
+        'name',
     ];
 
     public function folder(): BelongsTo
