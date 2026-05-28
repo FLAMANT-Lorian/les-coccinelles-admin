@@ -68,4 +68,11 @@ return [
     'updateFolder' => 'Modifier le dossier',
     'deleteFolder' => 'Supprimer le dossier',
     'deleteFolderMessage' => 'Êtes-vous sûr de vouloir supprimer ce dossier ?',
+
+    // TASKS
+    'addTask' => 'Ajouter une tâche',
+    'createTask' => 'Créer une tâche',
+    'updateTask' => 'Modifier la tâche',
+    'deleteTask' => 'Supprimer la tâche',
+    'deleteTaskMessage' => 'Êtes-vous sûr de vouloir supprimer cette tâche ?',
 ];

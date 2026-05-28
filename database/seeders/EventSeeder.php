@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use App\Models\Folder;
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class EventSeeder extends Seeder
@@ -15,7 +17,10 @@ class EventSeeder extends Seeder
     {
         Event::factory()
             ->has(Folder::factory())
-            ->count(2)
+            ->has(Task::factory()
+                ->count(4)
+                ->assignedTo(User::first())
+            )->count(2)
             ->create();
     }
 }

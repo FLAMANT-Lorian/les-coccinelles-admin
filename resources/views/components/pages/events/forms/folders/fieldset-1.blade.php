@@ -11,7 +11,7 @@
         :required="true"
         :placeholder="__('forms.folder_name_placeholder')"
         field_name="name"
-        wire="folderForm.name"
+        wire="foldersForm.name"
     />
 
     <x-forms.input.input-text
@@ -20,6 +20,6 @@
         type="color"
         name="color"
         field_name="color"
-        wire="folderForm.color"
+        wire="foldersForm.color"
     />
 </fieldset>

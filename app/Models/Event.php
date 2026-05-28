@@ -31,4 +31,9 @@ class Event extends Model
     {
         return $this->hasMany(Folder::class);
     }
+
+    public function tasks(): HasMany
+    {
+        return $this->hasMany(Task::class);
+    }
 }

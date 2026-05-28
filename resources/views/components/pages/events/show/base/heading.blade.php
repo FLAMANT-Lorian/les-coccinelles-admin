@@ -12,7 +12,7 @@
 <div
     class="col-span-full rl:grid rl:grid-cols-3 lg:grid-cols-2 rl:gap-8 w-full p-6 rounded-sm border border-beige-dark bg-beige-light">
     <div class="flex flex-col rl:col-span-2 lg:col-span-1">
-        <h1 class="text-brown text-4.5xl font-semibold mb-4">
+        <h1 class="text-brown text-3xl lg:text-4.5xl font-semibold mb-4">
             {{ $event->name }}
         </h1>
         <div class="flex flex-row gap-x-6 gap-y-2 flex-wrap mb-6 rl:mb-8">

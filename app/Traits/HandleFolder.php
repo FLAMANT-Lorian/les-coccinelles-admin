@@ -14,13 +14,13 @@ use Livewire\Attributes\On;
  */
 trait HandleFolder
 {
-    public FoldersForm $folderForm;
+    public FoldersForm $foldersForm;
 
     public function saveFolder(): void
     {
-        $this->folderForm->validate();
+        $this->foldersForm->validate();
 
-        $this->folderForm->save($this->event);
+        $this->foldersForm->save($this->event);
 
         session()->flash('success', __('flash-messages.folder-created'));
 
@@ -29,9 +29,9 @@ trait HandleFolder
 
     public function updateFolder(): void
     {
-        $this->folderForm->validate();
+        $this->foldersForm->validate();
 
-        $this->folderForm->update();
+        $this->foldersForm->update();
 
         session()->flash('success', __('flash-messages.folder-updated'));
 

@@ -9,7 +9,10 @@ new class extends Component {
 
     public function mount(Event $event): void
     {
-        $this->event = $event;
+        $this->event = $event->load([
+            'folders',
+            'folders.files',
+        ]);
     }
 };
 ?>

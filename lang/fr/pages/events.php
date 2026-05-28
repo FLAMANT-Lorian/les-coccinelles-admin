@@ -21,5 +21,14 @@ return [
         'no_files' => 'Ce dossier est vide',
         'download' => 'Télécharger le fichier',
         'delete_file' => 'Supprimer le fichier',
+    ],
+    'tasks' => [
+        'title' => 'Tâches',
+        'subtitle' => 'Plus que :count tâches à réaliser !',
+        'add_tasks' => 'Ajouter une tache',
+        'complete_task' => 'Noter la tâche comme réalisée',
+        'assign_to' => 'Assignée à ',
+        'edit' => 'Modifier la tâche',
+        'delete' => 'Suprimer la tâche',
     ]
 ];
