@@ -19,7 +19,6 @@
         :label="__('forms.folder_color')"
         type="color"
         name="color"
-        :required="true"
         field_name="color"
         wire="folderForm.color"
     />

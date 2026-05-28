@@ -19,18 +19,23 @@ class FoldersForm extends Form
     {
         return [
             'name' => 'required',
-            'color' => 'required|hex_color'
+            'color' => 'hex_color'
         ];
     }
 
     public function setFolder(Folder $folder): void
     {
-        //
+        $this->folder = $folder;
+        $this->name = $folder->name;
+        $this->color = $folder->color;
     }
 
     public function update(): void
     {
-        //
+        $this->folder->update([
+            'name' => $this->name,
+            'color' => $this->color,
+        ]);
     }
 
     public function save(Event $event): void
