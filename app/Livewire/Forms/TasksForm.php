@@ -20,29 +20,37 @@ class TasksForm extends Form
     public function rules(): array
     {
         return [
-           'name' => 'required',
+            'name' => 'required',
             'assignee' => 'required|exists:users,id'
         ];
     }
 
     public function setTask(Task $task): void
     {
-        //
+        $this->task = $task;
+        $this->name = $this->task->name;
+        $this->assignee = $this->task->assigned_to;
     }
 
     public function update(): void
     {
-       //
+        $assignee = User::findOrFail($this->assignee);
+
+        $this->task->update([
+            'name' => $this->name,
+            'assigned_to' => $assignee->id,
+            'completed' => 0
+        ]);
     }
 
     public function save(Event $event): void
     {
         $assignee = User::findOrFail($this->assignee);
 
-       $event->tasks()->create([
-           'name' => $this->name,
-           'assigned_to' => $assignee->id,
-           'completed' => 0
-       ]);
+        $event->tasks()->create([
+            'name' => $this->name,
+            'assigned_to' => $assignee->id,
+            'completed' => 0
+        ]);
     }
 }

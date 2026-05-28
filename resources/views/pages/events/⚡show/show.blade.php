@@ -27,7 +27,8 @@
             <livewire:pages.events.show.folders.folders
                 :event="$event"/>
 
-            <span aria-hidden="true" class="max-xg:hidden col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
+            <span aria-hidden="true"
+                  class="max-xg:hidden col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
 
             {{-- TASKS --}}
             <livewire:pages.events.show.tasks.tasks
@@ -56,5 +57,10 @@
             :folder="$folder"/>
     @elseif($this->openCreateTaskModal)
         <x-widgets.modals.events.tasks.create-task/>
+    @elseif($this->openUpdateTaskModal)
+        <x-widgets.modals.events.tasks.update-task/>
+    @elseif($this->openDeleteTaskModal)
+        <x-widgets.modals.events.tasks.delete-task
+            :id="$task->id"/>
     @endif
 </div>

@@ -75,7 +75,7 @@ return [
     'folder-deleted' => 'Le dossier a été supprimé avec succès !',
 
     // TASKS
-    'task-created' => 'La tâche a été créé avec succès !',
-    'task-updated' => 'La tâche a été modifié avec succès !',
-    'task-deleted' => 'La tâche a été supprimé avec succès !',
+    'task-created' => 'La tâche a été créée avec succès !',
+    'task-updated' => 'La tâche a été modifiée avec succès !',
+    'task-deleted' => 'La tâche a été supprimée avec succès !',
 ];

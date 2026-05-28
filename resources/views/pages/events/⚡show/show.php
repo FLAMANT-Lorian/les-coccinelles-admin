@@ -2,6 +2,7 @@
 
 use App\Livewire\Forms\EventsForm;
 use App\Models\Folder;
+use App\Models\Task;
 use App\Models\User;
 use App\Traits\DeleteEvent;
 use App\Traits\HandleFiles;
@@ -39,14 +40,21 @@ new class extends Component {
     public bool $openFolderModal = false;
 
     public bool $openCreateTaskModal = false;
+    public bool $openUpdateTaskModal = false;
+    public bool $openDeleteTaskModal = false;
+    public ?Task $task = null;
 
     #[On('open-modal')]
-    public function openModal(string $modal, int $folder_id = null): void
+    public function openModal(string $modal, int $folder_id = null, int $task_id = null): void
     {
         $this->dispatch('init-date-pickers');
 
         if ($folder_id) {
-            $this->folder = $this->event->folders->findOrFail($folder_id);
+            $this->folder = $this->event->folders()->findOrFail($folder_id);
+        }
+
+        if ($task_id) {
+            $this->task = $this->event->tasks()->findOrFail($task_id);
         }
 
         if ($modal === 'openEditModal') {
@@ -66,6 +74,11 @@ new class extends Component {
             $this->openFolderModal = true;
         } elseif ($modal === 'openCreateTaskModal') {
             $this->openCreateTaskModal = true;
+        } elseif ($modal === 'openUpdateTaskModal') {
+            $this->tasksForm->setTask($this->task);
+            $this->openUpdateTaskModal = true;
+        } elseif ($modal === 'openDeleteTaskModal') {
+            $this->openDeleteTaskModal = true;
         }
     }
 
@@ -87,6 +100,8 @@ new class extends Component {
 
         // TASKS
         $this->openCreateTaskModal = false;
+        $this->openUpdateTaskModal = false;
+        $this->openDeleteTaskModal = false;
     }
 
     public function update(): void
