@@ -10,6 +10,7 @@ return new class extends Migration {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->foreignId('folder_id')->constrained('folders')->cascadeOnDelete();
+            $table->string('name');
             $table->string('path');
             $table->timestamps();
         });

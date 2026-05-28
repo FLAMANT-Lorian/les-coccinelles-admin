@@ -2,7 +2,6 @@
 
 namespace App\Traits;
 
-use App\Livewire\Forms\FoldersForm;
 use App\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
@@ -12,8 +11,6 @@ use Livewire\Attributes\On;
  */
 trait HandleFiles
 {
-    use CleanLivewireTMPFolder;
-
     public array $files;
 
     public function updatedFiles(): void
@@ -25,17 +22,19 @@ trait HandleFiles
             foreach ($this->files as $file) {
 
                 $file_name = $file->getClientOriginalName();
+                $path = uniqid('file-') . $file->getClientOriginalExtension();
 
                 Storage::disk($disk)
                     ->putFileAs(
                         $original_path,
                         $file,
-                        $file_name
+                        $path
                     );
 
                 $this->folder->files()
                     ->create([
-                        'path' => $file_name
+                        'name' => $file_name,
+                        'path' => $path
                     ]);
             }
         }

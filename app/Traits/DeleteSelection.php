@@ -5,6 +5,7 @@ namespace App\Traits;
 use App\Models\AvailabilityRequest;
 use App\Models\Booking;
 use App\Models\Contact;
+use App\Models\Event;
 use App\Models\HallRate;
 use App\Models\Intervention;
 use App\Models\Meeting;
@@ -17,6 +18,7 @@ use Livewire\Attributes\On;
 trait DeleteSelection
 {
     use HandleImages;
+    use DeleteEvent;
 
     public array $selectedColumn = [];
 
@@ -213,5 +215,21 @@ trait DeleteSelection
         session()->flash('success', __('flash-messages.meetings-deleted'));
 
         $this->redirectRoute('meetings', navigate: true);
+    }
+
+    #[On('deleteEvents')]
+    public function deleteEvents(): void
+    {
+        $events = Event::whereIn('id', $this->selectedColumn)->get();
+
+        foreach ($events as $event) {
+           $this->deleteEvent($event->id);
+        }
+
+        $this->selectedColumn = [];
+
+        session()->flash('success', __('flash-messages.events-deleted'));
+
+        $this->redirectRoute('events.index', navigate: true);
     }
 }

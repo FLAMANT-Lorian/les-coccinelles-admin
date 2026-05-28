@@ -30,5 +30,13 @@
     {{-- MODALS --}}
     @if($this->openCreateModal)
         <x-widgets.modals.events.create-event/>
+    @elseif($this->openUpdateModal)
+        <x-widgets.modals.events.update-event/>
+    @elseif($this->openDeleteModal)
+        <x-widgets.modals.events.delete-event
+            :id="$event->id"/>
+    @elseif($this->openDeleteSelectionModal)
+        <x-widgets.modals.selection.delete-selection
+            action="deleteEvents"/>
     @endif
 </div>
