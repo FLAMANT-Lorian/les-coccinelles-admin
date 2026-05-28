@@ -3,11 +3,15 @@
 namespace App\Traits;
 
 use App\Livewire\Forms\FoldersForm;
+use App\Models\Event;
 use App\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 
 
+/**
+ * @property Event $event
+ */
 trait HandleFolder
 {
     public FoldersForm $folderForm;
