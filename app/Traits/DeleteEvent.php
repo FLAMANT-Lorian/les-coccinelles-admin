@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use App\Models\Event;
+use App\Models\Folder;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 
 trait DeleteEvent
@@ -15,9 +17,27 @@ trait DeleteEvent
         $event = Event::findOrFail($id)->load(['folders', 'folders.files']);
 
         $folders = $event->folders;
+        $tasks = $event->tasks;
 
         foreach ($folders as $folder) {
-            $this->deleteFolder($folder->id);
+            if ($folder->files) {
+                $disk = config('filesystems.default');
+                $original_path = config('events.original_path') . '/' . $folder->path;
+
+                foreach ($folder->files as $file) {
+                    $path = $original_path . '/' . $file->path;
+
+                    if (Storage::disk($disk)->exists($path)) {
+                        Storage::disk($disk)->delete($path);
+                    }
+                }
+            }
+
+            $folder->delete();
+        }
+
+        foreach ($tasks as $task) {
+            $task->delete();
         }
 
         $event->delete();

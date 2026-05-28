@@ -18,7 +18,7 @@ class FoldersForm extends Form
     public function rules(): array
     {
         return [
-            'name' => 'required',
+            'name' => 'required|unique:folders,name',
             'color' => 'hex_color'
         ];
     }

@@ -79,7 +79,14 @@
             </button>
             {{--@canany(['delete', 'update'], Event::class)--}}
             <div x-show="open" x-transition class="actions-table">
-                <button type="button">
+                <button type="button"
+                        wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $event->id }} })"
+                        title="{{ __('pages/events.edit-event') }}">
+                    <span>{{ __('tables.update') }}</span>
+                </button>
+                <button type="button"
+                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $event->id }} })"
+                        title="{{ __('pages/events.delete-event') }}">
                     <span>{{ __('tables.delete') }}</span>
                 </button>
             </div>
