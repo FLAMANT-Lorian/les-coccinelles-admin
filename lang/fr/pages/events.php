@@ -7,4 +7,11 @@ return [
     'edit-event' => 'Modifier l’événement',
     'delete-event' => 'Supprimer l’événement',
     'delete-event-description' => 'Après suppression, cet événement ne pourra plus être récupéré !',
+    'folders' => [
+        'title' => 'Documents',
+        'subtitle' => 'Tous les fichiers lié à l’événement',
+        'google_drive_link' => 'Accéder au Google Drive',
+        'file_count' => 'éléments',
+        'add_folder' => 'Ajouter un dossier'
+    ]
 ];

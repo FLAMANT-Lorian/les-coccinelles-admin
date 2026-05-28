@@ -61,4 +61,11 @@ return [
     'updateEvent' => 'Modifier l’événement',
     'deleteEvent' => 'Supprimer l’événement',
     'deleteEventMessage' => 'Êtes-vous sûr de vouloir supprimer cet événement ?',
+
+    // FOLDERS
+    'addFolder' => 'Ajouter un dossier',
+    'createFolder' => 'Créer le dossier',
+    'updateFolder' => 'Modifier le dossier',
+    'deleteFolder' => 'Supprimer le dossier',
+    'deleteFolderMessage' => 'Êtes-vous sûr de vouloir supprimer ce dossier ?',
 ];

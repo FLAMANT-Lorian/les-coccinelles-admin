@@ -68,4 +68,9 @@ return [
     'event-updated' => 'L’événement a été modifié avec succès !',
     'event-deleted' => 'L’événement a été supprimé avec succès !',
     'events-deleted' => 'Les événements ont été supprimés avec succès !',
+
+    // FOLDERS
+    'folder-created' => 'Le dossier a été créé avec succès !',
+    'folder-updated' => 'Le dossier a été modifié avec succès !',
+    'folder-deleted' => 'Le dossier a été supprimé avec succès !',
 ];

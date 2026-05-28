@@ -279,4 +279,17 @@
         <path d="M16 13H8" stroke="#292A2B" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M16 17H8" stroke="#292A2B" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
+
+    <symbol id="folder" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+            d="M33.3333 33.3333C34.2173 33.3333 35.0652 32.9821 35.6903 32.357C36.3154 31.7319 36.6666 30.8841 36.6666 30V13.3333C36.6666 12.4493 36.3154 11.6014 35.6903 10.9763C35.0652 10.3512 34.2173 10 33.3333 10H20.1666C19.6091 10.0055 19.0592 9.87102 18.5671 9.60897C18.075 9.34691 17.6565 8.96563 17.3499 8.5L15.9999 6.5C15.6964 6.03912 15.2832 5.6608 14.7974 5.39899C14.3116 5.13719 13.7684 5.00009 13.2166 5H6.66659C5.78253 5 4.93468 5.35119 4.30956 5.97631C3.68444 6.60143 3.33325 7.44928 3.33325 8.33333V30C3.33325 30.8841 3.68444 31.7319 4.30956 32.357C4.93468 32.9821 5.78253 33.3333 6.66659 33.3333H33.3333Z"
+            fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
+    <symbol id="add-folder" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0.5" y="0.5" width="31" height="31" rx="3.5" stroke="#3D2B1F"/>
+        <path d="M10 16H22" stroke="#3D2B1F" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 10V22" stroke="#3D2B1F" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+
 </svg>

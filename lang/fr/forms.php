@@ -96,4 +96,7 @@ return [
     'event_name' => 'Nom de l’événement',
     'start_date' => 'Date de début',
     'end_date' => 'Date de fin',
+    'folder_name' => 'Nom du dossier',
+    'folder_name_placeholder' => 'Dossier ...',
+    'folder_color' => 'Couleur du dossier',
 ];
