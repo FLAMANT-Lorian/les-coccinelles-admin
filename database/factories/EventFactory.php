@@ -19,7 +19,8 @@ class EventFactory extends Factory
             'start_date' => Carbon::now()->addDays(rand(-3, 3)),
             'end_date' => Carbon::now()->addDays(rand(4, 7)),
             'address' => $faker->address(),
-            'description' => $faker->text('150')
+            'description' => $faker->text('150'),
+            'google_drive_url' => 'https://lorianflamant.com/'
         ];
     }
 }

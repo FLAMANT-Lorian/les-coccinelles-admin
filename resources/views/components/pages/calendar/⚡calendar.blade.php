@@ -14,9 +14,9 @@ new class extends Component {
     {
         $events = [];
 
-        $bookings = Booking::with(['contact'])->get();
-        $interventions = Intervention::all();
-        $meetings = Meeting::all();
+        $bookings = Booking::with(['contact', 'bookingDate'])->get();
+        $interventions = Intervention::get();
+        $meetings = Meeting::get();
 
         foreach ($bookings as $booking) {
             $is_one_day = Carbon::parse($booking->bookingDate->start_date)->format('Y-m-d') === Carbon::parse($booking->bookingDate->end_date)->format('Y-m-d');

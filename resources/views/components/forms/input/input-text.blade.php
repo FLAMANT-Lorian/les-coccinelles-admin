@@ -26,7 +26,7 @@
            @if($required)
                required
            @endif
-           class="w-full"
+           class="w-full min-h-12.5"
            id="{{ $field_name }}"
            type="{{ $type ?? 'text' }}"
            name="{{ $name }}"

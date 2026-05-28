@@ -7,20 +7,18 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up(): void
     {
-        Schema::create('events', function (Blueprint $table) {
+        Schema::create('folders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->string('name');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
-            $table->string('address');
-            $table->text('description');
-            $table->string('google_drive_url')->nullable();
+            $table->string('path');
+            $table->string('color');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('events');
+        Schema::dropIfExists('folders');
     }
 };

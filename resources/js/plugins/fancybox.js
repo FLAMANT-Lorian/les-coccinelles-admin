@@ -6,5 +6,6 @@ addEventListener('DOMContentLoaded', function () {
 });
 
 addEventListener('init-fancybox', function () {
+    Fancybox.destroy();
     Fancybox.bind('[data-fancybox]');
 });

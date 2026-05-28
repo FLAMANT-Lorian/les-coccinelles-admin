@@ -1,6 +1,6 @@
 @props([
     'title',
-    'message'
+    'message' => null
 ])
 
 <div class="showModal fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-brown/60 px-6"

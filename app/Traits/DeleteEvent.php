@@ -7,11 +7,18 @@ use Livewire\Attributes\On;
 
 trait DeleteEvent
 {
+    use HandleFolder;
 
     #[On('delete-event')]
     public function deleteEvent(int $id): void
     {
-        $event = Event::findOrFail($id);
+        $event = Event::findOrFail($id)->load(['folders', 'folders.files']);
+
+        $folders = $event->folders;
+
+        foreach ($folders as $folder) {
+            $this->deleteFolder($folder->id);
+        }
 
         $event->delete();
 

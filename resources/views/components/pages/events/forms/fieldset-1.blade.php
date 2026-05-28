@@ -3,7 +3,7 @@
     use App\Models\User;
 @endphp
 
-<fieldset class="grid! rg:grid-cols-2 gap-6! border-b-0!">
+<fieldset class="grid! md:grid-cols-2 gap-6! border-b-0!">
     <x-forms.input.input-text
         class="col-span-full"
         :label="__('forms.event_name')"
@@ -32,7 +32,7 @@
 
     <x-forms.input.textarea
         wire="form.address"
-        class="col-span-1 col-start-2 row-start-2 row-span-2"
+        class="md:col-span-1 md:col-start-2 md:row-start-2 md:row-span-2"
         textarea_class="min-h-40!"
         name="address"
         :required="true"
@@ -50,6 +50,16 @@
         field_name="description"
         :label="__('forms.description')"
         :placeholder="__('forms.description_placeholder')"
+    />
+
+    <x-forms.input.input-text
+        class="col-span-full"
+        :label="__('forms.google_drive_link')"
+        name="link"
+        type="url"
+        :placeholder="__('forms.google_drive_link_placeholder')"
+        field_name="link"
+        wire="form.link"
     />
 
 </fieldset>
