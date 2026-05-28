@@ -101,4 +101,6 @@ return [
     'folder_name' => 'Nom du dossier',
     'folder_name_placeholder' => 'Dossier ...',
     'folder_color' => 'Couleur du dossier',
+    'task_name' => 'Nom de la tâche',
+    'task_name_placeholder' => 'Faire ...',
 ];

@@ -15,7 +15,7 @@ class TaskFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'status' => $this->faker->word(),
+            'completed' => $this->faker->boolean(),
         ];
     }
 

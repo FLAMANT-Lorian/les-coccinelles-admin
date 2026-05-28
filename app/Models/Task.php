@@ -12,7 +12,8 @@ class Task extends Model
 
     protected $fillable = [
         'name',
-        'status',
+        'completed',
+        'assigned_to',
     ];
 
     public function event(): BelongsTo

@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
             $table->foreignId('assigned_to')->constrained('users')->cascadeOnDelete();
             $table->string('name');
-            $table->string('status');
+            $table->boolean('completed');
             $table->timestamps();
         });
     }

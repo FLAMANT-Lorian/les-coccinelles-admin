@@ -2,9 +2,14 @@
 
 use App\Livewire\Forms\EventsForm;
 use App\Models\Folder;
+use App\Models\User;
 use App\Traits\DeleteEvent;
 use App\Traits\HandleFiles;
 use App\Traits\HandleFolder;
+use App\Traits\HandleTasks;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\Event;
@@ -15,13 +20,14 @@ new class extends Component {
     use DeleteEvent;
     use HandleFolder;
     use HandleFiles;
+    use HandleTasks;
 
     public Event $event;
     public EventsForm $form;
 
     public function mount(Event $event): void
     {
-        $this->event = $event->load(['folders', 'folders.files']);
+        $this->event = $event->load(['folders', 'folders.files', 'tasks', 'tasks.assignedTo']);
     }
 
     public bool $openEditModal = false;
@@ -31,6 +37,8 @@ new class extends Component {
     public bool $openDeleteFolderModal = false;
     public ?Folder $folder = null;
     public bool $openFolderModal = false;
+
+    public bool $openCreateTaskModal = false;
 
     #[On('open-modal')]
     public function openModal(string $modal, int $folder_id = null): void
@@ -49,13 +57,15 @@ new class extends Component {
         } elseif ($modal === 'openCreateFolderModal') {
             $this->openCreateFolderModal = true;
         } elseif ($modal === 'openUpdateFolderModal') {
-            $this->folderForm->setFolder($this->folder);
+            $this->foldersForm->setFolder($this->folder);
             $this->openUpdateFolderModal = true;
         } elseif ($modal === 'openDeleteFolderModal') {
             $this->openDeleteFolderModal = true;
         } elseif ($modal === 'openFolderModal') {
             $this->dispatch('init-fancybox');
             $this->openFolderModal = true;
+        } elseif ($modal === 'openCreateTaskModal') {
+            $this->openCreateTaskModal = true;
         }
     }
 
@@ -65,12 +75,18 @@ new class extends Component {
         $this->form->reset();
         $this->form->resetErrorBag();
 
+        // EVENT
         $this->openEditModal = false;
         $this->openDeleteModal = false;
+
+        // FOLDERS
         $this->openFolderModal = false;
         $this->openCreateFolderModal = false;
         $this->openUpdateFolderModal = false;
         $this->openDeleteFolderModal = false;
+
+        // TASKS
+        $this->openCreateTaskModal = false;
     }
 
     public function update(): void
@@ -82,5 +98,27 @@ new class extends Component {
         session()->flash('success', __('flash-messages.event-updated'));
 
         $this->redirectRoute('events.show', ['event' => $this->event->id], navigate: true);
+    }
+
+    public bool $openAssigneeSelectState = false;
+    public array $terms = [
+        'assignee' => '',
+        'status' => '',
+    ];
+
+    #[Computed]
+    public function getMembers(): Collection|array
+    {
+        $query = User::query();
+
+        if (!empty($this->terms['assignee'])) {
+            $query->where(function (Builder $q) {
+                $q->whereLike('first_name', '%' . $this->terms['assignee'] . '%');
+            });
+        }
+
+        $members = $query->get();
+
+        return $members->isEmpty() ? [] : $members;
     }
 };

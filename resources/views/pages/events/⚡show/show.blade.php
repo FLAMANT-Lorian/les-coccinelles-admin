@@ -15,18 +15,23 @@
 <div class="wrapper">
     {{-- BREADCRUMB --}}
     <x-general.breadcrumb
-            :segments="$segments"/>
+        :segments="$segments"/>
 
     <div class="content grid-default gap-y-8">
         {{-- HEADING --}}
         <x-pages.events.show.base.heading
-                :event="$event"/>
+            :event="$event"/>
 
-        <div class="grid-default col-span-full">
+        <div class="grid-default gap-y-8 col-span-full">
             {{-- FOLDERS --}}
             <livewire:pages.events.show.folders.folders
-                    :event="$event"/>
+                :event="$event"/>
 
+            <span aria-hidden="true" class="max-xg:hidden col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
+
+            {{-- TASKS --}}
+            <livewire:pages.events.show.tasks.tasks
+                :event="$event"/>
         </div>
 
         {{-- DANGER ZONE --}}
@@ -38,16 +43,18 @@
         <x-widgets.modals.events.update-event/>
     @elseif($this->openDeleteModal)
         <x-widgets.modals.events.delete-event
-                :id="$event->id"/>
+            :id="$event->id"/>
     @elseif($this->openCreateFolderModal)
         <x-widgets.modals.events.folders.create-folder/>
     @elseif($this->openUpdateFolderModal)
         <x-widgets.modals.events.folders.update-folder/>
     @elseif($this->openDeleteFolderModal)
         <x-widgets.modals.events.folders.delete-folder
-                :id="$folder->id"/>
+            :id="$folder->id"/>
     @elseif($this->openFolderModal)
         <x-widgets.modals.events.folders.folder
-                :folder="$folder"/>
+            :folder="$folder"/>
+    @elseif($this->openCreateTaskModal)
+        <x-widgets.modals.events.tasks.create-task/>
     @endif
 </div>
