@@ -1,3 +1,10 @@
+@php
+    use App\Models\Folder;
+        /**
+         * @var Folder $folder;
+         */
+@endphp
+
 @props([
     'folder'
 ])
@@ -15,7 +22,7 @@
             class="mt-3 mb-1 text-2xl text-brown font-medium underline-link after:bg-brown">
         {{ $folder->name }}
     </button>
-    <span class="text-sm text-gray-500">{{ __('pages/events.folders.file_count') }}</span>
+    <span class="text-sm text-gray-500">{{ $folder->files->count() .  __('pages/events.folders.file_count') }}</span>
 
     {{-- ACTIONS --}}
     <button type="button"
@@ -37,7 +44,7 @@
         </button>
         <button type="button"
                 wire:click="$dispatch('open-modal', {modal: 'openDeleteFolderModal', folder_id: {{ $folder->id }}})"
-                title="{{ __('pages/hall.interventions.delete-intervention') }}">
+                title="{{ __('pages/events.folders.delete_folder') }}">
             <span>{{ __('tables.delete') }}</span>
         </button>
     </div>

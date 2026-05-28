@@ -3,21 +3,25 @@
 use App\Livewire\Forms\EventsForm;
 use App\Models\Folder;
 use App\Traits\DeleteEvent;
+use App\Traits\HandleFiles;
 use App\Traits\HandleFolder;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use App\Models\Event;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
     use DeleteEvent;
     use HandleFolder;
+    use HandleFiles;
 
     public Event $event;
     public EventsForm $form;
 
     public function mount(Event $event): void
     {
-        $this->event = $event->load(['folders']);
+        $this->event = $event->load(['folders', 'folders.files']);
     }
 
     public bool $openEditModal = false;
@@ -25,7 +29,7 @@ new class extends Component {
     public bool $openCreateFolderModal = false;
     public bool $openUpdateFolderModal = false;
     public bool $openDeleteFolderModal = false;
-    public Folder $folder;
+    public ?Folder $folder = null;
     public bool $openFolderModal = false;
 
     #[On('open-modal')]
@@ -50,6 +54,7 @@ new class extends Component {
         } elseif ($modal === 'openDeleteFolderModal') {
             $this->openDeleteFolderModal = true;
         } elseif ($modal === 'openFolderModal') {
+            $this->dispatch('init-fancybox');
             $this->openFolderModal = true;
         }
     }

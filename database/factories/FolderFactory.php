@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Folder;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Carbon;
 
 class FolderFactory extends Factory
 {
@@ -12,8 +11,10 @@ class FolderFactory extends Factory
 
     public function definition(): array
     {
+        $name = $this->faker->name();
         return [
-            'name' => $this->faker->name(),
+            'name' => $name,
+            'path' => slugify($name),
             'color' => $this->faker->hexColor()
         ];
     }

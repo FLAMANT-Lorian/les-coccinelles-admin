@@ -42,6 +42,7 @@ class FoldersForm extends Form
     {
         $event->folders()->create([
             'name' => $this->name,
+            'path' => slugify($this->name),
             'color' => $this->color,
         ]);
     }

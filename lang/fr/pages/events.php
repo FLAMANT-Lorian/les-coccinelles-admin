@@ -11,9 +11,15 @@ return [
         'title' => 'Documents',
         'subtitle' => 'Tous les fichiers liés à l’événement',
         'google_drive_link' => 'Accéder au Google Drive',
-        'file_count' => 'éléments',
+        'file_count' => ' élément(s)',
         'add_folder' => 'Ajouter un dossier',
-        'update_folder' => 'Modifier un dossier',
-        'delete_folder' => 'Supprimer un dossier',
+        'update_folder' => 'Modifier le dossier',
+        'delete_folder' => 'Supprimer le dossier',
+        'add_files' => 'Ajouter des fichiers',
+        'name' => 'Nom',
+        'actions' => 'Actions',
+        'no_files' => 'Ce dossier est vide',
+        'download' => 'Télécharger le fichier',
+        'delete_file' => 'Supprimer le fichier',
     ]
 ];

@@ -4,6 +4,7 @@ namespace App\Traits;
 
 use App\Livewire\Forms\FoldersForm;
 use App\Models\Folder;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
 
 
@@ -37,6 +38,19 @@ trait HandleFolder
     public function deleteFolder(int $id): void
     {
         $folder = Folder::findOrFail($id);
+
+        if ($folder->files) {
+            $disk = config('filesystems.default');
+            $original_path = config('events.original_path') . '/' . $folder->path;
+
+            foreach ($folder->files as $file) {
+                $path = $original_path . '/' . $file->path;
+
+                if (Storage::disk($disk)->exists($path)) {
+                    Storage::disk($disk)->delete($path);
+                }
+            }
+        }
 
         $folder->delete();
 
