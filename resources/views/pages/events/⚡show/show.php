@@ -28,7 +28,7 @@ new class extends Component {
 
     public function mount(Event $event): void
     {
-        $this->event = $event->load(['folders', 'folders.files', 'tasks', 'tasks.assignedTo']);
+        $this->event = $event;
     }
 
     public bool $openEditModal = false;

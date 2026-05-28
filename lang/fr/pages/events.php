@@ -24,7 +24,7 @@ return [
     ],
     'tasks' => [
         'title' => 'Tâches',
-        'subtitle' => 'Plus que 7 tâches à réaliser !',
+        'subtitle' => 'Plus que :count tâches à réaliser !',
         'add_tasks' => 'Ajouter une tache',
         'complete_task' => 'Noter la tâche comme réalisée',
         'assign_to' => 'Assignée à ',
