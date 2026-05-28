@@ -14,6 +14,7 @@ class EventsForm extends Form
     public ?string $end_date = null;
     public ?string $address = null;
     public ?string $description = null;
+    public ?string $link = null;
 
     public function rules(): array
     {
@@ -23,6 +24,7 @@ class EventsForm extends Form
             'end_date' => 'required',
             'address' => 'required',
             'description' => 'required',
+            'link' => 'nullable|url'
         ];
     }
 
@@ -34,6 +36,7 @@ class EventsForm extends Form
         $this->end_date = $event->end_date;
         $this->description = $event->description;
         $this->address = $event->address;
+        $this->link = $event->google_drive_url;
     }
 
     public function update(): void
@@ -43,7 +46,8 @@ class EventsForm extends Form
             'description' => $this->description,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'address' => $this->address
+            'address' => $this->address,
+            'google_drive_url' => $this->link,
         ]);
     }
 
@@ -54,7 +58,8 @@ class EventsForm extends Form
             'description' => $this->description,
             'start_date' => $this->start_date,
             'end_date' => $this->end_date,
-            'address' => $this->address
+            'address' => $this->address,
+            'google_drive_url' => $this->link,
         ]);
     }
 }

@@ -94,6 +94,8 @@ return [
     ],
     'meeting_description' => 'De quoi allons-nous parler ?',
     'event_name' => 'Nom de l’événement',
+    'google_drive_link' => 'Lien vers le Google Drive',
+    'google_drive_link_placeholder' => 'https://...',
     'start_date' => 'Date de début',
     'end_date' => 'Date de fin',
     'folder_name' => 'Nom du dossier',

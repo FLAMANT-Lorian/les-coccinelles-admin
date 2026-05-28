@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->timestamp('end_date');
             $table->string('address');
             $table->text('description');
+            $table->string('google_drive_url')->nullable();
             $table->timestamps();
         });
     }

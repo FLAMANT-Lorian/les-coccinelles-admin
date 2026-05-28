@@ -20,11 +20,14 @@ new class extends Component {
             <h2 class="text-2xl font-medium text-brown">{{ __('pages/events.folders.title') }}</h2>
             <p class="text-gray-500 paragraph">{{ __('pages/events.folders.subtitle') }}</p>
         </div>
-        <a href="#"
-           aria-label="{{ __('pages/events.folders.google_drive_link') }}"
-           class="btn-small bg-brown border border-brown text-white hover:text-brown hover:bg-transparent">
-            {{ __('pages/events.folders.google_drive_link') }}
-        </a>
+        @if($url = $this->event->google_drive_url)
+            <a href="{{ $url }}"
+               target="_blank"
+               aria-label="{{ __('pages/events.folders.google_drive_link') }}"
+               class="btn-small bg-brown border border-brown text-white hover:text-brown hover:bg-transparent">
+                {{ __('pages/events.folders.google_drive_link') }}
+            </a>
+        @endif
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 rl:grid-cols-3 gap-6 mt-6">
         @if($this->event->folders->isNotEmpty())

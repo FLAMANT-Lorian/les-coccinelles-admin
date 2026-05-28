@@ -16,6 +16,7 @@ class Event extends Model
         'end_date',
         'address',
         'description',
+        'google_drive_url'
     ];
 
     protected function casts(): array
