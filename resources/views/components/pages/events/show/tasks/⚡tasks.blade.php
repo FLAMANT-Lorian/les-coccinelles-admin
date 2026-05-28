@@ -4,6 +4,7 @@ use App\Livewire\Forms\TasksForm;
 use App\Traits\HandleTasks;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use App\Models\Event;
 use Livewire\WithPagination;
@@ -17,10 +18,16 @@ new class extends Component {
 
     public function mount(Event $event): void
     {
-        $this->event = $event->load([
-            'tasks',
-            'tasks.assignedTo'
-        ]);
+        $this->event = $event;
+    }
+
+    #[Computed]
+    public function tasks()
+    {
+        return $this->event
+            ->tasks()
+            ->with('assignedTo')
+            ->paginate(config('table.tasks-pagination-numbers'));
     }
 
     public function toggleCompleted(int $id): void
@@ -38,7 +45,7 @@ new class extends Component {
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between items-start gap-6">
         <div>
             <h2 class="text-2xl font-medium text-brown">{{ __('pages/events.tasks.title') }}</h2>
-            <p class="text-gray-500 paragraph">{{ __('pages/events.tasks.subtitle', ['count' => $this->event->tasks->where('completed', 0)->count()]) }}</p>
+            <p class="text-gray-500 paragraph">{{ __('pages/events.tasks.subtitle', ['count' => $this->tasks->where('completed', 0)->count()]) }}</p>
         </div>
         <button type="button"
                 wire:click="$dispatch('open-modal', { modal: 'openCreateTaskModal' })"
@@ -50,9 +57,9 @@ new class extends Component {
         </button>
     </div>
     <div class="grid grid-cols-1 gap-6 mt-6">
-        @if($this->event->tasks->isNotEmpty())
+        @if($this->tasks->isNotEmpty())
             <div class="flex flex-col divide-y divide-beige-dark/60">
-                @foreach($this->event->tasks as $task)
+                @foreach($this->tasks as $task)
                     <div class="flex flex-row items-center gap-4 py-4 first:pt-0 last:pb-0">
                         <div class="checkbox-field">
                             <input type="checkbox"
@@ -76,7 +83,8 @@ new class extends Component {
                             <button type="button"
                                     class="hover:bg-beige-medium rounded-sm p-1 trans-all"
                                     wire:click="$dispatch('open-modal', { modal: 'openUpdateTaskModal', task_id: {{ $task->id }} })">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
                                     <use href="#pen"></use>
                                 </svg>
                                 <span class="sr-only">{{ __('pages/events.tasks.edit') }}</span>
@@ -96,7 +104,7 @@ new class extends Component {
                 @endforeach
             </div>
             <div class="justify-self-end">
-                {{ $this->event->tasks()->paginate(config('table.tasks-pagination-numbers'))->links() }}
+                {{ $this->tasks->links() }}
             </div>
         @endif
     </div>
