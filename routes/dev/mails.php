@@ -16,14 +16,22 @@ Route::get('/mail-member', function () {
 Route::get('/mail-message', function () {
     $message = Message::factory()->create();
 
-    return new App\Mail\MessageSentMail($message);
+    $mail = new App\Mail\MessageSentMail($message);
+
+    $message->delete();
+
+    return $mail;
 });
 
 
 Route::get('/mail-availability', function () {
     $availability = AvailabilityRequest::factory()->create();
 
-    return new App\Mail\AvailabilityRequestSentMail($availability);
+    $mail = new App\Mail\AvailabilityRequestSentMail($availability);
+
+    $availability->delete();
+
+    return $mail;
 });
 
 Route::get('/mail-task', function () {
@@ -33,6 +41,20 @@ Route::get('/mail-task', function () {
         ->assignedTo(auth()->user())
         ->create();
 
-    return new App\Mail\TaskCreatedMail($task);
+    $mail = new App\Mail\TaskCreatedMail($task);
+
+    $event->delete();
+
+    return $mail;
+});
+
+Route::get('/mail-reminder', function () {
+    $event = Event::factory()->create();
+
+    $mail =  new App\Mail\EventReminderMail($event);
+
+    $event->delete();
+
+    return $mail;
 });
 
