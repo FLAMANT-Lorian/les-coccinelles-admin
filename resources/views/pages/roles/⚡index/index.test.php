@@ -49,7 +49,7 @@ describe('VIEW ROLES WITHOUT PERMISSIONS', function () {
         $this->actingAs($user);
     });
 
-    it('can access to the member index', function () {
+    it('can’t access to the member index', function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
             LaravelLocalizationRedirectFilter::class,
