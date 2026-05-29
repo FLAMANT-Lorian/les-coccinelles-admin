@@ -64,12 +64,6 @@
             line-height: 1.4;
             color: #C6390E;
         }
-
-        .link {
-            color: #57A770;
-            font-weight: 600;
-            text-decoration: none;
-        }
     </style>
 
     <main class="main">
