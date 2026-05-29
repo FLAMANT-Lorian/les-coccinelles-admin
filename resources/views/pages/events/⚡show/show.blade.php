@@ -1,6 +1,8 @@
 @php
     use App\Enums\MessageTypes;
-    use App\Models\Event;use App\Models\Folder;
+    use App\Models\Event;
+    use App\Models\Folder;
+    use App\Models\Task;
 
     $segments = [
         [
@@ -34,8 +36,10 @@
             @endcan
 
             {{-- TASKS --}}
-            <livewire:pages.events.show.tasks.tasks
-                :event="$event"/>
+            @can('view-any', Task::class)
+                <livewire:pages.events.show.tasks.tasks
+                    :event="$event"/>
+            @endcan
         </div>
 
         {{-- DANGER ZONE --}}
