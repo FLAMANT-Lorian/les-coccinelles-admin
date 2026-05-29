@@ -101,7 +101,7 @@
             border-radius: 8px;
             padding: 1rem;
             font-size: 14px;
-            line-height: 1.4;
+            line-height: 1.7;
             color: #C6390E;
             margin: 0 0 2rem;
         }

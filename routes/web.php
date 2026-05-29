@@ -35,9 +35,5 @@ Route::group([
         require __DIR__ . '/admin/events.php';
     });
 
-Route::get('/mail', function () {
-    $user = auth()->user();
-    $old_password = 'password';
-
-    return new App\Mail\MemberCreatedMail($user, $old_password);
-});
+// MAIL TESTING ROUTE
+require __DIR__ . '/dev/mails.php';
