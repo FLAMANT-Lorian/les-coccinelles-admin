@@ -52,6 +52,8 @@ new class extends Component {
 
     public function save(): void
     {
+        $this->authorize('create', Event::class);
+
         $this->form->validate();
 
         $this->form->save();
@@ -63,6 +65,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Event::class);
+
         $this->form->validate();
 
         $this->form->update();

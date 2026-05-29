@@ -1,5 +1,6 @@
 @php
     use App\Enums\MessageTypes;
+    use App\Models\Event;
 
     $segments = [
         [
@@ -36,7 +37,9 @@
         </div>
 
         {{-- DANGER ZONE --}}
-        <x-pages.events.show.base.danger-zone/>
+        @can('delete', Event::class)
+            <x-pages.events.show.base.danger-zone/>
+        @endcan
     </div>
 
     {{-- MODALS --}}

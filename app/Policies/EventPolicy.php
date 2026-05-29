@@ -12,27 +12,27 @@ class EventPolicy
 
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->can('events.index');
     }
 
     public function view(User $user): bool
     {
-        return true;
+        return $user->can('events.show');;
     }
 
     public function create(User $user): bool
     {
-        return true;
+        return $user->can('events.create');
     }
 
     public function update(User $user): bool
     {
-        return true;
+        return $user->can('events.edit');
     }
 
     public function delete(User $user): bool
     {
-        return true;
+        return $user->can('events.delete');
     }
 
     public function restore(User $user, Event $event): bool

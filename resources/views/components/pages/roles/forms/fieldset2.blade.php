@@ -12,5 +12,6 @@
         <x-pages.roles.forms.permissions.bookings/>
         <x-pages.roles.forms.permissions.calendar/>
         <x-pages.roles.forms.permissions.meetings/>
+        <x-pages.roles.forms.permissions.events/>
     </div>
 </fieldset>

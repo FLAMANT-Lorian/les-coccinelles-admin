@@ -18,7 +18,6 @@ use Livewire\Attributes\On;
 trait DeleteSelection
 {
     use HandleImages;
-    use DeleteEvent;
 
     public array $selectedColumn = [];
 
@@ -223,7 +222,34 @@ trait DeleteSelection
         $events = Event::whereIn('id', $this->selectedColumn)->get();
 
         foreach ($events as $event) {
-           $this->deleteEvent($event->id);
+            $folders = $event->folders ?? null;
+            $tasks = $event->tasks ?? null;
+
+            if ($folders) {
+                foreach ($folders as $folder) {
+                    if ($folder->files) {
+                        $disk = config('filesystems.default');
+                        $original_path = config('events.original_path') . '/' . $folder->path;
+
+                        foreach ($folder->files as $file) {
+                            $path = $original_path . '/' . $file->path;
+
+                            if (Storage::disk($disk)->exists($path)) {
+                                Storage::disk($disk)->delete($path);
+                            }
+                        }
+                    }
+                    $folder->delete();
+                }
+            }
+
+            if ($tasks) {
+                foreach ($tasks as $task) {
+                    $task->delete();
+                }
+            }
+
+            $event->delete();
         }
 
         $this->selectedColumn = [];

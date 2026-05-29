@@ -106,6 +106,8 @@ new class extends Component {
 
     public function update(): void
     {
+        $this->authorize('update', Event::class);
+
         $this->form->validate();
 
         $this->form->update();
