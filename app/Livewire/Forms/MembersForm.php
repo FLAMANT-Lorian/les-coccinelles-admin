@@ -125,11 +125,11 @@ class MembersForm extends Form
         $this->cleanLivewireTMPFolder();
     }
 
-    public function save(): void
+    public function save(): ?array
     {
         $role = Role::where('id', $this->role)->first();
 
-        if (!$role) return;
+        if (!$role) return null;
 
         if ($this->avatar) {
             $file_name = $this->storeAvatar($this->avatar);
@@ -156,10 +156,20 @@ class MembersForm extends Form
             'address' => $this->address,
             'avatar_path' => $file_name ?? null,
             'documents' => empty($documents) ? null : $documents,
+            'notifications' => [
+                'messages' => true,
+                'events' => true,
+                'bookings' => true,
+                'meetings' => true,
+                'interventions' => true,
+            ],
         ]);
 
         $user->assignRole($role);
 
-        $this->cleanLivewireTMPFolder();
+        return [
+            'user' => $user,
+            'old_password' => $this->password
+        ];
     }
 }
