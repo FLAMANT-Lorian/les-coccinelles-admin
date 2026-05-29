@@ -1,6 +1,7 @@
 <?php
 
 use App\Livewire\Forms\TasksForm;
+use App\Models\Task;
 use App\Traits\HandleTasks;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -41,35 +42,39 @@ new class extends Component {
 };
 ?>
 
-<div class="col-span-full xg:col-start-8 xg:col-span-5">
+<div class="col-span-full xg:col-span-5">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between items-start gap-6">
         <div>
             <h2 class="text-2xl font-medium text-brown">{{ __('pages/events.tasks.title') }}</h2>
             <p class="text-gray-500 paragraph">{{ __('pages/events.tasks.subtitle', ['count' => $this->tasks->where('completed', 0)->count()]) }}</p>
         </div>
-        <button type="button"
-                wire:click="$dispatch('open-modal', { modal: 'openCreateTaskModal' })"
-                class="btn-small bg-brown border border-brown text-white hover:text-brown hover:bg-transparent">
-            {{ __('pages/events.tasks.add_tasks') }}
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <use href="#add"></use>
-            </svg>
-        </button>
+        @can('create', Task::class)
+            <button type="button"
+                    wire:click="$dispatch('open-modal', { modal: 'openCreateTaskModal' })"
+                    class="btn-small bg-brown border border-brown text-white hover:text-brown hover:bg-transparent">
+                {{ __('pages/events.tasks.add_tasks') }}
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <use href="#add"></use>
+                </svg>
+            </button>
+        @endcan
     </div>
     <div class="grid grid-cols-1 gap-6 mt-6">
         @if($this->tasks->isNotEmpty())
             <div class="flex flex-col divide-y divide-beige-dark/60">
                 @foreach($this->tasks as $task)
                     <div class="flex flex-row items-center gap-4 py-4 first:pt-0 last:pb-0">
-                        <div class="checkbox-field">
-                            <input type="checkbox"
-                                   id="completed"
-                                   {{ $task->completed ? 'checked' : '' }}
-                                   wire:change="toggleCompleted({{ $task->id }})">
-                            <label for="completed" class="sr-only">
-                                {{ __('pages/events.tasks.complete_task') }}
-                            </label>
-                        </div>
+                        @can('update', Task::class)
+                            <div class="checkbox-field">
+                                <input type="checkbox"
+                                       id="completed"
+                                       {{ $task->completed ? 'checked' : '' }}
+                                       wire:change="toggleCompleted({{ $task->id }})">
+                                <label for="completed" class="sr-only">
+                                    {{ __('pages/events.tasks.complete_task') }}
+                                </label>
+                            </div>
+                        @endcan
                         <div class="flex flex-col gap-1">
                         <span
                             class="trans-all paragraph text-brown {{ $task->completed ? 'line-through' : '' }}">{{ $task->name }}</span>
@@ -79,27 +84,33 @@ new class extends Component {
                                 class="trans-all {{ $task->completed ? 'text-brown' : 'text-red' }} font-medium">{{ $task->assignedTo->full_name }}</strong>
                         </span>
                         </div>
-                        <div class="ml-auto flex flex-row gap-3 items-center">
-                            <button type="button"
-                                    class="hover:bg-beige-medium rounded-sm p-1 trans-all"
-                                    wire:click="$dispatch('open-modal', { modal: 'openUpdateTaskModal', task_id: {{ $task->id }} })">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#pen"></use>
-                                </svg>
-                                <span class="sr-only">{{ __('pages/events.tasks.edit') }}</span>
-                            </button>
-                            <button type="button"
-                                    title="{{ __('pages/events.tasks.delete') }}"
-                                    class="hover:bg-beige-medium rounded-sm p-1 trans-all"
-                                    wire:click="$dispatch('open-modal', { modal: 'openDeleteTaskModal', task_id: {{ $task->id }} })">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <use href="#bin"></use>
-                                </svg>
-                                <span class="sr-only">{{ __('pages/events.tasks.delete') }}</span>
-                            </button>
-                        </div>
+                        @canany(['update', 'delete'], Task::class)
+                            <div class="ml-auto flex flex-row gap-3 items-center">
+                                @can('update', Task::class)
+                                    <button type="button"
+                                            class="hover:bg-beige-medium rounded-sm p-1 trans-all"
+                                            wire:click="$dispatch('open-modal', { modal: 'openUpdateTaskModal', task_id: {{ $task->id }} })">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <use href="#pen"></use>
+                                        </svg>
+                                        <span class="sr-only">{{ __('pages/events.tasks.edit') }}</span>
+                                    </button>
+                                @endcan
+                                @can('delete', Task::class)
+                                    <button type="button"
+                                            title="{{ __('pages/events.tasks.delete') }}"
+                                            class="hover:bg-beige-medium rounded-sm p-1 trans-all"
+                                            wire:click="$dispatch('open-modal', { modal: 'openDeleteTaskModal', task_id: {{ $task->id }} })">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <use href="#bin"></use>
+                                        </svg>
+                                        <span class="sr-only">{{ __('pages/events.tasks.delete') }}</span>
+                                    </button>
+                                @endcan
+                            </div>
+                        @endcan
                     </div>
                 @endforeach
             </div>

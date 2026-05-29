@@ -17,6 +17,8 @@ trait HandleTasks
 
     public function saveTask(): void
     {
+        $this->authorize('create', Task::class);
+
         $this->tasksForm->validate();
 
         $this->tasksForm->save($this->event);
@@ -28,6 +30,8 @@ trait HandleTasks
 
     public function updateTask(): void
     {
+        $this->authorize('update', Task::class);
+
         $this->tasksForm->validate();
 
         $this->tasksForm->update();
@@ -40,6 +44,8 @@ trait HandleTasks
     #[On('delete-task')]
     public function deleteTask(int $id): void
     {
+        $this->authorize('delete', Task::class);
+
         $task = Task::findOrFail($id);
 
         $task->delete();

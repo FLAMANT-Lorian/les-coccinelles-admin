@@ -1,5 +1,8 @@
 @php
     use App\Enums\MessageTypes;
+    use App\Models\Event;
+    use App\Models\Folder;
+    use App\Models\Task;
 
     $segments = [
         [
@@ -24,19 +27,25 @@
 
         <div class="grid-default gap-y-8 col-span-full">
             {{-- FOLDERS --}}
-            <livewire:pages.events.show.folders.folders
-                :event="$event"/>
+            @can('view-any', Folder::class)
+                <livewire:pages.events.show.folders.folders
+                    :event="$event"/>
 
-            <span aria-hidden="true"
-                  class="max-xg:hidden col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
+                <span aria-hidden="true"
+                      class="max-xg:hidden col-span-1 justify-self-center h-full w-px bg-beige-dark/60"></span>
+            @endcan
 
             {{-- TASKS --}}
-            <livewire:pages.events.show.tasks.tasks
-                :event="$event"/>
+            @can('view-any', Task::class)
+                <livewire:pages.events.show.tasks.tasks
+                    :event="$event"/>
+            @endcan
         </div>
 
         {{-- DANGER ZONE --}}
-        <x-pages.events.show.base.danger-zone/>
+        @can('delete', Event::class)
+            <x-pages.events.show.base.danger-zone/>
+        @endcan
     </div>
 
     {{-- MODALS --}}

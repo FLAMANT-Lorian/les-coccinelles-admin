@@ -26,11 +26,15 @@
     <td>
         <div>
             <span>{{ __('tables.name') }}&nbsp;:</span>
-            <a href="{{ route('events.show', ['event' => $event->id]) }}"
-               class="underline-link after:bg-brown"
-               type="button">
-                {{ $event->name }}
-            </a>
+            @can('view', Event::class)
+                <a href="{{ route('events.show', ['event' => $event->id]) }}"
+                   class="underline-link after:bg-brown"
+                   type="button">
+                    {{ $event->name }}
+                </a>
+            @else
+                <span>{{ $event->name }}</span>
+            @endcan
         </div>
     </td>
     <td>
@@ -77,25 +81,36 @@
                 </svg>
                 <span class="sr-only">{{ __('tables.fast-actions') }}</span>
             </button>
-            {{--@canany(['delete', 'update'], Event::class)--}}
-            <div x-show="open" x-transition class="actions-table">
-                <button type="button"
-                        wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $event->id }} })"
-                        title="{{ __('pages/events.edit-event') }}">
-                    <span>{{ __('tables.update') }}</span>
-                </button>
-                <button type="button"
-                        wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $event->id }} })"
-                        title="{{ __('pages/events.delete-event') }}">
-                    <span>{{ __('tables.delete') }}</span>
-                </button>
-            </div>
-            {{--@endcan--}}
+            @canany(['delete', 'update'], Event::class)
+                <div x-show="open" x-transition class="actions-table">
+                    @can('update', Event::class)
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $event->id }} })"
+                                title="{{ __('pages/events.edit-event') }}">
+                            <span>{{ __('tables.update') }}</span>
+                        </button>
+                    @endcan
+                    @can('delete', Event::class)
+                        <button type="button"
+                                wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $event->id }} })"
+                                title="{{ __('pages/events.delete-event') }}">
+                            <span>{{ __('tables.delete') }}</span>
+                        </button>
+                    @endcan
+                </div>
+            @endcan
 
             {{-- ACTION MOBILES --}}
-            <div class="actions-mobile">
-
-            </div>
+            @can('update', Event::class)
+                <div class="actions-mobile">
+                    <button type="button"
+                            wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $event->id }} })"
+                            class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            title="{{ __('pages/events.edit-event') }}">
+                        <span>{{ __('pages/events.edit-event') }}</span>
+                    </button>
+                </div>
+            @endcan
         </div>
     </td>
 </tr>

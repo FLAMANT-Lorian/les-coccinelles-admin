@@ -20,7 +20,7 @@ class EventSeeder extends Seeder
             ->has(Task::factory()
                 ->count(4)
                 ->assignedTo(User::first())
-            )->count(2)
+            )->count(15)
             ->create();
     }
 }

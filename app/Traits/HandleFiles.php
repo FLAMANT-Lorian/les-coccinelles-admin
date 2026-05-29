@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Models\File;
 use App\Models\Folder;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
@@ -15,6 +16,8 @@ trait HandleFiles
 
     public function updatedFiles(): void
     {
+        $this->authorize('create', File::class);
+
         $disk = config('filesystems.default');
         $original_path = config('events.original_path') . '/' . $this->folder->path;
 
@@ -45,6 +48,8 @@ trait HandleFiles
     #[On('delete-file')]
     public function deleteFile(int $id): void
     {
+        $this->authorize('delete', File::class);
+
         $disk = config('filesystems.default');
         $original_path = config('events.original_path') . '/' . $this->folder->path;
 

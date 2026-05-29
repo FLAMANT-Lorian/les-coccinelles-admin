@@ -18,6 +18,8 @@ trait HandleFolder
 
     public function saveFolder(): void
     {
+        $this->authorize('create', Folder::class);
+
         $this->foldersForm->validate();
 
         $this->foldersForm->save($this->event);
@@ -29,6 +31,8 @@ trait HandleFolder
 
     public function updateFolder(): void
     {
+        $this->authorize('update', Folder::class);
+
         $this->foldersForm->validate();
 
         $this->foldersForm->update();
@@ -41,6 +45,8 @@ trait HandleFolder
     #[On('delete-folder')]
     public function deleteFolder(int $id): void
     {
+        $this->authorize('delete', Folder::class);
+
         $folder = Folder::findOrFail($id);
 
         if ($folder->files) {

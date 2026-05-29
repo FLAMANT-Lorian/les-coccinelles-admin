@@ -67,6 +67,30 @@ trait CustomPermissions
             'edit' => false,
             'delete' => false,
         ],
+        'events' => [
+            'index' => false,
+            'show' => false,
+            'create' => false,
+            'edit' => false,
+            'delete' => false,
+        ],
+        'folders' => [
+            'index' => false,
+            'show' => false,
+            'create' => false,
+            'edit' => false,
+            'delete' => false,
+        ],
+        'files' => [
+            'add' => false,
+            'delete' => false,
+        ],
+        'tasks' => [
+            'index' => false,
+            'create' => false,
+            'edit' => false,
+            'delete' => false,
+        ],
     ];
 
     public function setPermissions(): void
