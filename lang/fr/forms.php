@@ -87,6 +87,7 @@ return [
     'mazout-general' => 'Compteur mazout',
     'notifications' => [
         'messages' => 'Nouveaux messages via le formulaire de contact',
+        'availabilities' => 'Demandes de disponiblité',
         'events' => 'Événement en approche',
         'bookings' => 'Réservation en approche',
         'meetings' => 'Réunion en approche',

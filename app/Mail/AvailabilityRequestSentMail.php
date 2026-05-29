@@ -2,22 +2,23 @@
 
 namespace App\Mail;
 
-use App\Models\Message;
+use App\Models\AvailabilityRequest;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MessageSentMail extends Mailable
+class AvailabilityRequestSentMail extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(public Message $contact_message)
+    public function __construct(public AvailabilityRequest $availabilityRequest)
     {
         //
     }
@@ -28,7 +29,7 @@ class MessageSentMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Un nouveau message de contact à été envoyé',
+            subject: 'Une nouvelle demande de disponibilité été envoyée',
         );
     }
 
@@ -38,9 +39,9 @@ class MessageSentMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.messages.sent',
+            view: 'mails.availability-requests.sent',
             with: [
-                'message' => $this->contact_message
+                'availability_request' => $this->availabilityRequest
             ]
         );
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AvailabilityRequest;
 use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,11 @@ Route::get('/mail-message', function () {
 
     return new App\Mail\MessageSentMail($message);
 });
+
+
+Route::get('/mail-availability', function () {
+   $availability = AvailabilityRequest::factory()->create();
+
+    return new App\Mail\AvailabilityRequestSentMail($availability);
+});
+
