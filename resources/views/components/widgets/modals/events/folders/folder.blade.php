@@ -1,5 +1,6 @@
 @php
     use App\Models\Folder;
+    use App\Models\File;
        /**
         * @var Folder $folder
         */
@@ -47,15 +48,17 @@
                                     </svg>
                                     <span class="sr-only">{{ __('pages/events.folders.download') }}</span>
                                 </a>
-                                <button type="button"
-                                        class="hover:bg-beige-medium rounded-sm p-1 trans-all"
-                                        wire:click="$dispatch('delete-file', { id: {{ $file->id }} })">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <use href="#bin"></use>
-                                    </svg>
-                                    <span class="sr-only">{{ __('pages/events.folders.delete_file') }}</span>
-                                </button>
+                                @can('delete', File::class)
+                                    <button type="button"
+                                            class="hover:bg-beige-medium rounded-sm p-1 trans-all"
+                                            wire:click="$dispatch('delete-file', { id: {{ $file->id }} })">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <use href="#bin"></use>
+                                        </svg>
+                                        <span class="sr-only">{{ __('pages/events.folders.delete_file') }}</span>
+                                    </button>
+                                @endcan
                             </div>
                         </div>
                     @endif
@@ -65,15 +68,17 @@
             <span class="p-6 text-red text-center">{{ __('pages/events.folders.no_files') }}</span>
         @endif
     </div>
-    <div class="flex justify-center mt-6">
-        <input class="sr-only"
-               type="file"
-               id="fileSelector"
-               wire:model.live="files"
-               multiple>
-        <label for="fileSelector"
-               class="cursor-pointer btn-small bg-brown border border-brown text-white hover:bg-transparent hover:text-brown trans-all">
-            {{ __('pages/events.folders.add_files') }}
-        </label>
-    </div>
+    @can('create', File::class)
+        <div class="flex justify-center mt-6">
+            <input class="sr-only"
+                   type="file"
+                   id="fileSelector"
+                   wire:model.live="files"
+                   multiple>
+            <label for="fileSelector"
+                   class="cursor-pointer btn-small bg-brown border border-brown text-white hover:bg-transparent hover:text-brown trans-all">
+                {{ __('pages/events.folders.add_files') }}
+            </label>
+        </div>
+    @endcan
 </x-widgets.modals.modal-layout>

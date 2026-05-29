@@ -20,7 +20,7 @@ class FoldersForm extends Form
         return [
             'name' => [
                 'required',
-                Rule::unique('folders', 'name')->ignore($this->folder->id),
+                Rule::unique('folders', 'name')->ignore($this->folder),
             ],
             'color' => 'hex_color'
         ];

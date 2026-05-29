@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Folder;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 use App\Models\Event;
@@ -39,6 +40,8 @@ new class extends Component {
                     :folder="$folder"/>
             @endforeach
         @endif
-        <x-pages.events.show.folders.add-folder/>
+        @can('create', Folder::class)
+            <x-pages.events.show.folders.add-folder/>
+        @endcan
     </div>
 </div>

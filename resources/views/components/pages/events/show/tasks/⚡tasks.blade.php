@@ -41,7 +41,7 @@ new class extends Component {
 };
 ?>
 
-<div class="col-span-full xg:col-start-8 xg:col-span-5">
+<div class="col-span-full xg:col-span-5">
     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between items-start gap-6">
         <div>
             <h2 class="text-2xl font-medium text-brown">{{ __('pages/events.tasks.title') }}</h2>

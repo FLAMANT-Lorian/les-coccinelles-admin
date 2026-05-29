@@ -26,11 +26,15 @@
     <td>
         <div>
             <span>{{ __('tables.name') }}&nbsp;:</span>
-            <a href="{{ route('events.show', ['event' => $event->id]) }}"
-               class="underline-link after:bg-brown"
-               type="button">
-                {{ $event->name }}
-            </a>
+            @can('view', Event::class)
+                <a href="{{ route('events.show', ['event' => $event->id]) }}"
+                   class="underline-link after:bg-brown"
+                   type="button">
+                    {{ $event->name }}
+                </a>
+            @else
+                <span>{{ $event->name }}</span>
+            @endcan
         </div>
     </td>
     <td>
