@@ -36,4 +36,4 @@ Route::group([
     });
 
 // MAIL TESTING ROUTE
-require __DIR__ . '/dev/mails.php';
+// require __DIR__ . '/dev/mails.php';
