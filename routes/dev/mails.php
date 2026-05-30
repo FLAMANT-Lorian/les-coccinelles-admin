@@ -4,6 +4,7 @@ use App\Mail\AvailabilityRequestSentMail;
 use App\Mail\BookingCreatedMail;
 use App\Mail\EventReminderMail;
 use App\Mail\InterventionCreatedMail;
+use App\Mail\InterventionReminderMail;
 use App\Mail\MeetingCreatedMail;
 use App\Mail\MeetingReminderMail;
 use App\Mail\MemberCreatedMail;
@@ -127,6 +128,19 @@ Route::get('/mail-intervention', function () {
        ->create();
 
     $mail = new InterventionCreatedMail($intervention);
+
+    $intervention->delete();
+
+    return $mail;
+});
+
+Route::get('/mail-intervention-reminder', function () {
+    $intervention = Intervention::factory()
+        ->assignedTo(auth()->user())
+        ->createdBy(auth()->user())
+        ->create();
+
+    $mail = new InterventionReminderMail($intervention);
 
     $intervention->delete();
 
