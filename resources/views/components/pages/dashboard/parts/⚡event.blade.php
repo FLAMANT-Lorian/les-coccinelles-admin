@@ -19,11 +19,13 @@ new class extends Component {
 <section class="col-span-full rl:col-span-2 lg:col-span-7 p-4 rounded-sm border border-beige-dark/60 bg-beige-light">
     <div class="flex flex-row items-center justify-between pb-4 border-b border-b-beige-dark/60">
         <h2 class="text-xl font-medium">{{ __('pages/dashboard.event.title') }}</h2>
-        <a aria-label="{{ __('pages/dashboard.event.see_all') }}"
-           href="{{ route('events.index') }}">
-            <x-pages.dashboard.arrow/>
-            <span class="sr-only">{{ __('pages/dashboard.event.see_all') }}</span>
-        </a>
+        @can('view-any', Event::class)
+            <a aria-label="{{ __('pages/dashboard.event.see_all') }}"
+               href="{{ route('events.index') }}">
+                <x-pages.dashboard.arrow/>
+                <span class="sr-only">{{ __('pages/dashboard.event.see_all') }}</span>
+            </a>
+        @endcan
     </div>
     <div class="flex flex-col items-start gap-4">
         <h3 class="text-2xl font-semibold mt-4">{{$event->name}}</h3>
@@ -69,13 +71,15 @@ new class extends Component {
                 </div>
             @endforeach
         </div>
-        <p class="paragraph">
+        <p class="paragraph line-clamp-4">
             {{ $event->description }}
         </p>
-        <a class="btn-small bg-brown text-white hover:bg-transparent hover:text-brown border border-brown"
-           aria-label="{{ __('pages/dashboard.event.see_event') }}"
-           href="{{ route('events.show', ['event' => $event->id]) }}">
-            {{ __('pages/dashboard.event.see_event') }}
-        </a>
+        @can('update', Event::class)
+            <a class="btn-small bg-brown text-white hover:bg-transparent hover:text-brown border border-brown"
+               aria-label="{{ __('pages/dashboard.event.see_event') }}"
+               href="{{ route('events.show', ['event' => $event->id]) }}">
+                {{ __('pages/dashboard.event.see_event') }}
+            </a>
+        @endcan
     </div>
 </section>

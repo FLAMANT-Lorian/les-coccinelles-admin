@@ -21,23 +21,31 @@ new class extends Component {
 <section class="col-span-full rl:col-span-2 lg:col-span-6 p-4 rounded-sm border border-beige-dark/60 bg-beige-light">
     <div class="flex flex-row items-center justify-between pb-4 border-b border-b-beige-dark/60">
         <h2 class="text-xl font-medium">{{ __('pages/dashboard.interventions.title') }}</h2>
-        <a aria-label="{{ __('pages/dashboard.interventions.see_all') }}"
-           href="{{ route('interventions') }}">
-            <x-pages.dashboard.arrow/>
-            <span class="sr-only">{{ __('pages/dashboard.interventions.see_all') }}</span>
-        </a>
+        @can('view-any', Intervention::class)
+            <a aria-label="{{ __('pages/dashboard.interventions.see_all') }}"
+               href="{{ route('interventions') }}">
+                <x-pages.dashboard.arrow/>
+                <span class="sr-only">{{ __('pages/dashboard.interventions.see_all') }}</span>
+            </a>
+        @endcan
     </div>
     @if($this->interventions->isNotEmpty())
         <div class="flex flex-col text-brown divide-y divide-beige-dark/60 max-h-90 overflow-y-auto">
             @foreach($this->interventions as $intervention)
                 <div class="flex flex-row items-center justify-between gap-4 py-4">
                     <div class="flex flex-col items-start gap-2">
-                        <a href="{{ route('interventions', ['intervention' => $intervention->id]) }}"
-                           aria-label="{{ $intervention->name }}"
-                           title="{{ __('pages/dashboard.interventions.see_intervention') }}"
-                           class="text-lg underline-link after:bg-brown">
-                            {{ $intervention->name }}
-                        </a>
+                        @can('update', Intervention::class)
+                            <a href="{{ route('interventions', ['intervention' => $intervention->id]) }}"
+                               aria-label="{{ $intervention->name }}"
+                               title="{{ __('pages/dashboard.interventions.see_intervention') }}"
+                               class="text-lg underline-link after:bg-brown">
+                                {{ $intervention->name }}
+                            </a>
+                        @else
+                            <span class="text-lg underline-link after:bg-brown">
+                                {{ $intervention->name }}
+                            </span>
+                        @endcan
                         <div class="flex flex-row flex-wrap gap-2 text-sm text-gray-600">
                             <time class="pr-2 border-r border-r-beige-dark/60"
                                   datetime="{{ $intervention->deadline->format('Y-m-d') }}">

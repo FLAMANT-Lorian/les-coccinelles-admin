@@ -24,11 +24,13 @@ new class extends Component {
     class="flex flex-col col-span-full rl:col-span-2 lg:col-span-5 p-4 rounded-sm border border-beige-dark/60 bg-beige-light">
     <div class="flex flex-row items-center justify-between pb-4 border-b border-b-beige-dark/60">
         <h2 class="text-xl font-medium">{{ __('pages/dashboard.booking.title') }}</h2>
-        <a aria-label="{{ __('pages/dashboard.booking.see_all') }}"
-           href="{{ route('bookings.index') }}">
-            <x-pages.dashboard.arrow/>
-            <span class="sr-only">{{ __('pages/dashboard.booking.see_all') }}</span>
-        </a>
+        @can('view-any', Booking::class)
+            <a aria-label="{{ __('pages/dashboard.booking.see_all') }}"
+               href="{{ route('bookings.index') }}">
+                <x-pages.dashboard.arrow/>
+                <span class="sr-only">{{ __('pages/dashboard.booking.see_all') }}</span>
+            </a>
+        @endcan
     </div>
     <div class="flex flex-col items-start gap-4 grow">
         <div class="flex flex-row gap-4 items-center mt-4">
@@ -59,10 +61,12 @@ new class extends Component {
             </svg>
             <span class="">{{ $booking->hall_rate->type }}</span>
         </div>
-        <a class="mt-auto btn-small bg-brown text-white hover:bg-transparent hover:text-brown border border-brown"
-           aria-label="{{ __('pages/dashboard.booking.see_booking') }}"
-           href="{{ route('bookings.edit', ['booking' => $booking->id]) }}">
-            {{ __('pages/dashboard.booking.see_booking') }}
-        </a>
+        @can('update', Booking::class)
+            <a class="mt-auto btn-small bg-brown text-white hover:bg-transparent hover:text-brown border border-brown"
+               aria-label="{{ __('pages/dashboard.booking.see_booking') }}"
+               href="{{ route('bookings.edit', ['booking' => $booking->id]) }}">
+                {{ __('pages/dashboard.booking.see_booking') }}
+            </a>
+        @endcan
     </div>
 </section>
