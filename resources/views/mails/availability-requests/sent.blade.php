@@ -64,7 +64,6 @@
             font-size: 14px;
             color: #3D2B1F;
             line-height: 1.7;
-            white-space: pre-line;
         }
 
         .link {

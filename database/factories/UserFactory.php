@@ -43,7 +43,6 @@ class UserFactory extends Factory
                 'messages' => false,
                 'availabilities' => false,
                 'events' => false,
-                'bookings' => false,
                 'meetings' => false,
                 'interventions' => false,
             ],

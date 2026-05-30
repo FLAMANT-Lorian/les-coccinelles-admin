@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Observers\MeetingObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+#[ObservedBy(MeetingObserver::class)]
 class Meeting extends Model
 {
     use HasFactory;

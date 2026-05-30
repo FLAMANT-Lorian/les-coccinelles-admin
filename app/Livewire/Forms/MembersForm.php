@@ -157,11 +157,10 @@ class MembersForm extends Form
             'avatar_path' => $file_name ?? null,
             'documents' => empty($documents) ? null : $documents,
             'notifications' => [
-                'messages' => true,
-                'events' => true,
-                'bookings' => true,
-                'meetings' => true,
-                'interventions' => true,
+                'messages' => false,
+                'events' => false,
+                'meetings' => false,
+                'interventions' => false,
             ],
         ]);
 

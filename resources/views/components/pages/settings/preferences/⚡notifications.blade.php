@@ -52,14 +52,6 @@ new class extends Component {
         />
 
         <x-forms.input.input-checkbox
-            :label="__('forms.notifications.bookings')"
-            name="notifications[bookings]"
-            :required="true"
-            field_name="notifications_bookings"
-            wire="notifications.bookings"
-        />
-
-        <x-forms.input.input-checkbox
             :label="__('forms.notifications.meetings')"
             name="notifications[meetings]"
             :required="true"

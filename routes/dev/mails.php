@@ -3,6 +3,7 @@
 use App\Mail\AvailabilityRequestSentMail;
 use App\Mail\BookingCreatedMail;
 use App\Mail\EventReminderMail;
+use App\Mail\MeetingCreatedMail;
 use App\Mail\MemberCreatedMail;
 use App\Mail\MessageSentMail;
 use App\Mail\TaskCreatedMail;
@@ -11,6 +12,7 @@ use App\Models\Booking;
 use App\Models\BookingDate;
 use App\Models\Contact;
 use App\Models\HallRate;
+use App\Models\Meeting;
 use App\Models\Message;
 use App\Models\MeterReading;
 use App\Models\Task;
@@ -95,3 +97,12 @@ Route::get('/mail-booking', function () {
     return $mail;
 });
 
+Route::get('/mail-meeting', function () {
+    $meeting = Meeting::factory()->create();
+
+    $mail = new MeetingCreatedMail($meeting);
+
+    $meeting->delete();
+
+    return $mail;
+});

@@ -1,3 +1,4 @@
+@php use Carbon\Carbon; @endphp
 <x-layout.mail-layout>
     <style>
         .main {
@@ -54,6 +55,7 @@
             font-size: 14px;
             font-weight: 500;
             color: #57A770;
+            text-align: right;
         }
 
         .message {
@@ -65,72 +67,56 @@
             color: #3D2B1F;
             line-height: 1.7;
         }
-
-        .link {
-            color: #57A770;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .btn {
-            margin-top: 24px;
-            display: flex;
-            justify-content: center;
-            background-color: #57A770;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
     </style>
 
     <main class="main">
 
-        <h2 class="title">Nouveau message de contact</h2>
+        <h2 class="title">Réunion planifiée</h2>
 
         <p class="intro">
-            Un visiteur vient d'envoyer un message via le formulaire de contact du site.
-            Vous trouverez ci-dessous les informations transmises.
+            Une réunion a été programmée. Vous trouverez ci-dessous toutes les informations nécessaires.
         </p>
 
         <section>
-            <h2 class="section-title">Informations de l'expéditeur</h2>
+            <h2 class="section-title">Détails de la réunion</h2>
+
             <div class="info">
+
                 <div class="info-row">
-                    <span class="info-label">Nom</span>
-                    <span class="info-value">{{ $contact_message->last_name . $contact_message->last_name }}</span>
+                    <span class="info-label">Adresse</span>
+                    <span class="info-value">{{ $meeting->address }}</span>
                 </div>
+
                 <div class="info-divider"></div>
+
                 <div class="info-row">
-                    <span class="info-label">Adresse e-mail</span>
+                    <span class="info-label">Date</span>
                     <span class="info-value">
-                        <a class="link" href="mailto:{{ $contact_message->email }}">{{ $contact_message->email }}</a>
+                        {{ formattedDate($meeting->date) }}
                     </span>
                 </div>
-                @if ($contact_message->phone)
-                    <div class="info-divider"></div>
-                    <div class="info-row">
-                        <span class="info-label">Téléphone</span>
-                        <span class="info-value">{{ $contact_message->phone }}</span>
-                    </div>
-                @endif
+
                 <div class="info-divider"></div>
+
                 <div class="info-row">
-                    <span class="info-label">Reçu le</span>
-                    <span class="info-value">{{ formattedDate($contact_message->created_at) }}</span>
+                    <span class="info-label">Heure</span>
+                    <span class="info-value">
+                        {{ Carbon::parse($meeting->hour)->format('H\hi') }}
+                    </span>
                 </div>
+
             </div>
         </section>
 
-        <section>
-            <h2 class="section-title">Message</h2>
-            <div class="message">{{ $contact_message->message }}</div>
-            <a class="btn"
-               aria-label="Voir le message dans l'administration"
-               href="{{{ route('messages', ['term' => slugify($contact_message->first_name) . ' ' . slugify($contact_message->last_name)]) }}}">
-                Voir le message dans l'administration
-            </a>
-        </section>
+        @if($meeting->description)
+            <section>
+                <h2 class="section-title">Description</h2>
+
+                <p class="message">
+                    {{ $meeting->description }}
+                </p>
+            </section>
+        @endif
 
     </main>
 </x-layout.mail-layout>
