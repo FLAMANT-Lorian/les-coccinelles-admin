@@ -40,11 +40,11 @@ class UserFactory extends Factory
             'email' => $faker->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
             'notifications' => [
-                'messages' => true,
-                'events' => true,
-                'bookings' => true,
-                'meetings' => true,
-                'interventions' => true,
+                'messages' => false,
+                'availabilities' => false,
+                'events' => false,
+                'meetings' => false,
+                'interventions' => false,
             ],
         ];
     }

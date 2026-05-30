@@ -5,6 +5,7 @@ use App\Models\BookingDate;
 use App\Models\Contact;
 use App\Models\HallRate;
 use App\Models\MeterReading;
+use function Pest\Laravel\assertDatabaseCount;
 
 it('verifies if relations works correctly between bookings, hall rates, meter readings and contacts', function () {
     $contact = Contact::factory()->create();
@@ -21,4 +22,7 @@ it('verifies if relations works correctly between bookings, hall rates, meter re
         ->and($booking->contact->first_name)->toBe($contact->first_name)
         ->and($contact->bookings()->first()->hall_rate->type)->toBe($hall_rate->type)
         ->and($hall_rate->bookings()->first()->meterReading->after_mazout_general)->toBe($booking->meterReading->after_mazout_general);
+
+    assertDatabaseCount('meter_readings', 1);
+    assertDatabaseCount('booking_dates', 1);
 });

@@ -3,6 +3,7 @@
 use App\Enums\MembersStatus;
 use App\Enums\Sex;
 use App\Livewire\Forms\MembersForm;
+use App\Mail\MemberCreatedMail;
 use App\Models\Role;
 use App\Models\User;
 use App\Traits\CleanLivewireTMPFolder;
@@ -88,7 +89,12 @@ new class extends Component {
 
         $this->form->validate();
 
-        $this->form->save();
+        $data = $this->form->save();
+
+        $user = $data['user'];
+        $old_password = $data['old_password'];
+
+        Mail::to($user->email)->send(new MemberCreatedMail($user, $old_password));
 
         session()->flash('success', __('flash-messages.member-created'));
 

@@ -34,3 +34,6 @@ Route::group([
         /* EVENTS */
         require __DIR__ . '/admin/events.php';
     });
+
+// MAIL TESTING ROUTE
+// require __DIR__ . '/dev/mails.php';

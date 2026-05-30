@@ -18,13 +18,8 @@ class BookingFactory extends Factory
     {
         $faker = $this->faker;
 
-        $contact = Contact::factory()->create();
-        $start_date = str_replace('-', '', Carbon::now()->addDay()->format('Y-m-d'));
-
-        $uniqid = $start_date . '-' . $contact->first_name . '-' . $contact->last_name;
-
         return [
-            'uniqid' => $uniqid,
+            'uniqid' => uniqid(),
             'message' => $faker->realText(100),
             'billing_address' => $faker->address,
             'company_name' => $faker->company,
