@@ -1,4 +1,4 @@
-<form method="POST" action="{{ route('password.email', app()->getLocale()) }}" {{ $attributes->merge(['class' => '']) }}>
+<form method="POST" novalidate action="{{ route('password.email', ['locale' => app()->getLocale()]) }}" {{ $attributes->merge(['class' => '']) }}>
     @csrf
     <fieldset class="flex flex-col gap-6 mb-6 border-none">
         <legend class="sr-only block!">{{ __('auth/forgot-password.legend') }}</legend>
@@ -10,6 +10,7 @@
                 type="email"
                 field_name="email"
                 name="email"
+                :value="old('email')"
                 placeholder="john.doe@example.com"
         />
 

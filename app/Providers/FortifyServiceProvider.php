@@ -7,8 +7,10 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -39,6 +41,8 @@ class FortifyServiceProvider extends ServiceProvider
         $this->rateLimiters();
 
         $this->handleViews();
+
+        $this->handleCustomMails();
     }
 
     private function handleViews(): void
@@ -49,6 +53,10 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::requestPasswordResetLinkView(function () {
             return view('pages.auth.forgot-password');
+        });
+
+        Fortify::resetPasswordView(function (Request $request) {
+            return view('pages.auth.reset-password', ['request' => $request]);
         });
 
         RedirectIfAuthenticated::redirectUsing(function () {
@@ -66,6 +74,19 @@ class FortifyServiceProvider extends ServiceProvider
 
         RateLimiter::for('two-factor', function (Request $request) {
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        });
+    }
+
+    public function handleCustomMails(): void
+    {
+        // SOURCE : https://stackoverflow.com/questions/66162320/fortify-how-to-customise-verification-password-reset-emails
+        ResetPassword::toMailUsing(function($user, string $token) {
+            return (new MailMessage)
+                ->subject('Réinitialisation de votre mot de passe')
+                ->view('mails.auth.reset-password', [
+                    'user' => $user,
+                    'url' => route('password.reset', ['token' => $token])
+                ]);
         });
     }
 }

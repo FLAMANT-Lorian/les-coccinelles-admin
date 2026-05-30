@@ -39,6 +39,7 @@ return [
     'birth-date' => 'Date de naissance',
     'identity-documents' => 'Documents d’identité',
     'password' => 'Mot de passe',
+    'confirm_password' => 'Confirmer le mot de passe',
     'old_password' => 'Ancien mot de passe',
     'new_password' => 'Nouveau mot de passe',
     'choose-files' => 'Cliquer pour ajouter',
