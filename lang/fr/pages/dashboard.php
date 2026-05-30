@@ -26,5 +26,13 @@ return [
         'see_all' => 'Voir toutes les interventions',
         'see_intervention' => 'Voir l’intervention',
         'assign_to' => 'Assignée à ',
-    ]
+        'no_interventions' => 'Aucune intervention à venir',
+    ],
+    'meetings' => [
+        'title' => 'Réunions',
+        'meeting' => 'Réunion #',
+        'see_all' => 'Voir toutes les réunions',
+        'see_meeting' => 'Voir la réunion',
+        'no_meetings' => 'Aucune réunion à venir',
+    ],
 ];

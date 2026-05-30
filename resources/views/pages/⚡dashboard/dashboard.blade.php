@@ -23,5 +23,8 @@
 
         {{-- INTERVENTIONS --}}
         <livewire:pages.dashboard.parts.interventions/>
+
+        {{-- MEETINGS --}}
+        <livewire:pages.dashboard.parts.meetings/>
     </div>
 </div>

@@ -18,7 +18,7 @@ new class extends Component {
 };
 ?>
 
-<section class="col-span-full rl:col-span-2 lg:col-span-4 p-4 rounded-sm border border-beige-dark/60 bg-beige-light">
+<section class="col-span-full rl:col-span-2 lg:col-span-6 p-4 rounded-sm border border-beige-dark/60 bg-beige-light">
     <div class="flex flex-row items-center justify-between pb-4 border-b border-b-beige-dark/60">
         <h2 class="text-xl font-medium">{{ __('pages/dashboard.interventions.title') }}</h2>
         <a aria-label="{{ __('pages/dashboard.interventions.see_all') }}"
@@ -39,7 +39,10 @@ new class extends Component {
                             {{ $intervention->name }}
                         </a>
                         <div class="flex flex-row flex-wrap gap-2 text-sm text-gray-600">
-                            <time class="pr-2 border-r border-r-beige-dark/60" datetime="{{ $intervention->deadline->format('Y-m-d') }}">{{ formattedDate($intervention->deadline) }}</time>
+                            <time class="pr-2 border-r border-r-beige-dark/60"
+                                  datetime="{{ $intervention->deadline->format('Y-m-d') }}">
+                                {{ formattedDate($intervention->deadline) }}
+                            </time>
                             <span>{{ __('pages/dashboard.interventions.assign_to') . $intervention->assignee->full_name }}</span>
                         </div>
                     </div>
@@ -47,9 +50,13 @@ new class extends Component {
                         :status="$intervention->status"/>
                 </div>
             @endforeach
-            <div>
-
-            </div>
+        </div>
+    @else
+        <div class="flex items-center justify-center">
+            <span
+                class="text-red text-center mt-6 px-2 py-1 bg-status-red-light rounded-sm">
+                {{ __('pages/dashboard.interventions.no_interventions') }}
+            </span>
         </div>
     @endif
 </section>

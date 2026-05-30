@@ -48,9 +48,9 @@ new class extends Component {
                  'date' => [
                      'icon' => 'calendar',
                      'label' =>
-                     formattedDate($event->start_date) .
+                     '<time datetime="' . $event->start_date->format('Y-m-d') . '">' . formattedDate($event->start_date) .'</time>' .
                      __('general.date-picker-format') .
-                     formattedDate($event->end_date) .
+                    '<time datetime="' . $event->end_date->format('Y-m-d') . '">' . formattedDate($event->end_date) .'</time>' .
                      ' – ' . $text
                  ],
                  'map' => [
@@ -65,7 +65,7 @@ new class extends Component {
                          xmlns="http://www.w3.org/2000/svg">
                         <use href="#{{ $tag['icon'] }}"></use>
                     </svg>
-                    <span class="tetx-base text-gray-600">{{ $tag['label'] }}</span>
+                    <span class="tetx-base text-gray-600">{!! $tag['label'] !!}</span>
                 </div>
             @endforeach
         </div>

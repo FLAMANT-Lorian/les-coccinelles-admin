@@ -24,6 +24,8 @@ new class extends Component {
     {
         if (request()->boolean('create')) {
             $this->openModal('openCreateModal');
+        } elseif ($id = request()->query('meeting')) {
+            $this->openModal('openEditModal', $id);
         }
     }
     #[On('open-modal')]

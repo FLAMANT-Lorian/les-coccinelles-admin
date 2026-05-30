@@ -32,13 +32,17 @@ new class extends Component {
     </div>
     <div class="flex flex-col items-start gap-4 grow">
         <div class="flex flex-row gap-4 items-center mt-4">
-            <span>{{ formattedDate($booking->bookingDate->start_date) }}</span>
+            <time datetime="{{ $booking->bookingDate->start_date->format('Y-m-d') }}">
+                {{ formattedDate($booking->bookingDate->start_date) }}
+            </time>
             <svg width="17" height="8" viewBox="0 0 17 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                     d="M16.3536 4.03553C16.5488 3.84027 16.5488 3.52368 16.3536 3.32842L13.1716 0.146437C12.9763 -0.0488231 12.6597 -0.0488232 12.4645 0.146437C12.2692 0.341697 12.2692 0.658287 12.4645 0.853547L15.2929 3.68197L12.4645 6.5104C12.2692 6.70566 12.2692 7.02224 12.4645 7.21751C12.6597 7.41277 12.9763 7.41277 13.1716 7.21751L16.3536 4.03553ZM3.21889e-07 3.68197L2.78178e-07 4.18197L16 4.18197L16 3.68197L16 3.18197L3.65601e-07 3.18197L3.21889e-07 3.68197Z"
                     fill="#3D2B1F"/>
             </svg>
-            <span>{{ formattedDate($booking->bookingDate->end_date) }}</span>
+            <time datetime="{{ $booking->bookingDate->end_date->format('Y-m-d') }}">
+                {{ formattedDate($booking->bookingDate->end_date) }}
+            </time>
         </div>
         <div class="flex flex-row items-center gap-2 text-base text-brown">
             <span class="pr-2 border-r border-r-beige-dark/60 font-semibold">{{ $booking->contact->full_name }}</span>
