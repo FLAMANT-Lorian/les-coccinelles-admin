@@ -27,6 +27,12 @@ new class extends Component {
 
     public InterventionsForm $form;
 
+    public function mount(): void
+    {
+        if ($id = request()->query('intervention')) {
+            $this->openModal('openUpdateModal', $id);
+        }
+    }
     #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
     {

@@ -6,5 +6,25 @@ return [
         '1' => 'Créer une réservation',
         '2' => 'Planifier une réunion',
         '3' => 'Créer un événement',
+    ],
+    'event' => [
+        'title' => 'Prochain événement',
+        'in' => 'Dans ',
+        'see_event' => 'Voir l’événement',
+        'see_all' => 'Voir tous les événements',
+        'days' => ' jours',
+        'today' => 'Aujourd’hui',
+        'past' => 'Passé',
+    ],
+    'booking' => [
+        'title' => 'Prochaine réservation',
+        'see_booking' => 'Voir la réservation',
+        'see_all' => 'Voir toutes les réservations',
+    ],
+    'interventions' => [
+        'title' => 'Interventions',
+        'see_all' => 'Voir toutes les interventions',
+        'see_intervention' => 'Voir l’intervention',
+        'assign_to' => 'Assignée à ',
     ]
 ];
