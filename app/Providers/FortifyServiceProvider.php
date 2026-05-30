@@ -7,6 +7,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
+use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -49,6 +50,10 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::requestPasswordResetLinkView(function () {
             return view('pages.auth.forgot-password');
+        });
+
+        Fortify::resetPasswordView(function (Request $request) {
+            return view('pages.auth.reset-password', ['request' => $request]);
         });
 
         RedirectIfAuthenticated::redirectUsing(function () {
