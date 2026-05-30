@@ -10,7 +10,7 @@ return new class extends Migration {
         Schema::create('folders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('event_id')->constrained('events')->cascadeOnDelete();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('path');
             $table->string('color');
             $table->timestamps();
