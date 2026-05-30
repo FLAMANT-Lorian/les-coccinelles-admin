@@ -3,6 +3,7 @@
 use App\Mail\AvailabilityRequestSentMail;
 use App\Mail\BookingCreatedMail;
 use App\Mail\EventReminderMail;
+use App\Mail\InterventionCreatedMail;
 use App\Mail\MeetingCreatedMail;
 use App\Mail\MeetingReminderMail;
 use App\Mail\MemberCreatedMail;
@@ -13,6 +14,7 @@ use App\Models\Booking;
 use App\Models\BookingDate;
 use App\Models\Contact;
 use App\Models\HallRate;
+use App\Models\Intervention;
 use App\Models\Meeting;
 use App\Models\Message;
 use App\Models\MeterReading;
@@ -114,6 +116,19 @@ Route::get('/mail-meeting-reminder', function () {
     $mail = new MeetingReminderMail($meeting);
 
     $meeting->delete();
+
+    return $mail;
+});
+
+Route::get('/mail-intervention', function () {
+   $intervention = Intervention::factory()
+       ->assignedTo(auth()->user())
+       ->createdBy(auth()->user())
+       ->create();
+
+    $mail = new InterventionCreatedMail($intervention);
+
+    $intervention->delete();
 
     return $mail;
 });

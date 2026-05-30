@@ -1,3 +1,9 @@
+@php use App\Models\Intervention; @endphp
+@php
+    /**
+     * @var Intervention $intervention
+     * */
+@endphp
 <x-layout.mail-layout>
     <style>
         .main {
@@ -56,6 +62,15 @@
             color: #57A770;
         }
 
+        .notice {
+            background-color: #F8D2C9;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 14px;
+            line-height: 1.4;
+            color: #C6390E;
+        }
+
         .message {
             background-color: #f6f6f6;
             border-radius: 8px;
@@ -69,55 +84,45 @@
 
     <main class="main">
 
-        <h2 class="title">Rappel : votre réunion approche !</h2>
+        <h2 class="title">Une intervention vous a été assignée !</h2>
 
         <p class="intro">
-            Une réunion est prévue prochainement.
-            Retrouvez ci-dessous toutes les informations utiles pour vous organiser.
+            Bonjour {{ $intervention->assignee->first_name }}, une nouvelle intervention vient de vous être attribuée.
         </p>
 
         <section>
-            <h2 class="section-title">Détails de la réunion</h2>
-
+            <h2 class="section-title">Détails de l’intervention</h2>
             <div class="info">
-
                 <div class="info-row">
-                    <span class="info-label">Date</span>
-                    <span class="info-value">
-                        {{ formattedDate($meeting->date) }}
-                    </span>
+                    <span class="info-label">Intervention</span>
+                    <span class="info-value">{{ $intervention->name }}</span>
                 </div>
-
                 <div class="info-divider"></div>
-
                 <div class="info-row">
-                    <span class="info-label">Heure</span>
-                    <span class="info-value">
-                        {{ $meeting->hour }}
-                    </span>
+                    <span class="info-label">Assignée à</span>
+                    <span class="info-value">{{ $intervention->assignee->full_name }}</span>
                 </div>
-
                 <div class="info-divider"></div>
-
                 <div class="info-row">
-                    <span class="info-label">Adresse</span>
-                    <span class="info-value">
-                        {{ $meeting->address }}
-                    </span>
+                    <span class="info-label">Assignée le</span>
+                    <span class="info-value">{{ formattedDate($intervention->created_at)  }}</span>
                 </div>
-
             </div>
         </section>
 
-        @if($meeting->description)
+        @if($intervention->description)
             <section>
                 <h2 class="section-title">Description</h2>
 
                 <p class="message">
-                    {{ $meeting->description }}
+                    {{ $intervention->description }}
                 </p>
             </section>
         @endif
+
+        <div class="notice">
+            <strong>Rappel :</strong> pensez à marquer cette intervention comme complétée une fois celle-ci effectuée.
+        </div>
 
     </main>
 </x-layout.mail-layout>
