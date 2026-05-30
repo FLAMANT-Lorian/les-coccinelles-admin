@@ -66,17 +66,6 @@
             color: #3D2B1F;
             line-height: 1.7;
         }
-
-        .btn {
-            margin-top: 24px;
-            display: flex;
-            justify-content: center;
-            background-color: #57A770;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
     </style>
 
     <main class="main">
