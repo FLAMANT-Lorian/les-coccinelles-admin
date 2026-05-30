@@ -58,7 +58,7 @@
     <td>
         <div>
             <span>{{ __('tables.status') }}&nbsp;:</span>
-            @if($meeting->date > Carbon::now())
+            @if($meeting->date->startOfDay() >= Carbon::now()->startOfDay() && $meeting->hour >= Carbon::now()->format('H:i'))
                 <x-general.status :status="MeetingsStatus::SOON->value"/>
             @else
                 <x-general.status :status="MeetingsStatus::PAST->value"/>

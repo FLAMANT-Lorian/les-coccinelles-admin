@@ -16,7 +16,11 @@ function displayCalendar() {
         height: 'auto',
         events: events,
         displayEventTime: false,
-        windowResize: () => displayCalendar()
+        windowResize: function () {
+            if (document.getElementById('coccinelles-calendar')) {
+                displayCalendar();
+            }
+        }
     });
     calendar.render();
 }

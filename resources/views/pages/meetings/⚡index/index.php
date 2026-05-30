@@ -20,6 +20,14 @@ new class extends Component {
 
     public ?Meeting $meeting = null;
 
+    public function mount(): void
+    {
+        if (request()->boolean('create')) {
+            $this->openModal('openCreateModal');
+        } elseif ($id = request()->query('meeting')) {
+            $this->openModal('openEditModal', $id);
+        }
+    }
     #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
     {

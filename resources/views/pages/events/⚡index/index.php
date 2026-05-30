@@ -17,6 +17,13 @@ new class extends Component {
     public bool $openDeleteSelectionModal = false;
     public ?Event $event = null;
 
+    public function mount():void
+    {
+        if (request()->boolean('create')) {
+            $this->openModal('openCreateModal');
+        }
+    }
+
     #[On('open-modal')]
     public function openModal(string $modal, int $id = null): void
     {
