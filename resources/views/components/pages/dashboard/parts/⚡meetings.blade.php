@@ -23,7 +23,7 @@ new class extends Component {
         <h2 class="text-xl font-medium">{{ __('pages/dashboard.meetings.title') }}</h2>
         @can('view-any', Meeting::class)
             <a aria-label="{{ __('pages/dashboard.meetings.see_all') }}"
-               href="{{ route('interventions') }}">
+               href="{{ route('meetings') }}">
                 <x-pages.dashboard.arrow/>
                 <span class="sr-only">{{ __('pages/dashboard.meetings.see_all') }}</span>
             </a>
