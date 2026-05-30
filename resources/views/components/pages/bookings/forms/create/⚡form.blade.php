@@ -4,6 +4,7 @@ use App\Enums\BookingStatus;
 use App\Enums\DepositStatus;
 use App\Enums\YesOrNo;
 use App\Livewire\Forms\BookingsForm;
+use App\Mail\BookingCreatedMail;
 use App\Models\Booking;
 use App\Models\Contact;
 use App\Models\HallRate;
@@ -118,7 +119,9 @@ new class extends Component {
 
         $this->form->validate();
 
-        $this->form->save();
+        $booking = $this->form->save();
+
+        Mail::to($booking->contact->email)->send(new BookingCreatedMail($booking));
 
         session()->flash('success', __('flash-messages.bookings-created'));
 

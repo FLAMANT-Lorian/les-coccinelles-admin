@@ -141,7 +141,7 @@ class BookingsForm extends Form
         $this->after_mazout_general = $meter_reading->after_mazout_general;
     }
 
-    public function save(): void
+    public function save(): Booking
     {
         if (!$this->tenant) {
             $contact = Contact::create([
@@ -204,6 +204,8 @@ class BookingsForm extends Form
             'before_mazout_general' => $this->before_mazout_general ?? null,
             'after_mazout_general' => $this->after_mazout_general ?? null
         ]);
+
+        return $booking;
     }
 
     public function update(): void

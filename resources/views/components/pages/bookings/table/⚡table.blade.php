@@ -29,7 +29,7 @@ new class extends Component {
             $query->where(function (Builder $q) use ($term) {
                 $q->whereHas('contact', function (Builder $q) use ($term) {
                     $q->whereRaw("CONCAT(first_name, ' ', last_name) LIKE ?", ["%$term%"]);
-                });
+                })->orWhereLike('uniqid', '%' . $term . '%');
             });
         }
 
@@ -44,7 +44,7 @@ new class extends Component {
                     if (in_array(BookingStatus::PAST->value, $this->filter)) {
                         $q->orwhere('start_date', '<', $now)
                             ->where('end_date', '<', $now)
-                            ->where('end_date', '!=',$now);
+                            ->where('end_date', '!=', $now);
                     }
                     if (in_array(BookingStatus::NOW->value, $this->filter)) {
                         $q->orwhere('start_date', '<', $now)

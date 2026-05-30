@@ -1,6 +1,11 @@
 <?php
 
+use App\Mail\AvailabilityRequestSentMail;
 use App\Mail\BookingCreatedMail;
+use App\Mail\EventReminderMail;
+use App\Mail\MemberCreatedMail;
+use App\Mail\MessageSentMail;
+use App\Mail\TaskCreatedMail;
 use App\Models\AvailabilityRequest;
 use App\Models\Booking;
 use App\Models\BookingDate;
@@ -16,13 +21,13 @@ Route::get('/mail-member', function () {
     $user = auth()->user();
     $old_password = 'password';
 
-    return new App\Mail\MemberCreatedMail($user, $old_password);
+    return new MemberCreatedMail($user, $old_password);
 });
 
 Route::get('/mail-message', function () {
     $message = Message::factory()->create();
 
-    $mail = new App\Mail\MessageSentMail($message);
+    $mail = new MessageSentMail($message);
 
     $message->delete();
 
@@ -33,7 +38,7 @@ Route::get('/mail-message', function () {
 Route::get('/mail-availability', function () {
     $availability = AvailabilityRequest::factory()->create();
 
-    $mail = new App\Mail\AvailabilityRequestSentMail($availability);
+    $mail = new AvailabilityRequestSentMail($availability);
 
     $availability->delete();
 
@@ -47,7 +52,7 @@ Route::get('/mail-task', function () {
         ->assignedTo(auth()->user())
         ->create();
 
-    $mail = new App\Mail\TaskCreatedMail($task);
+    $mail = new TaskCreatedMail($task);
 
     $event->delete();
 
@@ -57,7 +62,7 @@ Route::get('/mail-task', function () {
 Route::get('/mail-reminder', function () {
     $event = Event::factory()->create();
 
-    $mail = new App\Mail\EventReminderMail($event);
+    $mail = new EventReminderMail($event);
 
     $event->delete();
 
