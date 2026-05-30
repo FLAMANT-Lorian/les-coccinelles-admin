@@ -88,9 +88,9 @@ return [
     'notifications' => [
         'messages' => 'Nouveaux messages',
         'availabilities' => 'Demandes de disponibilité',
-        'events' => 'Événement à venir',
+        'events' => 'Événement',
         'meetings' => 'Nouvelles réunions',
-        'interventions' => 'Rappels d’interventions',
+        'interventions' => 'Interventions',
     ],
     'meeting_description' => 'De quoi allons-nous parler ?',
     'event_name' => 'Nom de l’événement',
