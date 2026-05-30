@@ -4,6 +4,7 @@ use App\Mail\AvailabilityRequestSentMail;
 use App\Mail\BookingCreatedMail;
 use App\Mail\EventReminderMail;
 use App\Mail\MeetingCreatedMail;
+use App\Mail\MeetingReminderMail;
 use App\Mail\MemberCreatedMail;
 use App\Mail\MessageSentMail;
 use App\Mail\TaskCreatedMail;
@@ -61,7 +62,7 @@ Route::get('/mail-task', function () {
     return $mail;
 });
 
-Route::get('/mail-reminder', function () {
+Route::get('/mail-event-reminder', function () {
     $event = Event::factory()->create();
 
     $mail = new EventReminderMail($event);
@@ -101,6 +102,16 @@ Route::get('/mail-meeting', function () {
     $meeting = Meeting::factory()->create();
 
     $mail = new MeetingCreatedMail($meeting);
+
+    $meeting->delete();
+
+    return $mail;
+});
+
+Route::get('/mail-meeting-reminder', function () {
+    $meeting = Meeting::factory()->create();
+
+    $mail = new MeetingReminderMail($meeting);
 
     $meeting->delete();
 
