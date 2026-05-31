@@ -22,7 +22,6 @@ new class extends Component {
             $q->whereDate('start_date', '>', $today);
         })->orderBy('start_date')
             ->first();
-
     }
 };
 ?>

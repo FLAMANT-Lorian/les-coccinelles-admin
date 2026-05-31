@@ -16,9 +16,11 @@ new class extends Component {
         $today = now();
 
         $this->booking = Booking::whereHas('bookingDate', function (Builder $q) use ($today) {
+            // CAS 1
             $q->whereDate('start_date', '<=', $today)
                 ->whereDate('end_date', '>=', $today);
         })->orWhereHas('bookingDate', function (Builder $q) use ($today) {
+            // CAS 2
             $q->whereDate('start_date', '>', $today);
         })->join('booking_dates', 'bookings.id', '=', 'booking_dates.booking_id')
             ->orderBy('booking_dates.start_date')

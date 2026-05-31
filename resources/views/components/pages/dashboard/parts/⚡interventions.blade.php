@@ -12,7 +12,8 @@ new class extends Component {
 
     public function mount(): void
     {
-        $this->interventions = Intervention::where('status', InterventionStatus::todo->value)
+        $this->interventions = Intervention::with(['assignee'])
+        ->where('status', InterventionStatus::todo->value)
             ->get();
     }
 };
