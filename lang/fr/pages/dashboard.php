@@ -15,11 +15,13 @@ return [
         'days' => ' jours',
         'today' => 'Aujourd’hui',
         'past' => 'Passé',
+        'no_event' => 'Aucun événement à venir',
     ],
     'booking' => [
         'title' => 'Prochaine réservation',
         'see_booking' => 'Voir la réservation',
         'see_all' => 'Voir toutes les réservations',
+        'no_booking' => 'Aucune réservation à venir',
     ],
     'interventions' => [
         'title' => 'Interventions',
