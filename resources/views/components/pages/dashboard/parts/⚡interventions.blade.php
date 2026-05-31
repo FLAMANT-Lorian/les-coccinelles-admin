@@ -43,7 +43,7 @@ new class extends Component {
                                 {{ $intervention->name }}
                             </a>
                         @else
-                            <span class="text-lg underline-link after:bg-brown">
+                            <span class="text-lg">
                                 {{ $intervention->name }}
                             </span>
                         @endcan
