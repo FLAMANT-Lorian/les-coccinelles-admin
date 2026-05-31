@@ -15,7 +15,7 @@
             :required="true"
             field_name="dates"
             wire="form.dates"
-            :disabled="$this->getDisabledDates()"
+            :disabled="$this->getDisabledDates"
         />
 
         <x-forms.input.input-date

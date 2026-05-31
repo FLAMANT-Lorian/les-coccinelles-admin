@@ -31,9 +31,7 @@ new class extends Component {
 
     public function mount(): void
     {
-        $contactID = request()->query('contact');
-
-        if ($contactID) {
+        if ($contactID = request()->query('contact')) {
             $this->form->tenant = Contact::findOrFail($contactID)->id;
         }
     }
@@ -100,10 +98,11 @@ new class extends Component {
         return $cases;
     }
 
+    #[Computed]
     public function getDisabledDates(): array
     {
         $disabled_dates = [];
-        $bookings = Booking::all();
+        $bookings = Booking::with(['bookingDate'])->get();
 
         foreach ($bookings as $key => $booking) {
             $disabled_dates[$key]['from'] = $booking->bookingDate->start_date->format('Y-m-d');
