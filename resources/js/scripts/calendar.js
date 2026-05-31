@@ -39,30 +39,34 @@ function filterEvents(filters) {
 addEventListener('DOMContentLoaded', function () {
     if (document.getElementById('coccinelles-calendar')) {
         displayCalendar();
+        handleFilters();
     }
 });
 
 addEventListener('livewire:navigated', function () {
     if (document.getElementById('coccinelles-calendar')) {
         displayCalendar();
+        handleFilters();
     }
 });
 
 let activeFilters = ['bookings', 'meetings', 'events', 'interventions'];
 
-document.querySelectorAll('[data-type]').forEach(btn => {
-    btn.addEventListener('click', e => {
-        const btn = e.currentTarget;
-        const type = btn.dataset.type;
+function handleFilters() {
+    document.querySelectorAll('[data-type]').forEach(btn => {
+        btn.addEventListener('click', e => {
+            const btn = e.currentTarget;
+            const type = btn.dataset.type;
 
-        if (activeFilters.includes(type)) {
-            activeFilters = activeFilters.filter(el => el !== type);
-            btn.style.opacity = '0.25';
-        } else {
-            activeFilters.push(type);
-            btn.style.opacity = '1';
-        }
+            if (activeFilters.includes(type)) {
+                activeFilters = activeFilters.filter(el => el !== type);
+                btn.style.opacity = '0.25';
+            } else {
+                activeFilters.push(type);
+                btn.style.opacity = '1';
+            }
 
-        filterEvents(activeFilters);
+            filterEvents(activeFilters);
+        });
     });
-});
+}
