@@ -67,7 +67,10 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
         ]);
         $this->role->givePermissionTo($permission);
 
-        $intervention = Intervention::create([
+        $intervention = Intervention::factory()
+            ->createdBy(auth()->user())
+            ->assignedTo(auth()->user())
+            ->create([
             'name' => 'test1',
             'description' => 'test1',
             'deadline' => Carbon::now()->addDays(10),
@@ -101,12 +104,15 @@ describe('INTERVENTIONS WITH PERMISSIONS', function () {
         ]);
         $this->role->givePermissionTo($permission);
 
-        $intervention = Intervention::create([
-            'name' => 'test1',
-            'description' => 'test1',
-            'deadline' => Carbon::now()->addDays(10),
-            'status' => InterventionStatus::todo->value,
-        ]);
+        $intervention = Intervention::factory()
+            ->createdBy(auth()->user())
+            ->assignedTo(auth()->user())
+            ->create([
+                'name' => 'test1',
+                'description' => 'test1',
+                'deadline' => Carbon::now()->addDays(10),
+                'status' => InterventionStatus::todo->value,
+            ]);
 
         Livewire::test('pages::interventions.index')
             ->call('openModal', modal: 'openDeleteModal', id: $intervention->id)
@@ -158,12 +164,15 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
     });
 
     it('can’t update an intervention', function () {
-        $intervention = Intervention::create([
-            'name' => 'test1',
-            'description' => 'test1',
-            'deadline' => Carbon::now()->addDays(10)->format('Y-m-d'),
-            'status' => InterventionStatus::todo->value,
-        ]);
+        $intervention = Intervention::factory()
+            ->createdBy(auth()->user())
+            ->assignedTo(auth()->user())
+            ->create([
+                'name' => 'test1',
+                'description' => 'test1',
+                'deadline' => Carbon::now()->addDays(10)->startOfDay(),
+                'status' => InterventionStatus::todo->value,
+            ]);
 
         Livewire::test('pages::interventions.index')
             ->set('form.intervention', $intervention)
@@ -179,17 +188,20 @@ describe('INTERVENTIONS WITHOUT PERMISSIONS', function () {
             'name' => 'test1',
             'description' => 'test1',
             'status' => InterventionStatus::todo->value,
-            'deadline' => Carbon::parse($intervention->deadline)->format('Y-m-d H:i:s'),
+            'deadline' => Carbon::parse($intervention->deadline)->startOfDay(),
         ]);
     });
 
     it('can’t delete an intervention', function () {
-        $intervention = Intervention::create([
-            'name' => 'test1',
-            'description' => 'test1',
-            'deadline' => Carbon::now()->addDays(10),
-            'status' => InterventionStatus::todo->value,
-        ]);
+        $intervention = Intervention::factory()
+            ->createdBy(auth()->user())
+            ->assignedTo(auth()->user())
+            ->create([
+                'name' => 'test1',
+                'description' => 'test1',
+                'deadline' => Carbon::now()->addDays(10),
+                'status' => InterventionStatus::todo->value,
+            ]);
 
         Livewire::test('pages::interventions.index')
             ->call('openModal', modal: 'openDeleteModal', id: $intervention->id)

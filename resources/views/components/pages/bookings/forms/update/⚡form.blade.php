@@ -100,6 +100,7 @@ new class extends Component {
         return $cases;
     }
 
+    #[Computed]
     public function getDisabledDates(): array
     {
         $disabled_dates = [];

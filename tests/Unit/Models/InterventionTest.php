@@ -24,10 +24,3 @@ it('verifies if you can retrieve interventions created by a user', function () {
         ->and($intervention->creator->email)->toBe($user1->email)
         ->and($intervention->assignee->email)->toBe($user2->email);
 });
-
-it('verifies if you can create an intervention without creator or without assignee', function () {
-
-    Intervention::factory()->create();
-
-    assertDatabaseCount('interventions', 1);
-});
