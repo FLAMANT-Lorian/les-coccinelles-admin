@@ -14,11 +14,7 @@ class InterventionObserver
      */
     public function created(Intervention $intervention): void
     {
-        $users = User::where('notifications->interventions', true)->get();
-
-        foreach ($users as $user) {
-            Mail::to($user->email)->send(new InterventionCreatedMail($intervention));
-        }
+        Mail::to($intervention->assignee->email)->send(new InterventionCreatedMail($intervention));
     }
 
     /**

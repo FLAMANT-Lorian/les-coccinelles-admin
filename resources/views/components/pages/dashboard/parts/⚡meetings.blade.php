@@ -42,7 +42,7 @@ new class extends Component {
                                 {{ __('pages/dashboard.meetings.meeting') . $meeting->id }}
                             </a>
                         @else
-                            <span class="text-lg underline-link after:bg-brown">
+                            <span class="text-lg">
                                 {{ __('pages/dashboard.meetings.meeting') . $meeting->id }}
                             </span>
                         @endcan
