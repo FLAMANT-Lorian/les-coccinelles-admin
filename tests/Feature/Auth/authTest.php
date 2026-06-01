@@ -1,11 +1,11 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
 use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
 use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
-use Spatie\Permission\Models\Role;
 
 describe('GUEST USER', function () {
     it('verifies if you are redirected to "/fr" when you try to access to "/" route', function () {

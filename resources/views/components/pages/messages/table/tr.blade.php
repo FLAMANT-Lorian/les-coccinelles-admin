@@ -67,6 +67,7 @@
                     @can('messages.delete')
                         <button type="button"
                                 @click="modalOpen = true"
+                                title="{{ __('pages/messages.delete-message') }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteMessage', id: {{ $contactMessage->id }}})">
                             <span>{{ __('tables.delete') }}</span>
                         </button>
@@ -74,12 +75,14 @@
                     @can('update', Message::class)
                         @if($contactMessage->status === MessageStatus::Unread->value)
                             <button type="button"
+                                    title="{{ __('tables.mark-as-read') }}"
                                     wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
                                 <span>{{ __('tables.mark-single-as-read') }}</span>
                             </button>
                         @endif
                         @if($contactMessage->status === MessageStatus::Read->value)
                             <button type="button"
+                                    title="{{ __('tables.mark-as-not-read') }}"
                                     wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $contactMessage->id }})">
                                 <span>{{ __('tables.mark-single-as-not-read') }}</span>
                             </button>

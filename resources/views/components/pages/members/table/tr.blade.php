@@ -105,6 +105,7 @@
                     @endcan
                     @can('delete', User::class)
                         <button type="button"
+                                title="{{ __('pages/members.delete-member-title') }}"
                                 @click="modalOpen = true"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
                             <span>{{ __('tables.delete') }}</span>
