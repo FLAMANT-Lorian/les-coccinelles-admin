@@ -18,7 +18,7 @@ use Spatie\LaravelPdf\Facades\Pdf;
 use Spatie\LaravelPdf\PdfBuilder;
 use function Pest\Laravel\actingAs;
 
-describe('MEETINGS BROWSER TESTING', function () {
+describe('BOOKINGS BROWSER TESTING', function () {
     beforeEach(function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,

@@ -14,7 +14,7 @@ use function Pest\Laravel\actingAs;
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
 
-describe('MEETINGS BROWSER TESTING', function () {
+describe('INTERVENTIONS BROWSER TESTING', function () {
     beforeEach(function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,

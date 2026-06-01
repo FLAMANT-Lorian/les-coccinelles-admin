@@ -10,7 +10,7 @@ use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
 use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
 use function Pest\Laravel\actingAs;
 
-describe('ROLE BROWSER TESTING', function () {
+describe('ROLES BROWSER TESTING', function () {
     beforeEach(function () {
         $this->withoutMiddleware([
             LaravelLocalizationRoutes::class,
