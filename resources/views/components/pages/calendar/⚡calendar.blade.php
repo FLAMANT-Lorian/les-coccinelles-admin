@@ -74,14 +74,16 @@ new class extends Component {
         $events_db = Event::get();
         foreach ($events_db as $event_db) {
             $is_one_day = Carbon::parse($event_db->start_date)->format('Y-m-d') === Carbon::parse($event_db->end_date)->format('Y-m-d');
-            $event = ['type' => 'events',
+            $event = [
+                'type' => 'events',
                 'title' => $event_db->name,
                 'start' => Carbon::parse($event_db->start_date)->startOfDay()->format($is_one_day ? 'Y-m-d' : 'Y-m-d\TH:i:s'),
                 'end' => Carbon::parse($event_db->end_date)->endOfDay()->format($is_one_day ? 'Y-m-d' : 'Y-m-d\TH:i:s'),
                 'backgroundColor' => '#E4DCF4',
-                'textColor' => '#6554B6',];
+                'textColor' => '#6554B6',
+            ];
 
-            if (auth()->user()->can('view-any', Meeting::class)) {
+            if (auth()->user()->can('view-any', Event::class)) {
                 $event['url'] = route('events.show', ['event' => $event_db->id]);
             }
 
