@@ -17,7 +17,7 @@ new class extends Component {
     public bool $openDeleteSelectionModal = false;
     public ?Event $event = null;
 
-    public function mount():void
+    public function mount(): void
     {
         if (request()->boolean('create')) {
             $this->openModal('openCreateModal');
@@ -63,11 +63,11 @@ new class extends Component {
 
         $this->form->validate();
 
-        $this->form->save();
+        $event = $this->form->save();
 
         session()->flash('success', __('flash-messages.event-created'));
 
-        $this->redirectRoute('events.index', navigate: true);
+        $this->redirectRoute('events.show', ['event' => $event->id], navigate: true);
     }
 
     public function update(): void

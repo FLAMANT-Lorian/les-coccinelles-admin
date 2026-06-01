@@ -51,9 +51,9 @@ class EventsForm extends Form
         ]);
     }
 
-    public function save(): void
+    public function save(): Event
     {
-        Event::create([
+        $event = Event::create([
             'name' => $this->name,
             'description' => $this->description,
             'start_date' => $this->start_date,
@@ -61,5 +61,7 @@ class EventsForm extends Form
             'address' => $this->address,
             'google_drive_url' => $this->link,
         ]);
+
+        return $event;
     }
 }
