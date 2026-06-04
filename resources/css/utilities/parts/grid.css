@@ -1,0 +1,8 @@
+@utility grid-login {
+    @apply grid grid-cols-6 rl:grid-cols-13 gap-8;
+}
+
+@utility grid-default {
+    @apply grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-x-8;
+}
+

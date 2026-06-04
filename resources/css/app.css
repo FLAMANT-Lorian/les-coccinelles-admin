@@ -1,5 +1,13 @@
 @import 'tailwindcss';
+@import 'flatpickr/dist/flatpickr.min.css';
 
-@theme {
+@import './custom/theme.css';
+@import './custom/reset.css';
+@import './custom/font.css';
+@import './utilities/utilities.css';
 
-}
+@import './parts/forms.css';
+@import './parts/header.css';
+@import './parts/general/table.css';
+@import './parts/general/base.css';
+@import './parts/general/calendar.css';

@@ -1,0 +1,144 @@
+<?php
+
+use App\Enums\DepositStatus;
+use App\Enums\YesOrNo;
+use App\Livewire\Forms\BookingsForm;
+use App\Models\Booking;
+use App\Models\Contact;
+use App\Models\HallRate;
+use App\Traits\DeleteBooking;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Livewire\Attributes\Computed;
+use Livewire\Component;
+
+new class extends Component {
+
+    use DeleteBooking;
+
+    public Booking $booking;
+
+    public bool $tenantSelectState = false;
+    public bool $memberCardSelectState = false;
+    public bool $typeSelectState = false;
+    public bool $depositStatusSelectState = false;
+
+    public BookingsForm $form;
+
+    public array $terms = [
+        'tenant' => '',
+        'member_card' => '',
+        'type' => '',
+        'deposit_status' => ''
+    ];
+
+    public function mount(Booking $booking): void
+    {
+        $this->booking = $booking;
+        $this->form->setBooking($booking);
+    }
+
+    #[Computed]
+    public function getContacts()
+    {
+        $query = Contact::query();
+
+        if (!empty($this->terms['tenant'])) {
+            $query->where(function (Builder $q) {
+                $q->orwhereRaw('CONCAT(first_name, " ", last_name) LIKE ?', ['%' . $this->terms['tenant'] . '%']);
+            });
+        }
+
+        $contacts = $query->get();
+
+        return $contacts->isEmpty() ? [] : $contacts;
+    }
+
+    #[Computed]
+    public function getYesOrNo()
+    {
+        $cases = YesOrNo::cases();
+
+        if (!empty($this->terms['member_card'])) {
+            return array_filter($cases, function ($case) {
+                return str_contains(
+                    strtolower(__('enums.' . $case->value)),
+                    strtolower($this->terms['member_card'])
+                );
+            });
+        }
+        return $cases;
+    }
+
+    #[Computed]
+    public function getTypes()
+    {
+        $query = HallRate::query();
+
+        $query->where(function (Builder $q) {
+            $q->whereLike('type', '%' . $this->terms['type'] . '%');
+        });
+
+        $types = $query->get();
+
+        return $types->isEmpty() ? [] : $types;
+    }
+
+    #[Computed]
+    public function getDepositStatus()
+    {
+        $cases = DepositStatus::cases();
+
+        if (!empty($this->terms['deposit_status'])) {
+            return array_filter($cases, function ($case) {
+                return str_contains(
+                    strtolower(__('enums.' . $case->value)),
+                    strtolower($this->terms['deposit_status'])
+                );
+            });
+        }
+        return $cases;
+    }
+
+    #[Computed]
+    public function getDisabledDates(): array
+    {
+        $disabled_dates = [];
+        $bookings = Booking::all()->except([$this->booking->id]);
+
+        foreach ($bookings as $key => $booking) {
+            $disabled_dates[$key]['from'] = $booking->bookingDate->start_date->format('Y-m-d');
+            $disabled_dates[$key]['to'] = $booking->bookingDate->end_date->format('Y-m-d');
+        }
+
+        return $disabled_dates;
+    }
+
+    public function update(): void
+    {
+        $this->authorize('update', Booking::class);
+
+        $this->form->validate();
+
+        $this->form->update();
+
+        session()->flash('success', __('flash-messages.bookings-updated'));
+
+        $this->redirectRoute('bookings.index', navigate: true);
+    }
+};
+?>
+
+<form wire:submit.prevent="update" novalidate>
+
+    <x-pages.bookings.forms.fieldset1/>
+    <x-pages.bookings.forms.fieldset2/>
+    <x-pages.bookings.forms.fieldset3/>
+    <x-pages.bookings.forms.fieldset4/>
+    <x-pages.bookings.forms.fieldset5/>
+
+    {{-- BOUTON --}}
+    <x-forms.buttons.submit-filled
+        :label="__('pages/hall.bookings-update.update-booking')"
+    />
+</form>

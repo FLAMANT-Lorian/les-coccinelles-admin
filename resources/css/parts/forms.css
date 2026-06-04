@@ -1,0 +1,169 @@
+form {
+    fieldset {
+        @apply flex flex-col gap-4;
+
+        &:not(:last-child) {
+            @apply pb-10 border-b border-beige-dark/60;
+        }
+
+        &:not(:first-child) {
+            @apply pt-10;
+        }
+    }
+
+    legend {
+        @apply contents text-brown text-2xl font-medium;
+    }
+}
+
+.field {
+    @apply relative flex flex-col gap-1;
+
+    label {
+        @apply text-brown text-base font-medium pl-3;
+
+        strong {
+            @apply text-red;
+        }
+    }
+
+    input, textarea {
+        @apply px-4 py-3 text-brown bg-beige-light border border-beige-dark trans-all rounded-sm;
+
+        &::placeholder {
+            @apply text-beige-dark;
+        }
+
+        &:hover, &:focus {
+            @apply border-brown outline-none;
+        }
+    }
+
+    textarea {
+        @apply max-md:min-h-40 md:h-full resize-none;
+    }
+}
+
+.checkbox-field  {
+    @apply flex flex-row items-center gap-2;
+
+    &:has(input:checked) label, &:has(input:hover) label, &:has(input:focus) label {
+        @apply text-brown;
+    }
+
+    label {
+        @apply paragraph hover:text-brown text-gray-600;
+    }
+
+    input {
+        @apply appearance-none min-w-4 min-h-4 max-w-4 max-h-4 border border-red outline-none rounded-sm hover:bg-red/50 focus:bg-red/50 trans-all p-0;
+
+        &:checked {
+            @apply bg-red;
+        }
+    }
+}
+
+.radio-field {
+    @apply flex flex-row items-center gap-2;
+
+    &:has(input:checked) label, &:has(input:hover) label, &:has(input:focus) label {
+        @apply text-brown;
+    }
+
+    label {
+        @apply paragraph hover:text-brown text-gray-600;
+    }
+
+    input {
+        @apply relative appearance-none min-w-4 min-h-4 max-w-4 max-h-4 border border-red outline-none rounded-full trans-all p-0;
+
+        &:after {
+            @apply content-[""] w-0 h-0 trans-all bg-red absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 rounded-full;
+        }
+
+        &:checked:after {
+            @apply w-2.5 h-2.5;
+        }
+    }
+}
+
+.filter-container {
+    @apply mb-8 grid grid-cols-1  md:grid-cols-4 gap-x-6 gap-6 grow;
+}
+
+.result-container {
+    @apply border border-beige-dark pl-4 pr-8 py-3 bg-beige-light relative;
+
+    &:has(input:focus), &:hover {
+        @apply border-brown;
+    }
+
+    input {
+        @apply p-0 rounded-none border-none bg-transparent;
+    }
+}
+
+.custom-select {
+    @apply rounded-sm;
+}
+
+.permissions-container {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8;
+
+    .permission-card {
+        @apply p-4 border border-beige-dark rounded-sm bg-beige-light;
+
+        .heading {
+            @apply flex flex-row items-center justify-between pb-4 border-b border-beige-dark/60;
+
+            .title {
+                @apply text-lg font-medium text-brown;
+            }
+
+            .all-selector {
+                @apply flex flex-row items-center cursor-pointer;
+
+                input {
+                    @apply cursor-pointer;
+                }
+
+                label {
+                    @apply text-brown cursor-pointer pr-2;
+                }
+            }
+        }
+
+        .permissions {
+            @apply pt-4 flex flex-col items-start gap-4;
+
+            .permission {
+                @apply flex flex-row items-center cursor-pointer;
+
+                input {
+                    @apply cursor-pointer;
+
+                    &:checked ~ label {
+                        @apply text-brown;
+                    }
+                }
+
+                label {
+                    @apply pl-2 text-brown/60 trans-all cursor-pointer;
+                }
+            }
+        }
+
+        input[type="checkbox"] {
+            @apply appearance-none w-4 h-4 rounded-sm border border-red trans-all bg-[url('/resources/img/svg/checkbox.svg')] bg-no-repeat bg-center;
+
+            &:hover {
+                @apply bg-red/50;
+            }
+
+            &:checked {
+                @apply bg-red;
+            }
+        }
+    }
+}

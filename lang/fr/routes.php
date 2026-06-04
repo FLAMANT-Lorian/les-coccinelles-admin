@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'interventions' => 'interventions',
+    'availabilities' => 'demandes-de-disponibilite',
+    'hall-rates' => 'tarifs-salle',
+    'utility-costs' => 'couts-charges',
+    'messages' => 'messages',
+    'members' => 'membres',
+    'members-create' => 'membres/ajouter',
+    'members-edit' => 'membres/{member}/modifier',
+    'roles' => 'membres/roles',
+    'roles-create' => 'membres/roles/ajouter',
+    'roles-edit' => 'membres/roles/{role}/modifier',
+    'contacts' => 'contacts',
+    'bookings' => 'reservations',
+    'bookings-create' => 'reservations/ajouter',
+    'bookings-edit' => 'reservations/{booking}/modifier',
+    'calendar' => 'calendrier',
+    'settings' => 'parametres',
+    'preferences' => 'parametres/preferences',
+    'meetings' => 'reunions',
+    'events-index' => 'evenements',
+    'events-show' => 'evenements/{event}',
+];

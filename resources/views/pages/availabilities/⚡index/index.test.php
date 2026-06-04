@@ -1,0 +1,125 @@
+<?php
+
+use App\Enums\MessageStatus;
+use App\Models\AvailabilityRequest;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
+use function Pest\Laravel\assertDatabaseCount;
+use function Pest\Laravel\assertDatabaseHas;
+
+
+describe('AVAILABILITY REQUESTS WITH PERMISSIONS', function () {
+    beforeEach(function () {
+        $permission = Permission::create([
+            'name' => 'availabilities.index',
+            'guard_name' => 'web',
+        ]);
+
+        $this->role = Role::create([
+            'name' => 'Test',
+            'guard_name' => 'web',
+            'unique' => 1
+        ]);
+
+        $this->role->givePermissionTo($permission);
+        $this->user = User::factory()->create();
+        $this->user->assignRole($this->role);
+        $this->actingAs($this->user);
+    });
+
+    it('can access to the availability requests index', function () {
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('availabilities', ['locale' => config('app.locale')]))
+            ->assertOk();
+    });
+
+    it('can delete availability requests model', function () {
+        $permission = Permission::create([
+            'name' => 'availabilities.delete',
+            'guard_name' => 'web',
+        ]);
+        $this->role->givePermissionTo($permission);
+        $availability = AvailabilityRequest::factory()->create();
+
+        Livewire::test('pages.availabilities.table.table')
+            ->call('deleteAvailabilityRequest', id: $availability->id)
+            ->assertOk();
+
+        assertDatabaseCount('availability_requests', 0);
+    });
+
+    it('can update availability requests model', function () {
+        $permission = Permission::create([
+            'name' => 'availabilities.edit',
+            'guard_name' => 'web',
+        ]);
+        $this->role->givePermissionTo($permission);
+        $availability = AvailabilityRequest::factory()->create([
+            'status' => MessageStatus::Unread->value
+        ]);
+
+        Livewire::test('pages.availabilities.table.table')
+            ->call('markAvailabilityRequestAs', value: MessageStatus::Read->value, id: $availability->id)
+            ->assertOk();
+
+        assertDatabaseHas('availability_requests', ['status' => MessageStatus::Read->value]);
+    });
+});
+
+describe('AVAILABILITY REQUESTS WITHOUT PERMISSIONS', function () {
+    beforeEach(function () {
+        $role = Role::create([
+            'name' => 'Test',
+            'guard_name' => 'web',
+            'unique' => 1
+        ]);
+
+        $this->user = User::factory()->create();
+
+        $this->user->assignRole($role);
+
+        $this->actingAs($this->user);
+    });
+
+    it('can’t access to the availability requests index', function () {
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('availabilities', ['locale' => config('app.locale')]))
+            ->assertForbidden();
+    });
+
+    it('can’t delete availability requests model', function () {
+
+        $availability = AvailabilityRequest::factory()->create();
+
+        Livewire::test('pages.availabilities.table.table')
+            ->call('deleteAvailabilityRequest', id: $availability->id)
+            ->assertForbidden();
+
+        assertDatabaseCount('availability_requests', 1);
+    });
+
+    it('can’t update availability requests model', function () {
+        $availability = AvailabilityRequest::factory()->create([
+            'status' => MessageStatus::Unread->value
+        ]);
+
+        Livewire::test('pages.availabilities.table.table')
+            ->call('markAvailabilityRequestAs', value: MessageStatus::Read->value, id: $availability->id)
+            ->assertOk();
+
+        assertDatabaseHas('availability_requests', ['status' => MessageStatus::Unread->value]);
+    });
+});

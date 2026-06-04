@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Enums\MembersStatus;
+use App\Enums\Sex;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -23,12 +25,27 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = $this->faker;
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            'first_name' => $faker->firstName(),
+            'last_name' => $faker->lastName(),
+            'phone' => $faker->phoneNumber(),
+            'birth_date' => Carbon::now()->subYears(rand(10, 100)),
+            'sex' => $faker->randomElement(enumToArray(Sex::class)),
+            'city' => $faker->city(),
+            'postal_code' => $faker->postcode(),
+            'address' => $faker->streetAddress(),
+            'status' => $faker->randomElement(enumToArray(MembersStatus::class)),
+            'email' => $faker->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
-            'remember_token' => Str::random(10),
+            'notifications' => [
+                'messages' => false,
+                'availabilities' => false,
+                'events' => false,
+                'meetings' => false,
+                'interventions' => false,
+            ],
         ];
     }
 
@@ -37,7 +54,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

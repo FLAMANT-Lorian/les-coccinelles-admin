@@ -1,0 +1,78 @@
+<?php
+
+return [
+    'deleteSelection' => 'Supprimer la sélection',
+    'deleteSelectionMessage' => 'Après suppression, les éléments sélectionnés ne pourront plus être récupérés !',
+    'viewMessage' => 'Message de ',
+    'viewAvailabilityRequest' => 'Demande de ',
+    'object' => 'Objet : ',
+    'from' => 'De : ',
+    'reply-to-message' => 'Répondre au message',
+    'reply-to-availability-request' => 'Répondre à la demande',
+    'create-a-contact' => 'Ajouter l’expéditeur comme contact',
+    'see-message' => 'Voir le message',
+    'close' => 'Fermer la modale',
+    'deleteMember' => 'Supprimer le membre',
+    'deleteMemberMessage' => 'Êtes-vous sûr de vouloir supprimer ce membre ?',
+    'deleteRole' => 'Supprimer le rôle',
+    'deleteRoleMessage' => 'Êtes-vous sûr de vouloir supprimer ce rôle ?',
+    'edit-member' => 'Modifier le profil du membre',
+    'edit-role' => 'Modifier le rôle',
+    'edit' => 'Modifier',
+    'deleteMessage' => 'Supprimer le message',
+    'deleteMessageMessage' => 'Êtes-vous sûr de vouloir supprimer ce message ?',
+    'deleteAvailabilityRequest' => 'Supprimer la demande',
+    'deleteAvailabilityRequestMessage' => 'Êtes-vous sûr de vouloir supprimer cette demande ?',
+    'addHallRate' => 'Ajouter un tarif pour la salle',
+    'createHallRate' => 'Ajouter le tarif',
+    'updateHallRate' => 'Modifier le tarif',
+    'deleteHallRate' => 'Supprimer le tarif',
+    'deleteHallRateMessage' => 'Êtes-vous sûr de vouloir supprimer ce tarif ?',
+    'addUtilityCost' => 'Ajouter un coût pour une charge',
+    'createUtilityCost' => 'Ajouter le coût',
+    'updateUtilityCost' => 'Modifier le coût',
+    'deleteUtilityCost' => 'Supprimer le coût',
+    'deleteUtilityCostMessage' => 'Êtes-vous sûr de vouloir supprimer ce coût ?',
+    'addIntervention' => 'Ajouter une intervention',
+    'createIntervention' => 'Ajouter l’intervention',
+    'updateIntervention' => 'Modifier l’intervention',
+    'deleteIntervention' => 'Supprimer l’intervention',
+    'deleteInterventionMessage' => 'Êtes-vous sûr de vouloir supprimer cette intervention ?',
+    'addContact' => 'Ajouter un contact',
+    'createContact' => 'Ajouter le contact',
+    'updateContact' => 'Modifier le contact',
+    'deleteContact' => 'Supprimer le contact',
+    'deleteContactMessage' => 'Êtes-vous sûr de vouloir supprimer ce contact ?',
+
+    // BOOKING
+    'deleteBooking' => 'Supprimer la réservation',
+    'deleteBookingMessage' => 'Êtes-vous sûr de vouloir supprimer cette réservation ?',
+
+    // MEETINGS
+    'addMeeting' => 'Planifier une réunion',
+    'createMeeting' => 'Planifier la réunion',
+    'updateMeeting' => 'Modifier la réunion',
+    'deleteMeeting' => 'Supprimer la réunion',
+    'deleteMeetingMessage' => 'Êtes-vous sûr de vouloir supprimer cette réunion ?',
+
+    // EVENTS
+    'addEvent' => 'Créer un nouvel événement',
+    'createEvent' => 'Créer l’événement',
+    'updateEvent' => 'Modifier l’événement',
+    'deleteEvent' => 'Supprimer l’événement',
+    'deleteEventMessage' => 'Êtes-vous sûr de vouloir supprimer cet événement ?',
+
+    // FOLDERS
+    'addFolder' => 'Ajouter un dossier',
+    'createFolder' => 'Créer le dossier',
+    'updateFolder' => 'Modifier le dossier',
+    'deleteFolder' => 'Supprimer le dossier',
+    'deleteFolderMessage' => 'Êtes-vous sûr de vouloir supprimer ce dossier ?',
+
+    // TASKS
+    'addTask' => 'Ajouter une tâche',
+    'createTask' => 'Créer une tâche',
+    'updateTask' => 'Modifier la tâche',
+    'deleteTask' => 'Supprimer la tâche',
+    'deleteTaskMessage' => 'Êtes-vous sûr de vouloir supprimer cette tâche ?',
+];

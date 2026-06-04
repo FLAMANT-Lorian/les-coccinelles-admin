@@ -1,0 +1,190 @@
+<?php
+
+use App\Models\HallRate;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter;
+use Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes;
+use Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect;
+use Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect;
+use function Pest\Laravel\assertDatabaseCount;
+use function Pest\Laravel\assertDatabaseHas;
+
+describe('HALL RATES WITH PERMISSIONS', function () {
+    beforeEach(function () {
+        $permission = Permission::create([
+            'name' => 'hallRates.index',
+            'guard_name' => 'web',
+        ]);
+
+        $this->role = Role::create([
+            'name' => 'member',
+            'guard_name' => 'web',
+            'unique' => 1
+        ]);
+        $this->role->givePermissionTo($permission);
+        $user = User::factory()->create();
+        $user->assignRole($this->role);
+        $this->actingAs($user);
+    });
+
+    it('can access to the hall rates index', function () {
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('hall-rates', ['locale' => config('app.locale')]))
+            ->assertOk();
+    });
+
+    it('can create a hall rate', function () {
+        $permission = Permission::create([
+            'name' => 'hallRates.create',
+            'guard_name' => 'web',
+        ]);
+        $this->role->givePermissionTo($permission);
+
+        Livewire::test('pages::hall-rates.index')
+            ->set('form.type', 'test')
+            ->set('form.deposit', 25)
+            ->set('form.base_price', 10.5)
+            ->set('form.member_price', 10)
+            ->call('save')
+            ->assertOk();
+
+        assertDatabaseHas('hall_rates', [
+            'type' => 'test',
+            'deposit' => 2500,
+            'base_price' => 1050,
+            'member_price' => 1000,
+        ]);
+    });
+
+    it('can update a hall rate', function () {
+        $permission = Permission::create([
+            'name' => 'hallRates.edit',
+            'guard_name' => 'web',
+        ]);
+        $this->role->givePermissionTo($permission);
+
+        $hallRate = HallRate::create([
+            'type' => 'test',
+            'deposit' => 25000,
+            'base_price' => 1050,
+            'member_price' => 1000,
+        ]);
+
+        Livewire::test('pages::hall-rates.index')
+            ->set('form.hallRate', $hallRate)
+            ->set('form.type', 'New')
+            ->set('form.deposit', 30)
+            ->set('form.base_price', 10.8)
+            ->set('form.member_price', 9.6)
+            ->call('update')
+            ->assertOk();
+
+        assertDatabaseHas('hall_rates', [
+            'type' => 'New',
+            'deposit' => 3000,
+            'base_price' => 1080,
+            'member_price' => 960,
+        ]);
+    });
+
+    it('can delete a hall rate', function () {
+        $permission = Permission::create([
+            'name' => 'hallRates.delete',
+            'guard_name' => 'web',
+        ]);
+        $this->role->givePermissionTo($permission);
+
+        $hallRate = HallRate::create([
+            'type' => 'test',
+            'deposit' => 2500,
+            'base_price' => 1050,
+            'member_price' => 1000,
+        ]);
+
+        Livewire::test('pages.hall-rates.table.table')
+            ->call('deleteHallRate', id: $hallRate->id)
+            ->assertOk();
+
+        assertDatabaseCount('hall_rates', 0);
+    });
+});
+
+describe('HALL RATES WITHOUT PERMISSIONS', function () {
+    beforeEach(function () {
+        $role = Role::create([
+            'name' => 'member',
+            'guard_name' => 'web',
+            'unique' => 1
+        ]);
+        $user = User::factory()->create();
+        $user->assignRole($role);
+        $this->actingAs($user);
+    });
+
+    it('can’t access to the hall rates index', function () {
+        $this->withoutMiddleware([
+            LaravelLocalizationRoutes::class,
+            LaravelLocalizationRedirectFilter::class,
+            LocaleSessionRedirect::class,
+            LocaleCookieRedirect::class,
+        ])->get(route('hall-rates', ['locale' => config('app.locale')]))
+            ->assertForbidden();
+    });
+
+    it('can’t create a hall rate', function () {
+       Livewire::test('pages::hall-rates.index')
+            ->set('form.type', 'test')
+            ->set('form.base_price', 10.5)
+            ->set('form.member_price', 10)
+            ->call('save')
+            ->assertForbidden();
+
+        assertDatabaseCount('hall_rates', 0);
+    });
+
+    it('can’t update a hall rate', function () {
+        $hallRate = HallRate::create([
+            'type' => 'test',
+            'deposit' => 2500,
+            'base_price' => 1050,
+            'member_price' => 1000,
+        ]);
+
+        Livewire::test('pages::hall-rates.index')
+            ->set('form.hallRate', $hallRate)
+            ->set('form.type', 'New')
+            ->set('form.deposit', 30)
+            ->set('form.base_price', 10.8)
+            ->set('form.member_price', 9.6)
+            ->call('update')
+            ->assertForbidden();
+
+        assertDatabaseHas('hall_rates', [
+            'type' => 'test',
+            'deposit' => 2500,
+            'base_price' => 1050,
+            'member_price' => 1000,
+        ]);
+    });
+
+    it('can’t delete a hall rate', function () {
+        $hallRate = HallRate::create([
+            'type' => 'test',
+            'deposit' => 2500,
+            'base_price' => 1050,
+            'member_price' => 1000,
+        ]);
+
+        Livewire::test('pages.hall-rates.table.table')
+            ->call('deleteHallRate', id: $hallRate->id)
+            ->assertForbidden();
+
+        assertDatabaseCount('hall_rates', 1);
+    });
+});

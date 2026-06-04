@@ -1,0 +1,37 @@
+.menu-label {
+    @apply flex flex-col gap-2.5 cursor-pointer;
+
+    .line {
+        @apply inline-block w-14 bg-brown h-px trans-all origin-center;
+    }
+}
+
+.nav-container {
+    @apply overflow-hidden flex flex-col max-lg:absolute max-lg:z-1 max-lg:top-24.25 max-lg:inset-x-0 max-lg:bottom-0 bg-beige-light max-lg:w-screen max-lg:h-[calc(100svh-97px)] max-lg:-translate-y-full max-lg:trans-all;
+}
+
+body:has(.menu-input:checked) {
+    @apply overflow-hidden;
+}
+
+.menu:has(.menu-input:checked) {
+    .nav-container {
+        @apply max-lg:translate-y-0;
+    }
+
+    .menu-label {
+
+        .line-1 {
+            @apply translate-y-2.75 rotate-45;
+        }
+
+        .line-2 {
+            @apply scale-x-0;
+        }
+
+        .line-3 {
+            @apply -translate-y-2.75 -rotate-45;
+        }
+    }
+}
+

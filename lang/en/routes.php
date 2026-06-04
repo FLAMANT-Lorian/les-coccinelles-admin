@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'interventions' => 'interventions',
+    'availabilities' => 'availability-requests',
+    'hall-rates' => 'hall-rates',
+    'utility-costs' => 'utility-costs',
+    'messages' => 'messages',
+    'members' => 'members',
+    'members-create' => 'members/add',
+    'members-edit' => 'members/{member}/edit',
+    'roles' => 'members/roles',
+    'roles-create' => 'members/roles/add',
+    'roles-edit' => 'members/roles/{role}/edit',
+    'contacts' => 'contacts',
+    'bookings' => 'bookings',
+    'bookings-create' => 'bookings/add',
+    'bookings-edit' => 'bookings/{booking}/edit',
+    'calendar' => 'calendar',
+    'settings' => 'settings',
+    'preferences' => 'settings/preferences',
+    'meetings' => 'meetings',
+    'events-index' => 'events',
+    'events-show' => 'events/{event}',
+];

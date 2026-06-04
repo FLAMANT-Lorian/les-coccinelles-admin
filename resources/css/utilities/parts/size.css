@@ -1,0 +1,7 @@
+@utility max-limit-width {
+    @apply max-w-600;
+}
+
+@utility px-default {
+    @apply px-6 md:px-12;
+}

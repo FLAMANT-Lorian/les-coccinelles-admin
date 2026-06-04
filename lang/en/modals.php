@@ -1,0 +1,78 @@
+<?php
+
+return [
+    'deleteSelection' => 'Delete selection',
+    'deleteSelectionMessage' => 'Once deleted, the selected items cannot be recovered!',
+    'viewMessage' => 'Message from ',
+    'viewAvailabilityRequest' => 'Request from ',
+    'object' => 'Subject: ',
+    'from' => 'From: ',
+    'reply-to-message' => 'Reply to message',
+    'reply-to-availability-request' => 'Reply to request',
+    'create-a-contact' => 'Add sender as a contact',
+    'see-message' => 'View message',
+    'close' => 'Close modal',
+    'deleteMember' => 'Delete member',
+    'deleteMemberMessage' => 'Are you sure you want to delete this member?',
+    'deleteRole' => 'Delete role',
+    'deleteRoleMessage' => 'Are you sure you want to delete this role?',
+    'edit-member' => 'Edit member profile',
+    'edit-role' => 'Edit role',
+    'edit' => 'Edit',
+    'deleteMessage' => 'Delete message',
+    'deleteMessageMessage' => 'Are you sure you want to delete this message?',
+    'deleteAvailabilityRequest' => 'Delete request',
+    'deleteAvailabilityRequestMessage' => 'Are you sure you want to delete this request?',
+    'addHallRate' => 'Add a hall rate',
+    'createHallRate' => 'Add rate',
+    'updateHallRate' => 'Edit rate',
+    'deleteHallRate' => 'Delete rate',
+    'deleteHallRateMessage' => 'Are you sure you want to delete this rate?',
+    'addUtilityCost' => 'Add a utility cost',
+    'createUtilityCost' => 'Add cost',
+    'updateUtilityCost' => 'Edit cost',
+    'deleteUtilityCost' => 'Delete cost',
+    'deleteUtilityCostMessage' => 'Are you sure you want to delete this cost?',
+    'addIntervention' => 'Add an intervention',
+    'createIntervention' => 'Add intervention',
+    'updateIntervention' => 'Edit intervention',
+    'deleteIntervention' => 'Delete intervention',
+    'deleteInterventionMessage' => 'Are you sure you want to delete this intervention?',
+    'addContact' => 'Add a contact',
+    'createContact' => 'Add contact',
+    'updateContact' => 'Edit contact',
+    'deleteContact' => 'Delete contact',
+    'deleteContactMessage' => 'Are you sure you want to delete this contact?',
+
+    // BOOKING
+    'deleteBooking' => 'Delete booking',
+    'deleteBookingMessage' => 'Are you sure you want to delete this booking?',
+
+    // MEETINGS
+    'addMeeting' => 'Schedule a meeting',
+    'createMeeting' => 'Schedule meeting',
+    'updateMeeting' => 'Edit meeting',
+    'deleteMeeting' => 'Delete meeting',
+    'deleteMeetingMessage' => 'Are you sure you want to delete this meeting?',
+
+    // EVENTS
+    'addEvent' => 'Create a new event',
+    'createEvent' => 'Create event',
+    'updateEvent' => 'Edit event',
+    'deleteEvent' => 'Delete event',
+    'deleteEventMessage' => 'Are you sure you want to delete this event?',
+
+    // FOLDERS
+    'addFolder' => 'Add a folder',
+    'createFolder' => 'Create folder',
+    'updateFolder' => 'Edit folder',
+    'deleteFolder' => 'Delete folder',
+    'deleteFolderMessage' => 'Are you sure you want to delete this folder?',
+
+    // TASKS
+    'addTask' => 'Add a task',
+    'createTask' => 'Create task',
+    'updateTask' => 'Edit task',
+    'deleteTask' => 'Delete task',
+    'deleteTaskMessage' => 'Are you sure you want to delete this task?',
+];

@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Models;
+
+use App\Observers\AvailabilityRequestObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+#[ObservedBy([AvailabilityRequestObserver::class])]
+class AvailabilityRequest extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'subject',
+        'message',
+        'status',
+        'acceptance',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'created_at' => 'date',
+        ];
+    }
+
+    /**
+     * Get the user's full name.
+     */
+    protected function fullName(): Attribute
+    {
+        return Attribute::make(
+            get: fn($value) => ucfirst($this->first_name) . ' ' . ucfirst($this->last_name),
+        );
+    }
+}
