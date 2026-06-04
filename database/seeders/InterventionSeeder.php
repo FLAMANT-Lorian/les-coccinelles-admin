@@ -14,15 +14,11 @@ class InterventionSeeder extends Seeder
      */
     public function run(): void
     {
-        $user1 = User::first();
-
-        $role = Role::where('unique', 0)->first();
-        $user2 = User::factory()->create();
-        $user2->assignRole($role);
+        $user1 = User::first();;
 
         Intervention::factory()
             ->createdBy($user1)
-            ->assignedTo($user2)
+            ->assignedTo($user1)
             ->create();
     }
 }

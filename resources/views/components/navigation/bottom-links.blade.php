@@ -32,7 +32,7 @@
             @endif
         </div>
         <div class="flex flex-col items-start gap-0.5">
-            <p class="font-medium text-brown">{{ auth()->user()->full_name }}</p>
+            <p class="font-medium text-brown">{{ !empty(trim(auth()->user()->full_name)) ? auth()->user()->full_name : auth()->user()->email  }}</p>
             <p class="text-sm text-gray-500">{{ auth()->user()->roles->first()->name }}</p>
         </div>
         <svg class="text-brown min-h-6 ml-auto" width="24" height="24" viewBox="0 0 24 24" fill="none"

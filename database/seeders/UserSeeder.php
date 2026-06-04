@@ -15,19 +15,13 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissions = Permission::pluck('name');
+        $permissions = Permission::all();
 
         $role = Role::create([
             'name' => 'Président',
             'guard_name' => 'web',
             'unique' => true
         ])->givePermissionTo($permissions);
-
-        $role2 = Role::create([
-            'name' => 'Membre',
-            'guard_name' => 'web',
-            'unique' => false
-        ]);
 
         User::factory()
             ->create([
@@ -36,11 +30,5 @@ class UserSeeder extends Seeder
                 'email' => 'test@test.be',
             ])
             ->assignRole($role);
-
-        User::factory()
-            ->create([
-                'email' => 'tests@test.be'
-            ])
-            ->assignRole($role2);
     }
 }

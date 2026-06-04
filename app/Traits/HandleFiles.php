@@ -25,7 +25,7 @@ trait HandleFiles
             foreach ($this->files as $file) {
 
                 $file_name = $file->getClientOriginalName();
-                $path = uniqid('file-') . $file->getClientOriginalExtension();
+                $path = uniqid('file-') . '.' . $file->getClientOriginalExtension();
 
                 Storage::disk($disk)
                     ->putFileAs(

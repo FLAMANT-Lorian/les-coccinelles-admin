@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Enums\InterventionStatus;
 use App\Mail\EventReminderMail;
 use App\Mail\InterventionReminderMail;
 use App\Models\Event;
@@ -22,7 +23,9 @@ class SendInterventionReminders extends Command
     public function handle()
     {
         $next_week = now()->addDays(7);
-        $interventions = Intervention::whereDate('deadline', $next_week)->get();
+        $interventions = Intervention::whereDate('deadline', $next_week)
+            ->where('status', InterventionStatus::todo->value)
+            ->get();
 
         $count = 0;
 

@@ -69,7 +69,7 @@ new class extends Component {
         $this->form->first_name = $availabilityRequest->first_name;
         $this->form->last_name = $availabilityRequest->last_name;
         $this->form->email = $availabilityRequest->email;
-        $this->form->phone = $availabilityRequest->email;
+        $this->form->phone = $availabilityRequest->phone;
         $this->form->member_card = null;
         $this->form->address = null;
     }
