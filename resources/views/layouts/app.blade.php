@@ -16,7 +16,10 @@
       :class="modalOpen ? 'overflow-hidden' : ''">
     <x-icons.sprite/>
 
-    <x-tools.breakpoints/>
+    @if(app()->environment('local'))
+        <x-tools.breakpoints/>
+    @endif
+
 
     <header
         class="lg:sticky lg:top-0 relative lg:min-w-80 lg:w-80 lg:h-svh lg:border-r lg:border-r-beige-dark/60 lg:rounded-sm lg:overflow-hidden">

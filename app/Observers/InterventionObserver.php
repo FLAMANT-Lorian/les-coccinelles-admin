@@ -14,7 +14,11 @@ class InterventionObserver
      */
     public function created(Intervention $intervention): void
     {
-        Mail::to($intervention->assignee->email)->send(new InterventionCreatedMail($intervention));
+        $assignee = $intervention->assignee->where('notifications->interventions', true)->first();
+
+        if ($assignee) {
+            Mail::to($assignee->email)->send(new InterventionCreatedMail($intervention));
+        }
     }
 
     /**
