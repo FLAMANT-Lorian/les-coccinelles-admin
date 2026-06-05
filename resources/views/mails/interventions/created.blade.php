@@ -21,8 +21,7 @@
             Détails de l’intervention
         </h2>
 
-        <table width="100%" cellpadding="0" cellspacing="0"
-               style="background:#f6f6f6;border:1px solid #cfcfcf;border-radius:8px;padding:10px;">
+        <table style="background:#f6f6f6;border:1px solid #cfcfcf;border-radius:8px;padding:10px;">
 
             <tr>
                 <td style="padding:6px 0;font-size:14px;font-weight:600;color:#6c6d6e;">
