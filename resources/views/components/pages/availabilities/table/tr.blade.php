@@ -66,6 +66,7 @@
                     @can('delete', AvailabilityRequest::class)
                         <button type="button"
                                 @click="modalOpen = true"
+                                title="{{ __('modals.deleteAvailabilityRequest') . ' : ' . $availabilityRequest->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
                             <span>{{ __('tables.delete') }}</span>
                         </button>
@@ -73,12 +74,14 @@
                     @can('update', AvailabilityRequest::class)
                         @if($availabilityRequest->status === MessageStatus::Unread->value)
                             <button type="button"
+                                    title="{{ __('tables.mark-single-as-read') . ' : ' . $availabilityRequest->id }}"
                                     wire:click="markAvailabilityRequestAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">
                                 <span>{{ __('tables.mark-single-as-read') }}</span>
                             </button>
                         @endif
                         @if($availabilityRequest->status === MessageStatus::Read->value)
                             <button type="button"
+                                    title="{{ __('tables.mark-single-as-not-read') . ' : ' . $availabilityRequest->id }}"
                                     wire:click="markAvailabilityRequestAs('{{ MessageStatus::Unread->value }}', {{ $availabilityRequest->id }})">
                                 <span>{{ __('tables.mark-single-as-not-read') }}</span>
                             </button>

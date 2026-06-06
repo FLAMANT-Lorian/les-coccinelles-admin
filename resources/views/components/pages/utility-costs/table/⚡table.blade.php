@@ -86,6 +86,9 @@ new class extends Component {
     @if($this->getUtilityCosts->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.captions.utility-costs') }}
+            </caption>
             <x-pages.utility-costs.table.table-head/>
             <x-pages.utility-costs.table.table-body/>
         </table>

@@ -6,6 +6,7 @@ return [
         'availability' => 'Liste des demandes de disponibilité',
         'bookings' => 'Liste des réservations',
         'hall-rates' => 'Liste des coûts',
+        'utility-costs' => 'Liste des coûts des charges',
     ],
 
     /* ACTION */
