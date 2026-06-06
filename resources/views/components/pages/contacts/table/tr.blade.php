@@ -81,25 +81,26 @@
                     @can('update', Contact::class)
                         <button type="button"
                                 aria-label="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
-                                title="{{ __('pages/hall.contacts.update-contact') }}"
+                                title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
-                            <span>{{ __('tables.update') }}</span>
+                            <span>{{ __('tables.update') }} <span class="sr-only">{{ $contact->id }}</span></span>
                         </button>
                     @endcan
                     @can('delete', Contact::class)
                         <button type="button"
                                 aria-label="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
-                                title="{{ __('pages/hall.contacts.delete-contact') }}"
+                                title="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }} <span class="sr-only">{{ $contact->id }}</span></span>
                         </button>
                     @endcan
                     @can('create', Booking::class)
                         <a class="whitespace-nowrap"
                            title="{{ __('tables.start_booking') . ' : ' . $contact->id }}"
-                           aria-label="{{ __('tables.start_booking') }}"
+                           aria-label="{{ __('tables.start_booking') . ' : ' . $contact->id }}"
                            href="{{ route('bookings.create', ['contact' => $contact->id]) }}">
                             {{ __('tables.start_booking') }}
+                            <span class="sr-only">{{ $contact->id }}</span>
                         </a>
                     @endcan
                 </div>
@@ -112,8 +113,8 @@
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
                             aria-label="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
-                            title="{{ __('pages/hall.contacts.update-contact') }}">
-                        <span>{{ __('pages/hall.contacts.update-contact') }}</span>
+                            title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}">
+                        <span>{{ __('pages/hall.contacts.update-contact') }} <span class="sr-only">{{ $contact->id }}</span></span>
                     </button>
                 </div>
             @endcan
