@@ -8,6 +8,7 @@ return [
 
     /* GENERAL */
     'select_all' => 'Select all',
+    'select_item' => 'Select item : ',
     'previous' => 'Previous',
     'next' => 'Next',
     'send-email-to' => 'Send an email to ',

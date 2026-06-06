@@ -1,6 +1,14 @@
 <?php
 
 return [
+    /* CAPTION */
+    'captions' => [
+        'availability' => 'Liste des demandes de disponibilité',
+        'bookings' => 'Liste des réservations',
+        'hall-rates' => 'Liste des coûts',
+        'utility-costs' => 'Liste des coûts des charges',
+    ],
+
     /* ACTION */
     'update' => 'Modifier',
     'delete' => 'Supprimer',
@@ -8,6 +16,7 @@ return [
 
     /* GENERAL */
     'select_all' => 'Tout sélectionner',
+    'select_item' => 'Séléctionner l’élément : ',
     'previous' => 'Précédent',
     'next' => 'Suivant',
     'send-email-to' => 'Envoyer un mail à ',

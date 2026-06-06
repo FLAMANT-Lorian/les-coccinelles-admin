@@ -131,8 +131,8 @@ new class extends Component {
             <button type="button"
                     data-type="{{ $item['type'] }}"
                     class="flex flex-row gap-2.5 justify-center trans-all">
-                <div class="h-6 w-12 rounded-sm"
-                     style="background-color: {{ $item['color'] }}"></div>
+                <span class="h-6 w-12 rounded-sm"
+                     style="background-color: {{ $item['color'] }}"></span>
                 <span class="paragraph text-brown">{{$item['text']}}</span>
             </button>
         @endforeach

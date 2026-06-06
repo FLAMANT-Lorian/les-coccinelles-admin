@@ -19,7 +19,7 @@
                    id="selector-{{ $contact->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $contact->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $contact->id }}" class="sr-only">{{ __('tables.select_item') . $contact->id }}</label>
         </div>
     </td>
     <td>
@@ -73,27 +73,27 @@
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' : ' . $contact->id}}</span>
             </button>
             @canany(['update', 'delete'], Contact::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', Contact::class)
                         <button type="button"
-                                title="{{ __('pages/hall.contacts.update-contact') }}"
+                                title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
                             <span>{{ __('tables.update') }}</span>
                         </button>
                     @endcan
                     @can('delete', Contact::class)
                         <button type="button"
-                                title="{{ __('pages/hall.contacts.delete-contact') }}"
+                                title="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
                             <span>{{ __('tables.delete') }}</span>
                         </button>
                     @endcan
                     @can('create', Booking::class)
                         <a class="whitespace-nowrap"
-                           title="{{ __('tables.start_booking') }}"
+                           title="{{ __('tables.start_booking') . ' : ' . $contact->id }}"
                            aria-label="{{ __('tables.start_booking') }}"
                            href="{{ route('bookings.create', ['contact' => $contact->id]) }}">
                             {{ __('tables.start_booking') }}
@@ -108,7 +108,7 @@
                     <button type="button"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                            title="{{ __('pages/hall.contacts.update-contact') }}">
+                            title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}">
                         <span>{{ __('pages/hall.contacts.update-contact') }}</span>
                     </button>
                 </div>
