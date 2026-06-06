@@ -7,6 +7,7 @@ return [
         'bookings' => 'Liste des réservations',
         'hall-rates' => 'Liste des coûts',
         'utility-costs' => 'Liste des coûts des charges',
+        'contacts' => 'Liste des contacts',
     ],
 
     /* ACTION */

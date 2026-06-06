@@ -90,6 +90,7 @@ new class extends Component {
             <button type="button"
                     wire:click="$dispatch('open-modal', 'openCreateModal')"
                     title="{{ __('pages/hall.contacts.add-contact') }}"
+                    aria-label="{{ __('pages/hall.contacts.add-contact') }}"
                     class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
                 {{ __('pages/hall.contacts.add-contact') }}
             </button>
@@ -107,6 +108,9 @@ new class extends Component {
     @if($this->getContacts->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.captions.contacts') }}
+            </caption>
             <x-pages.contacts.table.table-head/>
             <x-pages.contacts.table.table-body/>
         </table>

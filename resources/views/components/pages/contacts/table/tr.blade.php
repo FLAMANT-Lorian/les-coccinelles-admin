@@ -19,7 +19,8 @@
                    id="selector-{{ $contact->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $contact->id }}" class="sr-only">{{ __('tables.select_item') . $contact->id }}</label>
+            <label for="selector-{{ $contact->id }}"
+                   class="sr-only">{{ __('tables.select_item') . $contact->id }}</label>
         </div>
     </td>
     <td>
@@ -79,14 +80,16 @@
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', Contact::class)
                         <button type="button"
-                                title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
+                                aria-label="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
+                                title="{{ __('pages/hall.contacts.update-contact') }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
                             <span>{{ __('tables.update') }}</span>
                         </button>
                     @endcan
                     @can('delete', Contact::class)
                         <button type="button"
-                                title="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
+                                aria-label="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
+                                title="{{ __('pages/hall.contacts.delete-contact') }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
                             <span>{{ __('tables.delete') }}</span>
                         </button>
@@ -108,7 +111,8 @@
                     <button type="button"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $contact->id }}})"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
-                            title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}">
+                            aria-label="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
+                            title="{{ __('pages/hall.contacts.update-contact') }}">
                         <span>{{ __('pages/hall.contacts.update-contact') }}</span>
                     </button>
                 </div>
