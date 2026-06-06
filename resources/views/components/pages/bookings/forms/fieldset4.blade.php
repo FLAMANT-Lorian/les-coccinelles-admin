@@ -34,7 +34,7 @@
             :class="activeTab === 'before-booking' ? 'block' : 'hidden'"
             class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 trans-all">
             <x-forms.input.input-number
-                :label="__('forms.water-general')"
+                :label="__('forms.water-general') . ' (Avant)'"
                 name="before_water_general"
                 min="0"
                 step="0.01"
@@ -42,21 +42,21 @@
                 wire="form.before_water_general"
             />
             <x-forms.input.input-number
-                :label="__('forms.electricity-general')"
+                :label="__('forms.electricity-general') . ' (Avant)'"
                 name="before_electricity_general"
                 min="0"
                 field_name="before_electricity_general"
                 wire="form.before_electricity_general"
             />
             <x-forms.input.input-number
-                :label="__('forms.mazout-general')"
+                :label="__('forms.mazout-general') . ' (Avant)'"
                 name="before_mazout_general"
                 min="0"
                 field_name="before_mazout_general"
                 wire="form.before_mazout_general"
             />
             <x-forms.input.input-number
-                :label="__('forms.water-cdj')"
+                :label="__('forms.water-cdj') . ' (Avant)'"
                 name="before_water_cdj"
                 min="0"
                 step="0.01"
@@ -64,7 +64,7 @@
                 wire="form.before_water_cdj"
             />
             <x-forms.input.input-number
-                :label="__('forms.electricity-cdj')"
+                :label="__('forms.electricity-cdj') . ' (Avant)'"
                 name="before_electricity_cdj"
                 min="0"
                 field_name="before_electricity_cdj"
@@ -76,7 +76,7 @@
             :class="activeTab === 'after-booking' ? 'block' : 'hidden'"
             class="col-span-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 trans-all">
             <x-forms.input.input-number
-                :label="__('forms.water-general')"
+                :label="__('forms.water-general') . ' (Après)'"
                 name="after_water_general"
                 min="0"
                 step="0.01"
@@ -84,21 +84,21 @@
                 wire="form.after_water_general"
             />
             <x-forms.input.input-number
-                :label="__('forms.electricity-general')"
+                :label="__('forms.electricity-general') . ' (Après)'"
                 name="after_electricity_general"
                 min="0"
                 field_name="after_electricity_general"
                 wire="form.after_electricity_general"
             />
             <x-forms.input.input-number
-                :label="__('forms.mazout-general')"
+                :label="__('forms.mazout-general') . ' (Après)'"
                 name="after_mazout_general"
                 min="0"
                 field_name="after_mazout_general"
                 wire="form.after_mazout_general"
             />
             <x-forms.input.input-number
-                :label="__('forms.water-cdj')"
+                :label="__('forms.water-cdj') . ' (Après)'"
                 name="after_water_cdj"
                 min="0"
                 step="0.01"
@@ -106,7 +106,7 @@
                 wire="form.after_water_cdj"
             />
             <x-forms.input.input-number
-                :label="__('forms.electricity-cdj')"
+                :label="__('forms.electricity-cdj') . ' (Après)'"
                 name="after_electricity_cdj"
                 min="0"
                 field_name="after_electricity_cdj"

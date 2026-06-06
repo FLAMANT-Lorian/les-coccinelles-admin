@@ -143,6 +143,9 @@ new class extends Component {
     @if($this->getBookings->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
+            <caption>
+                {{ __('tables.captions.bookings') }}
+            </caption>
             <x-pages.bookings.table.table-head/>
             <x-pages.bookings.table.table-body/>
         </table>

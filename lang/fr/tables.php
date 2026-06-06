@@ -3,7 +3,8 @@
 return [
     /* CAPTION */
     'captions' => [
-        'availability' => 'Liste des demandes de disponibilité'
+        'availability' => 'Liste des demandes de disponibilité',
+        'bookings' => 'Liste des réservations',
     ],
 
     /* ACTION */

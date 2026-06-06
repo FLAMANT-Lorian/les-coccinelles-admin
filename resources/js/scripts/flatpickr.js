@@ -19,7 +19,7 @@ function initDateRangePicker() {
         mode: "range",
         dateFormat: "Y-m-d",
         disable: JSON.parse(el.dataset.dates),
-        altInput: true,
+        altInput: false,
         altFormat: "d F Y",
         allowInput: false,
     });
@@ -37,7 +37,7 @@ function initDatePicker() {
         const locale = document.documentElement.lang;
         flatpickr(el, {
             locale: locale === 'fr' ? French : English,
-            altInput: true,
+            altInput: false,
             altFormat: "d F Y",
             allowInput: false,
         });

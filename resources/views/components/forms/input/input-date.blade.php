@@ -36,8 +36,7 @@
                id="{{ $field_name }}"
                type="{{ $type ?? 'text' }}"
                name="{{ $name }}"
-               placeholder="{{ $placeholder ?? '' }}"
-               autocomplete="off">
+               placeholder="{{ $placeholder ?? '' }}">
     </div>
 
     @error($wire)

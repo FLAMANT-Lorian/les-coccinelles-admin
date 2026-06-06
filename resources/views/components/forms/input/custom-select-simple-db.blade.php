@@ -23,7 +23,6 @@
      @keydown.window.escape="open = false; $refs.input.blur();">
     <div class="relative w-full flex flex-col gap-1">
         <label for="{{ $field_name }}"
-               aria-label="{{ $label }}"
                @click="$refs.input.focus();"
                title="{{ $label }}">
             {{ $label }} @if($required)

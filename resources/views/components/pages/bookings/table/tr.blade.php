@@ -20,7 +20,7 @@
                    id="selector-{{ $booking->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $booking->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $booking->id }}" class="sr-only">{{ __('tables.select_item') . $booking->id }}</label>
         </div>
     </td>
     <td>
@@ -92,7 +92,7 @@
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' ' . $booking->id }}</span>
             </button>
             @canany(['update', 'delete'], Booking::class)
                 <div x-show="open" x-transition class="actions-table">

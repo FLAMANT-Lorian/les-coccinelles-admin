@@ -1,9 +1,10 @@
+@php use function PHPUnit\Framework\isEmpty; @endphp
 @props([
     'type',
     'label',
     'name',
     'required' => false,
-    'placeholder',
+    'placeholder' => false,
     'field_name',
     'wire' => '',
     'date_range' => false,
@@ -30,7 +31,9 @@
            id="{{ $field_name }}"
            type="{{ $type ?? 'text' }}"
            name="{{ $name }}"
-           placeholder="{{ $placeholder ?? '' }}"
+           @if($placeholder)
+               placeholder="{{ $placeholder }}"
+           @endif
            autocomplete="off">
 
     @error($wire === '' ? $name : $wire)
