@@ -70,6 +70,7 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
+                    aria-label="{{ __('tables.fast-actions') }} . ' : ' . {{ $contact->id }}"
                     class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
@@ -83,7 +84,7 @@
                                 aria-label="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
                                 title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $contact->id }}  })">
-                            <span>{{ __('tables.update') }} <span class="sr-only">{{ $contact->id }}</span></span>
+                            <span>{{ __('tables.update') }} <span class="sr-only"> : {{ $contact->id }}</span></span>
                         </button>
                     @endcan
                     @can('delete', Contact::class)
@@ -91,7 +92,7 @@
                                 aria-label="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
                                 title="{{ __('pages/hall.contacts.delete-contact') . ' : ' . $contact->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $contact->id }}  })">
-                            <span>{{ __('tables.delete') }} <span class="sr-only">{{ $contact->id }}</span></span>
+                            <span>{{ __('tables.delete') }} <span class="sr-only"> : {{ $contact->id }}</span></span>
                         </button>
                     @endcan
                     @can('create', Booking::class)
@@ -100,7 +101,7 @@
                            aria-label="{{ __('tables.start_booking') . ' : ' . $contact->id }}"
                            href="{{ route('bookings.create', ['contact' => $contact->id]) }}">
                             {{ __('tables.start_booking') }}
-                            <span class="sr-only">{{ $contact->id }}</span>
+                            <span class="sr-only"> : {{ $contact->id }}</span>
                         </a>
                     @endcan
                 </div>
@@ -114,7 +115,7 @@
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
                             aria-label="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}"
                             title="{{ __('pages/hall.contacts.update-contact') . ' : ' . $contact->id }}">
-                        <span>{{ __('pages/hall.contacts.update-contact') }} <span class="sr-only">{{ $contact->id }}</span></span>
+                        <span>{{ __('pages/hall.contacts.update-contact') }} <span class="sr-only"> : {{ $contact->id }}</span></span>
                     </button>
                 </div>
             @endcan

@@ -20,7 +20,7 @@
                    id="selector-{{ $event->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $event->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $event->id }}" class="sr-only">{{ __('tables.select_item') . $event->id }}</label>
         </div>
     </td>
     <td>
@@ -85,16 +85,18 @@
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', Event::class)
                         <button type="button"
+                                aria-label="{{ __('pages/events.edit-event') . ' : ' . $event->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $event->id }} })"
                                 title="{{ __('pages/events.edit-event') }}">
-                            <span>{{ __('tables.update') }}</span>
+                            <span>{{ __('tables.update') }} <span class="sr-only"> : {{ $event->id }}</span></span>
                         </button>
                     @endcan
                     @can('delete', Event::class)
                         <button type="button"
+                                aria-label="{{ __('pages/events.delete-event') . ' : ' . $event->id }}"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $event->id }} })"
                                 title="{{ __('pages/events.delete-event') }}">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }} <span class="sr-only"> : {{ $event->id }}</span></span>
                         </button>
                     @endcan
                 </div>

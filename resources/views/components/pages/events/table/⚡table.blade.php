@@ -99,6 +99,7 @@ new class extends Component {
             <button type="button"
                     wire:click="$dispatch('open-modal', 'openCreateModal')"
                     title="{{ __('pages/events.add-event') }}"
+                    aria-label="{{ __('pages/events.add-event') }}"
                     class="flex flex-row items-center gap-2.5 px-4 py-3 border border-brown bg-brown text-white group rounded-sm hover:bg-white hover:text-brown trans-all justify-center md:col-start-4 md:justify-self-end">
                 {{ __('pages/events.add-event') }}
             </button>
@@ -116,6 +117,9 @@ new class extends Component {
     @if($this->getEvents->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.captions.events') }}
+            </caption>
             <x-pages.events.table.table-head/>
             <x-pages.events.table.table-body/>
         </table>

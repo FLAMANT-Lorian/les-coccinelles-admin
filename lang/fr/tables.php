@@ -8,6 +8,7 @@ return [
         'hall-rates' => 'Liste des coûts',
         'utility-costs' => 'Liste des coûts des charges',
         'contacts' => 'Liste des contacts',
+        'events' => 'Liste des événements',
     ],
 
     /* ACTION */
