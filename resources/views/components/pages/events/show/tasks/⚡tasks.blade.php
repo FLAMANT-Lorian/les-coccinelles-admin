@@ -67,10 +67,10 @@ new class extends Component {
                         @can('update', Task::class)
                             <div class="checkbox-field">
                                 <input type="checkbox"
-                                       id="completed"
+                                       id="completed-{{ $task->id }}"
                                        {{ $task->completed ? 'checked' : '' }}
                                        wire:change="toggleCompleted({{ $task->id }})">
-                                <label for="completed" class="sr-only">
+                                <label for="completed-{{ $task->id }}" class="sr-only">
                                     {{ __('pages/events.tasks.complete_task') }}
                                     <span class="sr-only">: {{ $task->id }}</span>
                                 </label>
@@ -89,7 +89,7 @@ new class extends Component {
                             <div class="ml-auto flex flex-row gap-3 items-center">
                                 @can('update', Task::class)
                                     <button type="button"
-                                            aria-label="{{ __('tables.update') }} : {{ $task->id }}"
+                                            aria-label="{{ __('pages/events.tasks.edit') }} : {{ $task->id }}"
                                             title="{{ __('pages/events.tasks.update_task') }}"
                                             class="hover:bg-beige-medium rounded-sm p-1 trans-all"
                                             wire:click="$dispatch('open-modal', { modal: 'openUpdateTaskModal', task_id: {{ $task->id }} })">
