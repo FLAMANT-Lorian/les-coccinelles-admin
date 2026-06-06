@@ -9,7 +9,6 @@
     <div class="heading">
         <span class="title">{{ __('general.permissions.events') }}</span>
         <div class="all-selector">
-            <label for="all_events_selector">{{ __('general.all') }}</label>
             <input id="all_events_selector"
                    type="checkbox"
                    :checked="allSelected"
@@ -22,6 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
+            <label for="all_events_selector">{{ __('general.all') }}</label>
         </div>
     </div>
     <div x-ref="events" class="permissions">
