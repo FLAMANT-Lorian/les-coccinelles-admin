@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_files_selector">{{ __('general.all') }}</label>
+            <label for="all_files_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.files') }}</span></label>
         </div>
     </div>
     <div x-ref="files" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="add"
                    wire:model.live="form.permissions.files.add">
-            <label for="files_add">{{ __('general.add') }}</label>
+            <label for="files_add">{{ __('general.add') }} <span class="sr-only">{{ __('navigation/navigation.files') }}</span></label>
         </div>
         <div class="permission">
             <input id="files_delete"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.files.delete">
-            <label for="files_delete">{{ __('general.delete') }}</label>
+            <label for="files_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.files') }}</span></label>
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_folders_selector">{{ __('general.all') }}</label>
+            <label for="all_folders_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.folders') }}</span></label>
         </div>
     </div>
     <div x-ref="folders" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.folders.index">
-            <label for="folders_index">{{ __('general.see_folders') }}</label>
+            <label for="folders_index">{{ __('general.see_folders') }} <span class="sr-only">{{ __('navigation/navigation.folders') }}</span></label>
         </div>
         <div class="permission">
             <input id="folders_show"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="show"
                    wire:model.live="form.permissions.folders.show">
-            <label for="folders_show">{{ __('general.see_inside_folders') }}</label>
+            <label for="folders_show">{{ __('general.see_inside_folders') }} <span class="sr-only">{{ __('navigation/navigation.folders') }}</span></label>
         </div>
         <div class="permission">
             <input id="folders_create"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.folders.create">
-            <label for="folders_create">{{ __('general.create') }}</label>
+            <label for="folders_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.folders') }}</span></label>
         </div>
         <div class="permission">
             <input id="folders_edit"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.folders.edit">
-            <label for="folders_edit">{{ __('general.update') }}</label>
+            <label for="folders_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.folders') }}</span></label>
         </div>
         <div class="permission">
             <input id="folders_delete"
@@ -63,7 +63,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.folders.delete">
-            <label for="folders_delete">{{ __('general.delete') }}</label>
+            <label for="folders_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.folders') }}</span></label>
         </div>
     </div>
 </div>

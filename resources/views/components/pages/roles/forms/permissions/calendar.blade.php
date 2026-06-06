@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_calendar_selector">{{ __('general.all') }}</label>
+            <label for="all_calendar_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.calendar') }}</span></label>
         </div>
     </div>
     <div x-ref="calendar" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.calendar.index">
-            <label for="calendar_index">{{ __('general.see_calendar') }}</label>
+            <label for="calendar_index">{{ __('general.see_calendar') }} <span class="sr-only">{{ __('navigation/navigation.calendar') }}</span></label>
         </div>
     </div>
 </div>

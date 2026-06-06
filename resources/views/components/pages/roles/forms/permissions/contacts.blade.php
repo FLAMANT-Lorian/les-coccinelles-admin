@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_contacts_selector">{{ __('general.all') }}</label>
+            <label for="all_contacts_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.contacts') }}</span></label>
         </div>
     </div>
     <div x-ref="contacts" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.contacts.index">
-            <label for="contacts_index">{{ __('general.see_table') }}</label>
+            <label for="contacts_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.contacts') }}</span></label>
         </div>
         <div class="permission">
             <input id="contacts_create"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.contacts.create">
-            <label for="contacts_create">{{ __('general.create') }}</label>
+            <label for="contacts_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.contacts') }}</span></label>
         </div>
         <div class="permission">
             <input id="contacts_edit"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.contacts.edit">
-            <label for="contacts_edit">{{ __('general.update') }}</label>
+            <label for="contacts_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.contacts') }}</span></label>
         </div>
         <div class="permission">
             <input id="contacts_delete"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.contacts.delete">
-            <label for="contacts_delete">{{ __('general.delete') }}</label>
+            <label for="contacts_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.contacts') }}</span></label>
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_meetings_selector">{{ __('general.all') }}</label>
+            <label for="all_meetings_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.meetings') }}</span></label>
         </div>
     </div>
     <div x-ref="meetings" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.meetings.index">
-            <label for="meetings_index">{{ __('general.see_table') }}</label>
+            <label for="meetings_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.meetings') }}</span></label>
         </div>
         <div class="permission">
             <input id="meetings_create"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.meetings.create">
-            <label for="meetings_create">{{ __('general.create') }}</label>
+            <label for="meetings_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.meetings') }}</span></label>
         </div>
         <div class="permission">
             <input id="meetings_edit"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.meetings.edit">
-            <label for="meetings_edit">{{ __('general.update') }}</label>
+            <label for="meetings_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.meetings') }}</span></label>
         </div>
         <div class="permission">
             <input id="meetings_delete"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.meetings.delete">
-            <label for="meetings_delete">{{ __('general.delete') }}</label>
+            <label for="meetings_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.meetings') }}</span></label>
         </div>
     </div>
 </div>

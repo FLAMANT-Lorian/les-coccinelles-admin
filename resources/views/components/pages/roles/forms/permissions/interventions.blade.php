@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_interventions_selector">{{ __('general.all') }}</label>
+            <label for="all_interventions_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.interventions') }}</span></label>
         </div>
     </div>
     <div x-ref="interventions" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.interventions.index">
-            <label for="interventions_index">{{ __('general.see_table') }}</label>
+            <label for="interventions_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.interventions') }}</span></label>
         </div>
         <div class="permission">
             <input id="interventions_create"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.interventions.create">
-            <label for="interventions_create">{{ __('general.create') }}</label>
+            <label for="interventions_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.interventions') }}</span></label>
         </div>
         <div class="permission">
             <input id="interventions_edit"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.interventions.edit">
-            <label for="interventions_edit">{{ __('general.update') }}</label>
+            <label for="interventions_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.interventions') }}</span></label>
         </div>
         <div class="permission">
             <input id="interventions_delete"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.interventions.delete">
-            <label for="interventions_delete">{{ __('general.delete') }}</label>
+            <label for="interventions_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.interventions') }}</span></label>
         </div>
     </div>
 </div>

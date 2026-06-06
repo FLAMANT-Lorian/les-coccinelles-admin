@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_availabilities_selector">{{ __('general.all') }}</label>
+            <label for="all_availabilities_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.availabilities') }}</span></label>
         </div>
     </div>
     <div x-ref="availabilities" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.availabilities.index">
-            <label for="availabilities_index">{{ __('general.see_table') }}</label>
+            <label for="availabilities_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.availabilities') }}</span></label>
         </div>
         <div class="permission">
             <input id="availabilities_edit"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.availabilities.edit">
-            <label for="availabilities_edit">{{ __('general.update') }}</label>
+            <label for="availabilities_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.availabilities') }}</span></label>
         </div>
         <div class="permission">
             <input id="availabilities_delete"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.availabilities.delete">
-            <label for="availabilities_delete">{{ __('general.delete') }}</label>
+            <label for="availabilities_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.availabilities') }}</span></label>
         </div>
     </div>
 </div>

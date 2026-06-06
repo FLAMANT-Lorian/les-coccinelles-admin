@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_tasks_selector">{{ __('general.all') }}</label>
+            <label for="all_tasks_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.tasks') }}</span></label>
         </div>
     </div>
     <div x-ref="tasks" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.tasks.index">
-            <label for="tasks_index">{{ __('general.see_list') }}</label>
+            <label for="tasks_index">{{ __('general.see_list') }} <span class="sr-only">{{ __('navigation/navigation.tasks') }}</span></label>
         </div>
         <div class="permission">
             <input id="tasks_create"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.tasks.create">
-            <label for="tasks_create">{{ __('general.create') }}</label>
+            <label for="tasks_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.tasks') }}</span></label>
         </div>
         <div class="permission">
             <input id="tasks_edit"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.tasks.edit">
-            <label for="tasks_edit">{{ __('general.update') }}</label>
+            <label for="tasks_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.tasks') }}</span></label>
         </div>
         <div class="permission">
             <input id="tasks_delete"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.tasks.delete">
-            <label for="tasks_delete">{{ __('general.delete') }}</label>
+            <label for="tasks_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.tasks') }}</span></label>
         </div>
     </div>
 </div>

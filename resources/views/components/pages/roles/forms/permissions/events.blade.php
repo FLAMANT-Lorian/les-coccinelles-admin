@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_events_selector">{{ __('general.all') }}</label>
+            <label for="all_events_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.events') }}</span></label>
         </div>
     </div>
     <div x-ref="events" class="permissions">
@@ -31,15 +31,15 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.events.index">
-            <label for="events_index">{{ __('general.see_table') }}</label>
+            <label for="events_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.events') }}</span></label>
         </div>
         <div class="permission">
-            <input id="events_index"
+            <input id="events_show"
                    value="show"
                    type="checkbox"
                    name="show"
                    wire:model.live="form.permissions.events.show">
-            <label for="events_show">{{ __('general.show') }}</label>
+            <label for="events_show">{{ __('general.show') }} <span class="sr-only">{{ __('navigation/navigation.events') }}</span></label>
         </div>
         <div class="permission">
             <input id="events_create"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.events.create">
-            <label for="events_create">{{ __('general.create') }}</label>
+            <label for="events_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.events') }}</span></label>
         </div>
         <div class="permission">
             <input id="events_edit"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.events.edit">
-            <label for="events_edit">{{ __('general.update') }}</label>
+            <label for="events_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.events') }}</span></label>
         </div>
         <div class="permission">
             <input id="events_delete"
@@ -63,7 +63,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.events.delete">
-            <label for="events_delete">{{ __('general.delete') }}</label>
+            <label for="events_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.events') }}</span></label>
         </div>
     </div>
 </div>

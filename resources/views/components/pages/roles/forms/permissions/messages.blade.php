@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_messages_selector">{{ __('general.all') }}</label>
+            <label for="all_messages_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.message') }}</span></label>
         </div>
     </div>
     <div x-ref="messages" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.messages.index">
-            <label for="message_index">{{ __('general.see_table') }}</label>
+            <label for="message_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.message') }}</span></label>
         </div>
         <div class="permission">
             <input id="message_edit"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.messages.edit">
-            <label for="message_edit">{{ __('general.update') }}</label>
+            <label for="message_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.message') }}</span></label>
         </div>
         <div class="permission">
             <input id="message_delete"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.messages.delete">
-            <label for="message_delete">{{ __('general.delete') }}</label>
+            <label for="message_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.message') }}</span></label>
         </div>
     </div>
 </div>

@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_roles_selector">{{ __('general.all') }}</label>
+            <label for="all_roles_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.roles') }}</span></label>
         </div>
     </div>
     <div x-ref="roles" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.roles.index">
-            <label for="roles_index">{{ __('general.see_table') }}</label>
+            <label for="roles_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.roles') }}</span></label>
         </div>
         <div class="permission">
             <input id="roles_create"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.roles.create">
-            <label for="roles_create">{{ __('general.create') }}</label>
+            <label for="roles_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.roles') }}</span></label>
         </div>
         <div class="permission">
             <input id="roles_edit"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.roles.edit">
-            <label for="roles_edit">{{ __('general.update') }}</label>
+            <label for="roles_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.roles') }}</span></label>
         </div>
         <div class="permission">
             <input id="roles_delete"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.roles.delete">
-            <label for="roles_delete">{{ __('general.delete') }}</label>
+            <label for="roles_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.roles') }}</span></label>
         </div>
     </div>
 </div>

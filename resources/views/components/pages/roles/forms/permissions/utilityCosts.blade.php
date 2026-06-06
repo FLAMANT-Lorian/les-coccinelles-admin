@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_utilityCosts_selector">{{ __('general.all') }}</label>
+            <label for="all_utilityCosts_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.utilityCosts') }}</span></label>
         </div>
     </div>
     <div x-ref="utilityCosts" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.utilityCosts.index">
-            <label for="utilityCosts_index">{{ __('general.see_table') }}</label>
+            <label for="utilityCosts_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.utilityCosts') }}</span></label>
         </div>
         <div class="permission">
             <input id="utilityCosts_edit"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.utilityCosts.edit">
-            <label for="utilityCosts_edit">{{ __('general.update') }}</label>
+            <label for="utilityCosts_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.utilityCosts') }}</span></label>
         </div>
     </div>
 </div>

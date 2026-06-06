@@ -21,7 +21,7 @@
 
                         permission.dispatchEvent(new Event('change'));
                         });">
-            <label for="all_hallRates_selector">{{ __('general.all') }}</label>
+            <label for="all_hallRates_selector">{{ __('general.all') }} <span class="sr-only">{{ __('navigation/navigation.hallRates') }}</span></label>
         </div>
     </div>
     <div x-ref="hallRates" class="permissions">
@@ -31,7 +31,7 @@
                    type="checkbox"
                    name="index"
                    wire:model.live="form.permissions.hallRates.index">
-            <label for="hallRates_index">{{ __('general.see_table') }}</label>
+            <label for="hallRates_index">{{ __('general.see_table') }} <span class="sr-only">{{ __('navigation/navigation.hallRates') }}</span></label>
         </div>
         <div class="permission">
             <input id="hallRates_create"
@@ -39,7 +39,7 @@
                    type="checkbox"
                    name="create"
                    wire:model.live="form.permissions.hallRates.create">
-            <label for="hallRates_create">{{ __('general.create') }}</label>
+            <label for="hallRates_create">{{ __('general.create') }} <span class="sr-only">{{ __('navigation/navigation.hallRates') }}</span></label>
         </div>
         <div class="permission">
             <input id="hallRates_edit"
@@ -47,7 +47,7 @@
                    type="checkbox"
                    name="edit"
                    wire:model.live="form.permissions.hallRates.edit">
-            <label for="hallRates_edit">{{ __('general.update') }}</label>
+            <label for="hallRates_edit">{{ __('general.update') }} <span class="sr-only">{{ __('navigation/navigation.hallRates') }}</span></label>
         </div>
         <div class="permission">
             <input id="hallRates_delete"
@@ -55,7 +55,7 @@
                    type="checkbox"
                    name="delete"
                    wire:model.live="form.permissions.hallRates.delete">
-            <label for="hallRates_delete">{{ __('general.delete') }}</label>
+            <label for="hallRates_delete">{{ __('general.delete') }} <span class="sr-only">{{ __('navigation/navigation.hallRates') }}</span></label>
         </div>
     </div>
 </div>
