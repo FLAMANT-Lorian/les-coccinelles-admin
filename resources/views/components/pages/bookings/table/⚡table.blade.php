@@ -142,10 +142,11 @@ new class extends Component {
 
     @if($this->getBookings->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{ __('tables.captions.bookings') }}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.bookings') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.bookings.table.table-head/>
             <x-pages.bookings.table.table-body/>
         </table>

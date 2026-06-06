@@ -113,10 +113,11 @@ new class extends Component {
 
     @if($this->getContactMessages->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{__('tables.captions.messages')}}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.messages') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.messages.table.table-head/>
             <x-pages.messages.table.table-body/>
         </table>

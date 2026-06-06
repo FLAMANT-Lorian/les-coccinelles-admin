@@ -83,10 +83,11 @@ new class extends Component {
 
     @if($this->getHallRates->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{ __('tables.captions.utility-costs') }}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.hall-rates') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.hall-rates.table.table-head/>
             <x-pages.hall-rates.table.table-body/>
         </table>

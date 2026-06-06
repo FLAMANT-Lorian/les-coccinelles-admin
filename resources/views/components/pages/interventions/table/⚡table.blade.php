@@ -129,10 +129,11 @@ new class extends Component {
 
     @if($this->getInterventions->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{ __('tables.captions.interventions') }}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.interventions') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.interventions.table.table-head/>
             <x-pages.interventions.table.table-body/>
         </table>

@@ -107,10 +107,11 @@ new class extends Component {
 
     @if($this->getContacts->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{ __('tables.captions.contacts') }}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.contacts') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.contacts.table.table-head/>
             <x-pages.contacts.table.table-body/>
         </table>

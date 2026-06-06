@@ -116,10 +116,11 @@ new class extends Component {
 
     @if($this->getEvents->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{ __('tables.captions.events') }}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.events') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.events.table.table-head/>
             <x-pages.events.table.table-body/>
         </table>

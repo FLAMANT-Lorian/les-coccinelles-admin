@@ -108,10 +108,11 @@ new class extends Component {
 
     @if($this->getRoles->isNotEmpty())
         {{-- TABLE --}}
-        <table class="table" x-ref="table">
-            <caption class="sr-only">
-                {{__('tables.captions.roles')}}
-            </caption>
+        <p id="table-description" class="sr-only">
+            {{ __('tables.captions.roles') }}
+        </p>
+
+        <table class="table" aria-describedby="table-description" x-ref="table">
             <x-pages.roles.table.table-head/>
             <x-pages.roles.table.table-body/>
         </table>
