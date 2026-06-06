@@ -26,8 +26,8 @@
         </a>
         @if($booking->meterReading->canGenerateInvoice())
             <a class="text-center text-white py-3 px-4 text-base font-normal rounded-sm border border-brown hover:text-brown hover:bg-transparent bg-brown trans-all"
-               aria-label="{{ __('pages/hall.bookings-update.generate-invoice') }}"
-               title="{{ __('pages/hall.bookings-update.generate-invoice') }}"
+               aria-label="{{ __('pages/hall.bookings-update.generate-count') }}"
+               title="{{ __('pages/hall.bookings-update.generate-count') }}"
                href="{{ route('pdf.generate.count', ['bookingId' => $booking->id]) }}">
                 {{ __('pages/hall.bookings-update.generate-count') }}
             </a>

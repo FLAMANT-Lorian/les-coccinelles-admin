@@ -46,7 +46,7 @@ describe('MEMBERS BROWSER TESTING', function () {
             ->fill('postal_code', fake()->postcode)
             ->click('[title="Sexe"]')
             ->click('Homme')
-            ->click('#birth_date ~ input')
+            ->click('#birth_date')
             ->click('.open [aria-label="' . $today . '"]')
             ->click('[title="Rôle"]')
             ->click('[title="Rôle"] ~ .custom-select span')

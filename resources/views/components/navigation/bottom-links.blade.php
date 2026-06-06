@@ -9,7 +9,6 @@
        wire:current="px-4 bg-beige-medium"
        wire:navigate
        title="{{ __('navigation/navigation.settings') }}"
-       aria-label="{{ __('navigation/navigation.settings') }}"
        class="relative after:content-[''] after:absolute after:left-0 after:right-0 after:h-px after:bg-beige-dark/60 after:top-0 pt-4 text-brown rounded-sm flex flex-row items-center gap-4 py-3 hover:px-4 focus:px-4 trans-all hover:bg-beige-medium">
         <span class="sr-only">{{ __('navigation/navigation.settings') }}</span>
         <div class="w-12 h-12 rounded-full overflow-hidden">

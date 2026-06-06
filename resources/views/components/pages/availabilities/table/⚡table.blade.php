@@ -114,6 +114,9 @@ new class extends Component {
     @if($this->getAvailabilityRequests->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.captions.availability') }}
+            </caption>
             <x-pages.availabilities.table.table-head/>
             <x-pages.availabilities.table.table-body/>
         </table>

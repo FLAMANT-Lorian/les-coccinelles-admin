@@ -47,7 +47,7 @@ describe('INTERVENTIONS BROWSER TESTING', function () {
             ->click($user->full_name)
             ->click('[aria-label="Statut"]')
             ->click('[aria-label="Statut"] ~ .custom-select button:first-of-type')
-            ->click('#deadline ~ input')
+            ->click('#deadline')
             ->click('.open [aria-label="' . $deadline . '"]')
             ->click('Ajouter l’intervention')
             ->assertSee('Toto');

@@ -299,23 +299,4 @@
             stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M7 10L12 15L17 10" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
     </symbol>
-
-    <symbol id="bin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 11V17" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M14 11V17" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-        <path
-            d="M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6"
-            stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M3 6H21" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-        <path
-            d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6"
-            stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-
-    <symbol id="pen" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-            d="M21.1741 6.81201C21.7028 6.28344 21.9998 5.56648 21.9999 4.81887C22 4.07125 21.7031 3.35422 21.1746 2.82551C20.646 2.29681 19.929 1.99973 19.1814 1.99963C18.4338 1.99954 17.7168 2.29644 17.1881 2.82501L3.84206 16.174C3.60988 16.4055 3.43817 16.6905 3.34206 17.004L2.02106 21.356C1.99521 21.4425 1.99326 21.5344 2.01541 21.6219C2.03756 21.7094 2.08298 21.7892 2.14685 21.853C2.21073 21.9168 2.29068 21.9621 2.37821 21.9841C2.46575 22.0061 2.55762 22.004 2.64406 21.978L6.99706 20.658C7.31023 20.5628 7.59523 20.3921 7.82706 20.161L21.1741 6.81201Z"
-            stroke="#3D2B1F" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
-    </symbol>
-
 </svg>
