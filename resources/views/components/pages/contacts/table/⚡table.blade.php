@@ -112,6 +112,9 @@ new class extends Component {
         </p>
 
         <table class="table" aria-describedby="table-description" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.description.contacts') }}
+            </caption>
             <x-pages.contacts.table.table-head/>
             <x-pages.contacts.table.table-body/>
         </table>

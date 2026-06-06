@@ -16,6 +16,21 @@ return [
         'messages' => 'Tableau des messages permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
     ],
 
+    /* DESCRIPTION */
+    'description' => [
+        'availability' => 'Liste des demande de disponiblité',
+        'bookings' => 'Liste des réservations',
+        'hall-rates' => 'Liste des tarifs de la salle',
+        'utility-costs' => 'Liste des coûts des charges',
+        'contacts' => 'liste des contacts',
+        'events' => 'Liste des événements',
+        'meetings' => 'Liste des réunions',
+        'interventions' => 'Liste des interventions',
+        'members' => 'Liste des membres',
+        'roles' => 'Liste des rôles',
+        'messages' => 'Liste des messages',
+    ],
+
     /* ACTION */
     'update' => 'Modifier',
     'delete' => 'Supprimer',

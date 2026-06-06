@@ -109,6 +109,9 @@ new class extends Component {
         </p>
 
         <table class="table" aria-describedby="table-description" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.description.members') }}
+            </caption>
             <x-pages.members.table.table-head/>
             <x-pages.members.table.table-body/>
         </table>

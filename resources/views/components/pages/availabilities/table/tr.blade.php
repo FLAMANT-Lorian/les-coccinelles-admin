@@ -61,7 +61,7 @@
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') }} <span class="sr-only">: {{ $availabilityRequest->id }}    </span></span>
             </button>
             @canany(['delete', 'update'], AvailabilityRequest::class)
                 <div x-show="open" x-transition class="actions-table">
@@ -71,7 +71,7 @@
                                 title="{{ __('modals.deleteAvailabilityRequest') }}"
                                 aria-label="{{ __('modals.deleteAvailabilityRequest') . ' : ' . $availabilityRequest->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteAvailabilityRequest', id: {{ $availabilityRequest->id }}})">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }} <span class="sr-only">: {{ $availabilityRequest->id }}</span></span>
                         </button>
                     @endcan
                     @can('update', AvailabilityRequest::class)
@@ -80,7 +80,7 @@
                                     title="{{ __('tables.mark-single-as-read') }}"
                                     aria-label="{{ __('tables.mark-single-as-read') . ' : ' . $availabilityRequest->id }}"
                                     wire:click="markAvailabilityRequestAs('{{ MessageStatus::Read->value }}', {{ $availabilityRequest->id }})">
-                                <span>{{ __('tables.mark-single-as-read') }}</span>
+                                <span>{{ __('tables.mark-single-as-read') }} <span class="sr-only">: {{ $availabilityRequest->id }}</span></span>
                             </button>
                         @endif
                         @if($availabilityRequest->status === MessageStatus::Read->value)
@@ -88,7 +88,7 @@
                                     title="{{ __('tables.mark-single-as-not-read') }}"
                                     aria-label="{{ __('tables.mark-single-as-not-read') . ' : ' . $availabilityRequest->id }}"
                                     wire:click="markAvailabilityRequestAs('{{ MessageStatus::Unread->value }}', {{ $availabilityRequest->id }})">
-                                <span>{{ __('tables.mark-single-as-not-read') }}</span>
+                                <span>{{ __('tables.mark-single-as-not-read') }} <span class="sr-only">: {{ $availabilityRequest->id }}</span></span>
                             </button>
                         @endif
                     @endcan

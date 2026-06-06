@@ -88,6 +88,9 @@ new class extends Component {
         </p>
 
         <table class="table" aria-describedby="table-description" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.description.hall-rates') }}
+            </caption>
             <x-pages.hall-rates.table.table-head/>
             <x-pages.hall-rates.table.table-body/>
         </table>
