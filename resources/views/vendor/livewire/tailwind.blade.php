@@ -12,7 +12,7 @@
 
 <div class="self-end">
     @if ($paginator->hasPages())
-        <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
+        <div role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-between">
             <div class="flex flex-row gap-2">
                     <span class="relative z-0 inline-flex rounded-sm">
                         <span class="mr-2 ">
@@ -107,6 +107,6 @@
                         </span>
                     </span>
             </div>
-        </nav>
+        </div>
     @endif
 </div>

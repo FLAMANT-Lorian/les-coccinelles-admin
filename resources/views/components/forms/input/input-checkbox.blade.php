@@ -14,8 +14,7 @@
            class="w-full"
            id="{{ $field_name }}"
            type="checkbox"
-           name="{{ $name }}"
-           autocomplete="off">
+           name="{{ $name }}">
     <label for="{{ $field_name }}">
         {{ $label }}
     </label>

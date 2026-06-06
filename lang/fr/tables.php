@@ -3,12 +3,17 @@
 return [
     /* CAPTION */
     'captions' => [
-        'availability' => 'Liste des demandes de disponibilité',
-        'bookings' => 'Liste des réservations',
-        'hall-rates' => 'Liste des coûts',
-        'utility-costs' => 'Liste des coûts des charges',
-        'contacts' => 'Liste des contacts',
-        'events' => 'Liste des événements',
+        'availability' => 'Liste des demandes de disponibilité avec tris, filtres et actions rapides',
+        'bookings' => 'Liste des réservations avec tris, filtres et actions rapides',
+        'hall-rates' => 'Liste des coûts avec tris, filtres et actions rapides',
+        'utility-costs' => 'Liste des coûts des charges avec tris, filtres et actions rapides',
+        'contacts' => 'Liste des contacts avec tris, filtres et actions rapides',
+        'events' => 'Liste des événements avec tris, filtres et actions rapides',
+        'meetings' => 'Liste des réunions avec tris, filtres et actions rapides',
+        'interventions' => 'Liste des interventions avec tris, filtres et actions rapides',
+        'members' => 'Liste des membres avec tris, filtres et actions rapides',
+        'roles' => 'Liste des rôles avec tris, filtres et actions rapides',
+        'messages' => 'Liste des messages avec tris, filtres et actions rapides',
     ],
 
     /* ACTION */

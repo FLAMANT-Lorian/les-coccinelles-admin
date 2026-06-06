@@ -24,6 +24,7 @@
             <span>{{ __('tables.intervention-name') }}&nbsp;:</span>
             @can('update', Intervention::class)
                 <button type="button"
+                        aria-label="{{ $intervention->name }}"
                         title="{{ __('modals.updateIntervention') }}"
                         class="underline-link after:bg-brown"
                         wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})">
@@ -93,26 +94,30 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
+                    aria-label="{{ __('tables.fast-actions') . ' : ' . $intervention->id }}"
+                    title="{{ __('tables.fast-actions') }}"
                     class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') }} <span class="sr-only">{{ $intervention->id }}</span></span>
             </button>
             @canany(['update', 'delete'], Intervention::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', Intervention::class)
                         <button type="button"
+                                aria-label="{{ __('tables.update') . ' : ' . $intervention->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
                                 title="{{ __('pages/hall.interventions.update-intervention') }}">
-                            <span>{{ __('tables.update') }}</span>
+                            <span>{{ __('tables.update') }}<span class="sr-only">: {{$intervention->id}}</span></span>
                         </button>
                     @endcan
                     @can('delete', Intervention::class)
                         <button type="button"
+                                aria-label="{{ __('tables.delete') . ' : ' . $intervention->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'openDeleteModal', id: {{ $intervention->id }}})"
                                 title="{{ __('pages/hall.interventions.delete-intervention') }}">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }}<span class="sr-only">: {{$intervention->id}}</span></span>
                         </button>
                     @endcan
                 </div>
@@ -122,10 +127,11 @@
             @can('update', Intervention::class)
                 <div class="actions-mobile">
                     <button type="button"
+                            aria-label="{{ __('pages/hall.interventions.update-intervention') . ' : ' . $intervention->id }}"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $intervention->id }}})"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
                             title="{{ __('pages/hall.interventions.update-intervention') }}">
-                        <span>{{ __('pages/hall.interventions.update-intervention') }}</span>
+                        <span>{{ __('pages/hall.interventions.update-intervention') }} <span class="sr-only"> : {{ $intervention->id }}</span></span>
                     </button>
                 </div>
             @endcan

@@ -23,7 +23,7 @@ new class extends Component {
 
 
 <div class="lg:col-span-5">
-    <h3 class="text-2xl font-medium mb-1">{{ __('pages/settings.preferences.notifications-title') }}</h3>
+    <h2 class="text-2xl font-medium mb-1">{{ __('pages/settings.preferences.notifications-title') }}</h2>
     <p class="paragraph text-gray-500 mb-6">{!! __('pages/settings.preferences.notifications-text') !!}</p>
     <div class="flex flex-col gap-2">
 

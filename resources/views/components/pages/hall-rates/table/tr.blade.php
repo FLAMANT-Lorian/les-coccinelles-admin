@@ -12,7 +12,8 @@
                    id="selector-{{ $hallRate->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $hallRate->id }}" class="sr-only">{{ __('tables.select_item') . $hallRate->type }}</label>
+            <label for="selector-{{ $hallRate->id }}"
+                   class="sr-only">{{ __('tables.select_item') . $hallRate->type }}</label>
         </div>
     </td>
     <td>
@@ -65,15 +66,17 @@
                     @can('update', HallRate::class)
                         <button type="button"
                                 title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
+                                aria-label="{{ __('pages/hall.hall-rates.update-hall-rate') }} : {{ $hallRate->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
-                            <span>{{ __('tables.update') }}</span>
+                            <span>{{ __('tables.update') }}<span class="sr-only"> : {{ $hallRate->id }}</span></span>
                         </button>
                     @endcan
                     @can('delete', HallRate::class)
                         <button type="button"
                                 title="{{ __('pages/hall.hall-rates.delete-hall-rate') }}"
+                                aria-label="{{ __('pages/hall.hall-rates.delete-hall-rate') }} : {{ $hallRate->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteHallRateModal', id: {{ $hallRate->id }}})">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }}<span class="sr-only"> : {{ $hallRate->id }}</span></span>
                         </button>
                     @endcan
                 </div>
@@ -84,9 +87,10 @@
                 <div class="actions-mobile">
                     <button type="button"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            aria-label="{{ __('pages/hall.hall-rates.update-hall-rate') . ' : ' . $hallRate->id }}"
                             title="{{ __('pages/hall.hall-rates.update-hall-rate') }}"
                             wire:click="$dispatch('open-modal', {modal: 'openUpdateModal', id: {{ $hallRate->id }}})">
-                        <span>{{ __('pages/hall.hall-rates.update-hall-rate') }}</span>
+                        <span>{{ __('pages/hall.hall-rates.update-hall-rate') }} <span class="sr-only"> : {{ $hallRate->id }}</span></span>
                     </button>
                 </div>
             @endcan

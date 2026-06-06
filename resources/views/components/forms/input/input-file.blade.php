@@ -33,8 +33,7 @@
             @endif
         </span>
         <label for="{{ $field_name }}"
-               class="paragraph h-40 flex gap-4 justify-center items-center w-full border rounded-sm border-dashed border-beige-dark hover:bg-beige-light p-2 trans-all cursor-pointer"
-               aria-label="{!! __('forms.choose-files') !!}">
+               class="paragraph h-40 flex gap-4 justify-center items-center w-full border rounded-sm border-dashed border-beige-dark hover:bg-beige-light p-2 trans-all cursor-pointer">
             {!! __('forms.choose-files') !!}
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <use href="#add-files"/>

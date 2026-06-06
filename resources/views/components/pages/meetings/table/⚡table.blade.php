@@ -111,6 +111,9 @@ new class extends Component {
     @if($this->getMeetings->isNotEmpty())
         {{-- TABLE --}}
         <table class="table" x-ref="table">
+            <caption class="sr-only">
+                {{ __('tables.captions.events') }}
+            </caption>
             <x-pages.meetings.table.table-head/>
             <x-pages.meetings.table.table-body/>
         </table>

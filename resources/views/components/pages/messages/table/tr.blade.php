@@ -14,7 +14,7 @@
                    id="selector-{{ $contactMessage->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $contactMessage->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $contactMessage->id }}" class="sr-only">{{ __('tables.select_item') . ' : ' . $contactMessage->id }}</label>
         </div>
     </td>
     <td>
@@ -60,31 +60,34 @@
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' : ' . $contactMessage->id }}</span>
             </button>
             @canany(['delete', 'update'], Message::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('messages.delete')
                         <button type="button"
                                 @click="modalOpen = true"
+                                aria-label="{{ __('tables.delete') }} : {{ $contactMessage->id }}"
                                 title="{{ __('pages/messages.delete-message') }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteMessage', id: {{ $contactMessage->id }}})">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }} <span class="sr-only">: {{ $contactMessage->id }}</span></span>
                         </button>
                     @endcan
                     @can('update', Message::class)
                         @if($contactMessage->status === MessageStatus::Unread->value)
                             <button type="button"
+                                    aria-label="{{ __('tables.mark-single-as-read') }} : {{ $contactMessage->id }}"
                                     title="{{ __('tables.mark-as-read') }}"
                                     wire:click="markMessageAs('{{ MessageStatus::Read->value }}', {{ $contactMessage->id }})">
-                                <span>{{ __('tables.mark-single-as-read') }}</span>
+                                <span>{{ __('tables.mark-single-as-read') }} <span class="sr-only">: {{ $contactMessage->id }}</span></span>
                             </button>
                         @endif
                         @if($contactMessage->status === MessageStatus::Read->value)
                             <button type="button"
                                     title="{{ __('tables.mark-as-not-read') }}"
+                                    aria-label="{{ __('tables.mark-single-as-not-read') }} : {{ $contactMessage->id }}"
                                     wire:click="markMessageAs('{{ MessageStatus::Unread->value }}', {{ $contactMessage->id }})">
-                                <span>{{ __('tables.mark-single-as-not-read') }}</span>
+                                <span>{{ __('tables.mark-single-as-not-read') }} <span class="sr-only">: {{ $contactMessage->id }}</span></span>
                             </button>
                         @endif
                     @endcan

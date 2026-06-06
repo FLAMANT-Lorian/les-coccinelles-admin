@@ -72,6 +72,7 @@ new class extends Component {
                                        wire:change="toggleCompleted({{ $task->id }})">
                                 <label for="completed" class="sr-only">
                                     {{ __('pages/events.tasks.complete_task') }}
+                                    <span class="sr-only">: {{ $task->id }}</span>
                                 </label>
                             </div>
                         @endcan
@@ -88,25 +89,28 @@ new class extends Component {
                             <div class="ml-auto flex flex-row gap-3 items-center">
                                 @can('update', Task::class)
                                     <button type="button"
+                                            aria-label="{{ __('tables.update') }} : {{ $task->id }}"
+                                            title="{{ __('pages/events.tasks.update_task') }}"
                                             class="hover:bg-beige-medium rounded-sm p-1 trans-all"
                                             wire:click="$dispatch('open-modal', { modal: 'openUpdateTaskModal', task_id: {{ $task->id }} })">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <use href="#pen"></use>
                                         </svg>
-                                        <span class="sr-only">{{ __('pages/events.tasks.edit') }}</span>
+                                        <span class="sr-only">{{ __('pages/events.tasks.edit') }} <span class="sr-only">: {{ $task->id }}</span></span>
                                     </button>
                                 @endcan
                                 @can('delete', Task::class)
                                     <button type="button"
                                             title="{{ __('pages/events.tasks.delete') }}"
+                                            aria-label="{{ __('pages/events.tasks.delete') }} : {{ $task->id }}"
                                             class="hover:bg-beige-medium rounded-sm p-1 trans-all"
                                             wire:click="$dispatch('open-modal', { modal: 'openDeleteTaskModal', task_id: {{ $task->id }} })">
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <use href="#bin"></use>
                                         </svg>
-                                        <span class="sr-only">{{ __('pages/events.tasks.delete') }}</span>
+                                        <span class="sr-only">{{ __('pages/events.tasks.delete') }} <span class="sr-only">: {{ $task->id }}</span></span>
                                     </button>
                                 @endcan
                             </div>

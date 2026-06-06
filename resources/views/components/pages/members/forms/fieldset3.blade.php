@@ -5,22 +5,13 @@
     <legend>{{ __('pages/members.documents') }}</legend>
     <div class="grid-default relative">
 
-        <input id="id_card"
-               wire:model="form.documents"
-               multiple
-               type="file"
-               class="sr-only"
-               x-ref="input"
-               accept="image/png, image/jpg, image/webp">
-
         <span class="text-brown text-base font-medium pl-3 cursor-default col-span-full justify-self-start mb-1"
               @click="$refs.input.click()">
                     {{ __('forms.identity-documents') }}
                 </span>
         <div class="col-span-full grid grid-cols-1 lg:grid-cols-4 gap-8">
             <label for="id_card"
-                   class="text-center paragraph h-60 flex flex-col gap-4 justify-center items-center w-full border rounded-sm border-dashed border-beige-dark hover:bg-beige-light p-4 trans-all cursor-pointer"
-                   aria-label="{!! __('forms.choose-files') !!}">
+                   class="text-center paragraph h-60 flex flex-col gap-4 justify-center items-center w-full border rounded-sm border-dashed border-beige-dark hover:bg-beige-light p-4 trans-all cursor-pointer">
                     <span class="p-3 rounded-full bg-beige-medium">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <use href="#add-files"/>
@@ -114,6 +105,13 @@
                 </div>
             @endif
         </div>
+        <input id="id_card"
+               wire:model="form.documents"
+               multiple
+               type="file"
+               class="sr-only"
+               x-ref="input"
+               accept="image/png, image/jpg, image/webp">
         @error('form.documents')
         <p class="absolute whitespace-nowrap -bottom-6 text-red text-sm font-medium">{!! $message !!}</p>
         @enderror

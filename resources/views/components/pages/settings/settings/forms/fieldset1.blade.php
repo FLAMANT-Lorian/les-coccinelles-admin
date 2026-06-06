@@ -27,11 +27,6 @@
         @endif
     </div>
     <div class="flex flex-col gap-4">
-        <input wire:model="form.avatar"
-               class="sr-only peer"
-               type="file"
-               id="profile-picture"
-               name="avatar" accept="image/png, image/jpg, image/webp">
         <label for="profile-picture"
                class="text-center cursor-pointer py-3 px-4 rounded-sm border border-brown bg-brown peer-focus:bg-transparent peer-focus:text-brown text-white hover:bg-transparent hover:text-brown trans-all">
             @if($this->form->avatar || ($this->form->user && $this->form->user->avatar_path && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') . '/' . $this->form->user->avatar_path)))
@@ -40,6 +35,11 @@
                 {{ __('pages/members.add-avatar') }}
             @endif
         </label>
+        input wire:model="form.avatar"
+        class="sr-only peer"
+        type="file"
+        id="profile-picture"
+        name="avatar" accept="image/png, image/jpg, image/webp">
         @if($this->form->avatar || ($this->form->user && $this->form->user->avatar_path && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') . '/' . $this->form->user->avatar_path)))
             <button type="button"
                     @if($this->form->user)

@@ -16,7 +16,8 @@
                    id="selector-{{ $role->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $role->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $role->id }}"
+                   class="sr-only">{{ __('tables.select_item') . ' ' . $role->id }}</label>
         </div>
     </td>
     <td>
@@ -107,9 +108,9 @@
                     @can('update', Role::class)
                         <a href="{{ route('roles.edit', ['role' => $role]) }}"
                            wire:navigate
-                           aria-label="{{ __('tables.update') }}"
+                           aria-label="{{ __('tables.update') }} : {{ $role->id }}"
                            title="{{ __('modals.edit-role') }}">
-                            <span>{{ __('tables.update') }}</span>
+                            <span>{{ __('tables.update') }} <span> : {{ $role->id }}</span></span>
                         </a>
                     @endcan
                     @can('delete', Role::class)
@@ -117,8 +118,9 @@
                                 @click="modalOpen = true"
                                 @click.away="open = false"
                                 @keydown.window.escape="open = false"
+                                aria-label="{{ __('tables.delete') }} : {{ $role->id }}"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteRole', id: {{ $role->id }}})">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }} <span> : {{ $role->id }}</span></span>
                         </button>
                     @endcan
                 </div>
@@ -129,8 +131,10 @@
                 <div class="actions-mobile">
                     <a href="{{ route('roles.edit', ['role' => $role]) }}"
                        title="{{ __('modals.edit-role') }}"
+                       aria-label="{{ __('modals.edit-role') }} : {{ $role->id }}"
                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
-                        <span class="whitespace-nowrap">{{ __('modals.edit-role') }}</span>
+                        <span
+                            class="whitespace-nowrap">{{ __('modals.edit-role') }} <span> : {{ $role->id }}</span></span>
                     </a>
                 </div>
             @endcan

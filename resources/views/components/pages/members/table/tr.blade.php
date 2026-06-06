@@ -19,7 +19,7 @@
                    id="selector-{{ $member->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $member->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $member->id }}" class="sr-only">{{ __('tables.select_item') . $member->id }}</label>
         </div>
     </td>
     <td>
@@ -92,23 +92,24 @@
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' : ' . $member->id }}</span>
             </button>
             @canany(['update', 'delete'], User::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', User::class)
                         <a href="{{ route('members.edit', ['member' => $member]) }}"
-                           aria-label="{{ __('tables.update') }}"
+                           aria-label="{{ __('tables.update') }} : {{ $member->id }}"
                            title="{{ __('pages/members.update-members') }}">
-                            <span>{{ __('tables.update') }}</span>
+                            <span>{{ __('tables.update') }} <span class="sr-only">: {{ $member->id }}</span></span>
                         </a>
                     @endcan
                     @can('delete', User::class)
                         <button type="button"
+                                aria-label="{{ __('tables.delete') }} : {{ $member->id }}"
                                 title="{{ __('pages/members.delete-member-title') }}"
                                 @click="modalOpen = true"
                                 wire:click="$dispatch('open-modal', {modal: 'deleteMember', id: {{ $member->id }}})">
-                            <span>{{ __('tables.delete') }}</span>
+                            <span>{{ __('tables.delete') }} <span class="sr-only">: {{ $member->id }}</span></span>
                         </button>
                     @endcan
                 </div>
@@ -119,9 +120,9 @@
                 <div class="actions-mobile">
                     <a href="{{ route('members.edit', ['member' => $member]) }}"
                        title="{{ __('modals.edit-member') }}"
-                       aria-label="{{ __('modals.edit') }}"
+                       aria-label="{{ __('modals.edit-member') }} : {{ $member->id }}"
                        class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all">
-                        <span class="whitespace-nowrap">{{ __('modals.edit-member') }}</span>
+                        <span class="whitespace-nowrap">{{ __('modals.edit-member') }} <span class="sr-only">: {{ $member->id }}</span></span>
                     </a>
                 </div>
             @endcan

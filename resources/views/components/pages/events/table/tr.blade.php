@@ -28,8 +28,8 @@
             <span>{{ __('tables.name') }}&nbsp;:</span>
             @can('view', Event::class)
                 <a href="{{ route('events.show', ['event' => $event->id]) }}"
-                   class="underline-link after:bg-brown"
-                   type="button">
+                   aria-label="{{ $event->name }}"
+                   class="underline-link after:bg-brown">
                     {{ $event->name }}
                 </a>
             @else
