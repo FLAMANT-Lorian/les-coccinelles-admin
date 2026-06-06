@@ -109,8 +109,9 @@
                     <button type="button"
                             wire:click="$dispatch('open-modal', { modal: 'openUpdateModal', id: {{ $event->id }} })"
                             class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
+                            aria-label="{{ __('pages/events.edit-event') . ' : ' . $event->id }}"
                             title="{{ __('pages/events.edit-event') }}">
-                        <span>{{ __('pages/events.edit-event') }}</span>
+                        <span>{{ __('pages/events.edit-event') }} <span class="sr-only"> : {{ $event->id }}</span></span>
                     </button>
                 </div>
             @endcan
