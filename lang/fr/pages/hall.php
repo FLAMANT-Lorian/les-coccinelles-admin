@@ -8,7 +8,7 @@ return [
         'heading' => 'Tarifs de la salle',
         'subtitle' => 'Consultez les tarifs de la salle',
         'add-hall-rate' => 'Ajouter un tarif',
-        'update-hall-rate' => 'Modifier le taril',
+        'update-hall-rate' => 'Modifier le tarif',
         'delete-hall-rate' => 'Supprimer le tarif',
     ],
     'utility-costs' => [

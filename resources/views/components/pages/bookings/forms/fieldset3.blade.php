@@ -33,7 +33,6 @@
             :label="__('forms.key_handover_hour')"
             name="handover_hour"
             :required="true"
-            :placeholder="__('forms.booking-hour-placeholder')"
             field_name="handover_hour"
             wire="form.handover_hour"
         />
@@ -53,7 +52,6 @@
             :label="__('forms.key_return_hour')"
             name="return_hour"
             :required="true"
-            :placeholder="__('forms.booking-hour-placeholder')"
             field_name="return_hour"
             wire="form.return_hour"
         />

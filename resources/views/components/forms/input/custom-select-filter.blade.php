@@ -15,8 +15,7 @@
          $refs.input.blur();">
     <div class="w-full">
         <label for="status_filter"
-               class="sr-only"
-               aria-label="{{ __('tables.filter') }}">
+               class="sr-only">
             {{ __('tables.filter') }}
         </label>
         <div class="result-container flex rounded-sm flex-row gap-1 flex-wrap cursor-pointer trans-all"
