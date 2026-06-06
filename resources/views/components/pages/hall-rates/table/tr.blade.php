@@ -12,7 +12,7 @@
                    id="selector-{{ $hallRate->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $hallRate->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $hallRate->id }}" class="sr-only">{{ __('tables.select_item') . $hallRate->type }}</label>
         </div>
     </td>
     <td>
@@ -58,7 +58,7 @@
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' : ' . $hallRate->id }}</span>
             </button>
             @canany(['update', 'delete'], HallRate::class)
                 <div x-show="open" x-transition class="actions-table">

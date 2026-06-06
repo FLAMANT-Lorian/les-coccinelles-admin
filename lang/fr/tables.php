@@ -5,6 +5,7 @@ return [
     'captions' => [
         'availability' => 'Liste des demandes de disponibilité',
         'bookings' => 'Liste des réservations',
+        'hall-rates' => 'Liste des coûts',
     ],
 
     /* ACTION */
