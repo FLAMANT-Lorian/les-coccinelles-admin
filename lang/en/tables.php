@@ -1,6 +1,21 @@
 <?php
 
 return [
+    /* CAPTION */
+    'captions' => [
+        'availability' => 'Table of availability requests with sorting, filtering, multi-selection and management actions.',
+        'bookings' => 'Table of bookings with sorting, filtering, multi-selection and management actions.',
+        'hall-rates' => 'Table of rental rates with sorting, filtering and management actions.',
+        'utility-costs' => 'Table of utility costs with sorting, filtering and management actions.',
+        'contacts' => 'Table of contacts with sorting, filtering, multi-selection and management actions.',
+        'events' => 'Table of events with sorting, filtering, multi-selection and management actions.',
+        'meetings' => 'Table of meetings with sorting, filtering, multi-selection and management actions.',
+        'interventions' => 'Table of interventions with sorting, filtering, multi-selection and management actions.',
+        'members' => 'Table of members with sorting, filtering, multi-selection and management actions.',
+        'roles' => 'Table of roles with sorting, filtering and permission management.',
+        'messages' => 'Table of messages with sorting, filtering, multi-selection and management actions.',
+    ],
+
     /* ACTION */
     'update' => 'Edit',
     'delete' => 'Delete',

@@ -3,17 +3,17 @@
 return [
     /* CAPTION */
     'captions' => [
-        'availability' => 'Liste des demandes de disponibilité avec tris, filtres et actions rapides',
-        'bookings' => 'Liste des réservations avec tris, filtres et actions rapides',
-        'hall-rates' => 'Liste des coûts avec tris, filtres et actions rapides',
-        'utility-costs' => 'Liste des coûts des charges avec tris, filtres et actions rapides',
-        'contacts' => 'Liste des contacts avec tris, filtres et actions rapides',
-        'events' => 'Liste des événements avec tris, filtres et actions rapides',
-        'meetings' => 'Liste des réunions avec tris, filtres et actions rapides',
-        'interventions' => 'Liste des interventions avec tris, filtres et actions rapides',
-        'members' => 'Liste des membres avec tris, filtres et actions rapides',
-        'roles' => 'Liste des rôles avec tris, filtres et actions rapides',
-        'messages' => 'Liste des messages avec tris, filtres et actions rapides',
+        'availability' => 'Tableau des demandes de disponibilité permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'bookings' => 'Tableau des réservations permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'hall-rates' => 'Tableau des coûts de location permettant la consultation, le tri, le filtrage et l’accès aux actions de gestion.',
+        'utility-costs' => 'Tableau des coûts des charges permettant la consultation, le tri, le filtrage et l’accès aux actions de gestion.',
+        'contacts' => 'Tableau des contacts permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'events' => 'Tableau des événements permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'meetings' => 'Tableau des réunions permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'interventions' => 'Tableau des interventions permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'members' => 'Tableau des membres permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
+        'roles' => 'Tableau des rôles permettant la consultation, le tri, le filtrage et la gestion des permissions.',
+        'messages' => 'Tableau des messages permettant la consultation, le tri, le filtrage, la sélection multiple et l’accès aux actions de gestion.',
     ],
 
     /* ACTION */
