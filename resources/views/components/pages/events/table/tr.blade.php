@@ -75,11 +75,12 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
+                    aria-label="{{ __('tables.fast-actions') . ' : ' . $event->id }}"
                     class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') }} <span class="sr-only"> : {{ $event->id }}</span></span>
             </button>
             @canany(['delete', 'update'], Event::class)
                 <div x-show="open" x-transition class="actions-table">
