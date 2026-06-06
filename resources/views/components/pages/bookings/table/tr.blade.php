@@ -20,7 +20,8 @@
                    id="selector-{{ $booking->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $booking->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $booking->id }}"
+                   class="sr-only">{{ __('tables.select_item') . ' : ' . $booking->id }}</label>
         </div>
     </td>
     <td>
@@ -88,17 +89,19 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
+                    aria-label="{{ __('tables.fast-actions') . ' : ' . $booking->id }}"
+                    title="{{ __('tables.fast-actions') }}"
                     class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' ' . $booking->id }}</span>
             </button>
             @canany(['update', 'delete'], Booking::class)
                 <div x-show="open" x-transition class="actions-table">
                     @can('update', Booking::class)
                         <a href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
-                           aria-label="{{ __('tables.update') }}"
+                           aria-label="{{ __('tables.update') . ' : ' . $booking->id }}"
                            title="{{ __('pages/hall.bookings-update.update-booking') }}">
                             {{ __('tables.update') }}
                         </a>
@@ -107,7 +110,7 @@
                         <button type="button"
                                 wire:click="$dispatch('open-modal', { modal: 'openDeleteModal', id: {{ $booking->id }} })"
                                 title="{{ __('pages/hall.bookings-update.delete-booking') }}"
-                                aria-label="{{ __('tables.delete') }}">
+                                aria-label="{{ __('tables.delete') . ' : ' . $booking->id }}">
                             {{ __('tables.delete') }}
                         </button>
                     @endcan
@@ -119,8 +122,8 @@
                 <div class="actions-mobile">
                     <a class="flex self-start flex-row gap-2 items-center px-4 py-3 border border-brown bg-brown text-white rounded-sm hover:bg-transparent hover:text-brown trans-all"
                        href="{{ route('bookings.edit', ['booking' => $booking->id]) }}"
-                       aria-label="{{ __('tables.update') }}"
-                       title="{{ __('pages/hall.bookings-update.update-booking') }}">
+                       aria-label="{{ __('tables.update') . ' : ' . $booking->id }}"
+                       title="{{ __('pages/hall.bookings-update.update-booking')}}">
                         <span class="text-left">{{ __('tables.update') }}</span>
                     </a>
                 </div>
