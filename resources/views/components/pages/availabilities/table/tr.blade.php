@@ -12,7 +12,7 @@
                    id="selector-{{ $availabilityRequest->id }}"
                    wire:model.live="selectedColumn"
                    @change="$refs.table.querySelector(`thead .all-selector`).checked = false;">
-            <label for="selector-{{ $availabilityRequest->id }}" class="sr-only">{{ __('tables.select_all') }}</label>
+            <label for="selector-{{ $availabilityRequest->id }}" class="sr-only">{{ __('tables.select_item') . $availabilityRequest->id }}</label>
         </div>
     </td>
     <td>
@@ -54,11 +54,12 @@
                     @click.away="open = false"
                     @keydown.window.escape="open = false"
                     :class="open ? 'lg:bg-beige-light' : ''"
+                    title="{{ __('tables.fast-actions') . ' : ' . $availabilityRequest->id }}"
                     class="actions">
                 <svg width="20" height="4" viewBox="0 0 20 4" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#table-actions"></use>
                 </svg>
-                <span class="sr-only">{{ __('tables.fast-actions') }}</span>
+                <span class="sr-only">{{ __('tables.fast-actions') . ' : ' . $availabilityRequest->id }}</span>
             </button>
             @canany(['delete', 'update'], AvailabilityRequest::class)
                 <div x-show="open" x-transition class="actions-table">
