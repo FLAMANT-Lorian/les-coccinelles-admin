@@ -110,7 +110,7 @@ new class extends Component {
 
     @if($this->getMeetings->isNotEmpty())
         {{-- TABLE --}}
-        <<p id="table-description" class="sr-only">
+        <p id="table-description" class="sr-only">
             {{ __('tables.captions.meetings') }}
         </p>
 

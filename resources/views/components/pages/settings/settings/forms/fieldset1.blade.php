@@ -35,7 +35,7 @@
                 {{ __('pages/members.add-avatar') }}
             @endif
         </label>
-        input wire:model="form.avatar"
+        <input wire:model="form.avatar"
         class="sr-only peer"
         type="file"
         id="profile-picture"
