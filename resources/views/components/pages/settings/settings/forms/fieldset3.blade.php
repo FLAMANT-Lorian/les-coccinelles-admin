@@ -33,7 +33,7 @@
                                     <img
                                         src="{{ Storage::disk($disk)->url($variantPath) }}"
                                         class="w-full h-full object-cover aspect-square"
-                                        alt="Image">
+                                        alt="{{ __('general.document') }}">
                                     <button type="button"
                                             wire:click="removeOldDocument('{{ $document }}', {{ $this->form->user->id }})"
                                             class="absolute z-2 top-2 right-2 cursor-pointer bg-red rounded-sm p-1 hover:rounded-lg trans-all">
@@ -86,7 +86,7 @@
                             <div class="w-27 h-27 relative border border-beige-dark rounded-sm overflow-hidden">
                                 <img src="{{ $id_card->temporaryUrl() }}"
                                      class="w-full h-full object-cover aspect-square"
-                                     alt="Image">
+                                     alt="{{ __('general.document') }}">
                                 <button type="button"
                                         wire:click="$dispatch('remove-card', {id: {{ $id }}})"
                                         class="absolute top-2 right-2 cursor-pointer bg-red rounded-sm p-1 hover:rounded-lg trans-all">

@@ -37,8 +37,8 @@
             <div class="relative max-rl:hidden rl:col-start-1 rl:col-span-7 rl:row-start-1">
                 <img
                     class="h-full object-cover absolute min-w-[calc(100%+48px)] 2k:min-w-[calc(100%+48px+((100vw-2000px)/2))] right-0"
-                    src="{{ Storage::disk($disk)->url('img/jpg/side-login.jpg') }}"
-                    alt="{{ __('auth/login/side-img-alt') }}">
+                    src="{{ asset('assets/img/jpg/side-login.jpg') }}"
+                    alt="{{ __('auth/reset-password.alt') }}">
             </div>
         </div>
     </main>

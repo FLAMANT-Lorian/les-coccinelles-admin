@@ -27,7 +27,8 @@
                     </svg>
                 </div>
             @else
-                <img src="{{ Storage::disk(config('filesystems.default'))->url('img/jpg/no-avatar.jpg') }}" alt="">
+                <img src="{{ asset('assets/img/jpg/no-avatar.jpg') }}"
+                     alt="{{ __('pages/members.no-avatar') }}">
             @endif
         </div>
         <div class="flex flex-col items-start gap-0.5">

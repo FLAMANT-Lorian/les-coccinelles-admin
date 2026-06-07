@@ -1,6 +1,6 @@
 <form method="POST" novalidate action="{{ route('login.store', ['locale' => app()->getLocale()]) }}" {{ $attributes->merge(['class' => '']) }}>
     @csrf
-    <fieldset class="flex flex-col gap-6 mb-6 border-none">
+    <fieldset class="flex flex-col gap-6 mb-6 pt-0! border-none">
         <legend class="sr-only block!">{{ __('auth/login.legend') }}</legend>
 
         {{-- EMAIL --}}

@@ -11,7 +11,7 @@ return [
     'change-avatar' => 'Changer l’avatar',
     'remove-avatar' => 'Supprimer l’avatar',
     'no-avatar' => 'Avatar par défaut',
-    'avatar' => 'Avatar',
+    'avatar' => 'Avatar de ',
     'base' => 'Informations sur le membre',
     'documents' => 'Documents',
     'password' => 'Mot de passe',

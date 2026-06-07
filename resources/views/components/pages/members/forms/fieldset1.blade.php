@@ -3,10 +3,10 @@
     <div class="w-30 h-30 bg-beige-medium rounded-full mb-2">
         @if($this->form->avatar)
             <img src="{{ $this->form->avatar->temporaryUrl() }}"
-                 alt="{{ __('pages/members.avatar') }}"
+                 alt="{{ __('pages/members.avatar') . $this->form->member->fullName }}"
                  class="w-full h-full object-cover rounded-full">
         @elseif($this->form->member && $this->form->member->avatar_path && Storage::disk(config('filesystems.default'))->exists(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->member->avatar_path))
-            <img alt="{{ __('pages/members.avatar') }}"
+            <img alt="{{ __('pages/members.avatar') . $this->form->member->fullName }}"
                  src="{{ Storage::disk(config('filesystems.default'))->url(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->member->avatar_path) }}"
                  class="w-full h-full object-cover rounded-full">
         @elseif($this->form->member && $this->form->member->avatar_path && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') . '/' . $this->form->member->avatar_path))
@@ -21,7 +21,7 @@
                 </svg>
             </div>
         @else
-            <img src="{{ Storage::disk(config('filesystems.default'))->url('img/jpg/no-avatar.jpg') }}"
+            <img src="{{ asset('assets/img/jpg/no-avatar.jpg') }}"
                  alt="{{ __('pages/members.no-avatar') }}"
                  class="w-full h-full object-cover rounded-full">
         @endif
