@@ -3,10 +3,12 @@
 use App\Livewire\Forms\EventsForm;
 use App\Traits\DeleteEvent;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\Event;
 
-new class extends Component {
+new #[Title('page-title.events')]
+class extends Component {
     use DeleteEvent;
 
     public EventsForm $form;

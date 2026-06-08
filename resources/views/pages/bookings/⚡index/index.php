@@ -1,9 +1,11 @@
 <?php
 
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('page-title.bookings')]
+class extends Component {
     public bool $openDeleteModal = false;
     public bool $openDeleteSelection = false;
     public int $bookingToDelete;

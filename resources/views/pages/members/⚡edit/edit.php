@@ -2,9 +2,11 @@
 
 use App\Models\User;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('page-title.members-edit')]
+class extends Component {
     public User $member;
     public function mount($member): void
     {

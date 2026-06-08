@@ -4,12 +4,13 @@ use App\Enums\YesOrNo;
 use App\Livewire\Forms\ContactsForm;
 use App\Models\AvailabilityRequest;
 use App\Models\Contact;
-use App\Models\Message;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('page-title.availabilities')]
+class extends Component {
     public bool $modalDeleteAll = false;
     public bool $modalViewAvailabilityRequest = false;
     public bool $modalDeleteAvailabilityRequest = false;

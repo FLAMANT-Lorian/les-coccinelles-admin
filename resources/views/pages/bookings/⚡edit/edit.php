@@ -3,9 +3,11 @@
 use App\Models\Booking;
 use App\Traits\DeleteMember;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('page-title.bookings-edit')]
+class extends Component {
 
     public Booking $booking;
 

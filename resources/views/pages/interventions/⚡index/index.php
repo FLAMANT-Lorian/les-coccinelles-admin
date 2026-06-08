@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('page-title.interventions')]
+class extends Component {
     public bool $openAssigneeSelectState = false;
     public bool $openStatusSelectState = false;
     public array $terms = [

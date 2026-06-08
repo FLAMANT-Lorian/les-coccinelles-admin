@@ -7,7 +7,7 @@
     <meta name="description" content="Intranet permettant la gestion de l’asbl des Coccinelles de Morhet">
     <meta name="keywords" content="ASBL, Intranet, Coccinelles, Morhet, Village">
 
-    <title>{{ $title ?? config('app.name') }}</title>
+    <title>{{ __($title) . ' · ' . config('app.name') }}</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
