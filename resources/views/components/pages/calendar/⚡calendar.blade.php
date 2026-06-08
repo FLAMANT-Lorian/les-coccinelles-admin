@@ -122,7 +122,7 @@ new class extends Component {
 @endphp
 
 
-<div>
+<div class="relative -z-1">
     <div wire:ignore>
         <div id="coccinelles-calendar" data-events="{{ json_encode($this->getEvents()) }}"></div>
     </div>
