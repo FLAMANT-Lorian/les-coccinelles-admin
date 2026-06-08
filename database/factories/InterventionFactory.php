@@ -18,7 +18,7 @@ class InterventionFactory extends Factory
             'name' => $this->faker->name(),
             'description' => $this->faker->text(),
             'status' => $this->faker->randomElement(enumToArray(InterventionStatus::class)),
-            'deadline' => Carbon::now(),
+            'deadline' => Carbon::now()->addDays(3),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
