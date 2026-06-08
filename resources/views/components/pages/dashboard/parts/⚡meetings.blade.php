@@ -12,7 +12,6 @@ new class extends Component {
     public function mount(): void
     {
         $this->meetings = Meeting::where('date', '>=', now()->startOfDay())
-            ->whereTime('hour', '>=', now()->format('H:i'))
             ->get();
     }
 };

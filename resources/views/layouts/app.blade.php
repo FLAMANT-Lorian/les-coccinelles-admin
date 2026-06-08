@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Flamant Lorian">
+    <meta name="description" content="Intranet permettant la gestion de l’asbl des Coccinelles de Morhet">
+    <meta name="keywords" content="ASBL, Intranet, Coccinelles, Morhet, Village">
 
     <title>{{ $title ?? config('app.name') }}</title>
 

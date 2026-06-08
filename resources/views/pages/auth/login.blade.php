@@ -11,7 +11,7 @@
                 <svg width="220" height="70" viewBox="0 0 220 70" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <use href="#logo"></use>
                 </svg>
-                <h1 class="text-2xl rg:text-3xl font-medium text-brown text-center pb-2">{{ __('auth/login.h1') }}</h1>
+                <h1 class="text-2xl rg:text-3xl font-medium text-brown text-center pb-2 pt-6">{{ __('auth/login.h1') }}</h1>
                 <p class="paragraph text-gray-600 text-center mb-6">
                     {!! __('forms.accessibility_text')  !!}
                 </p>
