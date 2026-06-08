@@ -149,7 +149,7 @@ form {
                 }
 
                 label {
-                    @apply pl-2 text-brown/60 trans-all cursor-pointer;
+                    @apply pl-2 text-brown trans-all cursor-pointer;
                 }
             }
         }

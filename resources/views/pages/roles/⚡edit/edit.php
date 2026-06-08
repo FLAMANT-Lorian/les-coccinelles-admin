@@ -2,9 +2,11 @@
 
 use App\Models\Role;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
+new #[Title('page-title.roles-edit')]
+class extends Component {
     public Role $role;
 
     public function mount(Role $role): void

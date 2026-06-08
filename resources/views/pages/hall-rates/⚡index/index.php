@@ -3,10 +3,11 @@
 use App\Livewire\Forms\HallRatesForm;
 use App\Models\HallRate;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component {
-
+new #[Title('page-title.hall-rates')]
+class extends Component {
     public HallRatesForm $form;
     public bool $createHallRateModalOpen = false;
     public bool $updateHallRateModalOpen = false;

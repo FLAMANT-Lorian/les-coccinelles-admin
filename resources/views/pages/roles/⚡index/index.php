@@ -1,9 +1,11 @@
 <?php
 
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component
+new #[Title('page-title.roles')]
+class extends Component
 {
     public bool $modalDeleteRole = false;
     public ?int $roleToDelete = null;

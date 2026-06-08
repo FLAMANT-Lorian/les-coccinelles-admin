@@ -12,11 +12,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use App\Models\Event;
 use Livewire\WithFileUploads;
 
-new class extends Component {
+new #[Title('page-title.events-show')]
+class extends Component {
     use WithFileUploads;
     use DeleteEvent;
     use HandleFolder;

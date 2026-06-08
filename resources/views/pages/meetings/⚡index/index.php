@@ -4,10 +4,12 @@ use App\Livewire\Forms\MeetingsForm;
 use App\Models\Meeting;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
-new class extends Component {
+new #[Title('page-title.meetings')]
+class extends Component {
 
     use WithFileUploads;
 
