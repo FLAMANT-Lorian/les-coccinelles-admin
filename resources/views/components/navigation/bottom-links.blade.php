@@ -14,6 +14,9 @@
         <div class="w-12 h-12 rounded-full overflow-hidden">
             @if($file_name && Storage::disk(config('filesystems.default'))->exists($variant_path))
                 <img src="{{ Storage::disk(config('filesystems.default'))->url($variant_path) }}"
+                     width="128"
+                     height="128"
+                     loading="eager"
                      alt="Photo de profil de {{ auth()->user()->first_name }} {{ auth()->user()->full_name }}">
             @elseif($file_name && Storage::disk(config('filesystems.default'))->exists($original_path))
                 <div class="w-full h-full relative border border-beige-dark rounded-full bg-beige-medium">
@@ -28,6 +31,9 @@
                 </div>
             @else
                 <img src="{{ asset('assets/img/jpg/no-avatar.jpg') }}"
+                     width="736"
+                     height="736"
+                     loading="eager"
                      alt="{{ __('pages/members.no-avatar') }}">
             @endif
         </div>

@@ -33,6 +33,9 @@
                                     <img
                                         src="{{ Storage::disk($disk)->url($variantPath) }}"
                                         class="w-full h-full object-cover aspect-square"
+                                        width="256"
+                                        height="256"
+                                        loading="eager"
                                         alt="{{ __('general.document') }}">
                                     <button type="button"
                                             wire:click="removeOldDocument('{{ $document }}', {{ $this->form->user->id }})"

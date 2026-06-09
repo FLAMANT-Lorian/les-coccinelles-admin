@@ -1,6 +1,6 @@
 <div class="menu lg:flex lg:flex-col lg:h-full lg:bg-beige-light">
 
-    <div class="bg-white lg:mx-auto lg:bg-beige-light relative z-4 px-default py-6 lg:pb-20 flex flex-row items-center justify-between gap-6 max-lg:border-b max-lg:border-b-beige-dark/60">
+    <div class="bg-white lg:mx-auto lg:bg-beige-light relative z-30 px-default py-6 lg:pb-20 flex flex-row items-center justify-between gap-6 max-lg:border-b max-lg:border-b-beige-dark/60">
         <a wire:navigate
            class="w-40 h-12 lg:w-50 lg:h-15"
            title="{{ __('navigation/navigation.back_to_dashboard') }}"

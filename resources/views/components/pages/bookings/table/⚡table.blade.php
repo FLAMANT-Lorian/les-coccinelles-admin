@@ -22,7 +22,7 @@ new class extends Component {
     #[Computed]
     public function getBookings()
     {
-        $query = Booking::with(['contact', 'hall_rate']);
+        $query = Booking::with(['contact', 'hall_rate', 'bookingDate']);
 
         if (!empty($this->term)) {
             $term = $this->term;

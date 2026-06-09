@@ -8,6 +8,9 @@
         @elseif($this->form->user && $this->form->user->avatar_path && Storage::disk(config('filesystems.default'))->exists(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->user->avatar_path))
             <img alt="{{ __('pages/members.avatar') . $this->form->user->fullName }}"
                  src="{{ Storage::disk(config('filesystems.default'))->url(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->user->avatar_path) }}"
+                 width="256"
+                 height="256"
+                 loading="eager"
                  class="w-full h-full object-cover rounded-full">
         @elseif($this->form->user && $this->form->user->avatar_path && Storage::disk(config('filesystems.default'))->exists(config('avatar.original_path') . '/' . $this->form->user->avatar_path))
             <div class="w-full h-full relative border border-beige-dark rounded-full">
@@ -23,6 +26,9 @@
         @else
             <img src="{{ asset('assets/img/jpg/no-avatar.jpg') }}"
                  alt="{{ __('pages/members.no-avatar') }}"
+                 width="736"
+                 height="736"
+                 loading="eager"
                  class="w-full h-full object-cover rounded-full">
         @endif
     </div>
