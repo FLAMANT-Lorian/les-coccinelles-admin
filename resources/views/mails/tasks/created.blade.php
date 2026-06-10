@@ -1,103 +1,63 @@
 <x-layout.mail-layout>
-    <style>
-        .main {
-            padding: 2rem;
-        }
 
-        .title {
-            font-size: 24px;
-            color: #3D2B1F;
-            margin: 0 0 12px;
-        }
+    <p style="font-size:24px; color:#3D2B1F; font-weight:400; padding:0 0 12px; margin:0;">
+        Une tâche vous a été assignée !
+    </p>
 
-        .intro {
-            margin: 0 0 2rem;
-            font-size: 14px;
-            color: #6c6d6e;
-            line-height: 1.7;
-        }
+    <p style="font-size:14px; color:#6c6d6e; line-height:1.7; padding:0 0 24px; margin:0;">
+        Bonjour {{ $task->assignedTo->first_name }}, une nouvelle tâche vient de vous être attribuée dans le cadre
+        d'un événement. Vous trouverez ci-dessous les détails.
+    </p>
 
-        .section-title {
-            margin: 0 0 1rem;
-            font-size: 16px;
-            font-weight: 500;
-            color: #3D2B1F;
-        }
+    <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+        Détails de la tâche
+    </p>
 
-        .info {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin: 0 0 2rem;
-            border: 1px solid #cfcfcf;
-        }
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Tâche
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $task->name }}
+            </td>
+        </tr>
 
-        .info-divider {
-            border-top: 1px solid #cfcfcf;
-            margin: 4px 0;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .info-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #6c6d6e;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Événement
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $task->event->name }}
+            </td>
+        </tr>
 
-        .info-value {
-            font-size: 14px;
-            font-weight: 500;
-            color: #57A770;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .notice {
-            background-color: #F8D2C9;
-            border-radius: 8px;
-            padding: 1rem;
-            font-size: 14px;
-            line-height: 1.4;
-            color: #C6390E;
-        }
-    </style>
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Assignée le
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ formattedDate($task->created_at) }}
+            </td>
+        </tr>
 
-    <main class="main">
+    </table>
 
-        <h2 class="title">Une tâche vous a été assignée !</h2>
+    <table style="width:100%; background:#F8D2C9;">
+        <tr>
+            <td style="padding:16px; font-size:14px; color:#C6390E; line-height:1.6;">
+                <strong>Rappel :</strong> pensez à marquer cette tâche comme complétée une fois celle-ci effectuée.
+            </td>
+        </tr>
+    </table>
 
-        <p class="intro">
-            Bonjour {{ $task->assignedTo->first_name }}, une nouvelle tâche vient de vous être attribuée dans le cadre
-            d'un événement. Vous trouverez ci-dessous les détails.
-        </p>
-
-        <section>
-            <h2 class="section-title">Détails de la tâche</h2>
-            <div class="info">
-                <div class="info-row">
-                    <span class="info-label">Tâche</span>
-                    <span class="info-value">{{ $task->name }}</span>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Événement</span>
-                    <span class="info-value">{{ $task->event->name }}</span>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Assignée le</span>
-                    <span class="info-value">{{ formattedDate($task->created_at)  }}</span>
-                </div>
-            </div>
-        </section>
-
-        <div class="notice">
-            <strong>Rappel :</strong> pensez à marquer cette tâche comme complétée une fois celle-ci effectuée.
-        </div>
-
-    </main>
 </x-layout.mail-layout>
