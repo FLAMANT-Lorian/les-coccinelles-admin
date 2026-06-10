@@ -5,72 +5,80 @@
 
 <x-layout.mail-layout>
 
-    <main style="padding:32px;font-family:Arial,Helvetica,sans-serif;color:#3D2B1F;">
+    <p style="font-size:24px; color:#3D2B1F; font-weight:400; padding:0 0 12px; margin:0;">
+        Une intervention vous a été assignée !
+    </p>
 
-        <h2 style="font-size:24px;margin:0 0 12px;color:#3D2B1F;">
-            Une intervention vous a été assignée !
-        </h2>
+    <p style="font-size:14px; color:#6c6d6e; line-height:1.7; padding:0 0 24px; margin:0;">
+        Bonjour {{ $intervention->assignee->first_name }},
+        une nouvelle intervention vient de vous être attribuée.
+    </p>
 
-        <p style="margin:0 0 24px;font-size:14px;line-height:1.7;color:#6c6d6e;">
-            Bonjour {{ $intervention->assignee->first_name }},
-            une nouvelle intervention vient de vous être attribuée.
+    <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+        Détails de l’intervention
+    </p>
+
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
+
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Intervention
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $intervention->name }}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Assignée à
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $intervention->assignee->full_name }}
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
+
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Assignée le
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ formattedDate($intervention->created_at) }}
+            </td>
+        </tr>
+
+    </table>
+
+    @if($intervention->description)
+
+        <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+            Description
         </p>
 
-        <!-- SECTION -->
-        <h2 style="font-size:16px;margin:0 0 16px;font-weight:600;color:#3D2B1F;">
-            Détails de l’intervention
-        </h2>
-
-        <table style="background:#f6f6f6;border:1px solid #cfcfcf;border-radius:8px;padding:10px;">
-
+        <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
             <tr>
-                <td style="padding:6px 0;font-size:14px;font-weight:600;color:#6c6d6e;">
-                    Intervention
-                </td>
-                <td style="padding:6px 0;font-size:14px;font-weight:500;color:#57A770;text-align:right;">
-                    {{ $intervention->name }}
+                <td style="padding:16px; font-size:14px; color:#3D2B1F; line-height:1.7;">
+                    {{ $intervention->description }}
                 </td>
             </tr>
-
-            <tr><td colspan="2" style="border-top:1px solid #cfcfcf;"></td></tr>
-
-            <tr>
-                <td style="padding:6px 0;font-size:14px;font-weight:600;color:#6c6d6e;">
-                    Assignée à
-                </td>
-                <td style="padding:6px 0;font-size:14px;font-weight:500;color:#57A770;text-align:right;">
-                    {{ $intervention->assignee->full_name }}
-                </td>
-            </tr>
-
-            <tr><td colspan="2" style="border-top:1px solid #cfcfcf;"></td></tr>
-
-            <tr>
-                <td style="padding:6px 0;font-size:14px;font-weight:600;color:#6c6d6e;">
-                    Assignée le
-                </td>
-                <td style="padding:6px 0;font-size:14px;font-weight:500;color:#57A770;text-align:right;">
-                    {{ formattedDate($intervention->created_at) }}
-                </td>
-            </tr>
-
         </table>
 
-        @if($intervention->description)
-            <h2 style="margin:24px 0 12px;font-size:16px;font-weight:600;color:#3D2B1F;">
-                Description
-            </h2>
+    @endif
 
-            <div style="background:#f6f6f6;border:1px solid #cfcfcf;border-radius:8px;padding:16px;font-size:14px;line-height:1.7;color:#3D2B1F;">
-                {{ $intervention->description }}
-            </div>
-        @endif
-
-        <!-- NOTICE -->
-        <div style="margin-top:24px;background:#F8D2C9;border-radius:8px;padding:16px;font-size:14px;line-height:1.4;color:#C6390E;">
-            <strong>Rappel :</strong> pensez à marquer cette intervention comme complétée une fois celle-ci effectuée.
-        </div>
-
-    </main>
+    <table style="width:100%; background:#F8D2C9;">
+        <tr>
+            <td style="padding:16px; font-size:14px; color:#C6390E; line-height:1.6;">
+                <strong>Rappel :</strong> pensez à marquer cette intervention comme complétée une fois celle-ci effectuée.
+            </td>
+        </tr>
+    </table>
 
 </x-layout.mail-layout>

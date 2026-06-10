@@ -1,132 +1,95 @@
 <x-layout.mail-layout>
-    <style>
-        .main {
-            padding: 2rem;
-        }
 
-        .title {
-            font-size: 24px;
-            color: #3D2B1F;
-            margin: 0 0 12px;
-        }
+    <p style="font-size:24px; color:#3D2B1F; font-weight:400; padding:0 0 12px; margin:0;">
+        Rappel : votre événement approche !
+    </p>
 
-        .intro {
-            margin: 0 0 2rem;
-            font-size: 14px;
-            color: #6c6d6e;
-            line-height: 1.7;
-        }
+    <p style="font-size:14px; color:#6c6d6e; line-height:1.7; padding:0 0 24px; margin:0;">
+        L'événement <strong>{{ $event->name }}</strong> aura lieu dans <strong>7 jours</strong>.
+        Retrouvez ci-dessous toutes les informations utiles pour vous y préparer.
+    </p>
 
-        .section-title {
-            margin: 0 0 1rem;
-            font-size: 16px;
-            font-weight: 500;
-            color: #3D2B1F;
-        }
+    <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+        Détails de l'événement
+    </p>
 
-        .info {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin: 0 0 2rem;
-            border: 1px solid #cfcfcf;
-        }
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Événement
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $event->name }}
+            </td>
+        </tr>
 
-        .info-divider {
-            border-top: 1px solid #cfcfcf;
-            margin: 4px 0;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .info-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #6c6d6e;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Début
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ formattedDate($event->start_date) }}
+            </td>
+        </tr>
 
-        .info-value {
-            font-size: 14px;
-            font-weight: 500;
-            color: #57A770;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .message {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 1rem;
-            border: 1px solid #cfcfcf;
-            font-size: 14px;
-            color: #3D2B1F;
-            line-height: 1.7;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Fin
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ formattedDate($event->end_date) }}
+            </td>
+        </tr>
 
-        .btn {
-            margin-top: 24px;
-            display: flex;
-            justify-content: center;
-            background-color: #57A770;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-    </style>
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-    <main class="main">
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Adresse
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $event->address }}
+            </td>
+        </tr>
 
-        <h2 class="title">Rappel : votre événement approche !</h2>
+    </table>
 
-        <p class="intro">
-            L'événement <strong>{{ $event->name }}</strong> aura lieu dans <strong>7 jours</strong>.
-            Retrouvez ci-dessous toutes les informations utiles pour vous y préparer.
+    @if($event->description)
+
+        <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+            Description
         </p>
 
-        <section>
-            <h2 class="section-title">Détails de l'événement</h2>
-            <div class="info">
-                <div class="info-row">
-                    <span class="info-label">Événement</span>
-                    <span class="info-value">{{ $event->name }}</span>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Début</span>
-                    <span class="info-value">
-                        {{ formattedDate($event->start_date) }}
-                    </span>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Fin</span>
-                    <span class="info-value">
-                        {{ formattedDate($event->end_date) }}
-                    </span>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Adresse</span>
-                    <span class="info-value">{{ $event->address }}</span>
-                </div>
-            </div>
-        </section>
+        <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
+            <tr>
+                <td style="padding:16px; font-size:14px; color:#3D2B1F; line-height:1.7;">
+                    {{ $event->description }}
+                </td>
+            </tr>
+        </table>
 
-        @if($event->description)
-            <section>
-                <h2 class="section-title">Description</h2>
-                <div class="message">{{ $event->description }}</div>
-                <a class="btn"
-                   aria-label="Voir l’événement"
-                   href="{{ route('events.show', ['event' => $event->id]) }}">
-                    Voir l’événement
-                </a>
-            </section>
-        @endif
+        <table style="width:100%;">
+            <tr>
+                <td style="text-align:center;">
+                    <a href="{{ route('events.show', ['event' => $event->id]) }}"
+                       style="display:inline-block; background:#57A770; color:#ffffff; text-decoration:none; font-size:16px; font-weight:600; padding:12px 32px;">
+                        Voir l’événement
+                    </a>
+                </td>
+            </tr>
+        </table>
 
-    </main>
+    @endif
+
 </x-layout.mail-layout>

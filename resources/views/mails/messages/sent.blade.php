@@ -1,136 +1,98 @@
 <x-layout.mail-layout>
-    <style>
-        .main {
-            padding: 2rem;
-        }
 
-        .title {
-            font-size: 24px;
-            color: #3D2B1F;
-            margin: 0 0 12px;
-        }
+    <p style="font-size:24px; color:#3D2B1F; font-weight:400; padding:0 0 12px; margin:0;">
+        Nouveau message de contact
+    </p>
 
-        .intro {
-            margin: 0 0 2rem;
-            font-size: 14px;
-            color: #6c6d6e;
-            line-height: 1.7;
-        }
+    <p style="font-size:14px; color:#6c6d6e; line-height:1.7; padding:0 0 24px; margin:0;">
+        Un visiteur vient d'envoyer un message via le formulaire de contact du site.
+        Vous trouverez ci-dessous les informations transmises.
+    </p>
 
-        .section-title {
-            margin: 0 0 1rem;
-            font-size: 16px;
-            font-weight: 500;
-            color: #3D2B1F;
-        }
+    <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+        Informations de l'expéditeur
+    </p>
 
-        .info {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin: 0 0 2rem;
-            border: 1px solid #cfcfcf;
-        }
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Nom
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $contact_message->first_name . ' ' . $contact_message->last_name }}
+            </td>
+        </tr>
 
-        .info-divider {
-            border-top: 1px solid #cfcfcf;
-            margin: 4px 0;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .info-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #6c6d6e;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Adresse e-mail
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; text-align:right;">
+                <a href="mailto:{{ $contact_message->email }}"
+                   style="color:#57A770; text-decoration:none;">
+                    {{ $contact_message->email }}
+                </a>
+            </td>
+        </tr>
 
-        .info-value {
-            font-size: 14px;
-            font-weight: 500;
-            color: #57A770;
-        }
+        @if ($contact_message->phone)
 
-        .message {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 1rem;
-            border: 1px solid #cfcfcf;
-            font-size: 14px;
-            color: #3D2B1F;
-            line-height: 1.7;
-        }
+            <tr>
+                <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+            </tr>
 
-        .link {
-            color: #57A770;
-            font-weight: 600;
-            text-decoration: none;
-        }
+            <tr>
+                <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                    Téléphone
+                </td>
+                <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                    {{ $contact_message->phone }}
+                </td>
+            </tr>
 
-        .btn {
-            margin-top: 24px;
-            display: flex;
-            justify-content: center;
-            background-color: #57A770;
-            color: white;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-        }
-    </style>
+        @endif
 
-    <main class="main">
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        <h2 class="title">Nouveau message de contact</h2>
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Reçu le
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ formattedDate($contact_message->created_at) }}
+            </td>
+        </tr>
 
-        <p class="intro">
-            Un visiteur vient d'envoyer un message via le formulaire de contact du site.
-            Vous trouverez ci-dessous les informations transmises.
-        </p>
+    </table>
 
-        <section>
-            <h2 class="section-title">Informations de l'expéditeur</h2>
-            <div class="info">
-                <div class="info-row">
-                    <span class="info-label">Nom</span>
-                    <span class="info-value">{{ $contact_message->last_name . $contact_message->last_name }}</span>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Adresse e-mail</span>
-                    <span class="info-value">
-                        <a class="link" href="mailto:{{ $contact_message->email }}">{{ $contact_message->email }}</a>
-                    </span>
-                </div>
-                @if ($contact_message->phone)
-                    <div class="info-divider"></div>
-                    <div class="info-row">
-                        <span class="info-label">Téléphone</span>
-                        <span class="info-value">{{ $contact_message->phone }}</span>
-                    </div>
-                @endif
-                <div class="info-divider"></div>
-                <div class="info-row">
-                    <span class="info-label">Reçu le</span>
-                    <span class="info-value">{{ formattedDate($contact_message->created_at) }}</span>
-                </div>
-            </div>
-        </section>
+    <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+        Message
+    </p>
 
-        <section>
-            <h2 class="section-title">Message</h2>
-            <div class="message">{{ $contact_message->message }}</div>
-            <a class="btn"
-               aria-label="Voir le message dans l'administration"
-               href="{{{ route('messages', ['term' => slugify($contact_message->first_name) . ' ' . slugify($contact_message->last_name)]) }}}">
-                Voir le message dans l'administration
-            </a>
-        </section>
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
+        <tr>
+            <td style="padding:16px; font-size:14px; color:#3D2B1F; line-height:1.7;">
+                {{ $contact_message->message }}
+            </td>
+        </tr>
+    </table>
 
-    </main>
+    <table style="width:100%;">
+        <tr>
+            <td style="text-align:center;">
+                <a href="{{ route('messages', ['term' => slugify($contact_message->first_name) . ' ' . slugify($contact_message->last_name)]) }}"
+                   style="display:inline-block; background:#57A770; color:#ffffff; text-decoration:none; font-size:15px; font-weight:600; padding:12px 32px;">
+                    Voir le message dans l'administration
+                </a>
+            </td>
+        </tr>
+    </table>
+
 </x-layout.mail-layout>

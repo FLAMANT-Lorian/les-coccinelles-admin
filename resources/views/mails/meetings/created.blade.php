@@ -1,122 +1,72 @@
 @php use Carbon\Carbon; @endphp
+
 <x-layout.mail-layout>
-    <style>
-        .main {
-            padding: 2rem;
-        }
 
-        .title {
-            font-size: 24px;
-            color: #3D2B1F;
-            margin: 0 0 12px;
-        }
+    <p style="font-size:24px; color:#3D2B1F; font-weight:400; padding:0 0 12px; margin:0;">
+        Réunion planifiée
+    </p>
 
-        .intro {
-            margin: 0 0 2rem;
-            font-size: 14px;
-            color: #6c6d6e;
-            line-height: 1.7;
-        }
+    <p style="font-size:14px; color:#6c6d6e; line-height:1.7; padding:0 0 24px; margin:0;">
+        Une réunion a été programmée. Vous trouverez ci-dessous toutes les informations nécessaires.
+    </p>
 
-        .section-title {
-            margin: 0 0 1rem;
-            font-size: 16px;
-            font-weight: 500;
-            color: #3D2B1F;
-        }
+    <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+        Détails de la réunion
+    </p>
 
-        .info {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin: 0 0 2rem;
-            border: 1px solid #cfcfcf;
-        }
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom:24px;">
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Adresse
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $meeting->address }}
+            </td>
+        </tr>
 
-        .info-divider {
-            border-top: 1px solid #cfcfcf;
-            margin: 4px 0;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .info-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #6c6d6e;
-        }
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Date
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ formattedDate($meeting->date) }}
+            </td>
+        </tr>
 
-        .info-value {
-            font-size: 14px;
-            font-weight: 500;
-            color: #57A770;
-            text-align: right;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .message {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 1rem;
-            border: 1px solid #cfcfcf;
-            font-size: 14px;
-            color: #3D2B1F;
-            line-height: 1.7;
-        }
-    </style>
+        <tr>
+            <td style="text-align:left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Heure
+            </td>
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ Carbon::parse($meeting->hour)->format('H\hi') }}
+            </td>
+        </tr>
 
-    <main class="main">
+    </table>
 
-        <h2 class="title">Réunion planifiée</h2>
+    @if($meeting->description)
 
-        <p class="intro">
-            Une réunion a été programmée. Vous trouverez ci-dessous toutes les informations nécessaires.
+        <p style="font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px; margin:0;">
+            Description
         </p>
 
-        <section>
-            <h2 class="section-title">Détails de la réunion</h2>
-
-            <div class="info">
-
-                <div class="info-row">
-                    <span class="info-label">Adresse</span>
-                    <span class="info-value">{{ $meeting->address }}</span>
-                </div>
-
-                <div class="info-divider"></div>
-
-                <div class="info-row">
-                    <span class="info-label">Date</span>
-                    <span class="info-value">
-                        {{ formattedDate($meeting->date) }}
-                    </span>
-                </div>
-
-                <div class="info-divider"></div>
-
-                <div class="info-row">
-                    <span class="info-label">Heure</span>
-                    <span class="info-value">
-                        {{ Carbon::parse($meeting->hour)->format('H\hi') }}
-                    </span>
-                </div>
-
-            </div>
-        </section>
-
-        @if($meeting->description)
-            <section>
-                <h2 class="section-title">Description</h2>
-
-                <p class="message">
+        <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf;">
+            <tr>
+                <td style="padding:16px; font-size:14px; color:#3D2B1F; line-height:1.7;">
                     {{ $meeting->description }}
-                </p>
-            </section>
-        @endif
+                </td>
+            </tr>
+        </table>
 
-    </main>
+    @endif
+
 </x-layout.mail-layout>

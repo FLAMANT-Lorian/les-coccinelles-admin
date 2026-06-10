@@ -15,10 +15,10 @@
     <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom: 24px; ">
 
         <tr>
-            <td style="text-align: left; padding:12px 15px; font-size:14px; font-weight:600; color:#6c6d6e;">
+            <td style="text-align: left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
                 Adresse e-mail
             </td>
-            <td style="padding:12px 15px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
                 {{ $user->email }}
             </td>
         </tr>
@@ -28,10 +28,10 @@
         </tr>
 
         <tr>
-            <td style="text-align: left; padding:12px 15px; font-size:14px; font-weight:600; color:#6c6d6e;">
+            <td style="text-align: left; padding:12px 16px; font-size:14px; font-weight:600; color:#6c6d6e;">
                 Mot de passe
             </td>
-            <td style="padding:12px 15px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+            <td style="padding:12px 16px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
                 {{ $old_password }}
             </td>
         </tr>
@@ -39,7 +39,7 @@
 
     <table style="width:100%; margin-bottom: 24px;">
         <tr>
-            <td colspan="2" style="text-align:left; font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 15px;">
+            <td colspan="2" style="text-align:left; font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px;">
                 Comment me connecter ?
             </td>
         </tr>
@@ -87,7 +87,7 @@
 
     <table style="width:100%; background:#F8D2C9; margin-bottom: 24px;">
         <tr style="margin-bottom: 24px">
-            <td style="padding:15px; font-size:14px; color:#C6390E; line-height:1.6; border-radius: 24px;">
+            <td style="padding:16px; font-size:14px; color:#C6390E; line-height:1.6; border-radius: 24px;">
                 <strong>Conseil :</strong> changez votre mot de passe dès la première connexion.
             </td>
         </tr>
@@ -95,7 +95,7 @@
 
     <table style="width:100%;">
         <tr>
-            <td colspan="2" style="text-align:left; font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 15px;">
+            <td colspan="2" style="text-align:left; font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 16px;">
                 Comment changer mon mot de passe ?
             </td>
         </tr>
