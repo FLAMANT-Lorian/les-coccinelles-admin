@@ -1,193 +1,125 @@
 <x-layout.mail-layout>
-    <style>
-        .main {
-            padding: 2rem;
-        }
+    <table style="width:100%;">
+        <tr>
+            <td style="font-size:24px; color:#3D2B1F; font-weight:400; padding:0 0 12px;">
+                Bienvenue dans notre Asbl !
+            </td>
+        </tr>
+    </table>
 
-        .title {
-            font-size: 24px;
-            color: #3D2B1F;
-            margin: 0 0 12px;
-        }
+    <p style="font-size:14px; color:#6c6d6e; line-height:1.7; padding:0 0 20px; margin: 0">
+        Votre compte a bien été créé. Vous trouverez ci-dessous vos identifiants pour accéder à l'interface
+        d'administration.
+    </p>
 
-        .intro {
-            margin: 0 0 1.5rem;
-            font-size: 14px;
-            color: #6c6d6e;
-            line-height: 1.7;
-        }
+    <table style="width:100%; background:#f6f6f6; border:1px solid #cfcfcf; margin-bottom: 24px; ">
 
-        .credentials {
-            background-color: #f6f6f6;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            margin: 0 0 2rem;
-            border: 1px solid #cfcfcf;
-        }
+        <tr>
+            <td style="text-align: left; padding:12px 15px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Adresse e-mail
+            </td>
+            <td style="padding:12px 15px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $user->email }}
+            </td>
+        </tr>
 
-        .credential-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-        }
+        <tr>
+            <td colspan="2" style="border-top:1px solid #cfcfcf;"></td>
+        </tr>
 
-        .credential-divider {
-            border-top: 1px solid #cfcfcf;
-            margin: 4px 0;
-        }
+        <tr>
+            <td style="text-align: left; padding:12px 15px; font-size:14px; font-weight:600; color:#6c6d6e;">
+                Mot de passe
+            </td>
+            <td style="padding:12px 15px; font-size:14px; font-weight:500; color:#57A770; text-align:right;">
+                {{ $old_password }}
+            </td>
+        </tr>
+    </table>
 
-        .credential-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #6c6d6e;
-        }
+    <table style="width:100%; margin-bottom: 24px;">
+        <tr>
+            <td colspan="2" style="text-align:left; font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 15px;">
+                Comment me connecter ?
+            </td>
+        </tr>
 
-        .credential-value {
-            font-size: 14px;
-            font-weight: 500;
-            color: #57A770;
-        }
-
-        .section-title {
-            margin: 0 0 1rem;
-            font-size: 16px;
-            font-weight: 500;
-            color: #3D2B1F;
-        }
-
-        .steps {
-            width: 100%;
-            margin: 0 0 2rem;
-            display: flex;
-
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            flex-direction: row;
-        }
-
-        .number {
-            font-size: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 24px;
-            height: 24px;
-            background-color: #57A770;
-            color: white;
-            border-radius: 100%;
-        }
-
-        .text {
-            font-size: 14px;
-            color: #6c6d6e;
-            margin: 0;
-        }
-
-        .link {
-            color: #57A770;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .notice {
-            background-color: #F8D2C9;
-            border-radius: 8px;
-            padding: 1rem;
-            font-size: 14px;
-            line-height: 1.7;
-            color: #C6390E;
-            margin: 0 0 2rem;
-        }
-
-        .divider {
-            border-top: 1px solid #cfcfcf;
-            margin: 0 0 2rem;
-        }
-    </style>
-    <main class="main">
-        <div>
-            <h2 class="title">Bienvenue dans notre Asbl !</h2>
-
-            <p class="intro">
-                Votre compte a bien été créé. Vous trouverez ci-dessous vos identifiants pour accéder à l'interface
-                d'administration.
-            </p>
-        </div>
-
-        <section>
-            <h2 class="sr-only">Identifiants</h2>
-            <div class="credentials">
-                <div class="credential-row">
-                    <span class="credential-label">Adresse e-mail</span>
-                    <span class="credential-value">{{ $user->email }}</span>
+        <tr>
+            <td style="width:30px; vertical-align:top; padding:0 0 10px;">
+                <div
+                    style="width:24px; height:24px; background:#57A770; color:#ffffff; border-radius:50%; text-align:center; line-height:24px; font-size:12px;">
+                    1
                 </div>
-                <div class="credential-divider"></div>
-                <div class="credential-row">
-                    <span class="credential-label">Mot de passe</span>
-                    <span class="credential-value">{{ $old_password }}</span>
-                </div>
-            </div>
-        </section>
+            </td>
+            <td style="text-align:left; font-size:14px; color:#6c6d6e; padding:0 0 10px;">
+                Rendez-vous sur la
+                <a href="{{ route('login', ['locale' => app()->getLocale()]) }}"
+                   style="color:#57A770; font-weight:600; text-decoration:none;">
+                    page de connexion
+                </a>
+            </td>
+        </tr>
 
-        <section>
-            <h2 class="section-title">Comment me connecter ?</h2>
+        <tr>
+            <td style="width:30px; vertical-align:top; padding:0 0 10px;">
+                <div
+                    style="width:24px; height:24px; background:#57A770; color:#ffffff; border-radius:50%; text-align:center; line-height:24px; font-size:12px;">
+                    2
+                </div>
+            </td>
+            <td style="text-align:left; font-size:14px; color:#6c6d6e; padding:0 0 10px;">
+                Entrez vos identifiants dans le formulaire de connexion
+            </td>
+        </tr>
 
-            <div class="steps">
-                <div class="step">
-                    <span class="number">1</span>
-                    <p class="text">
-                        Rendez-vous sur la
-                        <a class="link"
-                           href="{{ route('login', ['locale' => app()->getLocale()]) }}">
-                            page de connexion
-                        </a>
-                    </p>
+        <tr>
+            <td style="width:30px; vertical-align:top;">
+                <div
+                    style="width:24px; height:24px; background:#57A770; color:#ffffff; border-radius:50%; text-align:center; line-height:24px; font-size:12px;">
+                    3
                 </div>
-                <div class="step">
-                    <span class="number">2</span>
-                    <p class="text">
-                        Entrez vos identifiants dans le formulaire de connexion
-                    </p>
-                </div>
-                <div class="step">
-                    <span class="number">3</span>
-                    <p class="text">
-                        Vous avez accès à l'interface d'administration de l'asbl
-                    </p>
-                </div>
-            </div>
-            <div class="notice">
-                <strong>Conseil :</strong> une fois connecté·e, modifiez votre mot de passe dès que possible depuis vos
-                paramètres (en bas du menu).
-            </div>
-        </section>
+            </td>
+            <td style="text-align:left; font-size:14px; color:#6c6d6e;">
+                Accédez à l’interface d’administration
+            </td>
+        </tr>
+    </table>
 
-        <div class="divider"></div>
+    <table style="width:100%; background:#F8D2C9; margin-bottom: 24px;">
+        <tr style="margin-bottom: 24px">
+            <td style="padding:15px; font-size:14px; color:#C6390E; line-height:1.6; border-radius: 24px;">
+                <strong>Conseil :</strong> changez votre mot de passe dès la première connexion.
+            </td>
+        </tr>
+    </table>
 
-        <section>
-            <h2 class="section-title">Comment changer mon mot de passe ?</h2>
-
-            <div class="steps">
-                <div class="step">
-                    <span class="number">1</span>
-                    <p class="text">
-                        Dans l'interface, rendez-vous dans vos <strong>paramètres</strong> (en bas du menu)
-                    </p>
+    <table style="width:100%;">
+        <tr>
+            <td colspan="2" style="text-align:left; font-size:16px; font-weight:500; color:#3D2B1F; padding:0 0 15px;">
+                Comment changer mon mot de passe ?
+            </td>
+        </tr>
+        <tr>
+            <td style="width:30px; vertical-align:top; padding:0 0 10px;">
+                <div
+                    style="width:24px; height:24px; background:#57A770; color:#ffffff; border-radius:50%; text-align:center; line-height:24px; font-size:12px;">
+                    1
                 </div>
-                <div class="step">
-                    <span class="number">2</span>
-                    <p class="text">
-                        Remplissez le formulaire de modification du mot de passe
-                    </p>
+            </td>
+            <td style="text-align:left; font-size:14px; color:#6c6d6e; padding:0 0 10px;">
+                Dans l'interface, ouvrez vos <strong>paramètres</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="width:30px; vertical-align:top;">
+                <div
+                    style="width:24px; height:24px; background:#57A770; color:#ffffff; border-radius:50%; text-align:center; line-height:24px; font-size:12px;">
+                    2
                 </div>
-            </div>
-        </section>
-    </main>
+            </td>
+            <td style="text-align:left; font-size:14px; color:#6c6d6e;">
+                Modifiez votre mot de passe
+            </td>
+        </tr>
+    </table>
 </x-layout.mail-layout>

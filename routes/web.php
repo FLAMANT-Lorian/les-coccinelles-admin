@@ -36,4 +36,6 @@ Route::group([
     });
 
 // MAIL TESTING ROUTE
-// require __DIR__ . '/dev/mails.php';
+if (app()->environment('local')) {
+    require __DIR__ . '/dev/mails.php';
+}

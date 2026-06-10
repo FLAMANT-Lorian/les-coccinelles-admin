@@ -75,7 +75,7 @@ return [
     'key_handover_date' => 'Date de remise des clés',
     'key_handover_hour' => 'Heure de remise des clés',
     'key_return_date' => 'Date de reprise des clés',
-    'key_return_hour' => 'Hure de reprise des clés',
+    'key_return_hour' => 'Heure de reprise des clés',
     'company-name' => 'Nom de groupement ou société',
     'company-name-placeholder' => 'Société ...',
     'booking-message' => 'Message / Demande spéciale',
