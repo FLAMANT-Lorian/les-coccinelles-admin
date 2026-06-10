@@ -36,7 +36,7 @@ class extends Component {
         }
     }
     #[On('open-modal')]
-    public function openModal(string $modal, int $id = null): void
+    public function openModal(string $modal, ?int $id = null): void
     {
         // POUR LANCER LE JS
         $this->dispatch('init-date-pickers');
@@ -79,6 +79,9 @@ class extends Component {
                 $q->whereLike('first_name', '%' . $this->terms['assignee'] . '%');
             });
         }
+
+        // RETIRER SUPER ADMIN
+        $query->removeSuperAdmin();
 
         $members = $query->get();
 

@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Intervention;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Role;
 
 class InterventionSeeder extends Seeder
 {
@@ -14,11 +14,13 @@ class InterventionSeeder extends Seeder
      */
     public function run(): void
     {
-        $user1 = User::first();;
+        $user = User::whereDoesntHave('roles', function (Builder $q) {
+            $q->where('name', config('permission.super_admin_name'));
+        })->first();
 
         Intervention::factory()
-            ->createdBy($user1)
-            ->assignedTo($user1)
+            ->createdBy($user)
+            ->assignedTo($user)
             ->create();
     }
 }

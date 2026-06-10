@@ -47,7 +47,7 @@ class extends Component {
     public ?Task $task = null;
 
     #[On('open-modal')]
-    public function openModal(string $modal, int $folder_id = null, int $task_id = null): void
+    public function openModal(string $modal, ?int $folder_id = null, ?int $task_id = null): void
     {
         $this->dispatch('init-date-pickers');
 
@@ -135,6 +135,9 @@ class extends Component {
                 $q->whereLike('first_name', '%' . $this->terms['assignee'] . '%');
             });
         }
+
+        // RETIRER SUPER ADMIN
+        $query->removeSuperAdmin();
 
         $members = $query->get();
 

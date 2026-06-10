@@ -41,5 +41,6 @@ return [
     'update' => 'Modifier',
     'or' => 'OU',
     'date-picker-format' => ' au ',
-    'document' => 'Document appartenant au membre'
+    'document' => 'Document appartenant au membre',
+    'not-assigned' => 'Non assignée'
 ];

@@ -11,6 +11,10 @@ class extends Component {
 
     public function mount(Role $role): void
     {
+        if ($role->name === config('permission.super_admin_name')) {
+            abort(403);
+        }
+
         $this->role = $role;
     }
 
@@ -19,7 +23,7 @@ class extends Component {
 
 
     #[On('open-modal')]
-    public function openModal(string $modal, string $id = null): void
+    public function openModal(string $modal, ?string $id = null): void
     {
         if ($modal === 'deleteRole') {
             $this->modalDeleteRole = true;

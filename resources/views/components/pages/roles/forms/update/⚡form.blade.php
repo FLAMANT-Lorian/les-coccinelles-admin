@@ -55,7 +55,7 @@ new class extends Component {
         if ($usersCount > 1 && $this->form->unique === YesOrNo::YES->value) {
             session()->flash('error', __('flash-messages.role-cant-be-unique', ['count' => $usersCount]));
 
-            $this->redirectRoute('roles.update', ['role' => $this->role], navigate: true);
+            $this->redirectRoute('roles.edit', ['role' => $this->role], navigate: true);
             return;
         }
 

@@ -17,6 +17,25 @@ class UserSeeder extends Seeder
     {
         $permissions = Permission::all();
 
+        // SUPER ADMIN
+        $superAdmin = Role::create([
+            'name' => config('permission.super_admin_name'),
+            'guard_name' => 'web',
+            'unique' => true
+        ]);
+
+        $superAdmin->givePermissionTo($permissions);
+
+        User::factory()
+            ->create([
+                'first_name' => 'Lorian',
+                'last_name' => 'Flamant',
+                'email' => 'lorian.flamant05@gmail.com',
+                'password' => 'password',
+            ])
+            ->assignRole($superAdmin);
+
+        // PRESIDENT
         $role = Role::create([
             'name' => 'Président',
             'guard_name' => 'web',
@@ -25,11 +44,17 @@ class UserSeeder extends Seeder
 
         User::factory()
             ->create([
-                'first_name' => 'Lorian',
-                'last_name' => 'Flamant',
-                'email' => 'lorian@admin.be',
+                'first_name' => 'John',
+                'last_name' => 'doe',
                 'password' => 'password',
             ])
             ->assignRole($role);
+
+        // MEMBRE
+        Role::create([
+            'name' => 'Membre',
+            'guard_name' => 'web',
+            'unique' => false
+        ]);
     }
 }

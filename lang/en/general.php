@@ -41,4 +41,5 @@ return [
     'update' => 'Edit',
     'or' => 'OR',
     'date-picker-format' => ' to ',
+    'not-assigned' => 'Not assigned'
 ];
