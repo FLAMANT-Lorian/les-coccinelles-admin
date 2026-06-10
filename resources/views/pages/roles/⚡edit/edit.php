@@ -11,6 +11,10 @@ class extends Component {
 
     public function mount(Role $role): void
     {
+        if ($role->name === config('permission.super_admin_name')) {
+            abort(403);
+        }
+
         $this->role = $role;
     }
 

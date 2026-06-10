@@ -136,6 +136,11 @@ class extends Component {
             });
         }
 
+        // RETIRER SUPER ADMIN
+        $query->whereDoesntHave('roles', function (Builder $q) {
+            $q->where('name', config('permission.super_admin_name'));
+        });
+
         $members = $query->get();
 
         return $members->isEmpty() ? [] : $members;

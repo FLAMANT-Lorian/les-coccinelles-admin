@@ -47,6 +47,9 @@ new class extends Component {
             $query->orderBy('updated_at', 'desc');
         }
 
+        // RETIRER SUPER ADMIN
+        $query->where('name', '!=', config('permission.super_admin_name'));
+
         return $query->paginate(config('table.pagination-numbers'));
     }
 

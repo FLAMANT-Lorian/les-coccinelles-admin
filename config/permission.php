@@ -202,4 +202,6 @@ return [
 
         'store' => 'default',
     ],
+
+    'super_admin_name' => 'super-admin'
 ];

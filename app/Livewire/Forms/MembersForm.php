@@ -73,6 +73,7 @@ class MembersForm extends Form
                 'required',
                 'exists:roles,id',
                 new UniqueRole($this->member),
+                'not_in:' . Role::where('name', config('permission.super_admin_name'))->value('id'),
             ],
             'status' => ['required', Rule::enum(MembersStatus::class)],
             'address' => 'required',

@@ -8,8 +8,12 @@ use Livewire\Component;
 new #[Title('page-title.members-edit')]
 class extends Component {
     public User $member;
-    public function mount($member): void
+    public function mount(User $member): void
     {
+        if ($member->roles()->first()->name === config('permission.super_admin_name')) {
+            abort(403);
+        }
+
         $this->member = $member;
     }
 
