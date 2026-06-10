@@ -27,6 +27,8 @@ Route::get('/mail-member', function () {
     $user = auth()->user();
     $old_password = 'password';
 
+    Mail::to($user->email)->send(new MemberCreatedMail($user, $old_password));
+
     return new MemberCreatedMail($user, $old_password);
 });
 

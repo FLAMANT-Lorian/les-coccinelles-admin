@@ -2,7 +2,7 @@
 return [
     'availabilities' => [
         'heading' => 'Demandes de disponibilité',
-        'subtitle' => 'Consultez les demandes disponibilités',
+        'subtitle' => 'Consultez les demandes de disponibilité',
     ],
     'hall-rates' => [
         'heading' => 'Tarifs de la salle',
