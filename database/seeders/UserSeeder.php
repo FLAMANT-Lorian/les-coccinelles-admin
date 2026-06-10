@@ -49,5 +49,12 @@ class UserSeeder extends Seeder
                 'password' => 'password',
             ])
             ->assignRole($role);
+
+        // MEMBRE
+        Role::create([
+            'name' => 'Membre',
+            'guard_name' => 'web',
+            'unique' => false
+        ]);
     }
 }

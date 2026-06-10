@@ -44,9 +44,7 @@ new class extends Component {
         }
 
         // RETIRER SUPER ADMIN
-        $query->whereDoesntHave('roles', function (Builder $q) {
-            $q->where('name', config('permission.super_admin_name'));
-        });
+        $query->removeSuperAdmin();
 
         return $query->paginate(config('table.pagination-numbers'));
     }
