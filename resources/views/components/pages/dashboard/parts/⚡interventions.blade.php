@@ -13,7 +13,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->interventions = Intervention::with(['assignee'])
-        ->where('status', InterventionStatus::todo->value)
+            ->where('status', InterventionStatus::todo->value)
             ->get();
     }
 };
@@ -52,7 +52,11 @@ new class extends Component {
                                   datetime="{{ $intervention->deadline->format('Y-m-d') }}">
                                 {{ formattedDate($intervention->deadline) }}
                             </time>
-                            <span>{{ __('pages/dashboard.interventions.assign_to') . $intervention->assignee->full_name }}</span>
+                            @if($intervention->assignee)
+                                <span>{{ __('pages/dashboard.interventions.assign_to') . $intervention->assignee->full_name }}</span>
+                            @else
+                                <span class="italic">{{ __('general.not-assigned') }}</span>
+                            @endif
                         </div>
                     </div>
                     <x-general.status
