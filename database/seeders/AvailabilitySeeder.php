@@ -26,6 +26,6 @@ class AvailabilitySeeder extends Seeder
                 'status' => MessageStatus::Unread->value
             ]);
 
-        AvailabilityRequest::factory()->count(3)->create();
+        AvailabilityRequest::factory()->count(2)->create();
     }
 }
