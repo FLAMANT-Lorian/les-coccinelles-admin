@@ -37,8 +37,18 @@
             <div class="relative max-rl:hidden rl:col-start-1 rl:col-span-7 rl:row-start-1">
                 <img
                     class="h-full object-cover absolute min-w-[calc(100%+48px)] 2k:min-w-[calc(100%+48px+((100vw-2000px)/2))] right-0"
-                    src="{{ asset('assets/img/jpg/side-login.jpg') }}"
-                    alt="{{ __('auth/reset-password.alt') }}">
+                    srcset="{{ asset('assets/img/jpg/login/side-login-400w.webp') }} 400w,
+                    {{ asset('assets/img/jpg/login/side-login-600w.webp') }} 600w, side-login-800w.webp 800w,
+                    {{ asset('assets/img/jpg/login/side-login-1000w.webp') }} 1000w,
+                    {{ asset('assets/img/jpg/login/side-login-1200w.webp') }} 1200w,
+                    {{ asset('assets/img/jpg/login/side-login-1600w.webp') }} 1600w,
+                    {{ asset('assets/img/jpg/login/side-login-2000w.webp') }} 2000w"
+                    sizes="(max-width: 400px) 400px, (max-width: 600px) 600px, (max-width: 800px) 800px, (max-width: 1000px) 1000px, (max-width: 1200px) 1200px, (max-width: 1600px) 1600px, (min-width: 1601px) 2000px"
+                    src="{{ asset('assets/img/jpg/login/side-login.jpg') }}"
+                    alt="Photo du village de Morhet à travers les champs de blé"
+                    width="2560"
+                    height="1182"
+                />
             </div>
         </div>
     </main>
