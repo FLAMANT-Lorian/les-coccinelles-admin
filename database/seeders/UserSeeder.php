@@ -46,6 +46,7 @@ class UserSeeder extends Seeder
             ->create([
                 'first_name' => 'John',
                 'last_name' => 'doe',
+                'email' => 'john.doe@example.com',
                 'password' => 'password',
             ])
             ->assignRole($role);
