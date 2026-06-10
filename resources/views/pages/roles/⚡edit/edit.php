@@ -23,7 +23,7 @@ class extends Component {
 
 
     #[On('open-modal')]
-    public function openModal(string $modal, string $id = null): void
+    public function openModal(string $modal, ?string $id = null): void
     {
         if ($modal === 'deleteRole') {
             $this->modalDeleteRole = true;

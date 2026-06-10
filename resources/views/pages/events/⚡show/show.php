@@ -47,7 +47,7 @@ class extends Component {
     public ?Task $task = null;
 
     #[On('open-modal')]
-    public function openModal(string $modal, int $folder_id = null, int $task_id = null): void
+    public function openModal(string $modal, ?int $folder_id = null, ?int $task_id = null): void
     {
         $this->dispatch('init-date-pickers');
 

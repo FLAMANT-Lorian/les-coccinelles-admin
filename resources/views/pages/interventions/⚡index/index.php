@@ -36,7 +36,7 @@ class extends Component {
         }
     }
     #[On('open-modal')]
-    public function openModal(string $modal, int $id = null): void
+    public function openModal(string $modal, ?int $id = null): void
     {
         // POUR LANCER LE JS
         $this->dispatch('init-date-pickers');
