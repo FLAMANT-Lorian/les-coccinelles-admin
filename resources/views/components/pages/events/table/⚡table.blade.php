@@ -32,16 +32,20 @@ new class extends Component {
                 $now = now()->format('Y-m-d');
 
                 if (in_array(EventStatus::SOON->value, $this->filter)) {
-                    $q->orwhere('start_date', '>', $now);
+                    $q->orWhere(function ($q) use ($now) {
+                        $q->where('start_date', '>', $now);
+                    });
                 }
                 if (in_array(EventStatus::PAST->value, $this->filter)) {
-                    $q->orwhere('start_date', '<', $now)
-                        ->where('end_date', '<', $now)
-                        ->where('end_date', '!=', $now);
+                    $q->orWhere(function ($q) use ($now) {
+                        $q->where('end_date', '<', $now);
+                    });
                 }
                 if (in_array(EventStatus::NOW->value, $this->filter)) {
-                    $q->orwhere('start_date', '<', $now)
-                        ->where('end_date', '>', $now);
+                    $q->orWhere(function ($q) use ($now) {
+                        $q->where('start_date', '<=', $now)
+                            ->where('end_date', '>=', $now);
+                    });
                 }
             });
         }
