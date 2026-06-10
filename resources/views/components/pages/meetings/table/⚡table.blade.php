@@ -33,10 +33,14 @@ new class extends Component {
 
             $query->where(function (Builder $q) use ($today) {
                 if (in_array(MeetingsStatus::SOON->value, $this->filter)) {
-                    $q->orWhereDate('date', '>', $today);
+                    $q->orWhere(function ($q) use ($today) {
+                        $q->whereDate('date', '>=', $today);
+                    });
                 }
                 if (in_array(MeetingsStatus::PAST->value, $this->filter)) {
-                    $q->orWhereDate('date', '<', $today);
+                    $q->orWhere(function ($q) use ($today) {
+                        $q->whereDate('date', '<', $today);
+                    });
                 }
             });
         }

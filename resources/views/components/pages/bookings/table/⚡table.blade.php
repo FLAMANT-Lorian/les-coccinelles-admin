@@ -39,16 +39,20 @@ new class extends Component {
                     $now = now()->format('Y-m-d');
 
                     if (in_array(BookingStatus::SOON->value, $this->filter)) {
-                        $q->orWhere('start_date', '>', $now);
+                        $q->orWhere(function ($qq) use ($now) {
+                            $qq->whereDate('start_date', '>', $now);
+                        });
                     }
                     if (in_array(BookingStatus::PAST->value, $this->filter)) {
-                        $q->orwhere('start_date', '<', $now)
-                            ->where('end_date', '<', $now)
-                            ->where('end_date', '!=', $now);
+                        $q->orWhere(function ($qq) use ($now) {
+                            $qq->whereDate('end_date', '<', $now);
+                        });
                     }
                     if (in_array(BookingStatus::NOW->value, $this->filter)) {
-                        $q->orwhere('start_date', '<', $now)
-                            ->where('end_date', '>', $now);
+                        $q->orWhere(function ($qq) use ($now) {
+                            $qq->whereDate('start_date', '<=', $now)
+                                ->whereDate('end_date', '>=', $now);
+                        });
                     }
                 });
             });
