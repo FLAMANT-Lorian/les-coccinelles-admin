@@ -37,10 +37,10 @@ class extends Component {
     #[On('close-modal')]
     public function closeModal(): void
     {
+        $this->updateUtilityCostModalOpen = false;
+
         $this->form->reset();
         $this->form->resetErrorBag();
-
-        $this->updateUtilityCostModalOpen = false;
     }
 
     #[Computed]
