@@ -3,7 +3,7 @@
     <div class="w-30 h-30 bg-beige-medium rounded-full mb-2">
         @if($this->form->avatar)
             <img src="{{ $this->form->avatar->temporaryUrl() }}"
-                 alt="{{ __('pages/members.avatar') . $this->form->member->fullName }}"
+                 alt="{{ __('pages/members.avatar') }}"
                  class="w-full h-full object-cover rounded-full">
         @elseif($this->form->member && $this->form->member->avatar_path && Storage::disk(config('filesystems.default'))->exists(sprintf(config('avatar.variant_path'), config('avatar.sizes.256.width'), config('avatar.sizes.256.height')) . '/' . $this->form->member->avatar_path))
             <img alt="{{ __('pages/members.avatar') . $this->form->member->fullName }}"

@@ -48,7 +48,7 @@ new class extends Component {
         if (!is_null($this->filter_column) && !is_null($this->filter_direction)) {
             $query->orderBy($this->filter_column, $this->filter_direction);
         } else {
-            $query->orderBy('id', 'asc');
+            $query->orderBy('id', 'desc');
         }
 
         return $query->paginate(config('table.pagination-numbers'));
