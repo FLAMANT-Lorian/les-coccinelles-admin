@@ -36,13 +36,13 @@ class extends Component {
     #[On('close-modal')]
     public function closeModal(): void
     {
-        $this->form->reset();
-        $this->form->resetErrorBag();
-
         $this->createHallRateModalOpen = false;
         $this->updateHallRateModalOpen = false;
         $this->deleteHallRateModalOpen = false;
         $this->deleteHallRatesModalOpen = false;
+
+        $this->form->reset();
+        $this->form->resetErrorBag();
     }
 
     public function save(): void

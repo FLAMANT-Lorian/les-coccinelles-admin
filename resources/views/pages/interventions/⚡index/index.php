@@ -60,13 +60,13 @@ class extends Component {
     #[On('close-modal')]
     public function closeModal(): void
     {
-        $this->form->reset();
-        $this->form->resetErrorBag();
-
         $this->openCreateModal = false;
         $this->openUpdateModal = false;
         $this->openDeleteModal = false;
         $this->openDeleteSelectionModal = false;
+
+        $this->form->reset();
+        $this->form->resetErrorBag();
     }
 
     #[Computed]
